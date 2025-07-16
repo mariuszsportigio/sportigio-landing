@@ -1,0 +1,170 @@
+---
+// FAQ.astro
+---
+
+<section id="faq" class="py-12 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins">Często zadawane pytania</h2>
+      <p class="text-base text-gray-600">
+        Znajdź odpowiedzi na najczęściej zadawane pytania o Sportigio
+      </p>
+    </div>
+
+    <!-- FAQ Grid -->
+    <div class="grid lg:grid-cols-2 gap-4">
+      <!-- FAQ Item 1 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Ile kosztuje korzystanie z Sportigio?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Oferujemy trzy plany: darmowy do 20 członków, Pro za 49zł/miesiąc do 100 członków 
+            oraz Premium za 99zł/miesiąc bez ograniczeń. Wszystkie plany mają 30-dniowy okres próbny.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Jak długo trwa wdrożenie systemu?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Standardowe wdrożenie trwa 24-48 godzin. Nasz zespół pomoże w migracji danych, 
+            konfiguracji systemu i przeszkoleniu zespołu. Większość klubów jest gotowa do pracy w ciągu 2 dni.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Czy dostępne są aplikacje mobilne?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Tak! Mamy dedykowane aplikacje na iOS i Android z pełną funkcjonalnością. 
+            Aplikacje działają offline i synchronizują dane automatycznie po połączeniu z internetem.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Jakie integracje są dostępne?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Integrujemy się z Google Calendar, PayU, Przelewy24, systemami księgowymi (iFirma, Wfirma), 
+            oraz oferujemy API do budowy własnych integracji.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Jak bezpieczne są nasze dane?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Używamy szyfrowania 256-bit SSL, regularne backup'y, hosting w Polsce zgodny z RODO. 
+            Nasze serwery spełniają najwyższe standardy bezpieczeństwa ISO 27001.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 6 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Czy można anulować subskrypcję w każdym momencie?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Tak, możesz anulować subskrypcję w każdym momencie bez dodatkowych opłat. 
+            Zachowasz dostęp do systemu do końca opłaconego okresu.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 7 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Jaki jest zakres wsparcia technicznego?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Oferujemy support przez email, chat i telefon w godzinach 8-18. Plan Premium obejmuje 
+            dedykowanego opiekuna klienta i wsparcie 24/7.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 8 -->
+      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+          <span class="text-sm font-semibold text-gray-900">Czy Sportigio nadaje się dla każdego sportu?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer hidden px-4 pb-4">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Absolutnie! Pracujemy z klubami piłkarskimi, koszykarskimi, siatkarski, pływackimi, 
+            martial arts i wieloma innymi. System jest uniwersalny i dostosowuje się do specyfiki każdego sportu.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // FAQ Accordion functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', function() {
+        const faqItem = this.closest('.faq-item');
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = this.querySelector('.faq-icon');
+        
+        // Toggle current item
+        if (answer.classList.contains('hidden')) {
+          answer.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          answer.classList.add('hidden');
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+  });
+</script> 

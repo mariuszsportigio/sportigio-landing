@@ -1,0 +1,276 @@
+---
+// PricingTable.astro
+---
+
+<section id="pricing" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold font-poppins text-[#0B2360] mb-4">Wybierz plan dla swojego klubu</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Przejrzyste ceny bez ukrytych kosztów. Rozpocznij za darmo i rozwijaj się wraz z nami.</p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      
+      <!-- Free Plan -->
+      <div class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300">
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[#0B2360] mb-2">Free</h3>
+          <p class="text-sm text-gray-600 mb-4">Idealne na start</p>
+        </div>
+
+        <div class="mb-6">
+          <div class="text-4xl font-black text-[#0B2360] mb-2">
+            <span data-monthly="Darmowy" data-yearly="Darmowy">Darmowy</span>
+          </div>
+        </div>
+
+        <ul class="space-y-3 text-left mb-8">
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Podstawowe funkcje
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Do 5 podstron
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            20 zdjęć w galerii
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            100 MB miejsca
+          </li>
+        </ul>
+        
+        <button class="w-full py-3 px-4 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-[#0B2360] hover:text-[#0B2360] transition-all duration-300 font-semibold">
+          Zacznij za darmo
+        </button>
+      </div>
+
+      <!-- Starter Plan -->
+      <div class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300">
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[#0B2360] mb-2">Starter</h3>
+          <p class="text-sm text-gray-600 mb-4">Dla małych klubów</p>
+        </div>
+
+        <div class="mb-6">
+          <div class="text-4xl font-black text-[#0B2360] mb-2">
+            <span data-monthly="79 zł" data-yearly="63 zł">79 zł</span>
+            <span class="text-base text-gray-500 font-normal">/miesiąc</span>
+          </div>
+          <div class="text-sm text-gray-500">
+            <span class="line-through" data-monthly="99 zł/miesiąc" data-yearly="950 zł za rok">99 zł/miesiąc</span>
+          </div>
+          <div class="text-sm font-semibold text-green-600 mt-1">
+            <span data-monthly="Oszczędź 20%" data-yearly="Płatne 1188 zł za rok">Oszczędź 20%</span>
+          </div>
+        </div>
+
+        <ul class="space-y-3 text-left mb-8">
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Wiele drużyn
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Własna domena
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            50 zdjęć w galerii
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            500 MB miejsca
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            2000 maili/miesiąc
+          </li>
+        </ul>
+        
+        <button class="btn-style-1 w-full py-3 px-4 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
+          Wybierz Starter
+        </button>
+      </div>
+
+      <!-- Pro Plan (Featured) -->
+      <div class="bg-white border-2 border-[#0B2360] rounded-xl p-6 text-center relative transform scale-105 shadow-xl">
+        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#01DFEC] text-[#0B2360] px-4 py-1 rounded-full text-xs font-bold">
+          Najpopularniejszy
+        </div>
+        
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#0B2360] to-[#01DFEC] rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[#0B2360] mb-2">Pro</h3>
+          <p class="text-sm text-gray-600 mb-4">Najpopularniejszy wybór</p>
+        </div>
+
+        <div class="mb-6">
+          <div class="text-4xl font-black text-[#0B2360] mb-2">
+            <span data-monthly="199 zł" data-yearly="159 zł">199 zł</span>
+            <span class="text-base text-gray-500 font-normal">/miesiąc</span>
+          </div>
+          <div class="text-sm text-gray-500">
+            <span class="line-through" data-monthly="239 zł/miesiąc" data-yearly="2868 zł za rok">239 zł/miesiąc</span>
+          </div>
+          <div class="text-sm font-semibold text-green-600 mt-1">
+            <span data-monthly="Oszczędź 17%" data-yearly="Płatne 1908 zł za rok">Oszczędź 17%</span>
+          </div>
+        </div>
+
+        <ul class="space-y-3 text-left mb-8">
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Brak reklam Sportigio
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            100 zdjęć w galerii
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            1 GB miejsca
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            8000 maili/miesiąc
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Segmentacja odbiorców
+          </li>
+        </ul>
+        
+        <button class="btn-style-1 w-full py-3 px-4 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
+          Wybierz Pro
+        </button>
+      </div>
+
+      <!-- Champion Plan -->
+      <div class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300">
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[#0B2360] mb-2">Champion</h3>
+          <p class="text-sm text-gray-600 mb-4">Dla profesjonalnych klubów</p>
+        </div>
+
+        <div class="mb-6">
+          <div class="text-4xl font-black text-[#0B2360] mb-2">
+            <span data-monthly="499 zł" data-yearly="399 zł">499 zł</span>
+            <span class="text-base text-gray-500 font-normal">/miesiąc</span>
+          </div>
+          <div class="text-sm text-gray-500">
+            <span class="line-through" data-monthly="599 zł/miesiąc" data-yearly="7188 zł za rok">599 zł/miesiąc</span>
+          </div>
+          <div class="text-sm font-semibold text-green-600 mt-1">
+            <span data-monthly="Oszczędź 17%" data-yearly="Płatne 4788 zł za rok">Oszczędź 17%</span>
+          </div>
+        </div>
+
+        <ul class="space-y-3 text-left mb-8">
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Wszystko z Pro
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Bez limitu zdjęć
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            5 GB miejsca
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            20000 maili/miesiąc
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Własny CSS/JS
+          </li>
+          <li class="flex items-center text-sm">
+            <svg class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Sesja onboardingu
+          </li>
+        </ul>
+        
+        <button class="w-full py-3 px-4 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] text-white rounded-lg hover:from-[#0a1e54] hover:to-[#01c5d1] transition-all duration-300 font-semibold">
+          Skontaktuj się z nami
+        </button>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 text-base mb-4 max-w-3xl mx-auto">
+        🔒 30-dniowa gwarancja zwrotu pieniędzy • ⚡ Aktywacja w 24h • 🚀 Bez ukrytych kosztów
+      </p>
+      <p class="text-gray-500 text-sm">
+        Wszystkie plany zawierają podstawowy support i regularne aktualizacje. Zmień plan w każdej chwili.
+      </p>
+    </div>
+  </div>
+</section> 

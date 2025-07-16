@@ -1,0 +1,282 @@
+---
+// LandingPage.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Hero from './Hero.astro';
+import StatsBar from './StatsBar.astro';
+import FeatureSection from './FeatureSection.astro';
+import TabSection from './TabSection.astro';
+import ConnectedCards from './ConnectedCards.astro';
+import DarkShowcase from './DarkShowcase.astro';
+
+import TestimonialCarousel from './TestimonialCarousel.astro';
+import FAQ from './FAQ.astro';
+import CTASection from './CTASection.astro';
+import Footer from './Footer.astro';
+---
+
+<Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
+  <!-- Fixed Navigation -->
+  <Navbar />
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+      <Hero />
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section id="stats">
+      <StatsBar />
+    </section>
+
+    <!-- Features Section -->
+    <section id="funkcje">
+      <FeatureSection />
+    </section>
+
+    <!-- Tab Section -->
+    <section id="funkcjonalnosci">
+      <TabSection />
+    </section>
+
+    <!-- Connected Cards Section -->
+    <section id="narzedzia">
+      <ConnectedCards />
+    </section>
+
+    <!-- Dark Showcase Section -->
+    <section id="aplikacja">
+      <DarkShowcase />
+    </section>
+
+
+
+    <!-- Testimonials Section -->
+    <section id="opinie">
+      <TestimonialCarousel />
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <FAQ />
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="cta">
+      <CTASection />
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+</Layout>
+
+<style>
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Add spacing for fixed navbar */
+  main {
+    padding-top: 0;
+  }
+
+  /* Section spacing consistency */
+  section {
+    scroll-margin-top: 80px; /* Account for fixed navbar */
+  }
+
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #0a1e54 0%, #01c5d1 100%);
+  }
+
+  /* Loading animation for smooth page transitions */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply animation to sections on page load */
+  section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  /* Stagger animation delays for sections */
+  section:nth-child(1) { animation-delay: 0.1s; }
+  section:nth-child(2) { animation-delay: 0.2s; }
+  section:nth-child(3) { animation-delay: 0.3s; }
+  section:nth-child(4) { animation-delay: 0.4s; }
+  section:nth-child(5) { animation-delay: 0.5s; }
+  section:nth-child(6) { animation-delay: 0.6s; }
+  section:nth-child(7) { animation-delay: 0.7s; }
+</style>
+
+<script>
+  // Enhanced page functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer for smooth animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Performance optimization: Lazy loading for images
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+          }
+        }
+      });
+    });
+
+    // Apply lazy loading to images
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+
+    // Back to top button functionality
+    const backToTop = document.createElement('button');
+    backToTop.innerHTML = `
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    `;
+    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none';
+    backToTop.style.transition = 'opacity 0.3s ease-in-out';
+    
+    document.body.appendChild(backToTop);
+
+    // Show/hide back to top button
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.pointerEvents = 'auto';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.pointerEvents = 'none';
+      }
+    });
+
+    // Smooth scroll to top
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Enhanced analytics tracking (placeholder)
+    const trackEvent = (eventName, properties = {}) => {
+      // Replace with your analytics solution (Google Analytics, Mixpanel, etc.)
+      console.log(`Event: ${eventName}`, properties);
+    };
+
+    // Track button clicks
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const buttonText = e.target.textContent.trim();
+        trackEvent('button_click', {
+          button_text: buttonText,
+          section: e.target.closest('section')?.id || 'unknown'
+        });
+      });
+    });
+
+    // Track section views
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          trackEvent('section_view', {
+            section_id: entry.target.id,
+            section_name: entry.target.querySelector('h2')?.textContent || entry.target.id
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('section[id]').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // Mobile performance optimizations
+    if (window.innerWidth <= 768) {
+      // Reduce animation complexity on mobile
+      document.querySelectorAll('[class*="animate"]').forEach(el => {
+        el.style.animation = 'none';
+      });
+    }
+
+    // Preload critical resources
+    const preloadLinks = [
+      'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
+    ];
+
+    preloadLinks.forEach(href => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'style';
+      link.href = href;
+      document.head.appendChild(link);
+    });
+  });
+
+  // Error handling for failed resources
+  window.addEventListener('error', (e) => {
+    console.error('Resource loading error:', e);
+    // You could send this to your error tracking service
+  });
+
+  // Progressive Web App features
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('SW registered: ', registration);
+        })
+        .catch((registrationError) => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    });
+  }
+</script> 

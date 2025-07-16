@@ -1,0 +1,186 @@
+---
+// TestimonialCarousel.astro
+
+// Props interface
+export interface Props {
+  id?: string;
+}
+
+const { id = "testimonials" } = Astro.props;
+---
+
+<section {id} class="py-12 bg-gray-50 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold font-poppins text-gray-900 mb-2">Co mówią o nas trenerzy</h2>
+      <p class="text-base text-gray-600">Przekonaj się, dlaczego kluby wybierają Sportigio</p>
+    </div>
+
+    <div class="testimonial-carousel relative">
+      <div class="testimonial-track flex gap-6 transition-transform duration-500 ease-in-out">
+        <!-- Testimonial 1 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Sportigio całkowicie zrewolucjonizowało sposób zarządzania naszym klubem. Oszczędzamy 10 godzin tygodniowo na administracji!"
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              MK
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Marcin Kowalski</p>
+              <p class="text-gray-500 text-xs">Prezes, KS Cracovia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi."
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              AS
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Anna Szymańska</p>
+              <p class="text-gray-500 text-xs">Trener, UKS Wisła</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!"
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              PW
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Piotr Wiśniewski</p>
+              <p class="text-gray-500 text-xs">Sekretarz, Legia Warszawa</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić harmonogram treningów w każdej chwili."
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              KN
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Katarzyna Nowak</p>
+              <p class="text-gray-500 text-xs">Koordynator, Lech Poznań</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy. Frekwencja wzrosła o 25%!"
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              ŁZ
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Łukasz Zieliński</p>
+              <p class="text-gray-500 text-xs">Dyrektor sportowy, Zagłębie Lubin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex items-center mb-4">
+            <div class="flex text-[#01DFEC] text-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="ml-1 text-xs">5/5</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
+            "Intuicyjny interfejs sprawia, że nawet najmniej techniczni członkowie zarządu mogą korzystać z systemu bez problemów."
+          </p>
+          <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
+              MW
+            </div>
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">Maria Wójcik</p>
+              <p class="text-gray-500 text-xs">Prezes, Pogoń Szczecin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <button class="carousel-btn prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 z-10">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button class="carousel-btn next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 z-10">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Indicators -->
+    <div class="flex justify-center space-x-2 mt-8">
+      <button class="indicator w-2 h-2 rounded-full bg-[#0B2360] transition-all duration-300"></button>
+      <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></button>
+      <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></button>
+    </div>
+  </div>
+</section> 
