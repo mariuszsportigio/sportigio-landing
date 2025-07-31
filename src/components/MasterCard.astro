@@ -1,0 +1,379 @@
+---
+// MasterCard.astro - Universal card component with glassmorphism and Hero-inspired styling
+export interface Props {
+  variant?: 'default' | 'glass' | 'gradient' | 'testimonial' | 'feature' | 'pricing' | 'ai';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  padding?: 'sm' | 'md' | 'lg' | 'xl';
+  shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  border?: 'none' | 'light' | 'medium' | 'gradient';
+  hover?: 'none' | 'lift' | 'scale' | 'glow' | 'tilt';
+  animation?: 'none' | 'fadeIn' | 'slideUp' | 'scaleIn';
+  className?: string;
+  clickable?: boolean;
+  href?: string;
+  target?: string;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  padding = 'md',
+  shadow = 'md',
+  border = 'light',
+  hover = 'lift',
+  animation = 'fadeIn',
+  className = '',
+  clickable = false,
+  href,
+  target
+} = Astro.props;
+
+const baseClasses = [
+  'relative rounded-xl transition-all duration-300',
+  'gpu-accelerated'
+];
+
+const variantClasses = {
+  default: 'bg-white',
+  glass: 'glass-card backdrop-blur-xl',
+  gradient: 'bg-gradient-to-br from-white/95 to-slate-50/95',
+  testimonial: 'bg-white border border-gray-100',
+  feature: 'bg-gradient-to-br from-white to-slate-50/50',
+  pricing: 'bg-white border-2 border-gray-100 hover:border-[#0B2360]/20',
+  ai: 'bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 border-gradient-ai'
+};
+
+const sizeClasses = {
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl'
+};
+
+const paddingClasses = {
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8',
+  xl: 'p-10'
+};
+
+const shadowClasses = {
+  none: '',
+  sm: 'shadow-sm',
+  md: 'shadow-lg',
+  lg: 'shadow-xl',
+  xl: 'shadow-2xl'
+};
+
+const borderClasses = {
+  none: '',
+  light: 'border border-gray-100',
+  medium: 'border border-gray-200',
+  gradient: 'border-gradient-primary'
+};
+
+const hoverClasses = {
+  none: '',
+  lift: 'hover:-translate-y-2 hover:shadow-xl',
+  scale: 'hover:scale-105',
+  glow: 'hover:shadow-2xl hover:shadow-[#0B2360]/20',
+  tilt: 'card-3d hover:shadow-xl'
+};
+
+const animationClasses = {
+  none: '',
+  fadeIn: 'animate-fadeIn',
+  slideUp: 'animate-slideUp',
+  scaleIn: 'animate-scaleIn'
+};
+
+const cardClasses = [
+  ...baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  paddingClasses[padding],
+  shadowClasses[shadow],
+  borderClasses[border],
+  hoverClasses[hover],
+  animationClasses[animation],
+  clickable ? 'cursor-pointer' : '',
+  className
+].filter(Boolean).join(' ');
+
+const Tag = href ? 'a' : 'div';
+const props = href ? { href, target } : {};
+---
+
+<Tag 
+  class={cardClasses}
+  {...props}
+>
+  <slot />
+</Tag>
+
+<style>
+  /* Enhanced glassmorphism from Hero */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(11, 35, 96, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(11, 35, 96, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(1, 223, 236, 0.03) 0%, transparent 50%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* AI card special styling */
+  .border-gradient-ai {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .border-gradient-ai::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, 
+      rgba(11, 35, 96, 0.2), 
+      rgba(1, 223, 236, 0.2), 
+      rgba(234, 54, 225, 0.2)
+    );
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  .border-gradient-ai::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(11, 35, 96, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 70% 60%, rgba(1, 223, 236, 0.06) 0%, transparent 60%),
+      radial-gradient(circle at 50% 80%, rgba(234, 54, 225, 0.04) 0%, transparent 60%);
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  /* Gradient border implementation */
+  .border-gradient-primary {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .border-gradient-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, #0B2360, #01DFEC);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  /* Enhanced hover effects */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-8px) rotateX(3deg) rotateY(3deg);
+    box-shadow: 0 20px 40px rgba(11, 35, 96, 0.15);
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  /* Pricing card special effects */
+  .bg-white.hover\:border-\[\#0B2360\]\/20:hover {
+    border-color: rgba(11, 35, 96, 0.2);
+    box-shadow: 0 10px 25px rgba(11, 35, 96, 0.1);
+  }
+
+  /* Testimonial card enhancements */
+  .bg-white.border-gray-100:hover {
+    border-color: rgba(11, 35, 96, 0.1);
+    box-shadow: 0 15px 35px rgba(11, 35, 96, 0.1);
+  }
+
+  /* Feature card gradient hover */
+  .bg-gradient-to-br.from-white.to-slate-50\/50:hover {
+    background: linear-gradient(to bottom right, #ffffff, rgba(248, 250, 252, 0.8));
+  }
+
+  /* Interactive states */
+  .cursor-pointer:hover {
+    transform: translateY(-2px);
+  }
+
+  .cursor-pointer:active {
+    transform: translateY(0);
+  }
+
+  /* Smooth transitions for all elements */
+  * {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Focus states for accessibility */
+  a:focus,
+  [tabindex]:focus {
+    outline: 2px solid rgba(11, 35, 96, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .card-3d:hover {
+      transform: translateY(-4px) rotateX(1deg) rotateY(1deg);
+    }
+    
+    .hover\:-translate-y-2:hover {
+      transform: translateY(-1px);
+    }
+    
+    .hover\:scale-105:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  /* Performance optimization */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Staggered animation delays for grids */
+  .animate-fadeIn:nth-child(1) { animation-delay: 0.0s; }
+  .animate-fadeIn:nth-child(2) { animation-delay: 0.1s; }
+  .animate-fadeIn:nth-child(3) { animation-delay: 0.2s; }
+  .animate-fadeIn:nth-child(4) { animation-delay: 0.3s; }
+  .animate-fadeIn:nth-child(5) { animation-delay: 0.4s; }
+  .animate-fadeIn:nth-child(6) { animation-delay: 0.5s; }
+
+  .animate-slideUp:nth-child(1) { animation-delay: 0.0s; }
+  .animate-slideUp:nth-child(2) { animation-delay: 0.15s; }
+  .animate-slideUp:nth-child(3) { animation-delay: 0.3s; }
+  .animate-slideUp:nth-child(4) { animation-delay: 0.45s; }
+  .animate-slideUp:nth-child(5) { animation-delay: 0.6s; }
+  .animate-slideUp:nth-child(6) { animation-delay: 0.75s; }
+
+  /* Special effects for AI variant */
+  .bg-gradient-to-br.from-\[\#0B2360\]\/5 {
+    animation: aiPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes aiPulse {
+    0%, 100% { 
+      box-shadow: 0 10px 25px -5px rgba(11, 35, 96, 0.1); 
+    }
+    50% { 
+      box-shadow: 0 20px 40px -5px rgba(1, 223, 236, 0.15); 
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced card interactions
+    const cards = document.querySelectorAll('.cursor-pointer');
+    
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+    
+    // Intersection Observer for scroll animations
+    const animatedCards = document.querySelectorAll('[class*="animate-"]');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    animatedCards.forEach(card => {
+      card.style.animationPlayState = 'paused';
+      observer.observe(card);
+    });
+  });
+</script>

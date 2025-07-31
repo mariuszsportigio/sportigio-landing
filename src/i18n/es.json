@@ -1,0 +1,37 @@
+{
+  "common": {
+    "try_free": "Prueba gratis",
+    "see_demo": "Ver demo",
+    "contact_us": "Contáctanos",
+    "learn_more": "Saber más",
+    "get_started": "Empezar",
+    "read_more": "Leer más"
+  },
+  "navigation": {
+    "features": "Funciones",
+    "pricing": "Precios", 
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "demo": "Demo"
+  },
+  "hero": {
+    "badge": "Nueva generación de gestión de club",
+    "title": "Comunicación del club en 1 simple",
+    "title_highlight": "aplicación",
+    "subtitle": "Revoluciona la forma de gestionar tu club deportivo. Comunicación, horarios, pagos y analíticas - todo en un lugar.",
+    "social_proof_clubs": "500+ clubes satisfechos",
+    "social_proof_rating": "4.8/5 valoración"
+  },
+  "blog": {
+    "title": "Últimos Artículos",
+    "subtitle": "Aprende más sobre la gestión de clubes deportivos",
+    "read_more": "Leer más",
+    "view_all": "Ver todos los artículos",
+    "no_articles": "No hay artículos disponibles",
+    "back_to_blog": "Volver al blog",
+    "related_articles": "Artículos relacionados",
+    "published_on": "Publicado el",
+    "share_article": "Compartir artículo"
+  }
+} 

@@ -1,0 +1,63 @@
+---
+// BeforeAfter.astro - Before/After comparison component
+import SectionHeader from './SectionHeader.astro';
+import ComparisonCard from './ComparisonCard.astro';
+
+// Define comparison data
+const beforeItems = [
+  { text: "Wiadomości w różnych aplikacjach" },
+  { text: "Brak przeglądu obecności" },
+  { text: "Chaos w planowaniu treningów" },
+  { text: "Godziny spędzone na organizacji" }
+];
+
+const afterItems = [
+  { text: "Zintegrowana komunikacja", highlight: "Zintegrowana komunikacja" },
+  { text: "Automatyczne listy obecności", highlight: "Automatyczne listy obecności" },
+  { text: "Inteligentny kalendarz z AI", highlight: "Inteligentny kalendarz" },
+  { text: "Zarządzanie w czasie rzeczywistym", highlight: "Zarządzanie w czasie rzeczywistym" }
+];
+---
+
+<section class="section-spacing bg-white">
+  <div class="container-default">
+    <!-- Consistent Header -->
+    <SectionHeader 
+      badge="Sposób Sportigio"
+      title="Komunikacja była rozproszona,"
+      titleBreak="my ją połączyliśmy"
+      subtitle="Jeśli Twoja komunikacja z członkami klubu nie jest zintegrowana z zarządzaniem, to jest niepełna."
+    />
+
+    <!-- Before/After Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <!-- The Old Way - Left Card -->
+      <ComparisonCard 
+        type="before"
+        title="Stary sposób"
+        items={beforeItems}
+      />
+
+      <!-- The Sportigio Way - Right Card -->
+      <ComparisonCard 
+        type="after"
+        title="Sposób Sportigio"
+        items={afterItems}
+        variant="gradient"
+      />
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-12">
+      <a 
+        href="#demo" 
+        class="inline-flex items-center px-8 py-4 btn-gradient-primary font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300"
+      >
+        <span>Sprawdź jak to działa</span>
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section> 

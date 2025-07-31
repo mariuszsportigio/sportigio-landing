@@ -1,5 +1,10 @@
 ---
 // Navbar.astro
+export interface Props {
+  activePage?: string;
+}
+
+const { activePage } = Astro.props;
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50">
@@ -88,6 +93,10 @@
           Aplikacja
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
         </a>
+        <a href="/academy" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
+          Dla Akademii
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
+        </a>
         <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
           Cennik
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
@@ -95,6 +104,18 @@
         <a href="#opinie" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
           Opinie
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="/blog" class={`text-sm font-medium transition-colors duration-200 relative group ${
+          activePage === 'blog' 
+            ? 'text-[#0B2360]' 
+            : 'text-gray-600 hover:text-[#0B2360]'
+        }`}>
+          Blog
+          <span class={`absolute bottom-0 left-0 h-0.5 bg-[#0B2360] transition-all duration-300 ${
+            activePage === 'blog' 
+              ? 'w-full' 
+              : 'w-0 group-hover:w-full'
+          }`}></span>
         </a>
         <a href="#faq" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
           FAQ
@@ -181,11 +202,21 @@
       <a href="#aplikacja" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
         Aplikacja
       </a>
-                <a href="/pricing" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
+      <a href="/academy" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
+        Dla Akademii
+      </a>
+      <a href="/pricing" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
         Cennik
       </a>
       <a href="#opinie" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
         Opinie
+      </a>
+      <a href="/blog" class={`block py-2 text-sm font-medium transition-colors duration-200 ${
+        activePage === 'blog' 
+          ? 'text-[#0B2360]' 
+          : 'text-gray-700 hover:text-[#0B2360]'
+      }`}>
+        Blog
       </a>
       <a href="#faq" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
         FAQ

@@ -1,0 +1,477 @@
+---
+// MasterExample.astro - Example usage of all master components
+import MasterSection from './MasterSection.astro';
+import MasterButton from './MasterButton.astro';
+import MasterCard from './MasterCard.astro';
+import MasterBadge from './MasterBadge.astro';
+import MasterBackground from './MasterBackground.astro';
+import MasterTextBlock from './MasterTextBlock.astro';
+
+export interface Props {
+  lang?: 'pl' | 'en' | 'es' | 'de';
+}
+
+const { lang = 'pl' } = Astro.props;
+---
+
+<!-- Hero Section Example -->
+<MasterSection 
+  id="hero-example"
+  background="hero"
+  padding="hero"
+  container="wide"
+  floatingElements={true}
+  particles={true}
+  minHeight="100vh"
+>
+  <MasterBackground type="hero" intensity="medium" animated={true} />
+  
+  <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="text-center lg:text-left">
+      <MasterBadge variant="glass" size="md" icon="M13 10V3L4 14h7v7l9-11h-7z">
+        Nowa funkcjonalność
+      </MasterBadge>
+      
+      <MasterTextBlock 
+        variant="hero"
+        level="h1"
+        size="5xl"
+        color="default"
+        align="center"
+        animation="slideUp"
+        maxWidth="none"
+        className="mt-6 mb-6"
+      >
+        Zarządzaj swoim klubem
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#0B2360] to-[#01DFEC]">
+          z łatwością
+        </span>
+      </MasterTextBlock>
+      
+      <MasterTextBlock 
+        variant="body"
+        level="p"
+        size="lg"
+        color="muted"
+        align="center"
+        maxWidth="lg"
+        className="mb-8"
+      >
+        Sportigio to kompleksowe rozwiązanie do zarządzania klubami sportowymi. 
+        Automatyzuj procesy, zwiększ komunikację i skup się na tym, co najważniejsze.
+      </MasterTextBlock>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <MasterButton 
+          variant="primary"
+          size="lg"
+          magnetic={true}
+          glow={true}
+          iconLeft="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+        >
+          Rozpocznij za darmo
+        </MasterButton>
+        
+        <MasterButton 
+          variant="outline"
+          size="lg"
+          iconLeft="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        >
+          Zobacz demo
+        </MasterButton>
+      </div>
+    </div>
+    
+    <div class="relative">
+      <MasterCard 
+        variant="glass"
+        size="lg"
+        shadow="xl"
+        hover="tilt"
+        animation="fadeIn"
+        className="p-0 overflow-hidden"
+      >
+        <img 
+          src="/screens/analytics_01.png" 
+          alt="Sportigio Dashboard" 
+          class="w-full h-auto rounded-xl"
+        />
+      </MasterCard>
+    </div>
+  </div>
+</MasterSection>
+
+<!-- Features Section Example -->
+<MasterSection 
+  id="features-example"
+  background="gradient"
+  padding="large"
+  container="default"
+>
+  <div class="text-center mb-16">
+    <MasterBadge variant="primary" size="lg" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+      Funkcje
+    </MasterBadge>
+    
+    <MasterTextBlock 
+      variant="section"
+      level="h2"
+      size="4xl"
+      color="default"
+      align="center"
+      animation="fadeIn"
+      className="mt-6 mb-4"
+    >
+      Wszystko czego potrzebujesz
+    </MasterTextBlock>
+    
+    <MasterTextBlock 
+      variant="body"
+      level="p"
+      size="xl"
+      color="muted"
+      align="center"
+      maxWidth="3xl"
+    >
+      Nasze rozwiązanie zapewnia kompleksowe narzędzia do zarządzania klubem sportowym
+    </MasterTextBlock>
+  </div>
+  
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <MasterCard 
+      variant="feature"
+      size="md"
+      shadow="lg"
+      hover="lift"
+      animation="fadeIn"
+    >
+      <div class="mb-4">
+        <div class="w-12 h-12 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+        </div>
+        <MasterTextBlock 
+          variant="feature"
+          level="h3"
+          size="xl"
+          color="default"
+          className="mb-2"
+        >
+          Zarządzanie członkami
+        </MasterTextBlock>
+        <MasterTextBlock 
+          variant="body"
+          level="p"
+          size="md"
+          color="muted"
+        >
+          Prowadź bazę członków, śledź płatności i zarządzaj dostępem do treningów
+        </MasterTextBlock>
+      </div>
+    </MasterCard>
+    
+    <MasterCard 
+      variant="feature"
+      size="md"
+      shadow="lg"
+      hover="lift"
+      animation="fadeIn"
+    >
+      <div class="mb-4">
+        <div class="w-12 h-12 bg-gradient-to-r from-[#01DFEC] to-[#EA36E1] rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <MasterTextBlock 
+          variant="feature"
+          level="h3"
+          size="xl"
+          color="default"
+          className="mb-2"
+        >
+          Kalendarz treningów
+        </MasterTextBlock>
+        <MasterTextBlock 
+          variant="body"
+          level="p"
+          size="md"
+          color="muted"
+        >
+          Planuj treningi, rezerwuj obiekty i informuj członków o zmianach
+        </MasterTextBlock>
+      </div>
+    </MasterCard>
+    
+    <MasterCard 
+      variant="feature"
+      size="md"
+      shadow="lg"
+      hover="lift"
+      animation="fadeIn"
+    >
+      <div class="mb-4">
+        <div class="w-12 h-12 bg-gradient-to-r from-[#EA36E1] to-[#0B2360] rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+        </div>
+        <MasterTextBlock 
+          variant="feature"
+          level="h3"
+          size="xl"
+          color="default"
+          className="mb-2"
+        >
+          Płatności online
+        </MasterTextBlock>
+        <MasterTextBlock 
+          variant="body"
+          level="p"
+          size="md"
+          color="muted"
+        >
+          Automatyzuj pobieranie składek i zarządzaj finansami klubu
+        </MasterTextBlock>
+      </div>
+    </MasterCard>
+  </div>
+</MasterSection>
+
+<!-- Testimonials Section Example -->
+<MasterSection 
+  id="testimonials-example"
+  background="white"
+  padding="large"
+  container="default"
+>
+  <div class="text-center mb-16">
+    <MasterBadge variant="gradient" size="lg" icon="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+      Opinie klientów
+    </MasterBadge>
+    
+    <MasterTextBlock 
+      variant="section"
+      level="h2"
+      size="4xl"
+      color="default"
+      align="center"
+      className="mt-6 mb-4"
+    >
+      Zaufali nam
+    </MasterTextBlock>
+    
+    <MasterTextBlock 
+      variant="body"
+      level="p"
+      size="xl"
+      color="muted"
+      align="center"
+      maxWidth="2xl"
+    >
+      Zobacz co mówią o nas kluby sportowe z całej Polski
+    </MasterTextBlock>
+  </div>
+  
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <MasterCard 
+      variant="testimonial"
+      size="md"
+      shadow="lg"
+      hover="lift"
+      animation="slideUp"
+    >
+      <MasterTextBlock 
+        variant="testimonial"
+        level="p"
+        size="md"
+        color="muted"
+        className="mb-4"
+      >
+        "Sportigio kompletnie zmieniło sposób zarządzania naszym klubem. Oszczędzamy 
+        godziny pracy tygodniowo dzięki automatyzacji procesów."
+      </MasterTextBlock>
+      
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
+          MK
+        </div>
+        <div>
+          <MasterTextBlock 
+            variant="body"
+            level="p"
+            size="sm"
+            color="default"
+            weight="semibold"
+          >
+            Marek Kowalski
+          </MasterTextBlock>
+          <MasterTextBlock 
+            variant="body"
+            level="p"
+            size="xs"
+            color="muted"
+          >
+            Prezes, KS Cracovia
+          </MasterTextBlock>
+        </div>
+      </div>
+    </MasterCard>
+    
+    <MasterCard 
+      variant="ai"
+      size="md"
+      shadow="lg"
+      hover="glow"
+      animation="slideUp"
+    >
+      <div class="mb-4">
+        <MasterBadge variant="secondary" size="sm" dot={true} pulse={true}>
+          AI Analiza
+        </MasterBadge>
+      </div>
+      
+      <MasterTextBlock 
+        variant="testimonial"
+        level="p"
+        size="md"
+        color="muted"
+        animation="typewriter"
+        className="mb-4"
+      >
+        Na podstawie 500+ opinii, klienci najczęściej chwalą intuicyjność 
+        interfejsu i oszczędność czasu.
+      </MasterTextBlock>
+      
+      <div class="flex flex-wrap gap-2">
+        <MasterBadge variant="primary" size="xs">📊 Analityka</MasterBadge>
+        <MasterBadge variant="secondary" size="xs">⚡ Szybkość</MasterBadge>
+        <MasterBadge variant="success" size="xs">✅ Niezawodność</MasterBadge>
+      </div>
+    </MasterCard>
+    
+    <MasterCard 
+      variant="testimonial"
+      size="md"
+      shadow="lg"
+      hover="lift"
+      animation="slideUp"
+    >
+      <MasterTextBlock 
+        variant="testimonial"
+        level="p"
+        size="md"
+        color="muted"
+        className="mb-4"
+      >
+        "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić 
+        harmonogram treningów w każdej chwili."
+      </MasterTextBlock>
+      
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
+          KN
+        </div>
+        <div>
+          <MasterTextBlock 
+            variant="body"
+            level="p"
+            size="sm"
+            color="default"
+            weight="semibold"
+          >
+            Katarzyna Nowak
+          </MasterTextBlock>
+          <MasterTextBlock 
+            variant="body"
+            level="p"
+            size="xs"
+            color="muted"
+          >
+            Koordynator, Lech Poznań
+          </MasterTextBlock>
+        </div>
+      </div>
+    </MasterCard>
+  </div>
+</MasterSection>
+
+<!-- CTA Section Example -->
+<MasterSection 
+  id="cta-example"
+  background="navy"
+  padding="large"
+  container="narrow"
+>
+  <MasterBackground type="mesh" intensity="subtle" animated={true} />
+  
+  <div class="text-center">
+    <MasterTextBlock 
+      variant="cta"
+      level="h2"
+      size="3xl"
+      color="gradient"
+      align="center"
+      animation="fadeIn"
+      className="mb-6"
+    >
+      Gotowy na zmiany?
+    </MasterTextBlock>
+    
+    <MasterTextBlock 
+      variant="body"
+      level="p"
+      size="xl"
+      color="muted"
+      align="center"
+      maxWidth="2xl"
+      className="mb-8"
+    >
+      Dołącz do setek klubów sportowych, które już zaufały Sportigio
+    </MasterTextBlock>
+    
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <MasterButton 
+        variant="gradient"
+        size="xl"
+        magnetic={true}
+        glow={true}
+        iconLeft="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+      >
+        Rozpocznij bezpłatny trial
+      </MasterButton>
+      
+      <MasterButton 
+        variant="ghost"
+        size="xl"
+        iconLeft="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+      >
+        Skontaktuj się z nami
+      </MasterButton>
+    </div>
+  </div>
+</MasterSection>
+
+<style>
+  /* Example page styling */
+  .example-page {
+    min-height: 100vh;
+  }
+  
+  /* Custom animations for this example */
+  @keyframes exampleFade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .example-animate {
+    animation: exampleFade 0.8s ease-out forwards;
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+// ComparisonCard.astro - Master comparison card component
+export interface Props {
+  type: 'before' | 'after';
+  title: string;
+  items: { text: string; highlight?: string }[];
+  variant?: 'default' | 'gradient';
+}
+
+const { type, title, items, variant = 'default' } = Astro.props;
+
+const cardClasses = type === 'before' 
+  ? "bg-gray-50 border border-gray-200" 
+  : variant === 'gradient' 
+    ? "gradient-primary" 
+    : "bg-white border border-gray-200";
+
+const titleClasses = type === 'before' 
+  ? "text-gray-700" 
+  : variant === 'gradient' 
+    ? "text-white" 
+    : "text-gray-900";
+
+const iconClasses = type === 'before' 
+  ? "w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1" 
+  : "w-6 h-6 bg-[#01DFEC] rounded-full flex items-center justify-center mt-1";
+
+const iconColor = type === 'before' ? "text-red-500" : "text-white";
+
+const textClasses = type === 'before' 
+  ? "text-gray-800" 
+  : variant === 'gradient' 
+    ? "text-gray-800" 
+    : "text-gray-800";
+---
+
+<div class={`${cardClasses} rounded-3xl p-8 lg:p-10 relative overflow-hidden`}>
+  <div class="relative z-10">
+    <div class="text-center mb-8">
+      <h3 class={`text-2xl font-bold ${titleClasses} mb-2`}>{title}</h3>
+    </div>
+    
+    <div class={type === 'after' && variant === 'gradient' ? "space-y-4" : "space-y-6"}>
+      {items.map((item) => (
+        <div class={type === 'after' && variant === 'gradient' 
+          ? "bg-white rounded-2xl p-5 flex items-start space-x-4 shadow-lg"
+          : "flex items-start space-x-4"
+        }>
+          <div class={iconClasses}>
+            {type === 'before' ? (
+              <svg class={`w-4 h-4 ${iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            ) : (
+              <svg class={`w-4 h-4 ${iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            )}
+          </div>
+          <div>
+            <p class={`${textClasses} font-medium text-lg`}>
+              {item.highlight ? (
+                <>
+                  <strong class={type === 'after' && variant === 'gradient' ? "text-[#0B2360]" : "text-[#01DFEC]"}>
+                    {item.highlight}
+                  </strong>
+                  {item.text.replace(item.highlight, '')}
+                </>
+              ) : (
+                item.text
+              )}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div> 

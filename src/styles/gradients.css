@@ -1,0 +1,124 @@
+/* Master Gradient Styles for Sportigio */
+
+/* Primary gradient combinations using brand colors */
+.gradient-primary {
+  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #01DFEC 0%, #EA36E1 100%);
+}
+
+.gradient-tertiary {
+  background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Text gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #01DFEC 0%, #EA36E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-tertiary {
+  background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button gradients */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(135deg, #0a1f56 0%, #01c5d1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(11, 35, 96, 0.3);
+}
+
+/* Background gradients for sections */
+.bg-gradient-light {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.bg-gradient-navy {
+  background: linear-gradient(135deg, #0B2360 0%, #1e3a8a 50%, #01DFEC 100%);
+}
+
+/* Subtle accent gradients */
+.bg-gradient-subtle-primary {
+  background: linear-gradient(135deg, rgba(11, 35, 96, 0.05) 0%, rgba(1, 223, 236, 0.05) 100%);
+}
+
+.bg-gradient-subtle-secondary {
+  background: linear-gradient(135deg, rgba(1, 223, 236, 0.05) 0%, rgba(234, 54, 225, 0.05) 100%);
+}
+
+.bg-gradient-subtle-tertiary {
+  background: linear-gradient(135deg, rgba(234, 54, 225, 0.05) 0%, rgba(11, 35, 96, 0.05) 100%);
+}
+
+/* Icon/Element gradients */
+.icon-gradient-primary {
+  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+}
+
+.icon-gradient-secondary {
+  background: linear-gradient(135deg, #01DFEC 0%, #EA36E1 100%);
+}
+
+.icon-gradient-tertiary {
+  background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Border gradients */
+.border-gradient-primary {
+  border: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #0B2360, #01DFEC) border-box;
+}
+
+/* Master spacing classes */
+.section-spacing {
+  padding: 4rem 0;
+}
+
+.section-spacing-large {
+  padding: 6rem 0;
+}
+
+.section-spacing-small {
+  padding: 3rem 0;
+}
+
+/* Container classes */
+.container-default {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+} 

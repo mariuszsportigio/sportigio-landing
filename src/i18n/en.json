@@ -1,0 +1,61 @@
+{
+  "common": {
+    "try_free": "Try for free",
+    "see_demo": "See demo",
+    "contact_us": "Contact us",
+    "learn_more": "Learn more",
+    "get_started": "Get started",
+    "read_more": "Read more"
+  },
+  "navigation": {
+    "features": "Features",
+    "pricing": "Pricing", 
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "demo": "Demo"
+  },
+  "hero": {
+    "badge": "Next generation club management",
+    "title": "Club communication in 1 simple",
+    "title_highlight": "application",
+    "subtitle": "Revolutionize the way you manage your sports club. Communication, schedules, payments and analytics - all in one place.",
+    "social_proof_clubs": "500+ satisfied clubs",
+    "social_proof_rating": "4.8/5 rating"
+  },
+  "testimonials": {
+    "title": "What our satisfied users say",
+    "subtitle": "Latest reviews from our satisfied customers", 
+    "ai_summary": "AI Analysis",
+    "ai_text": "According to analysis of thousands of reviews, Sportigio provides comprehensive solution for sports clubs. Most appreciated features include administrative process automation that saves average 10 hours per week, and advanced communication with parents and players.",
+    "ai_insights": {
+      "time_saving": "Time savings (10h/week)",
+      "ease_of_use": "Ease of use",
+      "communication": "Better communication with parents",
+      "attendance": "Attendance increase (25%)"
+    },
+    "cta_text": "Join over 500+ satisfied clubs"
+  },
+  "blog": {
+    "title": "Latest Articles",
+    "subtitle": "Learn more about sports club management",
+    "read_more": "Read more",
+    "view_all": "View all articles",
+    "no_articles": "No articles available",
+    "back_to_blog": "Back to blog",
+    "related_articles": "Related articles",
+    "published_on": "Published on",
+    "share_article": "Share article"
+  },
+  "pricing": {
+    "title": "Choose the perfect package for your club",
+    "subtitle": "Simple, transparent pricing. No hidden costs. Change package anytime.",
+    "currency": "Currency:",
+    "monthly": "Monthly",
+    "yearly": "Yearly", 
+    "save_badge": "Save up to 20%",
+    "faq_title": "Have questions?",
+    "faq_subtitle": "We're here to help your club grow online.",
+    "faq_button": "Frequently asked questions"
+  }
+} 

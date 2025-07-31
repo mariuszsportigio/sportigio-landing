@@ -1,0 +1,167 @@
+---
+// BlogSection.astro - Homepage blog section
+import { fetchArticles, formatDate, type BlogPost } from '../utils/api';
+import { createTranslator, type Language } from '../i18n';
+
+// Props interface
+export interface Props {
+  id?: string;
+  lang?: Language;
+}
+
+const { id = "blog", lang = 'pl' } = Astro.props;
+
+// Create translator function for this component
+const t = createTranslator(lang);
+
+// Fetch latest articles (limit to 3 for homepage)
+let articles: BlogPost[] = [];
+try {
+  const allArticles = await fetchArticles();
+  articles = allArticles.slice(0, 3); // Show only 3 latest posts
+} catch (error) {
+  console.error('Error fetching articles for homepage:', error);
+}
+---
+
+<section {id} class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold font-poppins text-gray-900 mb-4">{t('blog.title')}</h2>
+      <p class="text-lg text-gray-600 mb-8">{t('blog.subtitle')}</p>
+    </div>
+
+    <!-- Articles Grid -->
+    {articles.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {articles.map((article, index) => (
+          <article 
+            class="blog-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <!-- Article Image -->
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={article.image_mini || article.image} 
+                alt={article.title}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Article Content -->
+            <div class="p-6">
+              <!-- Date -->
+              <time class="text-sm text-gray-500 font-medium mb-3 block">
+                {formatDate(article.created_at, lang)}
+              </time>
+              
+              <!-- Title -->
+              <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-[#0B2360] transition-colors">
+                {article.title}
+              </h3>
+              
+              <!-- Lead/Excerpt -->
+              {article.lead && (
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+                  {article.lead}
+                </p>
+              )}
+              
+              <!-- Read More Link -->
+              <a 
+                href={`/blog/${article.id}`}
+                class="inline-flex items-center text-[#0B2360] hover:text-[#0a1f56] font-medium text-sm transition-colors group"
+              >
+                {t('blog.read_more')}
+                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <!-- Empty State -->
+      <div class="text-center py-12">
+        <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+          </svg>
+        </div>
+        <p class="text-gray-500">{t('blog.no_articles')}</p>
+      </div>
+    )}
+
+    <!-- View All Posts CTA -->
+    {articles.length > 0 && (
+      <div class="text-center">
+        <a 
+          href="/blog"
+          class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg inline-flex items-center"
+        >
+          {t('blog.view_all')}
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* Blog cards animation */
+  .blog-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Hover effects */
+  .blog-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Button gradient */
+  .btn-style-1 {
+    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 50%, #EA36E1 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .btn-style-1:hover {
+    background-position: right center;
+    animation: none;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style> 

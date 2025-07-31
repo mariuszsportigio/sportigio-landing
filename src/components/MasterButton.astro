@@ -1,0 +1,332 @@
+---
+// MasterButton.astro - Universal button component with Hero-inspired styling
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient' | 'navy';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  href?: string;
+  target?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  iconLeft?: string;
+  iconRight?: string;
+  fullWidth?: boolean;
+  magnetic?: boolean;
+  glow?: boolean;
+  className?: string;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  disabled = false,
+  loading = false,
+  iconLeft,
+  iconRight,
+  fullWidth = false,
+  magnetic = false,
+  glow = false,
+  className = '',
+  type = 'button',
+  onClick
+} = Astro.props;
+
+const baseClasses = [
+  'inline-flex items-center justify-center',
+  'font-semibold rounded-lg transition-all duration-200',
+  'cursor-pointer select-none',
+  'hover:scale-105 active:scale-95',
+  disabled ? 'opacity-50 cursor-not-allowed' : '',
+  loading ? 'opacity-75' : '',
+  fullWidth ? 'w-full' : '',
+  magnetic ? 'btn-magnetic' : '',
+  glow ? 'btn-glow' : ''
+];
+
+const variantClasses = {
+  primary: 'btn-style-1 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] text-white shadow-lg hover:shadow-xl',
+  secondary: 'btn-style-2 bg-[#0B2360] text-white shadow-lg hover:shadow-xl hover:bg-[#081a4a]',
+  outline: 'btn-style-3 bg-transparent text-[#0B2360] border-2 border-[#0B2360] hover:bg-[#0B2360] hover:text-white',
+  ghost: 'bg-transparent text-[#0B2360] hover:bg-[#0B2360]/10',
+  gradient: 'btn-style-4 bg-gradient-to-r from-[#0B2360] via-[#01DFEC] to-[#EA36E1] text-white shadow-lg',
+  navy: 'bg-[#0B2360] text-white border border-[#0B2360] hover:bg-[#081a4a] shadow-lg'
+};
+
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+  xl: 'px-10 py-5 text-lg'
+};
+
+const buttonClasses = [
+  ...baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  className
+].filter(Boolean).join(' ');
+
+const Tag = href ? 'a' : 'button';
+const props = href ? { href, target } : { type, disabled };
+---
+
+<Tag 
+  class={buttonClasses}
+  {...props}
+  onclick={onClick}
+  data-magnetic={magnetic}
+>
+  {iconLeft && (
+    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconLeft}></path>
+    </svg>
+  )}
+  
+  {loading && (
+    <svg class="animate-spin w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  )}
+  
+  <span class={loading ? 'opacity-0' : ''}>
+    <slot />
+  </span>
+  
+  {iconRight && (
+    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconRight}></path>
+    </svg>
+  )}
+</Tag>
+
+<style>
+  /* Enhanced button styles from Hero and global.css */
+  .btn-style-1 {
+    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-style-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .btn-style-1:hover::before {
+    left: 100%;
+  }
+
+  .btn-style-1:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(11, 35, 96, 0.4);
+  }
+
+  .btn-style-2:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(11, 35, 96, 0.4);
+  }
+
+  .btn-style-3:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(11, 35, 96, 0.3);
+  }
+
+  .btn-style-4 {
+    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 50%, #EA36E1 100%);
+    background-size: 200% 200%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-style-4:hover {
+    background-position: right center;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(11, 35, 96, 0.4);
+    filter: brightness(1.1);
+  }
+
+  /* Magnetic button effect */
+  .btn-magnetic {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .btn-magnetic:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  /* Glow effect */
+  .btn-glow {
+    position: relative;
+    box-shadow: 0 0 20px rgba(11, 35, 96, 0.3);
+  }
+
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(8px);
+    opacity: 0.7;
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover::after {
+    filter: blur(12px);
+    opacity: 1;
+  }
+
+  /* Pulse animation for primary variant */
+  .btn-style-1 {
+    animation: subtlePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes subtlePulse {
+    0%, 100% {
+      box-shadow: 0 8px 25px rgba(11, 35, 96, 0.2);
+    }
+    50% {
+      box-shadow: 0 12px 35px rgba(1, 223, 236, 0.3);
+    }
+  }
+
+  /* Ripple effect */
+  .btn-style-1, .btn-style-2, .btn-style-4 {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-style-1::after,
+  .btn-style-2::after,
+  .btn-style-4::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+  }
+
+  .btn-style-1:active::after,
+  .btn-style-2:active::after,
+  .btn-style-4:active::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Focus states */
+  .btn-style-1:focus,
+  .btn-style-2:focus,
+  .btn-style-3:focus,
+  .btn-style-4:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(11, 35, 96, 0.2);
+  }
+
+  /* Disabled state */
+  button:disabled,
+  a[disabled] {
+    transform: none !important;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  button:disabled:hover,
+  a[disabled]:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .btn-style-1:hover,
+    .btn-style-2:hover,
+    .btn-style-3:hover,
+    .btn-style-4:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+    
+    .btn-magnetic:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+  }
+
+  /* Loading state */
+  button:has(.animate-spin) {
+    pointer-events: none;
+  }
+
+  /* Icon spacing adjustments */
+  .btn-style-1 svg,
+  .btn-style-2 svg,
+  .btn-style-3 svg,
+  .btn-style-4 svg {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-style-1:hover svg,
+  .btn-style-2:hover svg,
+  .btn-style-3:hover svg,
+  .btn-style-4:hover svg {
+    transform: scale(1.1);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced magnetic effect
+    const magneticButtons = document.querySelectorAll('[data-magnetic="true"]');
+    
+    magneticButtons.forEach(button => {
+      button.addEventListener('mouseenter', function(e) {
+        const rect = this.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        this.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+      
+      button.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const deltaX = (e.clientX - centerX) * 0.1;
+        const deltaY = (e.clientY - centerY) * 0.1;
+        
+        this.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.05)`;
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translate(0, 0) scale(1)';
+      });
+    });
+    
+    // Button click analytics (if needed)
+    const allButtons = document.querySelectorAll('button, a[class*="btn-"]');
+    allButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        // Add click tracking or analytics here if needed
+        console.log('Button clicked:', this.textContent?.trim());
+      });
+    });
+  });
+</script>

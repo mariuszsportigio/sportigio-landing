@@ -1,0 +1,401 @@
+---
+// MasterTextBlock.astro - Universal text component with Hero-inspired typography and effects
+import { createTranslator, type Language } from '../i18n';
+
+export interface Props {
+  variant?: 'hero' | 'section' | 'feature' | 'testimonial' | 'cta' | 'body';
+  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+  weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'black';
+  color?: 'default' | 'primary' | 'secondary' | 'accent' | 'muted' | 'gradient';
+  align?: 'left' | 'center' | 'right' | 'justify';
+  spacing?: 'tight' | 'normal' | 'relaxed' | 'loose';
+  animation?: 'none' | 'fadeIn' | 'slideUp' | 'typewriter' | 'gradient';
+  maxWidth?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+  className?: string;
+  lang?: Language;
+}
+
+const {
+  variant = 'body',
+  level = 'p',
+  size = 'md',
+  weight = 'normal',
+  color = 'default',
+  align = 'left',
+  spacing = 'normal',
+  animation = 'none',
+  maxWidth = 'none',
+  className = '',
+  lang = 'pl'
+} = Astro.props;
+
+// Create translator
+const t = createTranslator(lang);
+
+const variantClasses = {
+  hero: 'font-poppins font-black leading-tight',
+  section: 'font-poppins font-bold leading-tight',
+  feature: 'font-poppins font-semibold leading-relaxed',
+  testimonial: 'font-normal leading-relaxed',
+  cta: 'font-poppins font-bold leading-tight',
+  body: 'font-normal leading-relaxed'
+};
+
+const sizeClasses = {
+  xs: 'text-xs',
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+  '2xl': 'text-2xl',
+  '3xl': 'text-3xl md:text-4xl',
+  '4xl': 'text-4xl md:text-5xl',
+  '5xl': 'text-5xl md:text-6xl'
+};
+
+const weightClasses = {
+  light: 'font-light',
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+  black: 'font-black'
+};
+
+const colorClasses = {
+  default: 'text-gray-900',
+  primary: 'text-[#0B2360]',
+  secondary: 'text-[#01DFEC]',
+  accent: 'text-[#EA36E1]',
+  muted: 'text-gray-600',
+  gradient: 'text-transparent bg-clip-text bg-gradient-to-r from-[#0B2360] to-[#01DFEC]'
+};
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+  justify: 'text-justify'
+};
+
+const spacingClasses = {
+  tight: 'leading-tight',
+  normal: 'leading-normal',
+  relaxed: 'leading-relaxed',
+  loose: 'leading-loose'
+};
+
+const animationClasses = {
+  none: '',
+  fadeIn: 'animate-fade-in',
+  slideUp: 'animate-slide-up',
+  typewriter: 'typewriter-text',
+  gradient: 'animate-gradient'
+};
+
+const maxWidthClasses = {
+  none: '',
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  '2xl': 'max-w-2xl',
+  '3xl': 'max-w-3xl',
+  '4xl': 'max-w-4xl',
+  '5xl': 'max-w-5xl'
+};
+
+const textClasses = [
+  variantClasses[variant],
+  sizeClasses[size],
+  weightClasses[weight],
+  colorClasses[color],
+  alignClasses[align],
+  spacingClasses[spacing],
+  animationClasses[animation],
+  maxWidthClasses[maxWidth],
+  maxWidth !== 'none' && align === 'center' ? 'mx-auto' : '',
+  className
+].filter(Boolean).join(' ');
+
+const Tag = level;
+---
+
+<Tag 
+  class={textClasses}
+  data-animation={animation}
+>
+  <slot />
+</Tag>
+
+<style>
+  /* Enhanced typography from Hero */
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Gradient text effects */
+  .text-transparent.bg-clip-text {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Enhanced gradient variations */
+  .bg-gradient-to-r.from-\[\#0B2360\].to-\[\#01DFEC\] {
+    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  }
+
+  /* Animation definitions */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 1s ease-out forwards;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  /* Typewriter effect */
+  .typewriter-text {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #01DFEC;
+    animation: typewriter 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #01DFEC; }
+  }
+
+  /* Hero variant enhancements */
+  .font-poppins.font-black {
+    text-shadow: 0 2px 4px rgba(11, 35, 96, 0.1);
+  }
+
+  /* Section variant styling */
+  .font-poppins.font-bold {
+    letter-spacing: -0.025em;
+  }
+
+  /* Feature variant styling */
+  .font-poppins.font-semibold {
+    letter-spacing: -0.015em;
+  }
+
+  /* CTA variant styling */
+  .font-poppins.font-bold.leading-tight {
+    text-shadow: 0 1px 2px rgba(11, 35, 96, 0.1);
+  }
+
+  /* Testimonial variant styling */
+  .font-normal.leading-relaxed {
+    color: #6B7280;
+  }
+
+  /* Interactive hover effects */
+  .text-\[\#0B2360\]:hover {
+    color: #081a4a;
+    transition: color 0.3s ease;
+  }
+
+  .text-\[\#01DFEC\]:hover {
+    color: #01c5d1;
+    transition: color 0.3s ease;
+  }
+
+  .text-\[\#EA36E1\]:hover {
+    color: #d42cc7;
+    transition: color 0.3s ease;
+  }
+
+  /* Responsive text sizing */
+  @media (max-width: 768px) {
+    .text-3xl.md\:text-4xl { font-size: 1.875rem; }
+    .text-4xl.md\:text-5xl { font-size: 2.25rem; }
+    .text-5xl.md\:text-6xl { font-size: 3rem; }
+  }
+
+  /* Special text effects */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(11, 35, 96, 0.4);
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px #0B2360;
+    color: transparent;
+  }
+
+  /* Enhanced gradient text with animation */
+  .gradient-text-animated {
+    background: linear-gradient(-45deg, #0B2360, #01DFEC, #EA36E1, #0B2360);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  /* Staggered animations for multiple text elements */
+  .animate-fade-in:nth-child(1) { animation-delay: 0.0s; }
+  .animate-fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .animate-fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .animate-fade-in:nth-child(4) { animation-delay: 0.6s; }
+  .animate-fade-in:nth-child(5) { animation-delay: 0.8s; }
+
+  .animate-slide-up:nth-child(1) { animation-delay: 0.0s; }
+  .animate-slide-up:nth-child(2) { animation-delay: 0.3s; }
+  .animate-slide-up:nth-child(3) { animation-delay: 0.6s; }
+  .animate-slide-up:nth-child(4) { animation-delay: 0.9s; }
+  .animate-slide-up:nth-child(5) { animation-delay: 1.2s; }
+
+  /* Accessibility improvements */
+  .text-transparent.bg-clip-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-gradient,
+    .typewriter-text {
+      animation: none;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .text-transparent.bg-clip-text {
+      -webkit-text-fill-color: #0B2360;
+      color: #0B2360;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .text-gray-600 {
+      color: #374151;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced typewriter effect
+    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    
+    typewriterElements.forEach((element, index) => {
+      const text = element.textContent;
+      element.textContent = '';
+      
+      setTimeout(() => {
+        let i = 0;
+        const timer = setInterval(() => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(timer);
+            // Remove cursor after typing is complete
+            setTimeout(() => {
+              element.style.borderRight = 'none';
+            }, 1000);
+          }
+        }, 50);
+      }, index * 500);
+    });
+    
+    // Intersection Observer for scroll animations
+    const animatedTexts = document.querySelectorAll('[data-animation]');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const animation = entry.target.getAttribute('data-animation');
+          if (animation !== 'none') {
+            entry.target.style.animationPlayState = 'running';
+          }
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    animatedTexts.forEach(text => {
+      if (text.getAttribute('data-animation') !== 'none') {
+        text.style.animationPlayState = 'paused';
+        observer.observe(text);
+      }
+    });
+    
+    // Dynamic text sizing based on content length
+    const heroTexts = document.querySelectorAll('.font-poppins.font-black');
+    heroTexts.forEach(text => {
+      const length = text.textContent.length;
+      if (length > 100) {
+        text.classList.add('text-3xl');
+        text.classList.remove('text-4xl', 'text-5xl');
+      } else if (length > 50) {
+        text.classList.add('text-4xl');
+        text.classList.remove('text-5xl');
+      }
+    });
+    
+    // Add reading time estimation
+    const bodyTexts = document.querySelectorAll('.font-normal.leading-relaxed');
+    bodyTexts.forEach(text => {
+      const wordCount = text.textContent.split(' ').length;
+      const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+      
+      if (readingTime > 1) {
+        const readingTimeElement = document.createElement('div');
+        readingTimeElement.className = 'text-sm text-gray-500 mt-2';
+        readingTimeElement.textContent = `Czas czytania: ${readingTime} min`;
+        text.parentElement.appendChild(readingTimeElement);
+      }
+    });
+  });
+</script>

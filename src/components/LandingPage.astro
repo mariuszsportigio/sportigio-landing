@@ -5,14 +5,22 @@ import Navbar from './Navbar.astro';
 import Hero from './Hero.astro';
 import StatsBar from './StatsBar.astro';
 import FeatureSection from './FeatureSection.astro';
+import BeforeAfter from './BeforeAfter.astro';
 import TabSection from './TabSection.astro';
 import ConnectedCards from './ConnectedCards.astro';
 import DarkShowcase from './DarkShowcase.astro';
-
 import TestimonialCarousel from './TestimonialCarousel.astro';
+import BlogSection from './BlogSection.astro';
 import FAQ from './FAQ.astro';
 import CTASection from './CTASection.astro';
 import Footer from './Footer.astro';
+import { type Language, defaultLanguage } from '../i18n';
+
+export interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props;
 ---
 
 <Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
@@ -23,7 +31,7 @@ import Footer from './Footer.astro';
   <main>
     <!-- Hero Section -->
     <section id="hero">
-      <Hero />
+      <Hero lang={lang} />
     </section>
 
     <!-- Social Proof / Stats -->
@@ -34,6 +42,11 @@ import Footer from './Footer.astro';
     <!-- Features Section -->
     <section id="funkcje">
       <FeatureSection />
+    </section>
+
+    <!-- Before/After Comparison -->
+    <section id="porownanie">
+      <BeforeAfter />
     </section>
 
     <!-- Tab Section -->
@@ -55,7 +68,12 @@ import Footer from './Footer.astro';
 
     <!-- Testimonials Section -->
     <section id="opinie">
-      <TestimonialCarousel />
+      <TestimonialCarousel lang={lang} />
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+      <BlogSection lang={lang} />
     </section>
 
     <!-- FAQ Section -->

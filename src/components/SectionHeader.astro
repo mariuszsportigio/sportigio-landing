@@ -1,0 +1,39 @@
+---
+// SectionHeader.astro - Master header component for consistent section styling
+export interface Props {
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  titleBreak?: string; // Opcjonalny łamany tekst
+  centered?: boolean;
+}
+
+const { 
+  badge, 
+  title, 
+  subtitle, 
+  titleBreak,
+  centered = true 
+} = Astro.props;
+---
+
+<div class={`mb-10 ${centered ? 'text-center' : ''}`}>
+  {badge && (
+    <div class="inline-block px-4 py-2 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-sm font-medium mb-4">
+      {badge}
+    </div>
+  )}
+  
+  <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold font-poppins text-gray-900 mb-4 leading-tight">
+    {title}
+    {titleBreak && (
+      <span class="block text-[#0B2360]">{titleBreak}</span>
+    )}
+  </h2>
+  
+  {subtitle && (
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+  )}
+</div> 

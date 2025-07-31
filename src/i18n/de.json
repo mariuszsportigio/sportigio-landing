@@ -1,0 +1,37 @@
+{
+  "common": {
+    "try_free": "Kostenlos testen",
+    "see_demo": "Demo ansehen",
+    "contact_us": "Kontakt",
+    "learn_more": "Mehr erfahren",
+    "get_started": "Loslegen",
+    "read_more": "Weiterlesen"
+  },
+  "navigation": {
+    "features": "Funktionen",
+    "pricing": "Preise", 
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "demo": "Demo"
+  },
+  "hero": {
+    "badge": "Neue Generation der Vereinsverwaltung",
+    "title": "Vereinskommunikation in 1 einfachen",
+    "title_highlight": "Anwendung",
+    "subtitle": "Revolutionieren Sie die Art, wie Sie Ihren Sportverein verwalten. Kommunikation, Zeitpläne, Zahlungen und Analysen - alles an einem Ort.",
+    "social_proof_clubs": "500+ zufriedene Vereine",
+    "social_proof_rating": "4.8/5 Bewertung"
+  },
+  "blog": {
+    "title": "Neueste Artikel",
+    "subtitle": "Erfahre mehr über Sportvereinsmanagement",
+    "read_more": "Weiterlesen",
+    "view_all": "Alle Artikel anzeigen",
+    "no_articles": "Keine Artikel verfügbar",
+    "back_to_blog": "Zurück zum Blog",
+    "related_articles": "Verwandte Artikel",
+    "published_on": "Veröffentlicht am",
+    "share_article": "Artikel teilen"
+  }
+} 

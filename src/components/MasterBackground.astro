@@ -1,0 +1,443 @@
+---
+// MasterBackground.astro - Universal background component with Hero-inspired effects
+export interface Props {
+  type?: 'none' | 'gradient' | 'glass' | 'particles' | 'orbs' | 'mesh' | 'hero' | 'navy';
+  intensity?: 'subtle' | 'medium' | 'strong' | 'extreme';
+  animated?: boolean;
+  overlay?: boolean;
+  className?: string;
+}
+
+const {
+  type = 'gradient',
+  intensity = 'medium',
+  animated = true,
+  overlay = false,
+  className = ''
+} = Astro.props;
+
+const backgroundClasses = {
+  none: '',
+  gradient: 'bg-gradient-light',
+  glass: 'bg-glass-morphism',
+  particles: 'bg-particles',
+  orbs: 'bg-orbs',
+  mesh: 'bg-mesh',
+  hero: 'bg-hero-glass',
+  navy: 'bg-navy-gradient'
+};
+
+const intensityClasses = {
+  subtle: 'opacity-30',
+  medium: 'opacity-60',
+  strong: 'opacity-80',
+  extreme: 'opacity-100'
+};
+
+const bgClass = [
+  'absolute inset-0 pointer-events-none',
+  backgroundClasses[type],
+  intensityClasses[intensity],
+  animated ? 'animate-background' : '',
+  className
+].filter(Boolean).join(' ');
+---
+
+<div class={bgClass}>
+  {type === 'particles' && (
+    <div class="particles-container">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+      <div class="particle particle-5"></div>
+      <div class="particle particle-6"></div>
+      <div class="particle particle-7"></div>
+      <div class="particle particle-8"></div>
+    </div>
+  )}
+  
+  {type === 'orbs' && (
+    <div class="orbs-container">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="orb orb-4"></div>
+    </div>
+  )}
+  
+  {type === 'mesh' && (
+    <div class="mesh-container">
+      <div class="mesh-grid"></div>
+      <div class="mesh-overlay"></div>
+    </div>
+  )}
+  
+  {type === 'hero' && (
+    <div class="hero-effects">
+      <div class="glass-orb glass-orb-1"></div>
+      <div class="glass-orb glass-orb-2"></div>
+      <div class="glass-orb glass-orb-3"></div>
+    </div>
+  )}
+  
+  {overlay && (
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+  )}
+</div>
+
+<style>
+  /* Base background types */
+  .bg-gradient-light {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+  
+  .bg-glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .bg-navy-gradient {
+    background: linear-gradient(135deg, #0B2360 0%, #1e3a8a 50%, #01DFEC 100%);
+  }
+  
+  .bg-hero-glass {
+    background: linear-gradient(135deg, 
+      rgba(11, 35, 96, 0.08) 0%,
+      rgba(1, 223, 236, 0.06) 35%,
+      rgba(245, 245, 245, 0.05) 50%,
+      rgba(1, 223, 236, 0.06) 65%,
+      rgba(234, 54, 225, 0.08) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Particles system */
+  .particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(1, 223, 236, 0.8) 0%, rgba(11, 35, 96, 0.3) 70%, transparent 100%);
+    border-radius: 50%;
+    animation: particleFloat 20s linear infinite;
+  }
+  
+  .particle-1 { top: 10%; left: 10%; animation-delay: 0s; }
+  .particle-2 { top: 20%; left: 80%; animation-delay: 4s; }
+  .particle-3 { top: 50%; left: 30%; animation-delay: 8s; }
+  .particle-4 { top: 80%; left: 70%; animation-delay: 12s; }
+  .particle-5 { top: 30%; left: 60%; animation-delay: 16s; }
+  .particle-6 { top: 70%; left: 20%; animation-delay: 2s; }
+  .particle-7 { top: 15%; left: 45%; animation-delay: 6s; }
+  .particle-8 { top: 85%; left: 90%; animation-delay: 10s; }
+
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(100vh) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) translateX(50px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Orbs system */
+  .orbs-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: orbFloat 12s ease-in-out infinite;
+  }
+  
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 5%;
+    background: linear-gradient(135deg, 
+      rgba(11, 35, 96, 0.1) 0%, 
+      rgba(1, 223, 236, 0.08) 100%
+    );
+    animation-delay: 0s;
+  }
+  
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 10%;
+    background: linear-gradient(135deg, 
+      rgba(234, 54, 225, 0.1) 0%, 
+      rgba(11, 35, 96, 0.08) 100%
+    );
+    animation-delay: 4s;
+  }
+  
+  .orb-3 {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    right: 30%;
+    background: linear-gradient(135deg, 
+      rgba(1, 223, 236, 0.12) 0%, 
+      rgba(234, 54, 225, 0.08) 100%
+    );
+    animation-delay: 8s;
+  }
+  
+  .orb-4 {
+    width: 120px;
+    height: 120px;
+    top: 80%;
+    left: 40%;
+    background: linear-gradient(135deg, 
+      rgba(11, 35, 96, 0.08) 0%, 
+      rgba(1, 223, 236, 0.1) 100%
+    );
+    animation-delay: 2s;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg); 
+    }
+    25% { 
+      transform: translateY(-20px) translateX(10px) rotate(1deg); 
+    }
+    50% { 
+      transform: translateY(-10px) translateX(-10px) rotate(0deg); 
+    }
+    75% { 
+      transform: translateY(-25px) translateX(5px) rotate(-1deg); 
+    }
+  }
+
+  /* Mesh system */
+  .mesh-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .mesh-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(11, 35, 96, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 35, 96, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: meshMove 30s linear infinite;
+  }
+  
+  .mesh-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(1, 223, 236, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(234, 54, 225, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 60% 80%, rgba(11, 35, 96, 0.06) 0%, transparent 50%);
+  }
+
+  @keyframes meshMove {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(50px) translateY(50px); }
+  }
+
+  /* Hero effects */
+  .hero-effects {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .glass-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .glass-orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 15%;
+    left: 8%;
+    background: linear-gradient(135deg, 
+      rgba(11, 35, 96, 0.08) 0%, 
+      rgba(1, 223, 236, 0.06) 100%
+    );
+    animation-delay: 0s;
+  }
+  
+  .glass-orb-2 {
+    width: 150px;
+    height: 150px;
+    top: 70%;
+    right: 12%;
+    background: linear-gradient(135deg, 
+      rgba(234, 54, 225, 0.08) 0%, 
+      rgba(11, 35, 96, 0.06) 100%
+    );
+    animation-delay: 3s;
+  }
+  
+  .glass-orb-3 {
+    width: 100px;
+    height: 100px;
+    top: 35%;
+    right: 25%;
+    background: linear-gradient(135deg, 
+      rgba(1, 223, 236, 0.1) 0%, 
+      rgba(234, 54, 225, 0.06) 100%
+    );
+    animation-delay: 6s;
+  }
+
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    33% { 
+      transform: translateY(-15px) rotate(1deg); 
+    }
+    66% { 
+      transform: translateY(-8px) rotate(-1deg); 
+    }
+  }
+
+  /* Animation controls */
+  .animate-background.bg-gradient-light {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  .animate-background.bg-navy-gradient {
+    background: linear-gradient(135deg, #0B2360 0%, #1e3a8a 25%, #01DFEC 50%, #1e3a8a 75%, #0B2360 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 20s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .orb-1 { width: 120px; height: 120px; }
+    .orb-2 { width: 100px; height: 100px; }
+    .orb-3 { width: 80px; height: 80px; }
+    .orb-4 { width: 90px; height: 90px; }
+    
+    .glass-orb-1 { width: 120px; height: 120px; }
+    .glass-orb-2 { width: 100px; height: 100px; }
+    .glass-orb-3 { width: 80px; height: 80px; }
+    
+    .particle { width: 2px; height: 2px; }
+    .mesh-grid { background-size: 30px 30px; }
+  }
+
+  /* Performance optimizations */
+  .particles-container,
+  .orbs-container,
+  .mesh-container,
+  .hero-effects {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Intensity variations */
+  .opacity-30 { opacity: 0.3; }
+  .opacity-60 { opacity: 0.6; }
+  .opacity-80 { opacity: 0.8; }
+  .opacity-100 { opacity: 1; }
+
+  /* Special effects overlay */
+  .bg-gradient-to-b {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05), transparent);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add performance monitoring
+    const backgrounds = document.querySelectorAll('[class*="bg-"]');
+    
+    // Pause animations when not in viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const element = entry.target;
+        if (entry.isIntersecting) {
+          element.style.animationPlayState = 'running';
+        } else {
+          element.style.animationPlayState = 'paused';
+        }
+      });
+    });
+    
+    backgrounds.forEach(bg => {
+      observer.observe(bg);
+    });
+    
+    // Reduce motion for users who prefer it
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const animatedElements = document.querySelectorAll('.animate-background, .particle, .orb, .glass-orb');
+      animatedElements.forEach(element => {
+        element.style.animation = 'none';
+      });
+    }
+    
+    // Dynamic particle generation based on screen size
+    const particleContainers = document.querySelectorAll('.particles-container');
+    particleContainers.forEach(container => {
+      const screenWidth = window.innerWidth;
+      const particleCount = screenWidth > 768 ? 12 : 6;
+      
+      // Add more particles dynamically if needed
+      for (let i = 9; i <= particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = `particle particle-${i}`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 20}s`;
+        container.appendChild(particle);
+      }
+    });
+  });
+</script>

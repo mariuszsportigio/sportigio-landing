@@ -1,186 +1,477 @@
 ---
 // TestimonialCarousel.astro
+import { createTranslator, type Language } from '../i18n';
 
 // Props interface
 export interface Props {
   id?: string;
+  lang?: Language;
 }
 
-const { id = "testimonials" } = Astro.props;
+const { id = "testimonials", lang = 'pl' } = Astro.props;
+
+// Create translator function for this component
+const t = createTranslator(lang);
 ---
 
-<section {id} class="py-12 bg-gray-50 overflow-hidden">
+<section {id} class="py-16 bg-white overflow-hidden">
   <div class="container mx-auto px-4">
-    <div class="text-center mb-8">
-      <h2 class="text-2xl font-bold font-poppins text-gray-900 mb-2">Co mówią o nas trenerzy</h2>
-      <p class="text-base text-gray-600">Przekonaj się, dlaczego kluby wybierają Sportigio</p>
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold font-poppins text-gray-900 mb-4">{t('testimonials.title')}</h2>
+      <p class="text-lg text-gray-600 mb-8">{t('testimonials.subtitle')}</p>
     </div>
 
-    <div class="testimonial-carousel relative">
-      <div class="testimonial-track flex gap-6 transition-transform duration-500 ease-in-out">
-        <!-- Testimonial 1 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <!-- Testimonials Grid with AI Summary as first card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- AI Analysis Card -->
+      <div class="ai-analysis-card bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gradient relative overflow-hidden">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0B2360]/3 to-[#01DFEC]/3 opacity-50"></div>
+        <div class="relative z-10">
           <div class="flex items-center mb-4">
             <div class="flex text-[#01DFEC] text-sm">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
               </svg>
-              <span class="ml-1 text-xs">5/5</span>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
             </div>
+            <span class="ml-2 text-sm text-gray-500">AI Powered</span>
           </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Sportigio całkowicie zrewolucjonizowało sposób zarządzania naszym klubem. Oszczędzamy 10 godzin tygodniowo na administracji!"
+          <p class="ai-typewriter text-gray-600 text-sm mb-4 leading-relaxed">
+            <span class="typewriter-placeholder">"Ładowanie analizy AI..."</span>
+            <span class="typewriter-text" data-text={`"${t('testimonials.ai_text')}"`}></span>
+            <span class="typewriter-cursor">|</span>
           </p>
+          <!-- Summary tags -->
+          <div class="ai-insights flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium">
+              💰 {t('testimonials.ai_insights.time_saving')}
+            </span>
+            <span class="px-3 py-1 bg-[#01DFEC]/10 text-[#01DFEC] rounded-full text-xs font-medium">
+              📱 {t('testimonials.ai_insights.ease_of_use')}
+            </span>
+            <span class="px-3 py-1 bg-[#EA36E1]/10 text-[#EA36E1] rounded-full text-xs font-medium">
+              📊 {t('testimonials.ai_insights.communication')}
+            </span>
+            <span class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium">
+              📈 {t('testimonials.ai_insights.attendance')}
+            </span>
+          </div>
           <div class="flex items-center">
             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              MK
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">Marcin Kowalski</p>
-              <p class="text-gray-500 text-xs">Prezes, KS Cracovia</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              <!-- AI Robot Icon -->
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <circle cx="9" cy="9" r="1"/>
+                <circle cx="15" cy="9" r="1"/>
+                <path d="M8 13h8v1H8z"/>
               </svg>
-              <span class="ml-1 text-xs">5/5</span>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi."
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              AS
             </div>
             <div>
-              <p class="text-gray-900 font-semibold text-sm">Anna Szymańska</p>
-              <p class="text-gray-500 text-xs">Trener, UKS Wisła</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <span class="ml-1 text-xs">5/5</span>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!"
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              PW
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">Piotr Wiśniewski</p>
-              <p class="text-gray-500 text-xs">Sekretarz, Legia Warszawa</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 4 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <span class="ml-1 text-xs">5/5</span>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić harmonogram treningów w każdej chwili."
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              KN
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">Katarzyna Nowak</p>
-              <p class="text-gray-500 text-xs">Koordynator, Lech Poznań</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 5 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <span class="ml-1 text-xs">5/5</span>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy. Frekwencja wzrosła o 25%!"
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              ŁZ
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">Łukasz Zieliński</p>
-              <p class="text-gray-500 text-xs">Dyrektor sportowy, Zagłębie Lubin</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 6 -->
-        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <span class="ml-1 text-xs">5/5</span>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed italic">
-            "Intuicyjny interfejs sprawia, że nawet najmniej techniczni członkowie zarządu mogą korzystać z systemu bez problemów."
-          </p>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
-              MW
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">Maria Wójcik</p>
-              <p class="text-gray-500 text-xs">Prezes, Pogoń Szczecin</p>
+              <p class="text-gray-900 font-semibold text-sm">{t('testimonials.ai_summary')}</p>
+              <p class="text-gray-500 text-xs">Analiza tysięcy opinii</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Navigation buttons -->
-      <button class="carousel-btn prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 z-10">
-        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-      <button class="carousel-btn next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 z-10">
-        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "{t('testimonials.reviews.review_1.text')}"
+        </p>
+         <div class="flex items-center">
+           <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
+             MK
+           </div>
+           <div>
+             <p class="text-gray-900 font-semibold text-sm">{t('testimonials.reviews.review_1.author')}</p>
+             <p class="text-gray-500 text-xs">{t('testimonials.reviews.review_1.position')}</p>
+           </div>
+         </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi."
+        </p>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
+            AS
+          </div>
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">Anna Szymańska</p>
+            <p class="text-gray-500 text-xs">Trener, UKS Wisła</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!"
+        </p>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
+            PW
+          </div>
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">Piotr Wiśniewski</p>
+            <p class="text-gray-500 text-xs">Sekretarz, Legia Warszawa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić harmonogram treningów w każdej chwili."
+        </p>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
+            KN
+          </div>
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">Katarzyna Nowak</p>
+            <p class="text-gray-500 text-xs">Koordynator, Lech Poznań</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 5 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy. Frekwencja wzrosła o 25%!"
+        </p>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
+            ŁZ
+          </div>
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">Łukasz Zieliński</p>
+            <p class="text-gray-500 text-xs">Dyrektor sportowy, Zagłębie Lubin</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 6 -->
+      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+          "Intuicyjny interfejs sprawia, że nawet najmniej techniczni członkowie zarządu mogą korzystać z systemu bez problemów."
+        </p>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
+            MW
+          </div>
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">Maria Wójcik</p>
+            <p class="text-gray-500 text-xs">Prezes, Pogoń Szczecin</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Indicators -->
-    <div class="flex justify-center space-x-2 mt-8">
-      <button class="indicator w-2 h-2 rounded-full bg-[#0B2360] transition-all duration-300"></button>
-      <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></button>
-      <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></button>
-    </div>
+         <!-- CTA Section -->
+     <div class="text-center mt-12">
+       <p class="text-gray-600 mb-6">{t('testimonials.cta_text')}</p>
+       <button class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg">
+         {t('common.try_free')}
+       </button>
+     </div>
   </div>
-</section> 
+</section>
+
+<style>
+  /* AI Analysis Card special effects */
+  .ai-analysis-card {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .ai-analysis-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(11, 35, 96, 0.2), rgba(1, 223, 236, 0.2), rgba(234, 54, 225, 0.2));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  .ai-analysis-card::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(11, 35, 96, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 70% 60%, rgba(1, 223, 236, 0.06) 0%, transparent 60%),
+      radial-gradient(circle at 50% 80%, rgba(234, 54, 225, 0.04) 0%, transparent 60%);
+    filter: blur(30px);
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  .ai-analysis-card:hover::after {
+    opacity: 1;
+    filter: blur(20px);
+  }
+
+  /* Hover effects for cards */
+  .bg-white:hover, .ai-analysis-card:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Pulsing effect for AI card */
+  .ai-analysis-card {
+    animation: fadeInUp 0.6s ease-out forwards, aiPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes aiPulse {
+    0%, 100% { box-shadow: 0 10px 25px -5px rgba(11, 35, 96, 0.1), 0 4px 6px -2px rgba(11, 35, 96, 0.05); }
+    50% { box-shadow: 0 20px 40px -5px rgba(1, 223, 236, 0.15), 0 8px 12px -2px rgba(1, 223, 236, 0.08); }
+  }
+
+  /* Smooth animations */
+  .grid > div:not(.ai-analysis-card) {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .grid > div:nth-child(1) { animation-delay: 0.0s; } /* AI card appears first */
+  .grid > div:nth-child(2) { animation-delay: 0.15s; }
+  .grid > div:nth-child(3) { animation-delay: 0.3s; }
+  .grid > div:nth-child(4) { animation-delay: 0.45s; }
+  .grid > div:nth-child(5) { animation-delay: 0.6s; }
+  .grid > div:nth-child(6) { animation-delay: 0.75s; }
+  .grid > div:nth-child(7) { animation-delay: 0.9s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Special gradient borders */
+  .border-gradient {
+    border: 1px solid;
+    border-image: linear-gradient(135deg, rgba(11, 35, 96, 0.3), rgba(1, 223, 236, 0.3), rgba(234, 54, 225, 0.3)) 1;
+  }
+
+  /* AI Typewriter Effect */
+  .ai-typewriter {
+    position: relative;
+    min-height: 3.5rem;
+  }
+
+  .typewriter-placeholder {
+    color: #9CA3AF;
+    font-style: italic;
+    display: inline;
+  }
+
+  .typewriter-text {
+    display: none;
+  }
+
+  .typewriter-cursor {
+    display: inline-block;
+    background-color: #01DFEC;
+    width: 2px;
+    height: 1.2em;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+    opacity: 0;
+  }
+
+  /* Animation states */
+  .ai-analysis-card.ai-animate .typewriter-placeholder {
+    display: none;
+  }
+
+  .ai-analysis-card.ai-animate .typewriter-text {
+    display: inline;
+  }
+
+  .ai-analysis-card.ai-animate .typewriter-cursor {
+    opacity: 1;
+    animation: 
+      cursor-thinking 0.8s ease-in-out,
+      blink 1s 0.8s infinite;
+  }
+
+  @keyframes cursor-thinking {
+    0%, 100% { 
+      background-color: #01DFEC;
+      transform: scaleY(1);
+    }
+    25% {
+      background-color: #EA36E1;
+      transform: scaleY(1.2);
+    }
+    50% { 
+      background-color: #0B2360;
+      transform: scaleY(0.8);
+    }
+    75% {
+      background-color: #01DFEC;
+      transform: scaleY(1.1);
+    }
+  }
+
+
+
+
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* AI Insights animation */
+  .ai-insights {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .ai-insights span {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .ai-analysis-card.ai-animate .ai-insights {
+    animation: fadeInInsights 0.6s 4.5s ease-out forwards;
+  }
+
+  .ai-analysis-card.ai-animate .ai-insights span:nth-child(1) {
+    animation: popIn 0.4s 4.6s ease-out forwards;
+  }
+
+  .ai-analysis-card.ai-animate .ai-insights span:nth-child(2) {
+    animation: popIn 0.4s 4.8s ease-out forwards;
+  }
+
+  .ai-analysis-card.ai-animate .ai-insights span:nth-child(3) {
+    animation: popIn 0.4s 5.0s ease-out forwards;
+  }
+
+  .ai-analysis-card.ai-animate .ai-insights span:nth-child(4) {
+    animation: popIn 0.4s 5.2s ease-out forwards;
+  }
+
+  @keyframes fadeInInsights {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    70% {
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Additional loading effect */
+  .ai-analysis-card.ai-animate::before {
+    animation: aiGlow 3s ease-in-out;
+  }
+
+  @keyframes aiGlow {
+    0% {
+      box-shadow: 0 0 0 rgba(1, 223, 236, 0);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(1, 223, 236, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 0 rgba(1, 223, 236, 0);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const aiCard = document.querySelector('.ai-analysis-card');
+    const typewriterText = document.querySelector('.typewriter-text');
+    
+    if (!aiCard || !typewriterText) return;
+
+    // Intersection Observer for scroll trigger
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !aiCard.classList.contains('ai-animate')) {
+          startAIAnimation();
+        }
+      });
+    }, {
+      threshold: 0.5 // Trigger when 50% of the card is visible
+    });
+
+    observer.observe(aiCard);
+
+    function startAIAnimation() {
+      aiCard.classList.add('ai-animate');
+      
+      // Get text from data attribute
+      const fullText = typewriterText.getAttribute('data-text');
+      if (!fullText) return;
+
+      // Clear any existing content
+      typewriterText.textContent = '';
+      
+      // Start typewriter effect after AI thinking period (800ms)
+      setTimeout(() => {
+        typewriterEffect(typewriterText, fullText, 30); // 30ms per character
+      }, 800);
+    }
+
+    function typewriterEffect(element, text, speed) {
+      let i = 0;
+      
+      function typeCharacter() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeCharacter, speed);
+        }
+      }
+      
+      typeCharacter();
+    }
+  });
+</script> 
