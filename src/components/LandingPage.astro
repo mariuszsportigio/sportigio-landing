@@ -238,7 +238,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     `;
-    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-sportigio-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none flex items-center justify-center';
+    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 sportigio-gradient-5 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none flex items-center justify-center';
     backToTop.style.transition = 'opacity 0.3s ease-in-out';
     
     document.body.appendChild(backToTop);
@@ -263,7 +263,6 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     });
 
     // Enhanced analytics tracking (placeholder)
-
     const trackEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
       // Replace with your analytics solution (Google Analytics, Mixpanel, etc.)
       console.log(`Event: ${eventName}`, properties);

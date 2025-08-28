@@ -58,7 +58,7 @@
 
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-      <button class="btn-style-1 group px-6 py-3 text-white font-semibold text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl">
+      <button class="bg-[#01DFEC] group px-6 py-3 text-white font-semibold text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl">
         <span class="flex items-center">
           Rozpocznij za darmo
           <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +100,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Add floating animation to background elements
-    const floatingElements = document.querySelectorAll('.absolute [class*="blur"]');
+    const floatingElements = document.querySelectorAll<HTMLElement>('.absolute [class*="blur"]');
     
     floatingElements.forEach((element, index) => {
       const animationDuration = 3 + (index * 0.5); // Different speeds
