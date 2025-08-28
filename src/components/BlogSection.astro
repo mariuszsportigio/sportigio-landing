@@ -100,7 +100,7 @@ try {
       <div class="text-center">
         <a 
           href="/blog"
-          class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg inline-flex items-center"
+          class="bg-primary px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg inline-flex items-center"
         >
           {t('blog.view_all')}
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,21 +147,5 @@ try {
     transform: scale(1.05);
   }
 
-  /* Button gradient */
-  .btn-style-1 {
-    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 50%, #EA36E1 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .btn-style-1:hover {
-    background-position: right center;
-    animation: none;
-  }
-
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+  
 </style> 
