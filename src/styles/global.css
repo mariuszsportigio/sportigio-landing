@@ -1,9 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Poppins Font Import - MUST BE FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 /* Import master gradient and spacing styles */
 @import './gradients.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
@@ -13,12 +16,9 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  background: #ffffff;
   overflow-x: hidden;
 }
-
-/* Poppins Font Import - MUST BE FIRST */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 /* Base styles */
 html {

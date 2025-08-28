@@ -17,121 +17,20 @@ const { activePage } = Astro.props;
         </a>
       </div>
 
-      <!-- Desktop Navigation -->
+      <!-- Desktop Navigation (simplified) -->
       <div class="hidden lg:flex items-center space-x-8">
-        <!-- Funkcje - Dropdown -->
-        <div class="relative group">
-          <button class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative flex items-center space-x-1">
-            <span>Funkcje</span>
-            <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <!-- Dropdown Menu -->
-          <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="p-4 space-y-3">
-              <a href="#zarzadzanie-czlonkami" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Zarządzanie członkami</a>
-              <a href="#kalendarz-treningow" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Kalendarz treningów</a>
-              <a href="#platnosci-online" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Płatności online</a>
-              <a href="#komunikacja" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Komunikacja</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Funkcjonalności - Mega Menu -->
-        <div class="relative group">
-          <button class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative flex items-center space-x-1">
-            <span>Funkcjonalności</span>
-            <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <!-- Mega Menu -->
-          <div class="absolute top-full left-0 mt-2 w-96 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="p-6">
-              <div class="grid grid-cols-2 gap-6">
-                <div>
-                  <h3 class="text-sm font-semibold text-[#0B2360] mb-3">Administracja</h3>
-                  <div class="space-y-2">
-                    <a href="#panel-admina" class="block text-sm text-gray-700 hover:text-[#0B2360]">Panel administratora</a>
-                    <a href="#raporty" class="block text-sm text-gray-700 hover:text-[#0B2360]">Raporty i analizy</a>
-                    <a href="#ustawienia" class="block text-sm text-gray-700 hover:text-[#0B2360]">Ustawienia klubu</a>
-                  </div>
-                </div>
-                <div>
-                  <h3 class="text-sm font-semibold text-[#0B2360] mb-3">Dla członków</h3>
-                  <div class="space-y-2">
-                    <a href="#profil-czlonka" class="block text-sm text-gray-700 hover:text-[#0B2360]">Profil członka</a>
-                    <a href="#rezerwacje" class="block text-sm text-gray-700 hover:text-[#0B2360]">Rezerwacje</a>
-                    <a href="#historia-platnosci" class="block text-sm text-gray-700 hover:text-[#0B2360]">Historia płatności</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Narzędzia - Simple dropdown -->
-        <div class="relative group">
-          <button class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative flex items-center space-x-1">
-            <span>Narzędzia</span>
-            <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="p-4 space-y-3">
-              <a href="#api" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">API</a>
-              <a href="#integracje" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Integracje</a>
-              <a href="#eksport-danych" class="block text-sm text-gray-700 hover:text-[#0B2360] font-medium">Eksport danych</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Regular links -->
-        <a href="#aplikacja" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          Aplikacja
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="/academy" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          Dla Akademii
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          Cennik
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#opinie" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          Opinie
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="/blog" class={`text-sm font-medium transition-colors duration-200 relative group ${
-          activePage === 'blog' 
-            ? 'text-[#0B2360]' 
-            : 'text-gray-600 hover:text-[#0B2360]'
+        <a href="/" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Strona główna</a>
+        <a href="/kitchen-sink" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Kitchen Sink</a>
+        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Cennik</a>
+        <a href="/blog" class={`text-sm font-medium transition-colors duration-200 ${
+          activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-600 hover:text-[#0B2360]'
         }`}>
           Blog
-          <span class={`absolute bottom-0 left-0 h-0.5 bg-[#0B2360] transition-all duration-300 ${
-            activePage === 'blog' 
-              ? 'w-full' 
-              : 'w-0 group-hover:w-full'
-          }`}></span>
-        </a>
-        <a href="#faq" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          FAQ
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#kontakt" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200 relative group">
-          Kontakt
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0B2360] group-hover:w-full transition-all duration-300"></span>
         </a>
       </div>
 
       <!-- Desktop CTA Buttons -->
       <div class="hidden lg:flex items-center space-x-4">
-        <button class="px-4 py-2 text-sm text-gray-600 font-medium hover:text-[#0B2360] transition-colors duration-200">
-          Zaloguj się
-        </button>
         <button class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
           Rozpocznij za darmo
         </button>
@@ -148,88 +47,18 @@ const { activePage } = Astro.props;
     </div>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Menu (simplified) -->
   <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-200">
     <div class="px-4 py-3 space-y-3">
-      <!-- Mobile Funkcje -->
-      <div class="border-b border-gray-100 pb-3">
-        <button class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-          <span>Funkcje</span>
-          <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="mobile-dropdown-content hidden pl-4 pt-2 space-y-2">
-          <a href="#zarzadzanie-czlonkami" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Zarządzanie członkami</a>
-          <a href="#kalendarz-treningow" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Kalendarz treningów</a>
-          <a href="#platnosci-online" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Płatności online</a>
-          <a href="#komunikacja" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Komunikacja</a>
-        </div>
-      </div>
-
-      <!-- Mobile Funkcjonalności -->
-      <div class="border-b border-gray-100 pb-3">
-        <button class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-          <span>Funkcjonalności</span>
-          <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="mobile-dropdown-content hidden pl-4 pt-2 space-y-2">
-          <a href="#panel-admina" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Panel administratora</a>
-          <a href="#raporty" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Raporty i analizy</a>
-          <a href="#profil-czlonka" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Profil członka</a>
-          <a href="#rezerwacje" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Rezerwacje</a>
-        </div>
-      </div>
-
-      <!-- Mobile Narzędzia -->
-      <div class="border-b border-gray-100 pb-3">
-        <button class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-          <span>Narzędzia</span>
-          <svg class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="mobile-dropdown-content hidden pl-4 pt-2 space-y-2">
-          <a href="#api" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">API</a>
-          <a href="#integracje" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Integracje</a>
-          <a href="#eksport-danych" class="block py-1 text-sm text-gray-600 hover:text-[#0B2360]">Eksport danych</a>
-        </div>
-      </div>
-
-      <!-- Regular mobile links -->
-      <a href="#aplikacja" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        Aplikacja
-      </a>
-      <a href="/academy" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        Dla Akademii
-      </a>
-      <a href="/pricing" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        Cennik
-      </a>
-      <a href="#opinie" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        Opinie
-      </a>
+      <a href="/" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Strona główna</a>
+      <a href="/kitchen-sink" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Kitchen Sink</a>
+      <a href="/pricing" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Cennik</a>
       <a href="/blog" class={`block py-2 text-sm font-medium transition-colors duration-200 ${
-        activePage === 'blog' 
-          ? 'text-[#0B2360]' 
-          : 'text-gray-700 hover:text-[#0B2360]'
-      }`}>
-        Blog
-      </a>
-      <a href="#faq" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        FAQ
-      </a>
-      <a href="#kontakt" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">
-        Kontakt
-      </a>
-      
-      <!-- Mobile CTA Buttons -->
-      <div class="pt-3 space-y-3">
-        <button class="w-full py-2 text-sm text-gray-700 font-medium border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-          Zaloguj się
-        </button>
+        activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-700 hover:text-[#0B2360]'
+      }`}>Blog</a>
+
+      <!-- Mobile CTA Button -->
+      <div class="pt-3">
         <button class="btn-style-1 w-full py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
           Rozpocznij za darmo
         </button>
@@ -249,18 +78,6 @@ const { activePage } = Astro.props;
       mobileMenu?.classList.toggle('hidden');
     });
 
-    // Mobile dropdown functionality
-    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-    mobileDropdownToggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('svg');
-        
-        content?.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-      });
-    });
-
     // Close mobile menu when clicking on links
     const mobileLinks = mobileMenu?.querySelectorAll('a');
     mobileLinks?.forEach(link => {
@@ -274,23 +91,6 @@ const { activePage } = Astro.props;
       if (!mobileMenuButton?.contains(event.target) && !mobileMenu?.contains(event.target)) {
         mobileMenu?.classList.add('hidden');
       }
-    });
-
-    // Smooth scroll for anchor links
-    const allLinks = document.querySelectorAll('a[href^="#"]');
-    allLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          const navHeight = 80; // Navigation height
-          const targetPosition = target.offsetTop - navHeight;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
     });
 
     // Navbar scroll effect

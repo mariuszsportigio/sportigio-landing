@@ -34,7 +34,7 @@ const {
 const t = createTranslator(lang);
 
 const variantClasses = {
-  hero: 'font-poppins font-black leading-tight',
+  hero: 'font-poppins font-extrabold leading-tight',
   section: 'font-poppins font-bold leading-tight',
   feature: 'font-poppins font-semibold leading-relaxed',
   testimonial: 'font-normal leading-relaxed',
@@ -60,7 +60,7 @@ const weightClasses = {
   medium: 'font-medium',
   semibold: 'font-semibold',
   bold: 'font-bold',
-  black: 'font-black'
+  black: 'font-extrabold'
 };
 
 const colorClasses = {
@@ -209,7 +209,7 @@ const Tag = level;
   }
 
   /* Hero variant enhancements */
-  .font-poppins.font-black {
+  .font-poppins.font-extrabold {
     text-shadow: 0 2px 4px rgba(11, 35, 96, 0.1);
   }
 
@@ -372,7 +372,7 @@ const Tag = level;
     });
     
     // Dynamic text sizing based on content length
-    const heroTexts = document.querySelectorAll('.font-poppins.font-black');
+    const heroTexts = document.querySelectorAll('.font-poppins.font-extrabold');
     heroTexts.forEach(text => {
       const length = text.textContent.length;
       if (length > 100) {

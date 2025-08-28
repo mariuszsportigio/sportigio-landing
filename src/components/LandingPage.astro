@@ -15,12 +15,14 @@ import FAQ from './FAQ.astro';
 import CTASection from './CTASection.astro';
 import Footer from './Footer.astro';
 import { type Language, defaultLanguage } from '../i18n';
+import SimpleFeature from './SimpleFeature.astro';
 
-export interface Props {
+interface Props {
   lang?: Language;
+  showSimpleFeatures?: boolean;
 }
 
-const { lang = defaultLanguage } = Astro.props;
+const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Props;
 ---
 
 <Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
@@ -28,11 +30,46 @@ const { lang = defaultLanguage } = Astro.props;
   <Navbar />
   
   <!-- Main Content -->
-  <main>
+  <main class="bg-white">
     <!-- Hero Section -->
     <section id="hero">
       <Hero lang={lang} />
     </section>
+
+    {showSimpleFeatures ? (
+      <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="mb-10 text-center">
+            <h2 class="font-poppins text-3xl font-bold text-gray-900 mb-2">Proste sekcje</h2>
+            <p class="text-gray-600">Minimalne komponenty do szybkiego budowania podstron</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <SimpleFeature 
+              title="Szybki start"
+              description="Rozpocznij wdrożenie klubu w kilka minut, bez zbędnych konfiguracji."
+              iconPath="M13 7l5 5m0 0l-5 5m5-5H6"
+              ctaVariant="link"
+              ctaText="Zobacz jak"
+              ctaHref="#"
+            />
+            <SimpleFeature 
+              title="Płatności online"
+              description="Bezpieczne i szybkie rozliczenia dla składek i opłat za zajęcia."
+              iconPath="M12 8c-1.657 0-3 1.343-3 3v5h6v-5c0-1.657-1.343-3-3-3zm0-5a3 3 0 013 3v1H9V6a3 3 0 013-3z"
+              ctaVariant="button"
+              ctaText="Zobacz więcej"
+              ctaHref="#"
+            />
+            <SimpleFeature 
+              title="Komunikacja"
+              description="Wiadomości, ogłoszenia i powiadomienia w jednym miejscu."
+              iconPath="M7 8h10M7 12h6m5 8H6a2 2 0 01-2-2V6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2z"
+              ctaVariant="none"
+            />
+          </div>
+        </div>
+      </section>
+    ) : null}
 
     <!-- Social Proof / Stats -->
     <section id="stats">

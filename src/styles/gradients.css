@@ -5,6 +5,16 @@
   background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
 }
 
+/* Alias for background usage */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+}
+
+/* Darker primary gradient variant */
+.gradient-primary-dark {
+  background: linear-gradient(135deg, #0A1E54 0%, #081A4A 100%);
+}
+
 .gradient-secondary {
   background: linear-gradient(135deg, #01DFEC 0%, #EA36E1 100%);
 }
