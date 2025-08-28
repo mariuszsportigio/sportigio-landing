@@ -1,13 +1,22 @@
 /* Master Gradient Styles for Sportigio */
 
+/* CSS Variables for Sportigio Gradients */
+:root {
+  --sportigio-gradient: linear-gradient(55deg, #A91DC8 0%, #0B2360 8%, #00052E 80%, #01DFEC 100%, #00052E 100%);
+  --sportigio-gradient-2: linear-gradient(55deg, #A91DC8 0%, #0B2360 20%, #00052E 66%, #01DFEC 100%, #00052E 100%);
+  --sportigio-gradient-3: linear-gradient(120deg, #0B2360 10%, #00052E 70%, #01DFEC 100%);
+  --sportigio-gradient-4: linear-gradient(135deg, #A91DC8 0%, #0B2360 60%, #00052E 100%);
+  --sportigio-gradient-5: linear-gradient(135deg, #0B2360 0%, #00052E 100%);
+}
+
 /* Primary gradient combinations using brand colors */
 .gradient-primary {
-  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  background: var(--sportigio-gradient);
 }
 
 /* Alias for background usage */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  background: var(--sportigio-gradient);
 }
 
 /* Darker primary gradient variant */
@@ -23,9 +32,51 @@
   background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
 }
 
+/* Additional Sportigio gradient utility classes */
+.sportigio-gradient {
+  background: var(--sportigio-gradient);
+}
+
+.sportigio-gradient-2 {
+  background: var(--sportigio-gradient-2);
+}
+
+.sportigio-gradient-3 {
+  background: var(--sportigio-gradient-3);
+}
+
+.sportigio-gradient-4 {
+  background: var(--sportigio-gradient-4);
+}
+
+.sportigio-gradient-5 {
+  background: var(--sportigio-gradient-5);
+}
+
+/* Utility classes to replace Tailwind bg-gradient patterns */
+.bg-sportigio-primary {
+  background: linear-gradient(to right, #0B2360, #01DFEC);
+}
+
+.bg-sportigio-secondary {
+  background: linear-gradient(to right, #01DFEC, #EA36E1);
+}
+
+.bg-sportigio-tertiary {
+  background: var(--sportigio-gradient-3);
+}
+
+.bg-sportigio-quaternary {
+  background: linear-gradient(to right, #EA36E1, #0B2360);
+}
+
+.bg-sportigio-navy {
+  background: var(--sportigio-gradient-5);
+}
+
 /* Text gradients */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  background: var(--sportigio-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -47,16 +98,16 @@
 
 /* Button gradients */
 .btn-gradient-primary {
-  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  background: var(--sportigio-gradient);
   color: white;
   border: none;
   transition: all 0.3s ease;
 }
 
 .btn-gradient-primary:hover {
-  background: linear-gradient(135deg, #0a1f56 0%, #01c5d1 100%);
+  background: var(--sportigio-gradient-2);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(11, 35, 96, 0.3);
+  box-shadow: 0 10px 25px rgba(169, 29, 200, 0.3);
 }
 
 /* Background gradients for sections */
@@ -83,7 +134,7 @@
 
 /* Icon/Element gradients */
 .icon-gradient-primary {
-  background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+  background: var(--sportigio-gradient);
 }
 
 .icon-gradient-secondary {
@@ -98,7 +149,7 @@
 .border-gradient-primary {
   border: 1px solid transparent;
   background: linear-gradient(white, white) padding-box,
-              linear-gradient(135deg, #0B2360, #01DFEC) border-box;
+              var(--sportigio-gradient) border-box;
 }
 
 /* Master spacing classes */

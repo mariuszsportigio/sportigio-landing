@@ -154,7 +154,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+    background: var(--sportigio-gradient);
     border-radius: 4px;
   }
 
@@ -237,7 +237,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     `;
-    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none';
+    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-sportigio-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none';
     backToTop.style.transition = 'opacity 0.3s ease-in-out';
     
     document.body.appendChild(backToTop);

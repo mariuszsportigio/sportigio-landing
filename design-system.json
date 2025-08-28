@@ -8,7 +8,7 @@
       "white": "#FFFFFF",
       "darkNavy": "#060E2C",
       "gradients": {
-        "main": "linear-gradient(135deg, #0B2360 0%, #01DFEC 100%)",
+        "main": "var(--sportigio-gradient)",
         "full": "linear-gradient(135deg, #0B2360, #01DFEC, #EA36E1)"
       }
     },
@@ -30,7 +30,7 @@
     },
     "buttons": {
       "primary": {
-        "background": "linear-gradient(135deg, #0B2360 0%, #01DFEC 100%)",
+        "background": "var(--sportigio-gradient)",
         "textColor": "#FFFFFF",
         "borderRadius": "12px",
         "hover": {

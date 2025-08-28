@@ -43,6 +43,16 @@ This is a multilingual **Astro** landing page for Sportigio, a sports club commu
 - Custom fonts: Inter (body), Poppins (headings)
 - Predefined spacing, typography, and component tokens
 
+**Gradient System**
+- Master Sportigio gradients available as CSS variables and utility classes:
+  - `--sportigio-gradient`: Main gradient (55deg, #A91DC8 → #0B2360 → #00052E → #01DFEC)
+  - `--sportigio-gradient-2`: Variant with adjusted stops
+  - `--sportigio-gradient-3`: Blue-focused gradient (120deg)
+  - `--sportigio-gradient-4`: Purple-to-navy gradient (135deg)
+  - `--sportigio-gradient-5`: Navy-only gradient (135deg)
+- CSS classes: `.sportigio-gradient`, `.gradient-primary`, `.btn-gradient-primary`, `.text-gradient-primary`
+- Tailwind classes: `bg-sportigio-gradient`, `bg-sportigio-gradient-2`, etc.
+
 ### Critical Files
 
 **Main Pages**

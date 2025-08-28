@@ -47,7 +47,7 @@ const baseClasses = [
 ];
 
 const variantClasses = {
-  primary: 'btn-style-1 bg-gradient-to-r from-[#0B2360] to-[#01DFEC] text-white shadow-lg hover:shadow-xl',
+  primary: 'btn-style-1 bg-sportigio-primary text-white shadow-lg hover:shadow-xl',
   secondary: 'btn-style-2 bg-[#0B2360] text-white shadow-lg hover:shadow-xl hover:bg-[#081a4a]',
   outline: 'btn-style-3 bg-transparent text-[#0B2360] border-2 border-[#0B2360] hover:bg-[#0B2360] hover:text-white',
   ghost: 'bg-transparent text-[#0B2360] hover:bg-[#0B2360]/10',
@@ -106,7 +106,7 @@ const props = href ? { href, target } : { type, disabled };
 <style>
   /* Enhanced button styles from Hero and global.css */
   .btn-style-1 {
-    background: linear-gradient(135deg, #0B2360 0%, #01DFEC 100%);
+    background: var(--sportigio-gradient);
     position: relative;
     overflow: hidden;
   }
