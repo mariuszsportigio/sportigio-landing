@@ -12,133 +12,139 @@
       </p>
     </div>
 
-    <!-- FAQ Grid -->
+    <!-- FAQ Columns: two independent vertical stacks to avoid cross-column row coupling -->
     <div class="grid lg:grid-cols-2 gap-4">
-      <!-- FAQ Item 1 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Ile kosztuje korzystanie z Sportigio?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Left column: items 1,3,5,7 -->
+      <div class="flex flex-col gap-4">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Ile kosztuje korzystanie z Sportigio?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Oferujemy trzy plany: darmowy do 20 członków, Pro za 49zł/miesiąc do 100 członków 
-            oraz Premium za 99zł/miesiąc bez ograniczeń. Wszystkie plany mają 30-dniowy okres próbny.
-          </p>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Oferujemy trzy plany: darmowy do 20 członków, Pro za 49zł/miesiąc do 100 członków 
+              oraz Premium za 99zł/miesiąc bez ograniczeń. Wszystkie plany mają 30-dniowy okres próbny.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Czy dostępne są aplikacje mobilne?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Tak! Mamy dedykowane aplikacje na iOS i Android z pełną funkcjonalnością. 
+              Aplikacje działają offline i synchronizują dane automatycznie po połączeniu z internetem.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Jak bezpieczne są nasze dane?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Używamy szyfrowania 256-bit SSL, regularne backup'y, hosting w Polsce zgodny z RODO. 
+              Nasze serwery spełniają najwyższe standardy bezpieczeństwa ISO 27001.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Jaki jest zakres wsparcia technicznego?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Oferujemy support przez email, chat i telefon w godzinach 8-18. Plan Premium obejmuje 
+              dedykowanego opiekuna klienta i wsparcie 24/7.
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- FAQ Item 2 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Jak długo trwa wdrożenie systemu?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Right column: items 2,4,6,8 -->
+      <div class="flex flex-col gap-4">
+        <!-- FAQ Item 2 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Jak długo trwa wdrożenie systemu?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Standardowe wdrożenie trwa 24-48 godzin. Nasz zespół pomoże w migracji danych, 
-            konfiguracji systemu i przeszkoleniu zespołu. Większość klubów jest gotowa do pracy w ciągu 2 dni.
-          </p>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Standardowe wdrożenie trwa 24-48 godzin. Nasz zespół pomoże w migracji danych, 
+              konfiguracji systemu i przeszkoleniu zespołu. Większość klubów jest gotowa do pracy w ciągu 2 dni.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- FAQ Item 3 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Czy dostępne są aplikacje mobilne?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- FAQ Item 4 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Jakie integracje są dostępne?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Tak! Mamy dedykowane aplikacje na iOS i Android z pełną funkcjonalnością. 
-            Aplikacje działają offline i synchronizują dane automatycznie po połączeniu z internetem.
-          </p>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Integrujemy się z Google Calendar, PayU, Przelewy24, systemami księgowymi (iFirma, Wfirma), 
+              oraz oferujemy API do budowy własnych integracji.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- FAQ Item 4 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Jakie integracje są dostępne?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- FAQ Item 6 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Czy można anulować subskrypcję w każdym momencie?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Integrujemy się z Google Calendar, PayU, Przelewy24, systemami księgowymi (iFirma, Wfirma), 
-            oraz oferujemy API do budowy własnych integracji.
-          </p>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Tak, możesz anulować subskrypcję w każdym momencie bez dodatkowych opłat. 
+              Zachowasz dostęp do systemu do końca opłaconego okresu.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- FAQ Item 5 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Jak bezpieczne są nasze dane?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- FAQ Item 8 -->
+        <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+            <span class="text-sm font-semibold text-gray-900">Czy Sportigio nadaje się dla każdego sportu?</span>
+          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Używamy szyfrowania 256-bit SSL, regularne backup'y, hosting w Polsce zgodny z RODO. 
-            Nasze serwery spełniają najwyższe standardy bezpieczeństwa ISO 27001.
-          </p>
-        </div>
-      </div>
-
-      <!-- FAQ Item 6 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Czy można anulować subskrypcję w każdym momencie?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Tak, możesz anulować subskrypcję w każdym momencie bez dodatkowych opłat. 
-            Zachowasz dostęp do systemu do końca opłaconego okresu.
-          </p>
-        </div>
-      </div>
-
-      <!-- FAQ Item 7 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Jaki jest zakres wsparcia technicznego?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Oferujemy support przez email, chat i telefon w godzinach 8-18. Plan Premium obejmuje 
-            dedykowanego opiekuna klienta i wsparcie 24/7.
-          </p>
-        </div>
-      </div>
-
-      <!-- FAQ Item 8 -->
-      <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
-        <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
-          <span class="text-sm font-semibold text-gray-900">Czy Sportigio nadaje się dla każdego sportu?</span>
-          <svg class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="faq-answer hidden px-4 pb-4">
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Absolutnie! Pracujemy z klubami piłkarskimi, koszykarskimi, siatkarski, pływackimi, 
-            martial arts i wieloma innymi. System jest uniwersalny i dostosowuje się do specyfiki każdego sportu.
-          </p>
+          <div class="faq-answer px-4 pb-4" data-state="closed">
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Absolutnie! Pracujemy z klubami piłkarskimi, koszykarskimi, siatkarski, pływackimi, 
+              martial arts i wieloma innymi. System jest uniwersalny i dostosowuje się do specyfiki każdego sportu.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -146,25 +152,118 @@
 </section>
 
 <script>
-  // FAQ Accordion functionality
+  // FAQ Accordion: one open at a time with smooth ease-out animation
   document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
     const faqQuestions = document.querySelectorAll('.faq-question');
-    
+
+    function closeItem(item) {
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      if (!answer) return;
+      const state = answer.getAttribute('data-state');
+      if (state === 'closed' || state === 'closing') return;
+
+      answer.setAttribute('data-state', 'closing');
+      // Prepare from current natural height to 0
+      answer.style.height = answer.scrollHeight + 'px';
+      // Force reflow before shrinking
+      void answer.offsetHeight;
+      answer.style.height = '0px';
+      answer.style.opacity = '0';
+      if (icon) icon.style.transform = 'rotate(0deg)';
+
+      const onEnd = (e) => {
+        if (e.propertyName !== 'height') return;
+        answer.removeEventListener('transitionend', onEnd);
+        answer.setAttribute('data-state', 'closed');
+        // Keep inline height cleared; base CSS holds height: 0
+        answer.style.height = '';
+      };
+      answer.addEventListener('transitionend', onEnd);
+    }
+
+    function openItem(item) {
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      if (!answer) return;
+      const state = answer.getAttribute('data-state');
+      if (state === 'open' || state === 'opening') return;
+
+      answer.setAttribute('data-state', 'opening');
+      // Ensure start from 0
+      answer.style.height = '0px';
+      answer.style.opacity = '1';
+      // Force reflow then expand to content height
+      void answer.offsetHeight;
+      const target = answer.scrollHeight;
+      answer.style.height = target + 'px';
+      if (icon) icon.style.transform = 'rotate(180deg)';
+
+      const onEnd = (e) => {
+        if (e.propertyName !== 'height') return;
+        answer.removeEventListener('transitionend', onEnd);
+        answer.setAttribute('data-state', 'open');
+        // Allow content to grow naturally after animation
+        answer.style.height = 'auto';
+      };
+      answer.addEventListener('transitionend', onEnd);
+    }
+
+    // Initialize all answers as closed visually
+    faqItems.forEach(item => {
+      const answer = item.querySelector('.faq-answer');
+      if (!answer) return;
+      const state = answer.getAttribute('data-state') || 'closed';
+      answer.setAttribute('data-state', state);
+      if (state === 'open') {
+        answer.style.height = 'auto';
+        answer.style.opacity = '1';
+      } else {
+        answer.style.height = '0px';
+        answer.style.opacity = '0';
+      }
+    });
+
     faqQuestions.forEach(question => {
       question.addEventListener('click', function() {
-        const faqItem = this.closest('.faq-item');
-        const answer = faqItem.querySelector('.faq-answer');
-        const icon = this.querySelector('.faq-icon');
-        
-        // Toggle current item
-        if (answer.classList.contains('hidden')) {
-          answer.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          answer.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        }
+        const currentItem = this.closest('.faq-item');
+        if (!currentItem) return;
+        const currentAnswer = currentItem.querySelector('.faq-answer');
+        if (!currentAnswer) return;
+        const willOpen = currentAnswer.getAttribute('data-state') !== 'open';
+
+        // Close all other items
+        faqItems.forEach(item => {
+          if (item !== currentItem) closeItem(item);
+        });
+
+        // Toggle current
+        if (willOpen) openItem(currentItem);
+        else closeItem(currentItem);
       });
     });
   });
-</script> 
+</script>
+
+<style>
+  /* Smooth accordion animation using height + opacity with ease-out */
+  .faq-answer {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition: height 140ms ease-out, opacity 120ms ease-out, padding-bottom 120ms ease-out;
+  }
+
+  .faq-answer[data-state='open'],
+  .faq-answer[data-state='opening'] {
+    opacity: 1;
+    padding-bottom: 1rem; /* pb-4 */
+  }
+
+  .faq-answer[data-state='closed'],
+  .faq-answer[data-state='closing'] {
+    opacity: 0;
+    padding-bottom: 0; /* collapse vertical spacing when closed */
+  }
+</style>
