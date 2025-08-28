@@ -201,7 +201,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          (entry.target as HTMLElement).style.animation = 'fadeInUp 0.6s ease-out forwards';
         }
       });
     }, observerOptions);
@@ -215,9 +215,10 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     const imageObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
+          const img = entry.target as HTMLImageElement;
+          const dataSrc = (img as HTMLElement).dataset?.src;
+          if (dataSrc) {
+            img.src = dataSrc;
             img.classList.remove('lazy');
             imageObserver.unobserve(img);
           }
@@ -237,7 +238,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     `;
-    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-sportigio-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none';
+    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-sportigio-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none flex items-center justify-center';
     backToTop.style.transition = 'opacity 0.3s ease-in-out';
     
     document.body.appendChild(backToTop);
@@ -262,18 +263,21 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     });
 
     // Enhanced analytics tracking (placeholder)
-    const trackEvent = (eventName, properties = {}) => {
+
+    const trackEvent = (eventName: string, properties: Record<string, unknown> = {}) => {
       // Replace with your analytics solution (Google Analytics, Mixpanel, etc.)
       console.log(`Event: ${eventName}`, properties);
     };
 
     // Track button clicks
     document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const buttonText = e.target.textContent.trim();
+      button.addEventListener('click', (e: MouseEvent) => {
+        const target = e.currentTarget as HTMLElement;
+        const buttonText = target.textContent?.trim() ?? '';
+        const sectionId = (target.closest('section') as HTMLElement | null)?.id ?? 'unknown';
         trackEvent('button_click', {
           button_text: buttonText,
-          section: e.target.closest('section')?.id || 'unknown'
+          section: sectionId
         });
       });
     });
@@ -282,9 +286,10 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          const targetEl = entry.target as HTMLElement;
           trackEvent('section_view', {
-            section_id: entry.target.id,
-            section_name: entry.target.querySelector('h2')?.textContent || entry.target.id
+            section_id: targetEl.id,
+            section_name: targetEl.querySelector('h2')?.textContent || targetEl.id
           });
         }
       });
@@ -298,7 +303,7 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     if (window.innerWidth <= 768) {
       // Reduce animation complexity on mobile
       document.querySelectorAll('[class*="animate"]').forEach(el => {
-        el.style.animation = 'none';
+        (el as HTMLElement).style.animation = 'none';
       });
     }
 
