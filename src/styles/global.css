@@ -25,6 +25,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Brand selection colors with high contrast */
+::selection {
+  background: var(--sportigio-secondary, #01DFEC);
+  color: var(--sportigio-primary, #0B2360);
+}
+::-moz-selection {
+  background: var(--sportigio-secondary, #01DFEC);
+  color: var(--sportigio-primary, #0B2360);
+}
+
 body {
   font-family: 'Inter', sans-serif;
 }

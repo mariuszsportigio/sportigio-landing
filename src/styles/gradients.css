@@ -2,6 +2,11 @@
 
 /* CSS Variables for Sportigio Gradients */
 :root {
+  /* Solid brand colors */
+  --sportigio-primary: #0B2360;  /* dark navy */
+  --sportigio-secondary: #01DFEC; /* cyan */
+  --sportigio-accent: #EA36E1;   /* magenta */
+
   --sportigio-gradient: linear-gradient(55deg, #A91DC8 0%, #0B2360 8%, #00052E 80%, #01DFEC 100%, #00052E 100%);
   --sportigio-gradient-2: linear-gradient(55deg, #A91DC8 0%, #0B2360 20%, #00052E 66%, #01DFEC 100%, #00052E 100%);
   --sportigio-gradient-3: linear-gradient(120deg, #0B2360 10%, #00052E 70%, #01DFEC 100%);
