@@ -20,17 +20,19 @@ import SimpleFeature from './SimpleFeature.astro';
 interface Props {
   lang?: Language;
   showSimpleFeatures?: boolean;
+  matchHeroWidth?: boolean;
 }
 
-const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Props;
+const { lang = defaultLanguage, showSimpleFeatures = false, matchHeroWidth = false } = Astro.props as Props;
 ---
 
 <Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
-  <!-- Fixed Navigation -->
-  <Navbar />
-  
-  <!-- Main Content -->
-  <main class="bg-white">
+  <div class={matchHeroWidth ? 'ks-scope' : ''}>
+    <!-- Fixed Navigation -->
+    <Navbar />
+    
+    <!-- Main Content -->
+    <main class="bg-white">
     <!-- Hero Section -->
     <section id="hero">
       <Hero lang={lang} />
@@ -122,10 +124,11 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     <section id="cta">
       <CTASection />
     </section>
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <Footer />
+    <!-- Footer -->
+    <Footer />
+  </div>
 </Layout>
 
 <style>
@@ -187,6 +190,21 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
   section:nth-child(5) { animation-delay: 0.5s; }
   section:nth-child(6) { animation-delay: 0.6s; }
   section:nth-child(7) { animation-delay: 0.7s; }
+</style>
+
+<style is:global>
+  /*
+    When `matchHeroWidth` is true, constrain broad containers to Hero width (max-w-5xl = 64rem)
+    Only applies within this LandingPage instance via `.ks-scope` wrapper.
+  */
+  .ks-scope .container,
+  .ks-scope .container-default,
+  .ks-scope .container-wide,
+  .ks-scope .max-w-6xl,
+  .ks-scope .max-w-7xl,
+  .ks-scope .xl\:container {
+    max-width: 64rem !important;
+  }
 </style>
 
 <script>
