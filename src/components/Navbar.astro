@@ -51,9 +51,89 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-6">
-        <a href="/" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.home') || (lang === 'pl' ? 'Strona główna' : 'Home')}</a>
+        <!-- Produkt with mega menu -->
+        <div class="relative">
+          <button 
+            id="mega-trigger-product"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="mega-menu-product"
+            class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
+          >
+            <span>{t('navigation.product') || (lang === 'pl' ? 'Produkt' : 'Product')}</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div 
+            id="mega-menu-product"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[880px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
+            role="menu"
+          >
+            <div class="h-1 w-full sportigio-gradient"></div>
+            <div class="grid grid-cols-3 gap-6 p-6">
+              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.length ? (
+                (getTranslations(lang) as any).navigation.mega.menus.product.groups.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a href={item.href || '#'} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{item.label}</div>
+                            {item.description ? (
+                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                            ) : null}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Platforma</h4>
+                    <ul class="space-y-2">
+                      {['Sportigio', 'Strona', 'Bilety online', 'Sklep'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Możliwości</h4>
+                    <ul class="space-y-2">
+                      {['Zarabianie', 'Typer i Quiz', 'Automatyczne wyniki', 'Reklamy i sponsorzy', 'Mailing i powiadomienia', 'Baza fanów', 'Asystent AI', 'Wszystkie funkcje'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Jak zacząć?</h4>
+                    <ul class="space-y-2">
+                      {['Zleć to nam', 'Zrób to sam'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
 
-        <!-- Kitchen Sink with mega menu -->
+        <!-- Rozwiązania with mega menu -->
         <div class="relative">
           <button 
             id="mega-trigger-kitchen"
@@ -63,16 +143,16 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
             aria-controls="mega-menu-kitchen"
             class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >
-            <span>{t('navigation.kitchen') || 'Kitchen Sink'}</span>
+            <span>{t('navigation.solutions') || (lang === 'pl' ? 'Rozwiązania' : 'Solutions')}</span>
             <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
           </button>
           <div 
             id="mega-menu-kitchen"
-            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[880px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[920px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
             role="menu"
           >
             <div class="h-1 w-full sportigio-gradient"></div>
-            <div class="grid grid-cols-2 gap-6 p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
               {i18nMegaKitchen.map((group) => (
                 <div>
                   <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
@@ -96,16 +176,110 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
         </div>
 
         <!-- Simple links without mega menu -->
-        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.pricing')}</a>
-        <a href="/blog" class={`text-sm font-medium transition-colors duration-200 ${
-          activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-600 hover:text-[#0B2360]'
-        }`}>
-          {t('navigation.blog') || 'Blog'}
-        </a>
+        <a href="#" onclick="return false;" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.custom_plan') || (lang === 'pl' ? 'Plan dedykowany' : 'Custom plan')}</a>
+
+        <!-- Materiały with mega menu -->
+        <div class="relative">
+          <button 
+            id="mega-trigger-resources"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="mega-menu-resources"
+            class={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-600 hover:text-[#0B2360]'}`}
+          >
+            <span>{t('navigation.resources') || (lang === 'pl' ? 'Materiały' : 'Resources')}</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div 
+            id="mega-menu-resources"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[980px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
+            role="menu"
+          >
+            <div class="h-1 w-full sportigio-gradient"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.length ? (
+                (getTranslations(lang) as any).navigation.mega.menus.resources.groups.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a href={item.href || '#'} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{item.label}</div>
+                            {item.description ? (
+                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                            ) : null}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Poznaj nas</h4>
+                    <ul class="space-y-2">
+                      {['O firmie', 'Co nowego', 'Umów Demo', 'Blog'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Wsparcie</h4>
+                    <ul class="space-y-2">
+                      {['Baza wiedzy', 'Webinary', 'Instrukcje wideo', 'API', 'Kontakt'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Usługi</h4>
+                    <ul class="space-y-2">
+                      {['Wdrożenie', 'Migracja danych', 'Szkolenia', 'Outsourcing'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Historie klientów</h4>
+                    <ul class="space-y-2">
+                      {['News', 'Zobacz wszystkie'].map((label) => (
+                        <li>
+                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
+                            <div class="text-sm font-semibold text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.pricing') || (lang === 'pl' ? 'Cennik' : 'Pricing')}</a>
       </div>
 
       <!-- Desktop CTA Buttons -->
       <div class="hidden lg:flex items-center space-x-4">
+        <a href="/login" class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
+          {t('navigation.login') || (lang === 'pl' ? 'Zaloguj' : 'Login')}
+        </a>
         <a href="/pricing" class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
           {t('common.try_free')}
         </a>
@@ -143,7 +317,77 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
     </div>
     <div class="flex-1 overflow-y-auto px-4 py-4 overscroll-contain">
       <ul class="space-y-2">
-        <li><a href="/" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.home') || 'Home'}</a></li>
+        <li>
+          <button 
+            id="mobile-acc-product-toggle"
+            type="button"
+            aria-controls="mobile-acc-product"
+            aria-expanded="false"
+            class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+          >
+            <span>{t('navigation.product') || (lang === 'pl' ? 'Produkt' : 'Product')}</span>
+            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div id="mobile-acc-product" class="hidden mt-2">
+            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
+              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.map((group) => (
+                <div class="px-4 py-3">
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
+                  <ul class="space-y-1">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href || '#'} class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
+                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              {!(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.length ? (
+                <>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Platforma</div>
+                    <ul class="space-y-1">
+                      {['Sportigio', 'Strona', 'Bilety online', 'Sklep'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Możliwości</div>
+                    <ul class="space-y-1">
+                      {['Zarabianie', 'Typer i Quiz', 'Automatyczne wyniki', 'Reklamy i sponsorzy', 'Mailing i powiadomienia', 'Baza fanów', 'Asystent AI', 'Wszystkie funkcje'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Jak zacząć?</div>
+                    <ul class="space-y-1">
+                      {['Zleć to nam', 'Zrób to sam'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </li>
         <li>
           <button 
             id="mobile-acc-kitchen-toggle"
@@ -152,7 +396,7 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
             aria-expanded="false"
             class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
           >
-            <span>{t('navigation.kitchen') || 'Kitchen Sink'}</span>
+            <span>{t('navigation.solutions') || (lang === 'pl' ? 'Rozwiązania' : 'Solutions')}</span>
             <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
           </button>
           <div id="mobile-acc-kitchen" class="hidden mt-2">
@@ -175,8 +419,91 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
             </div>
           </div>
         </li>
-        <li><a href="/pricing" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.pricing') || 'Pricing'}</a></li>
-        <li><a href="/blog" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.blog') || 'Blog'}</a></li>
+        <li><a href="#" onclick="return false;" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.custom_plan') || (lang === 'pl' ? 'Plan dedykowany' : 'Custom plan')}</a></li>
+        <li>
+          <button 
+            id="mobile-acc-resources-toggle"
+            type="button"
+            aria-controls="mobile-acc-resources"
+            aria-expanded="false"
+            class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+          >
+            <span>{t('navigation.resources') || (lang === 'pl' ? 'Materiały' : 'Resources')}</span>
+            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div id="mobile-acc-resources" class="hidden mt-2">
+            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
+              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.map((group) => (
+                <div class="px-4 py-3">
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
+                  <ul class="space-y-1">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href || '#'} class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
+                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              {!(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.length ? (
+                <>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Poznaj nas</div>
+                    <ul class="space-y-1">
+                      {['O firmie', 'Co nowego', 'Umów Demo', 'Blog'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Wsparcie</div>
+                    <ul class="space-y-1">
+                      {['Baza wiedzy', 'Webinary', 'Instrukcje wideo', 'API', 'Kontakt'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Usługi</div>
+                    <ul class="space-y-1">
+                      {['Wdrożenie', 'Migracja danych', 'Szkolenia', 'Outsourcing'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="px-4 py-3">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Historie klientów</div>
+                    <ul class="space-y-1">
+                      {['News', 'Zobacz wszystkie'].map((label) => (
+                        <li>
+                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
+                            <div class="text-sm font-medium text-gray-900">{label}</div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </li>
+        <li><a href="/pricing" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.pricing') || (lang === 'pl' ? 'Cennik' : 'Pricing')}</a></li>
       </ul>
     </div>
     
@@ -186,15 +513,25 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
 <script>
   // Vanilla interactions: desktop mega menu on specific nav item (click) + mobile sheet
   document.addEventListener('DOMContentLoaded', () => {
+    const triggerProduct = document.getElementById('mega-trigger-product');
+    const panelProduct = document.getElementById('mega-menu-product');
+    const caretProduct = triggerProduct?.querySelector('svg');
     const triggerKitchen = document.getElementById('mega-trigger-kitchen');
     const panelKitchen = document.getElementById('mega-menu-kitchen');
     const caretKitchen = triggerKitchen?.querySelector('svg');
+    const triggerResources = document.getElementById('mega-trigger-resources');
+    const panelResources = document.getElementById('mega-menu-resources');
+    const caretResources = triggerResources?.querySelector('svg');
     const mobileBtn = document.getElementById('mobile-menu-button');
     const mobileSheet = document.getElementById('mobile-sheet');
     const mobileBackdrop = document.getElementById('mobile-sheet-backdrop');
     const mobileClose = document.getElementById('mobile-close-button');
+    const mobileAccProductToggle = document.getElementById('mobile-acc-product-toggle');
+    const mobileAccProduct = document.getElementById('mobile-acc-product');
     const mobileAccKitchenToggle = document.getElementById('mobile-acc-kitchen-toggle');
     const mobileAccKitchen = document.getElementById('mobile-acc-kitchen');
+    const mobileAccResourcesToggle = document.getElementById('mobile-acc-resources-toggle');
+    const mobileAccResources = document.getElementById('mobile-acc-resources');
 
     // Hover intent control
     let animating = false;
@@ -248,6 +585,9 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
 
     const openPanelKitchen = () => {
       if (!panelKitchen) return;
+      // Close Product panel if open
+      if (typeof closePanelProduct === 'function') closePanelProduct();
+      if (typeof closePanelResources === 'function') closePanelResources();
       triggerKitchen?.setAttribute('aria-expanded', 'true');
       caretKitchen?.classList.add('rotate-180');
 
@@ -327,6 +667,158 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
       });
     }
 
+    // Desktop Product mega menu
+    const openPanelProduct = () => {
+      if (!panelProduct) return;
+      // Close Kitchen panel if open
+      if (typeof closePanelKitchen === 'function') closePanelKitchen();
+      if (typeof closePanelResources === 'function') closePanelResources();
+      triggerProduct?.setAttribute('aria-expanded', 'true');
+      caretProduct?.classList.add('rotate-180');
+
+      if (prefersReduced) {
+        panelProduct.classList.remove('hidden');
+        lockScroll(panelProduct as HTMLElement);
+        return;
+      }
+      if (panelProduct.classList.contains('hidden')) {
+        panelProduct.classList.remove('hidden');
+        animating = true;
+        panelProduct.style.willChange = 'transform, opacity';
+        panelProduct.classList.add('opacity-0', 'scale-95');
+        void panelProduct.offsetWidth;
+        panelProduct.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelProduct, () => {
+          panelProduct.style.willChange = '';
+          animating = false;
+          lockScroll(panelProduct as HTMLElement);
+        });
+        return;
+      }
+      if (panelProduct.classList.contains('opacity-0') || panelProduct.classList.contains('scale-95')) {
+        animating = true;
+        panelProduct.style.willChange = 'transform, opacity';
+        panelProduct.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelProduct, () => {
+          panelProduct.style.willChange = '';
+          animating = false;
+          lockScroll(panelProduct as HTMLElement);
+        });
+      }
+    };
+    const closePanelProduct = () => {
+      if (!panelProduct) return;
+      if (panelProduct.classList.contains('hidden')) return;
+      triggerProduct?.setAttribute('aria-expanded', 'false');
+      caretProduct?.classList.remove('rotate-180');
+      if (prefersReduced) {
+        panelProduct.classList.add('hidden');
+        unlockScroll();
+        return;
+      }
+      animating = true;
+      panelProduct.style.willChange = 'transform, opacity';
+      panelProduct.classList.add('opacity-0', 'scale-95');
+      onTransitionEnd(panelProduct, () => {
+        panelProduct.classList.add('hidden');
+        panelProduct.classList.remove('opacity-0', 'scale-95');
+        panelProduct.style.willChange = '';
+        animating = false;
+        unlockScroll();
+      });
+    };
+    if (triggerProduct && panelProduct) {
+      triggerProduct.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (panelProduct.classList.contains('hidden')) openPanelProduct();
+        else closePanelProduct();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePanelProduct();
+      });
+      document.addEventListener('click', (e) => {
+        if (!panelProduct.contains(e.target) && !triggerProduct.contains(e.target)) {
+          closePanelProduct();
+        }
+      });
+    }
+
+    // Desktop Resources mega menu
+    const openPanelResources = () => {
+      if (!panelResources) return;
+      // Close others
+      if (typeof closePanelProduct === 'function') closePanelProduct();
+      if (typeof closePanelKitchen === 'function') closePanelKitchen();
+      triggerResources?.setAttribute('aria-expanded', 'true');
+      caretResources?.classList.add('rotate-180');
+
+      if (prefersReduced) {
+        panelResources.classList.remove('hidden');
+        lockScroll(panelResources as HTMLElement);
+        return;
+      }
+      if (panelResources.classList.contains('hidden')) {
+        panelResources.classList.remove('hidden');
+        animating = true;
+        panelResources.style.willChange = 'transform, opacity';
+        panelResources.classList.add('opacity-0', 'scale-95');
+        void panelResources.offsetWidth;
+        panelResources.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelResources, () => {
+          panelResources.style.willChange = '';
+          animating = false;
+          lockScroll(panelResources as HTMLElement);
+        });
+        return;
+      }
+      if (panelResources.classList.contains('opacity-0') || panelResources.classList.contains('scale-95')) {
+        animating = true;
+        panelResources.style.willChange = 'transform, opacity';
+        panelResources.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelResources, () => {
+          panelResources.style.willChange = '';
+          animating = false;
+          lockScroll(panelResources as HTMLElement);
+        });
+      }
+    };
+    const closePanelResources = () => {
+      if (!panelResources) return;
+      if (panelResources.classList.contains('hidden')) return;
+      triggerResources?.setAttribute('aria-expanded', 'false');
+      caretResources?.classList.remove('rotate-180');
+      if (prefersReduced) {
+        panelResources.classList.add('hidden');
+        unlockScroll();
+        return;
+      }
+      animating = true;
+      panelResources.style.willChange = 'transform, opacity';
+      panelResources.classList.add('opacity-0', 'scale-95');
+      onTransitionEnd(panelResources, () => {
+        panelResources.classList.add('hidden');
+        panelResources.classList.remove('opacity-0', 'scale-95');
+        panelResources.style.willChange = '';
+        animating = false;
+        unlockScroll();
+      });
+    };
+    if (triggerResources && panelResources) {
+      triggerResources.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (panelResources.classList.contains('hidden')) openPanelResources();
+        else closePanelResources();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePanelResources();
+      });
+      document.addEventListener('click', (e) => {
+        if (!panelResources.contains(e.target) && !triggerResources.contains(e.target)) {
+          closePanelResources();
+        }
+      });
+    }
+
     // Mobile: full-screen sheet
     const openSheet = () => {
       mobileSheet?.classList.remove('hidden');
@@ -351,6 +843,18 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
       a.addEventListener('click', () => closeSheet());
     });
 
+    // Mobile accordion: Product
+    if (mobileAccProductToggle && mobileAccProduct) {
+      const caret = mobileAccProductToggle.querySelector('svg');
+      mobileAccProductToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const expanded = mobileAccProductToggle.getAttribute('aria-expanded') === 'true';
+        mobileAccProductToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        caret?.classList.toggle('rotate-180', !expanded);
+        mobileAccProduct.classList.toggle('hidden', expanded);
+      });
+    }
+
     // Mobile accordion: Kitchen
     if (mobileAccKitchenToggle && mobileAccKitchen) {
       const caret = mobileAccKitchenToggle.querySelector('svg');
@@ -360,6 +864,18 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
         mobileAccKitchenToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         caret?.classList.toggle('rotate-180', !expanded);
         mobileAccKitchen.classList.toggle('hidden', expanded);
+      });
+    }
+
+    // Mobile accordion: Resources
+    if (mobileAccResourcesToggle && mobileAccResources) {
+      const caret = mobileAccResourcesToggle.querySelector('svg');
+      mobileAccResourcesToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const expanded = mobileAccResourcesToggle.getAttribute('aria-expanded') === 'true';
+        mobileAccResourcesToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        caret?.classList.toggle('rotate-180', !expanded);
+        mobileAccResources.classList.toggle('hidden', expanded);
       });
     }
 

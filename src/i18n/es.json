@@ -9,6 +9,9 @@
   },
   "navigation": {
     "home": "Inicio",
+    "product": "Producto",
+    "solutions": "Soluciones",
+    "resources": "Recursos",
     "blog": "Blog",
     "kitchen": "Kitchen Sink",
     "features": "Funciones",
@@ -19,6 +22,7 @@
     "demo": "Demo",
     "menu": "Menú",
     "open_menu": "Abrir menú",
+    "custom_plan": "Plan dedicado",
     "mega": {
       "groups": [
         {
@@ -37,20 +41,108 @@
         }
       ],
       "menus": {
-        "kitchen": {
+        "product": {
           "groups": [
             {
-              "title": "Componentes UI",
+              "title": "Plataforma",
               "items": [
-                { "label": "Botones", "href": "/kitchen-sink#buttons", "description": "Variantes y estados" },
-                { "label": "Tarjetas", "href": "/kitchen-sink#cards", "description": "Diseños y elevación" }
+                { "label": "Sportigio", "href": "#", "description": "" },
+                { "label": "Sitio web", "href": "#", "description": "" },
+                { "label": "Entradas online", "href": "#", "description": "" },
+                { "label": "Tienda", "href": "#", "description": "" }
               ]
             },
             {
-              "title": "Secciones",
+              "title": "Capacidades",
               "items": [
-                { "label": "Hero", "href": "/kitchen-sink#hero", "description": "Variantes de encabezado" },
-                { "label": "CTA", "href": "/kitchen-sink#cta", "description": "Llamadas a la acción" }
+                { "label": "Monetización", "href": "#", "description": "" },
+                { "label": "Pronóstico y Quiz", "href": "#", "description": "" },
+                { "label": "Resultados automáticos", "href": "#", "description": "" },
+                { "label": "Anuncios y patrocinadores", "href": "#", "description": "" },
+                { "label": "Mailing y notificaciones", "href": "#", "description": "" },
+                { "label": "Base de fans", "href": "#", "description": "" },
+                { "label": "Asistente IA", "href": "#", "description": "" },
+                { "label": "Todas las funciones", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Cómo empezar",
+              "items": [
+                { "label": "Déjalo en nuestras manos", "href": "#", "description": "" },
+                { "label": "Hazlo tú mismo", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Para quién",
+              "items": [
+                { "label": "Dirección", "href": "#", "description": "" },
+                { "label": "Marketing", "href": "#", "description": "" },
+                { "label": "Patrocinador", "href": "#", "description": "" },
+                { "label": "Aficionado", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Disciplina",
+              "items": [
+                { "label": "Fútbol", "href": "#", "description": "" },
+                { "label": "Baloncesto", "href": "#", "description": "" },
+                { "label": "Voleibol", "href": "#", "description": "" },
+                { "label": "Hockey", "href": "#", "description": "" },
+                { "label": "Futsal", "href": "#", "description": "" },
+                { "label": "Otros deportes", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Casos de uso",
+              "items": [
+                { "label": "Venta de entradas y abonos", "href": "#", "description": "" },
+                { "label": "Merch sin costes", "href": "#", "description": "" },
+                { "label": "Paquetes de apoyo", "href": "#", "description": "" },
+                { "label": "Engagement de fans", "href": "#", "description": "" },
+                { "label": "Historias de clientes", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Conócenos",
+              "items": [
+                { "label": "Acerca de", "href": "#", "description": "" },
+                { "label": "Novedades", "href": "#", "description": "" },
+                { "label": "Reservar demo", "href": "#", "description": "" },
+                { "label": "Blog", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Soporte",
+              "items": [
+                { "label": "Base de conocimiento", "href": "#", "description": "" },
+                { "label": "Webinars", "href": "#", "description": "" },
+                { "label": "Tutoriales en video", "href": "#", "description": "" },
+                { "label": "API", "href": "#", "description": "" },
+                { "label": "Contacto", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Servicios",
+              "items": [
+                { "label": "Implementación", "href": "#", "description": "" },
+                { "label": "Migración de datos", "href": "#", "description": "" },
+                { "label": "Formación", "href": "#", "description": "" },
+                { "label": "Externalización", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Historias de clientes",
+              "items": [
+                { "label": "Noticias", "href": "#", "description": "" },
+                { "label": "Ver todos", "href": "#", "description": "" }
               ]
             }
           ]
