@@ -8,12 +8,55 @@
     "read_more": "Weiterlesen"
   },
   "navigation": {
+    "home": "Startseite",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funktionen",
     "pricing": "Preise", 
     "about": "Über uns",
     "contact": "Kontakt",
     "login": "Anmelden",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menü",
+    "open_menu": "Menü öffnen",
+    "mega": {
+      "groups": [
+        {
+          "title": "Produkt",
+          "items": [
+            { "label": "Preise", "href": "/pricing", "description": "Einfache, transparente Pläne" },
+            { "label": "Blog", "href": "/blog", "description": "Einblicke und Neuigkeiten" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Komponenten und Styles" }
+          ]
+        },
+        {
+          "title": "Navigation",
+          "items": [
+            { "label": "Startseite", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "kitchen": {
+          "groups": [
+            {
+              "title": "UI-Komponenten",
+              "items": [
+                { "label": "Buttons", "href": "/kitchen-sink#buttons", "description": "Varianten und Zustände" },
+                { "label": "Karten", "href": "/kitchen-sink#cards", "description": "Layouts und Höhe" }
+              ]
+            },
+            {
+              "title": "Sektionen",
+              "items": [
+                { "label": "Hero", "href": "/kitchen-sink#hero", "description": "Header-Varianten" },
+                { "label": "CTA", "href": "/kitchen-sink#cta", "description": "Handlungsaufforderungen" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Neue Generation der Vereinsverwaltung",

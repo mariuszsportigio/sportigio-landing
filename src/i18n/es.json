@@ -8,12 +8,55 @@
     "read_more": "Leer más"
   },
   "navigation": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funciones",
     "pricing": "Precios", 
     "about": "Acerca de",
     "contact": "Contacto",
     "login": "Iniciar sesión",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menú",
+    "open_menu": "Abrir menú",
+    "mega": {
+      "groups": [
+        {
+          "title": "Producto",
+          "items": [
+            { "label": "Precios", "href": "/pricing", "description": "Planes simples y transparentes" },
+            { "label": "Blog", "href": "/blog", "description": "Ideas y novedades" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Componentes y estilos" }
+          ]
+        },
+        {
+          "title": "Navegar",
+          "items": [
+            { "label": "Inicio", "href": "/", "description": "Comienzo" }
+          ]
+        }
+      ],
+      "menus": {
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Componentes UI",
+              "items": [
+                { "label": "Botones", "href": "/kitchen-sink#buttons", "description": "Variantes y estados" },
+                { "label": "Tarjetas", "href": "/kitchen-sink#cards", "description": "Diseños y elevación" }
+              ]
+            },
+            {
+              "title": "Secciones",
+              "items": [
+                { "label": "Hero", "href": "/kitchen-sink#hero", "description": "Variantes de encabezado" },
+                { "label": "CTA", "href": "/kitchen-sink#cta", "description": "Llamadas a la acción" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Nueva generación de gestión de club",

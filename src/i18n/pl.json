@@ -8,12 +8,55 @@
     "read_more": "Czytaj więcej"
   },
   "navigation": {
+    "home": "Strona główna",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funkcje",
     "pricing": "Cennik", 
     "about": "O nas",
     "contact": "Kontakt",
     "login": "Zaloguj się",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menu",
+    "open_menu": "Otwórz menu",
+    "mega": {
+      "groups": [
+        {
+          "title": "Produkt",
+          "items": [
+            { "label": "Cennik", "href": "/pricing", "description": "Proste, przejrzyste ceny" },
+            { "label": "Blog", "href": "/blog", "description": "Wiedza i aktualności" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Komponenty i style" }
+          ]
+        },
+        {
+          "title": "Nawigacja",
+          "items": [
+            { "label": "Strona główna", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Komponenty UI",
+              "items": [
+                { "label": "Przyciski", "href": "/kitchen-sink#buttons", "description": "Warianty i stany" },
+                { "label": "Karty", "href": "/kitchen-sink#cards", "description": "Układy i elevacje" }
+              ]
+            },
+            {
+              "title": "Sekcje",
+              "items": [
+                { "label": "Hero", "href": "/kitchen-sink#hero", "description": "Warianty nagłówków" },
+                { "label": "CTA", "href": "/kitchen-sink#cta", "description": "Wezwania do działania" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Nowa generacja zarządzania klubem",

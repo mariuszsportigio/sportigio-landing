@@ -25,6 +25,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reserve scrollbar gutter to prevent layout shift when locking scroll */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll; /* Reserve vertical scrollbar gutter to avoid layout shift */
+}
+
 /* Brand selection colors with high contrast */
 ::selection {
   background: var(--sportigio-secondary, #01DFEC);

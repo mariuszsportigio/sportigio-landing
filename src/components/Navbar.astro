@@ -1,10 +1,42 @@
 ---
 // Navbar.astro
+import { type Language, defaultLanguage, createTranslator, getTranslations } from '../i18n';
+
 export interface Props {
   activePage?: string;
+  lang?: Language;
 }
 
-const { activePage } = Astro.props;
+const { activePage, lang = defaultLanguage } = Astro.props as Props;
+const t = createTranslator(lang);
+
+// Types and i18n for per-item mega menus
+type MegaItem = { label: string; href: string; description?: string };
+type MegaGroup = { title: string; items: MegaItem[] };
+
+const i18nMegaKitchen = ((): MegaGroup[] => {
+  try {
+    const raw = getTranslations(lang) as any;
+    const groups = raw?.navigation?.mega?.menus?.kitchen?.groups as MegaGroup[] | undefined;
+    if (Array.isArray(groups) && groups.length > 0) return groups;
+  } catch {}
+  return [
+    {
+      title: 'UI',
+      items: [
+        { label: 'Buttons', href: '/kitchen-sink#buttons', description: '' },
+        { label: 'Cards', href: '/kitchen-sink#cards', description: '' }
+      ]
+    },
+    {
+      title: 'Sections',
+      items: [
+        { label: 'Hero', href: '/kitchen-sink#hero', description: '' },
+        { label: 'CTA', href: '/kitchen-sink#cta', description: '' }
+      ]
+    }
+  ];
+})();
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50">
@@ -17,29 +49,72 @@ const { activePage } = Astro.props;
         </a>
       </div>
 
-      <!-- Desktop Navigation (simplified) -->
-      <div class="hidden lg:flex items-center space-x-8">
-        <a href="/" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Strona główna</a>
-        <a href="/kitchen-sink" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Kitchen Sink</a>
-        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">Cennik</a>
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-6">
+        <a href="/" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.home') || (lang === 'pl' ? 'Strona główna' : 'Home')}</a>
+
+        <!-- Kitchen Sink with mega menu -->
+        <div class="relative">
+          <button 
+            id="mega-trigger-kitchen"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="mega-menu-kitchen"
+            class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
+          >
+            <span>{t('navigation.kitchen') || 'Kitchen Sink'}</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div 
+            id="mega-menu-kitchen"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[880px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
+            role="menu"
+          >
+            <div class="h-1 w-full sportigio-gradient"></div>
+            <div class="grid grid-cols-2 gap-6 p-6">
+              {i18nMegaKitchen.map((group) => (
+                <div>
+                  <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
+                  <ul class="space-y-2">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem">
+                          <div class="text-sm font-semibold text-gray-900">{item.label}</div>
+                          {item.description ? (
+                            <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                          ) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- Simple links without mega menu -->
+        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.pricing')}</a>
         <a href="/blog" class={`text-sm font-medium transition-colors duration-200 ${
           activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-600 hover:text-[#0B2360]'
         }`}>
-          Blog
+          {t('navigation.blog') || 'Blog'}
         </a>
       </div>
 
       <!-- Desktop CTA Buttons -->
       <div class="hidden lg:flex items-center space-x-4">
-        <button class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
-          Rozpocznij za darmo
-        </button>
+        <a href="/pricing" class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
+          {t('common.try_free')}
+        </a>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="lg:hidden">
-        <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200" aria-label={t('navigation.open_menu') || 'Otwórz menu'}>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -47,66 +122,252 @@ const { activePage } = Astro.props;
     </div>
   </div>
 
-  <!-- Mobile Menu (simplified) -->
-  <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-200">
-    <div class="px-4 py-3 space-y-3">
-      <a href="/" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Strona główna</a>
-      <a href="/kitchen-sink" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Kitchen Sink</a>
-      <a href="/pricing" class="block py-2 text-sm text-gray-700 hover:text-[#0B2360] font-medium transition-colors duration-200">Cennik</a>
-      <a href="/blog" class={`block py-2 text-sm font-medium transition-colors duration-200 ${
-        activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-700 hover:text-[#0B2360]'
-      }`}>Blog</a>
-
-      <!-- Mobile CTA Button -->
-      <div class="pt-3">
-        <button class="btn-style-1 w-full py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
-          Rozpocznij za darmo
-        </button>
-      </div>
-    </div>
-  </div>
+  <!-- End of nav content -->
 </nav>
 
+<!-- Mobile Full-screen Sheet (portaled outside nav to avoid fixed-in-transformed-parent issue) -->
+<div id="mobile-sheet-backdrop" class="fixed inset-0 bg-black/40 z-[60] hidden"></div>
+<div 
+  id="mobile-sheet"
+  class="fixed inset-0 z-[61] hidden overscroll-contain"
+  role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title"
+>
+  <div class="absolute inset-0 bg-white flex flex-col">
+    <div class="h-16 flex items-center justify-between px-4 border-b border-gray-200">
+      <a href="/" class="flex items-center space-x-2">
+        <img src="/sportigio-logo-black.png" alt="Sportigio" class="h-8 w-auto" />
+      </a>
+      <button id="mobile-close-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Zamknij">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 py-4 overscroll-contain">
+      <ul class="space-y-2">
+        <li><a href="/" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.home') || 'Home'}</a></li>
+        <li>
+          <button 
+            id="mobile-acc-kitchen-toggle"
+            type="button"
+            aria-controls="mobile-acc-kitchen"
+            aria-expanded="false"
+            class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+          >
+            <span>{t('navigation.kitchen') || 'Kitchen Sink'}</span>
+            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+          </button>
+          <div id="mobile-acc-kitchen" class="hidden mt-2">
+            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
+              {i18nMegaKitchen.map((group) => (
+                <div class="px-4 py-3">
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
+                  <ul class="space-y-1">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href} class="block px-2 py-2 rounded-lg hover:bg-gray-50">
+                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
+                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </li>
+        <li><a href="/pricing" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.pricing') || 'Pricing'}</a></li>
+        <li><a href="/blog" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.blog') || 'Blog'}</a></li>
+      </ul>
+    </div>
+    
+  </div>
+</div>
+
 <script>
-  // Mobile and desktop menu functionality
+  // Vanilla interactions: desktop mega menu on specific nav item (click) + mobile sheet
   document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    // Mobile menu toggle
-    mobileMenuButton?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
-    });
+    const triggerKitchen = document.getElementById('mega-trigger-kitchen');
+    const panelKitchen = document.getElementById('mega-menu-kitchen');
+    const caretKitchen = triggerKitchen?.querySelector('svg');
+    const mobileBtn = document.getElementById('mobile-menu-button');
+    const mobileSheet = document.getElementById('mobile-sheet');
+    const mobileBackdrop = document.getElementById('mobile-sheet-backdrop');
+    const mobileClose = document.getElementById('mobile-close-button');
+    const mobileAccKitchenToggle = document.getElementById('mobile-acc-kitchen-toggle');
+    const mobileAccKitchen = document.getElementById('mobile-acc-kitchen');
 
-    // Close mobile menu when clicking on links
-    const mobileLinks = mobileMenu?.querySelectorAll('a');
-    mobileLinks?.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu?.classList.add('hidden');
-      });
-    });
+    // Hover intent control
+    let animating = false;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!mobileMenuButton?.contains(event.target) && !mobileMenu?.contains(event.target)) {
-        mobileMenu?.classList.add('hidden');
+    const onTransitionEnd = (el, cb) => {
+      const handler = (e) => {
+        if (e.propertyName === 'opacity') {
+          el.removeEventListener('transitionend', handler);
+          cb?.();
+        }
+      };
+      el.addEventListener('transitionend', handler);
+    };
+
+    let scrollLocks = 0;
+    let allowedScrollEl = null as HTMLElement | null;
+    const preventScroll = (e: Event) => {
+      const target = e.target as Node | null;
+      if (allowedScrollEl && target && allowedScrollEl.contains(target)) return; // allow scrolling inside allowed container
+      e.preventDefault();
+    };
+    const preventKeyScroll = (e: KeyboardEvent) => {
+      const keys = [' ', 'Spacebar', 'PageUp', 'PageDown', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+      if (keys.includes(e.key)) {
+        const active = document.activeElement as HTMLElement | null;
+        if (allowedScrollEl && active && allowedScrollEl.contains(active)) return; // allow keys inside allowed container
+        e.preventDefault();
       }
-    });
-
-    // Navbar scroll effect
-    let lastScrollY = 0;
-    const navbar = document.querySelector('nav');
-    
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 100) {
-        navbar?.classList.add('shadow-lg');
+    };
+    const lockScroll = (el?: HTMLElement | null) => {
+      if (scrollLocks++ === 0) {
+        allowedScrollEl = el || null;
+        window.addEventListener('wheel', preventScroll, { passive: false });
+        window.addEventListener('touchmove', preventScroll, { passive: false });
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+        window.addEventListener('keydown', preventKeyScroll, { passive: false });
       } else {
-        navbar?.classList.remove('shadow-lg');
+        allowedScrollEl = el || allowedScrollEl;
       }
-      
-      lastScrollY = currentScrollY;
+    };
+    const unlockScroll = () => {
+      if (scrollLocks > 0 && --scrollLocks === 0) {
+        window.removeEventListener('wheel', preventScroll as any, { passive: false } as any);
+        window.removeEventListener('touchmove', preventScroll as any, { passive: false } as any);
+        document.removeEventListener('touchmove', preventScroll as any, { passive: false } as any);
+        window.removeEventListener('keydown', preventKeyScroll as any, { passive: false } as any);
+        allowedScrollEl = null;
+      }
+    };
+
+    const openPanelKitchen = () => {
+      if (!panelKitchen) return;
+      triggerKitchen?.setAttribute('aria-expanded', 'true');
+      caretKitchen?.classList.add('rotate-180');
+
+      if (prefersReduced) {
+        panelKitchen.classList.remove('hidden');
+        lockScroll(panelKitchen as HTMLElement);
+        return;
+      }
+
+      // If hidden, play opening animation from 0 -> 1
+      if (panelKitchen.classList.contains('hidden')) {
+        panelKitchen.classList.remove('hidden');
+        animating = true;
+        panelKitchen.style.willChange = 'transform, opacity';
+        panelKitchen.classList.add('opacity-0', 'scale-95');
+        void panelKitchen.offsetWidth; // reflow
+        panelKitchen.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelKitchen, () => {
+          panelKitchen.style.willChange = '';
+          animating = false;
+          lockScroll(panelKitchen as HTMLElement);
+        });
+        return;
+      }
+
+      // If visible but mid-closing, reverse to open by removing closing classes
+      if (panelKitchen.classList.contains('opacity-0') || panelKitchen.classList.contains('scale-95')) {
+        animating = true;
+        panelKitchen.style.willChange = 'transform, opacity';
+        panelKitchen.classList.remove('opacity-0', 'scale-95');
+        onTransitionEnd(panelKitchen, () => {
+          panelKitchen.style.willChange = '';
+          animating = false;
+          lockScroll(panelKitchen as HTMLElement);
+        });
+      }
+    };
+    const closePanelKitchen = () => {
+      if (!panelKitchen) return;
+      if (panelKitchen.classList.contains('hidden')) return;
+      triggerKitchen?.setAttribute('aria-expanded', 'false');
+      caretKitchen?.classList.remove('rotate-180');
+      if (prefersReduced) {
+        panelKitchen.classList.add('hidden');
+        unlockScroll();
+        return;
+      }
+      animating = true;
+      panelKitchen.style.willChange = 'transform, opacity';
+      // Animate to closed state
+      panelKitchen.classList.add('opacity-0', 'scale-95');
+      onTransitionEnd(panelKitchen, () => {
+        panelKitchen.classList.add('hidden');
+        panelKitchen.classList.remove('opacity-0', 'scale-95');
+        panelKitchen.style.willChange = '';
+        animating = false;
+        unlockScroll();
+      });
+    };
+
+    // Desktop: open on hover/focus, close on leave/escape/clickOutside
+    if (triggerKitchen && panelKitchen) {
+      // Click toggle
+      triggerKitchen.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (panelKitchen.classList.contains('hidden')) openPanelKitchen();
+        else closePanelKitchen();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePanelKitchen();
+      });
+      document.addEventListener('click', (e) => {
+        if (!panelKitchen.contains(e.target) && !triggerKitchen.contains(e.target)) {
+          closePanelKitchen();
+        }
+      });
+    }
+
+    // Mobile: full-screen sheet
+    const openSheet = () => {
+      mobileSheet?.classList.remove('hidden');
+      mobileBackdrop?.classList.remove('hidden');
+      lockScroll(mobileSheet as HTMLElement);
+      if (mobileClose && mobileClose instanceof HTMLElement) mobileClose.focus();
+    };
+    const closeSheet = () => {
+      mobileSheet?.classList.add('hidden');
+      mobileBackdrop?.classList.add('hidden');
+      unlockScroll();
+    };
+    mobileBtn?.addEventListener('click', openSheet);
+    mobileClose?.addEventListener('click', closeSheet);
+    mobileBackdrop?.addEventListener('click', closeSheet);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSheet();
+    });
+
+    // Close on link click inside sheet
+    mobileSheet?.querySelectorAll('a')?.forEach((a) => {
+      a.addEventListener('click', () => closeSheet());
+    });
+
+    // Mobile accordion: Kitchen
+    if (mobileAccKitchenToggle && mobileAccKitchen) {
+      const caret = mobileAccKitchenToggle.querySelector('svg');
+      mobileAccKitchenToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const expanded = mobileAccKitchenToggle.getAttribute('aria-expanded') === 'true';
+        mobileAccKitchenToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        caret?.classList.toggle('rotate-180', !expanded);
+        mobileAccKitchen.classList.toggle('hidden', expanded);
+      });
+    }
+
+    // Navbar shadow on scroll
+    const navbar = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) navbar?.classList.add('shadow-lg');
+      else navbar?.classList.remove('shadow-lg');
     });
   });
-</script> 
+</script>

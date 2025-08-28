@@ -8,12 +8,55 @@
     "read_more": "Read more"
   },
   "navigation": {
+    "home": "Home",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Features",
     "pricing": "Pricing", 
     "about": "About",
     "contact": "Contact",
     "login": "Login",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menu",
+    "open_menu": "Open menu",
+    "mega": {
+      "groups": [
+        {
+          "title": "Product",
+          "items": [
+            { "label": "Pricing", "href": "/pricing", "description": "Simple, transparent plans" },
+            { "label": "Blog", "href": "/blog", "description": "Insights and updates" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Components and styles" }
+          ]
+        },
+        {
+          "title": "Navigate",
+          "items": [
+            { "label": "Home", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "kitchen": {
+          "groups": [
+            {
+              "title": "UI Components",
+              "items": [
+                { "label": "Buttons", "href": "/kitchen-sink#buttons", "description": "Variants and states" },
+                { "label": "Cards", "href": "/kitchen-sink#cards", "description": "Layouts and elevation" }
+              ]
+            },
+            {
+              "title": "Sections",
+              "items": [
+                { "label": "Hero", "href": "/kitchen-sink#hero", "description": "Header variants" },
+                { "label": "CTA", "href": "/kitchen-sink#cta", "description": "Calls to action" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Next generation club management",
