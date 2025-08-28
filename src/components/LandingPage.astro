@@ -27,10 +27,10 @@ const { lang = defaultLanguage, showSimpleFeatures = false, matchHeroWidth = fal
 ---
 
 <Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
+  <!-- Fixed Navigation kept full-width -->
+  <Navbar lang={lang} />
+
   <div class={matchHeroWidth ? 'ks-scope' : ''}>
-    <!-- Fixed Navigation -->
-    <Navbar lang={lang} />
-    
     <!-- Main Content -->
     <main class="bg-white">
     <!-- Hero Section -->
