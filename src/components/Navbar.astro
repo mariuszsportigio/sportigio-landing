@@ -52,12 +52,58 @@ const getDisciplineIcon = (label: string): string | undefined => {
   return undefined;
 };
 
+// Audience (Dla kogo / For whom)
+const audienceTitles = ['dla kogo', 'for whom', 'para quien', 'fur wen'];
+const getAudienceIcon = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (n.includes('zarz') || n.includes('manag') || n.includes('direc') || n.includes('vorstand')) return 'supervisor_account';
+  if (n.includes('market')) return 'campaign';
+  if (n.includes('sponsor')) return 'handshake';
+  if (n.includes('kibic') || n.includes('fan') || n.includes('aficion')) return 'emoji_events';
+  return undefined;
+};
+
+// Use cases (Zastosowania)
+const useCaseTitles = ['zastosowania', 'use cases', 'casos de uso', 'anwendungsf'];
+const getUseCaseIcon = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (n.includes('bilet') || n.includes('karnet') || n.includes('ticket') || n.includes('season') || n.includes('entrada') || n.includes('abono') || n.includes('dauer')) return 'confirmation_number';
+  if (n.includes('merch')) return 'shopping_bag';
+  if (n.includes('pakiet') || n.includes('package') || n.includes('paket') || n.includes('support') || n.includes('unterst')) return 'redeem';
+  if (n.includes('engagement')) return 'diversity_3';
+  if (n.includes('histor') || n.includes('story') || n.includes('kunden')) return 'auto_stories';
+  return undefined;
+};
+
+const isGroupTitle = (title: string, keywords: string[]) => {
+  const t = normalize(title);
+  return keywords.some((k) => t.includes(k));
+};
+
+const isAudienceGroup = (group: MegaGroup) => {
+  if (isGroupTitle(group.title, audienceTitles)) return true;
+  const labels = group.items.map((it) => normalize(it.label));
+  const hits = labels.filter((l) => l.includes('market') || l.includes('sponsor') || l.includes('fan') || l.includes('kibic') || l.includes('zarz') || l.includes('manage') || l.includes('direc') || l.includes('vorstand'));
+  return hits.length >= 2;
+};
+
+const isUseCasesGroup = (group: MegaGroup) => {
+  if (isGroupTitle(group.title, useCaseTitles)) return true;
+  const labels = group.items.map((it) => normalize(it.label));
+  return labels.some((l) => l.includes('ticket') || l.includes('bilet') || l.includes('karnet') || l.includes('merch') || l.includes('engagement') || l.includes('pakiet') || l.includes('package') || l.includes('paket') || l.includes('histor') || l.includes('story'));
+};
+
 const kitchenGroups = i18nMegaKitchen.map((group) => {
-  if (!disciplineTitles.has(group.title)) return group;
-  return {
-    ...group,
-    items: group.items.map((it) => ({ ...it, icon: getDisciplineIcon(it.label) }))
-  };
+  if (disciplineTitles.has(group.title)) {
+    return { ...group, items: group.items.map((it) => ({ ...it, icon: getDisciplineIcon(it.label) })) };
+  }
+  if (isAudienceGroup(group)) {
+    return { ...group, items: group.items.map((it) => ({ ...it, icon: getAudienceIcon(it.label) })) };
+  }
+  if (isUseCasesGroup(group)) {
+    return { ...group, items: group.items.map((it) => ({ ...it, icon: getUseCaseIcon(it.label) })) };
+  }
+  return group;
 });
 ---
 
