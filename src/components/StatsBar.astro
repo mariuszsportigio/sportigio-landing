@@ -53,7 +53,7 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
     </div>
 
     <!-- Club Logos Marquee -->
-    <div class="logo-marquee mb-8">
+    <div class="logo-marquee mb-8 opacity-80">
       <div
         class="marquee-track"
         style={`--marquee-duration: ${durationSeconds}s`}
@@ -63,7 +63,7 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
             <img
               src={src}
               alt={alt}
-              height="56"
+              height="40"
               loading="lazy"
               decoding="async"
             />
@@ -75,7 +75,7 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
               src={src}
               alt=""
               aria-hidden="true"
-              height="56"
+              height="40"
               loading="lazy"
               decoding="async"
             />
@@ -202,23 +202,6 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
   .logo-marquee {
     position: relative;
     overflow: hidden;
-    /* Smooth fade on edges using mask */
-    -webkit-mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0) 0,
-      rgba(0, 0, 0, 1) 128px,
-      rgba(0, 0, 0, 1) calc(100% - 128px),
-      rgba(0, 0, 0, 0) 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0) 0,
-      rgba(0, 0, 0, 1) 128px,
-      rgba(0, 0, 0, 1) calc(100% - 128px),
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
   }
 
   .logo-marquee::before,
@@ -227,7 +210,7 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 128px;
+    width: 80px;
     pointer-events: none;
   }
 
@@ -257,12 +240,22 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
     animation: marquee var(--marquee-duration, 30s) linear infinite;
   }
 
-  /* Marquee runs continuously; no pause on hover */
+  .logo-marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
 
   .logo-marquee img {
-    height: 3.5rem; /* ~56px */
+    height: 2.5rem; /* h-10 */
     width: auto;
     object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  .logo-marquee img:hover {
+    opacity: 1;
+    filter: none;
   }
 
   @keyframes marquee {

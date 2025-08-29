@@ -709,8 +709,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
 
         <!-- Simple links without mega menu -->
         <a
-          href="#"
-          onclick="return false;"
+          href="/plan-dedykowany"
           class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >{
             t("navigation.custom_plan") ||
@@ -1092,8 +1091,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
         </li>
         <li>
           <a
-            href="#"
-            onclick="return false;"
+            href="/plan-dedykowany"
             class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
             >{
               t("navigation.custom_plan") ||
@@ -1198,23 +1196,23 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
         </li>
       </ul>
     </div>
-  <div class="p-4 border-t border-gray-200 bg-white">
-    <div class="flex gap-3">
-      <a
-        href="/login"
-        class="btn-style-3 btn-compact btn-hover-calm btn-nohover-shadow-outline flex-1 text-sm font-semibold rounded-xl text-center"
-      >
-        {t("navigation.login") || (lang === "pl" ? "Zaloguj" : "Login")}
-      </a>
-      <a
-        href="/pricing"
-        class="btn-style-1 btn-compact btn-hover-calm btn-nohover-shadow flex-1 text-sm text-white font-semibold rounded-xl text-center"
-        style="--sportigio-gradient: var(--sportigio-gradient-2);"
-      >
-        {t("common.try_free")}
-      </a>
+    <div class="p-4 border-t border-gray-200 bg-white">
+      <div class="flex gap-3">
+        <a
+          href="/login"
+          class="btn-style-3 btn-compact btn-hover-calm btn-nohover-shadow-outline flex-1 text-sm font-semibold rounded-xl text-center"
+        >
+          {t("navigation.login") || (lang === "pl" ? "Zaloguj" : "Login")}
+        </a>
+        <a
+          href="/pricing"
+          class="btn-style-1 btn-compact btn-hover-calm btn-nohover-shadow flex-1 text-sm text-white font-semibold rounded-xl text-center"
+          style="--sportigio-gradient: var(--sportigio-gradient-2);"
+        >
+          {t("common.try_free")}
+        </a>
+      </div>
     </div>
-  </div>
   </div>
 </div>
 

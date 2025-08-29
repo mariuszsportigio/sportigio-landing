@@ -5,7 +5,16 @@
     "contact_us": "Skontaktuj się z nami",
     "learn_more": "Dowiedz się więcej",
     "get_started": "Rozpocznij teraz",
-    "read_more": "Czytaj więcej"
+    "read_more": "Czytaj więcej",
+    "under_construction": {
+      "title": "Strona w budowie",
+      "desc": "Pracujemy nad treściami, efekty już niedługo!",
+      "cta_demo": "Umów Demo",
+      "cta_blog": "Blog",
+      "meta_updated": "Ostatnia aktualizacja",
+      "meta_plan": "Plan publikacji: sekcje produktowe i FAQ",
+      "meta_support": "Masz pytania? Napisz: kontakt@sportigio.com"
+    }
   },
   "navigation": {
     "home": "Strona główna",
@@ -46,30 +55,30 @@
             {
               "title": "Platforma",
               "items": [
-                { "label": "Sportigio", "href": "#", "description": "" },
-                { "label": "Strona", "href": "#", "description": "" },
-                { "label": "Bilety online", "href": "#", "description": "" },
-                { "label": "Sklep", "href": "#", "description": "" }
+                { "label": "Sportigio", "href": "/platforma", "description": "" },
+                { "label": "Strona", "href": "/strona", "description": "" },
+                { "label": "Bilety online", "href": "/bilety-online", "description": "" },
+                { "label": "Sklep", "href": "/sklep", "description": "" }
               ]
             },
             {
               "title": "Możliwości",
               "items": [
-                { "label": "Zarabianie", "href": "#", "description": "" },
-                { "label": "Typer i Quiz", "href": "#", "description": "" },
-                { "label": "Automatyczne wyniki", "href": "#", "description": "" },
-                { "label": "Reklamy i sponsorzy", "href": "#", "description": "" },
-                { "label": "Mailing i powiadomienia", "href": "#", "description": "" },
-                { "label": "Baza fanów", "href": "#", "description": "" },
-                { "label": "Asystent AI", "href": "#", "description": "" },
-                { "label": "Wszystkie funkcje", "href": "#", "description": "" }
+                { "label": "Zarabianie", "href": "/zarabianie", "description": "" },
+                { "label": "Typer i Quiz", "href": "/typer-quiz", "description": "" },
+                { "label": "Automatyczne wyniki", "href": "/automatyczne-wyniki", "description": "" },
+                { "label": "Reklamy i sponsorzy", "href": "/reklamy-sponsorzy", "description": "" },
+                { "label": "Mailing i powiadomienia", "href": "/mailing-powiadomienia", "description": "" },
+                { "label": "Baza fanów", "href": "/baza-fanow", "description": "" },
+                { "label": "Asystent AI", "href": "/asystent-ai", "description": "" },
+                { "label": "Wszystkie funkcje", "href": "/wszystkie-funkcje", "description": "" }
               ]
             },
             {
               "title": "Jak zacząć?",
               "items": [
-                { "label": "Zleć to nam", "href": "#", "description": "" },
-                { "label": "Zrób to sam", "href": "#", "description": "" }
+                { "label": "Zleć to nam", "href": "/zlec-to-nam", "description": "" },
+                { "label": "Zrób to sam", "href": "/zrob-to-sam", "description": "" }
               ]
             }
           ]
@@ -79,31 +88,31 @@
             {
               "title": "Dla kogo",
               "items": [
-                { "label": "Zarząd", "href": "#", "description": "" },
-                { "label": "Marketing", "href": "#", "description": "" },
-                { "label": "Sponsor", "href": "#", "description": "" },
-                { "label": "Kibic", "href": "#", "description": "" }
+                { "label": "Zarząd", "href": "/zarzad", "description": "" },
+                { "label": "Marketing", "href": "/marketing", "description": "" },
+                { "label": "Sponsor", "href": "/sponsor", "description": "" },
+                { "label": "Kibic", "href": "/kibic", "description": "" }
               ]
             },
             {
               "title": "Dyscyplina",
               "items": [
-                { "label": "Piłka nożna", "href": "#", "description": "" },
-                { "label": "Koszykówka", "href": "#", "description": "" },
-                { "label": "Siatkówka", "href": "#", "description": "" },
-                { "label": "Hokej", "href": "#", "description": "" },
-                { "label": "Futsal", "href": "#", "description": "" },
-                { "label": "Inne sporty", "href": "#", "description": "" }
+                { "label": "Piłka nożna", "href": "/pilka-nozna", "description": "" },
+                { "label": "Koszykówka", "href": "/koszykowka", "description": "" },
+                { "label": "Siatkówka", "href": "/siatkowka", "description": "" },
+                { "label": "Hokej", "href": "/hokej", "description": "" },
+                { "label": "Futsal", "href": "/futsal", "description": "" },
+                { "label": "Inne sporty", "href": "/inne-sporty", "description": "" }
               ]
             },
             {
               "title": "Zastosowania",
               "items": [
-                { "label": "Sprzedaż biletów i karnetów", "href": "#", "description": "" },
-                { "label": "Merch bez kosztów", "href": "#", "description": "" },
-                { "label": "Pakiety wsparcia", "href": "#", "description": "" },
-                { "label": "Fan Engagement", "href": "#", "description": "" },
-                { "label": "Historie klientów", "href": "#", "description": "" }
+                { "label": "Sprzedaż biletów i karnetów", "href": "/bilety-karnety", "description": "" },
+                { "label": "Merch bez kosztów", "href": "/merch", "description": "" },
+                { "label": "Pakiety wsparcia", "href": "/pakiety-wsparcia", "description": "" },
+                { "label": "Fan Engagement", "href": "/fan-engagement", "description": "" },
+                { "label": "Historie klientów", "href": "/historie-klientow", "description": "" }
               ]
             }
           ]
@@ -113,36 +122,36 @@
             {
               "title": "Poznaj nas",
               "items": [
-                { "label": "O firmie", "href": "#", "description": "" },
-                { "label": "Co nowego", "href": "#", "description": "" },
-                { "label": "Umów Demo", "href": "#", "description": "" },
-                { "label": "Blog", "href": "#", "description": "" }
+                { "label": "O firmie", "href": "/o-firmie", "description": "" },
+                { "label": "Co nowego", "href": "/co-nowego", "description": "" },
+                { "label": "Umów Demo", "href": "/demo", "description": "" },
+                { "label": "Blog", "href": "/blog", "description": "" }
               ]
             },
             {
               "title": "Wsparcie",
               "items": [
-                { "label": "Baza wiedzy", "href": "#", "description": "" },
-                { "label": "Webinary", "href": "#", "description": "" },
-                { "label": "Instrukcje wideo", "href": "#", "description": "" },
-                { "label": "API", "href": "#", "description": "" },
-                { "label": "Kontakt", "href": "#", "description": "" }
+                { "label": "Baza wiedzy", "href": "/baza-wiedzy", "description": "" },
+                { "label": "Webinary", "href": "/webinary", "description": "" },
+                { "label": "Instrukcje wideo", "href": "/instrukcje-wideo", "description": "" },
+                { "label": "API", "href": "/api", "description": "" },
+                { "label": "Kontakt", "href": "/kontakt", "description": "" }
               ]
             },
             {
               "title": "Usługi",
               "items": [
-                { "label": "Wdrożenie", "href": "#", "description": "" },
-                { "label": "Migracja danych", "href": "#", "description": "" },
-                { "label": "Szkolenia", "href": "#", "description": "" },
-                { "label": "Outsourcing", "href": "#", "description": "" }
+                { "label": "Wdrożenie", "href": "/wdrozenie", "description": "" },
+                { "label": "Migracja danych", "href": "/migracja-danych", "description": "" },
+                { "label": "Szkolenia", "href": "/szkolenia", "description": "" },
+                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
               ]
             },
             {
               "title": "Historie klientów",
               "items": [
-                { "label": "News", "href": "#", "description": "" },
-                { "label": "Zobacz wszystkie", "href": "#", "description": "" }
+                { "label": "News", "href": "/news", "description": "" },
+                { "label": "Zobacz wszystkie", "href": "/historie-klientow", "description": "" }
               ]
             }
           ]

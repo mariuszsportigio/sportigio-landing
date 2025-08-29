@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import UnderConstruction from "../components/UnderConstruction.astro";
+import { defaultLanguage, createTranslator, type Language } from "../i18n";
+
+interface Props {
+    lang?: Language;
+}
+const { lang = defaultLanguage } = Astro.props as Props;
+const t = createTranslator(lang);
+---
+
+<Layout title="Sportigio – Platforma">
+    <Navbar lang={lang} activePage="platforma" />
+    <div aria-hidden="true" class="h-16"></div>
+
+    <main class="bg-white min-h-screen">
+        <section class="pt-8 pb-20">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="mb-8">
+                    <span
+                        class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0B2360]"
+                    >
+                        <span class="material-symbols-rounded text-base"
+                            >apps</span
+                        >
+                        Platforma
+                    </span>
+                    <h1
+                        class="mt-3 font-poppins text-4xl md:text-5xl font-extrabold text-gray-900"
+                    >
+                        Sportigio
+                    </h1>
+                </div>
+
+                <UnderConstruction lang={lang} />
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+</Layout>
+
+<style>
+    .btn-style-1,
+    .btn-style-3 {
+        /* rely on existing global classes; ensure minimal override */
+    }
+</style>
