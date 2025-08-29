@@ -38,13 +38,13 @@ const t = createTranslator(lang);
 
         <!-- Heading -->
         <h1
-          class="text-3xl lg:text-5xl font-extrabold text-gray-900 mb-5 leading-tight font-poppins"
+          class="text-4xl lg:text-6xl xl:text-6xl font-extrabold text-gray-900 mb-5 leading-snug font-poppins"
         >
-          {t("hero.title")}
+          <span class="block">Komunikacja klubu</span>
           <span
-            class="block text-transparent bg-clip-text bg-sportigio-primary"
+            class="block text-transparent bg-clip-text bg-sportigio-primary pb-[0.2em] -mb-[0.2em]"
           >
-            {t("hero.title_highlight")}
+            w 1 prostej aplikacji
           </span>
         </h1>
 
@@ -71,18 +71,27 @@ const t = createTranslator(lang);
         >
           <div class="flex items-center">
             <div class="flex -space-x-1 mr-2">
-              <div
-                class="w-6 h-6 bg-sportigio-primary rounded-full border-2 border-white"
-              >
-              </div>
-              <div
-                class="w-6 h-6 bg-sportigio-secondary rounded-full border-2 border-white"
-              >
-              </div>
-              <div
-                class="w-6 h-6 bg-sportigio-quaternary rounded-full border-2 border-white"
-              >
-              </div>
+              <img
+                src="/teams/legia.avif"
+                alt="Legia"
+                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="/teams/wisla.avif"
+                alt="Wisła"
+                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                src="/teams/trefl.avif"
+                alt="Trefl"
+                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <span>{t("hero.social_proof_clubs")}</span>
           </div>
