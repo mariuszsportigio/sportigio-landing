@@ -1,6 +1,11 @@
 ---
 // Navbar.astro
-import { type Language, defaultLanguage, createTranslator, getTranslations } from '../i18n';
+import {
+  type Language,
+  defaultLanguage,
+  createTranslator,
+  getTranslations,
+} from "../i18n";
 
 export interface Props {
   activePage?: string;
@@ -11,67 +16,130 @@ const { activePage, lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
 
 // Types and i18n for per-item mega menus
-type MegaItem = { label: string; href: string; description?: string; icon?: string };
+type MegaItem = {
+  label: string;
+  href: string;
+  description?: string;
+  icon?: string;
+  img?: string;
+};
 type MegaGroup = { title: string; items: MegaItem[] };
 
 const i18nMegaKitchen = ((): MegaGroup[] => {
   try {
     const raw = getTranslations(lang) as any;
-    const groups = raw?.navigation?.mega?.menus?.kitchen?.groups as MegaGroup[] | undefined;
+    const groups = raw?.navigation?.mega?.menus?.kitchen?.groups as
+      | MegaGroup[]
+      | undefined;
     if (Array.isArray(groups) && groups.length > 0) return groups;
   } catch {}
   return [
     {
-      title: 'UI',
+      title: "UI",
       items: [
-        { label: 'Buttons', href: '/kitchen-sink#buttons', description: '' },
-        { label: 'Cards', href: '/kitchen-sink#cards', description: '' }
-      ]
+        { label: "Buttons", href: "/kitchen-sink#buttons", description: "" },
+        { label: "Cards", href: "/kitchen-sink#cards", description: "" },
+      ],
     },
     {
-      title: 'Sections',
+      title: "Sections",
       items: [
-        { label: 'Hero', href: '/kitchen-sink#hero', description: '' },
-        { label: 'CTA', href: '/kitchen-sink#cta', description: '' }
-      ]
-    }
+        { label: "Hero", href: "/kitchen-sink#hero", description: "" },
+        { label: "CTA", href: "/kitchen-sink#cta", description: "" },
+      ],
+    },
   ];
 })();
 
 // Map discipline names to Material Symbols icons (per language)
-const disciplineTitles = new Set(['Dyscyplina', 'Discipline', 'Disciplina', 'Disziplin']);
-const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+const disciplineTitles = new Set([
+  "Dyscyplina",
+  "Discipline",
+  "Disciplina",
+  "Disziplin",
+]);
+const normalize = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "");
 const getDisciplineIcon = (label: string): string | undefined => {
   const n = normalize(label);
-  if (n.includes('futsal')) return 'stadium';
-  if (n.includes('football') || n.includes('futbol') || n.includes('fútbol') || n.includes('pilka') || n.includes('piłka') || n.includes('fussball') || n.includes('fußball')) return 'sports_soccer';
-  if (n.includes('basket') || n.includes('koszy') || n.includes('baloncesto')) return 'sports_basketball';
-  if (n.includes('vole') || n.includes('volley') || n.includes('siatk')) return 'sports_volleyball';
-  if (n.includes('hockey') || n.includes('hokej')) return 'sports_hockey';
-  if (n.includes('other') || n.includes('inne') || n.includes('otros') || n.includes('andere')) return 'sports';
+  if (n.includes("futsal")) return "stadium";
+  if (
+    n.includes("football") ||
+    n.includes("futbol") ||
+    n.includes("fútbol") ||
+    n.includes("pilka") ||
+    n.includes("piłka") ||
+    n.includes("fussball") ||
+    n.includes("fußball")
+  )
+    return "sports_soccer";
+  if (n.includes("basket") || n.includes("koszy") || n.includes("baloncesto"))
+    return "sports_basketball";
+  if (n.includes("vole") || n.includes("volley") || n.includes("siatk"))
+    return "sports_volleyball";
+  if (n.includes("hockey") || n.includes("hokej")) return "sports_hockey";
+  if (
+    n.includes("other") ||
+    n.includes("inne") ||
+    n.includes("otros") ||
+    n.includes("andere")
+  )
+    return "sports";
   return undefined;
 };
 
 // Audience (Dla kogo / For whom)
-const audienceTitles = ['dla kogo', 'for whom', 'para quien', 'fur wen'];
+const audienceTitles = ["dla kogo", "for whom", "para quien", "fur wen"];
 const getAudienceIcon = (label: string): string | undefined => {
   const n = normalize(label);
-  if (n.includes('zarz') || n.includes('manag') || n.includes('direc') || n.includes('vorstand')) return 'supervisor_account';
-  if (n.includes('market')) return 'campaign';
-  if (n.includes('sponsor')) return 'handshake';
-  if (n.includes('kibic') || n.includes('fan') || n.includes('aficion')) return 'emoji_events';
+  if (
+    n.includes("zarz") ||
+    n.includes("manag") ||
+    n.includes("direc") ||
+    n.includes("vorstand")
+  )
+    return "supervisor_account";
+  if (n.includes("market")) return "campaign";
+  if (n.includes("sponsor")) return "handshake";
+  if (n.includes("kibic") || n.includes("fan") || n.includes("aficion"))
+    return "emoji_events";
   return undefined;
 };
 
 // Use cases (Zastosowania)
-const useCaseTitles = ['zastosowania', 'use cases', 'casos de uso', 'anwendungsf'];
+const useCaseTitles = [
+  "zastosowania",
+  "use cases",
+  "casos de uso",
+  "anwendungsf",
+];
 const getUseCaseIcon = (label: string): string | undefined => {
   const n = normalize(label);
-  if (n.includes('bilet') || n.includes('karnet') || n.includes('ticket') || n.includes('season') || n.includes('entrada') || n.includes('abono') || n.includes('dauer')) return 'confirmation_number';
-  if (n.includes('merch')) return 'shopping_bag';
-  if (n.includes('pakiet') || n.includes('package') || n.includes('paket') || n.includes('support') || n.includes('unterst')) return 'redeem';
-  if (n.includes('engagement')) return 'diversity_3';
-  if (n.includes('histor') || n.includes('story') || n.includes('kunden')) return 'auto_stories';
+  if (
+    n.includes("bilet") ||
+    n.includes("karnet") ||
+    n.includes("ticket") ||
+    n.includes("season") ||
+    n.includes("entrada") ||
+    n.includes("abono") ||
+    n.includes("dauer")
+  )
+    return "confirmation_number";
+  if (n.includes("merch")) return "shopping_bag";
+  if (
+    n.includes("pakiet") ||
+    n.includes("package") ||
+    n.includes("paket") ||
+    n.includes("support") ||
+    n.includes("unterst")
+  )
+    return "redeem";
+  if (n.includes("engagement")) return "diversity_3";
+  if (n.includes("histor") || n.includes("story") || n.includes("kunden"))
+    return "auto_stories";
   return undefined;
 };
 
@@ -83,37 +151,360 @@ const isGroupTitle = (title: string, keywords: string[]) => {
 const isAudienceGroup = (group: MegaGroup) => {
   if (isGroupTitle(group.title, audienceTitles)) return true;
   const labels = group.items.map((it) => normalize(it.label));
-  const hits = labels.filter((l) => l.includes('market') || l.includes('sponsor') || l.includes('fan') || l.includes('kibic') || l.includes('zarz') || l.includes('manage') || l.includes('direc') || l.includes('vorstand'));
+  const hits = labels.filter(
+    (l) =>
+      l.includes("market") ||
+      l.includes("sponsor") ||
+      l.includes("fan") ||
+      l.includes("kibic") ||
+      l.includes("zarz") ||
+      l.includes("manage") ||
+      l.includes("direc") ||
+      l.includes("vorstand"),
+  );
   return hits.length >= 2;
 };
 
 const isUseCasesGroup = (group: MegaGroup) => {
   if (isGroupTitle(group.title, useCaseTitles)) return true;
   const labels = group.items.map((it) => normalize(it.label));
-  return labels.some((l) => l.includes('ticket') || l.includes('bilet') || l.includes('karnet') || l.includes('merch') || l.includes('engagement') || l.includes('pakiet') || l.includes('package') || l.includes('paket') || l.includes('histor') || l.includes('story'));
+  return labels.some(
+    (l) =>
+      l.includes("ticket") ||
+      l.includes("bilet") ||
+      l.includes("karnet") ||
+      l.includes("merch") ||
+      l.includes("engagement") ||
+      l.includes("pakiet") ||
+      l.includes("package") ||
+      l.includes("paket") ||
+      l.includes("histor") ||
+      l.includes("story"),
+  );
 };
 
 const kitchenGroups = i18nMegaKitchen.map((group) => {
   if (disciplineTitles.has(group.title)) {
-    return { ...group, items: group.items.map((it) => ({ ...it, icon: getDisciplineIcon(it.label) })) };
+    return {
+      ...group,
+      items: group.items.map((it) => ({
+        ...it,
+        icon: getDisciplineIcon(it.label),
+      })),
+    };
   }
   if (isAudienceGroup(group)) {
-    return { ...group, items: group.items.map((it) => ({ ...it, icon: getAudienceIcon(it.label) })) };
+    return {
+      ...group,
+      items: group.items.map((it) => ({
+        ...it,
+        icon: getAudienceIcon(it.label),
+      })),
+    };
   }
   if (isUseCasesGroup(group)) {
-    return { ...group, items: group.items.map((it) => ({ ...it, icon: getUseCaseIcon(it.label) })) };
+    return {
+      ...group,
+      items: group.items.map((it) => ({
+        ...it,
+        icon: getUseCaseIcon(it.label),
+      })),
+    };
   }
   return group;
 });
+
+// Product: i18n + icons/img
+const i18nMegaProduct = ((): MegaGroup[] => {
+  try {
+    const raw = getTranslations(lang) as any;
+    const groups = raw?.navigation?.mega?.menus?.product?.groups as
+      | MegaGroup[]
+      | undefined;
+    if (Array.isArray(groups) && groups.length > 0) {
+      return groups.map((g: any) => ({
+        title: g.title,
+        items: (g.items || []).map((it: any) => ({
+          label: it.label,
+          href: it.href || "#",
+          description: it.description,
+        })),
+      }));
+    }
+  } catch {}
+  return [
+    {
+      title: "Platforma",
+      items: [
+        { label: "Sportigio", href: "#" },
+        { label: "Strona", href: "#" },
+        { label: "Bilety online", href: "#" },
+        { label: "Sklep", href: "#" },
+      ],
+    },
+    {
+      title: "Możliwości",
+      items: [
+        { label: "Zarabianie", href: "#" },
+        { label: "Typer i Quiz", href: "#" },
+        { label: "Automatyczne wyniki", href: "#" },
+        { label: "Reklamy i sponsorzy", href: "#" },
+        { label: "Mailing i powiadomienia", href: "#" },
+        { label: "Baza fanów", href: "#" },
+        { label: "Asystent AI", href: "#" },
+        { label: "Wszystkie funkcje", href: "#" },
+      ],
+    },
+    {
+      title: "Jak zacząć?",
+      items: [
+        { label: "Zleć to nam", href: "#" },
+        { label: "Zrób to sam", href: "#" },
+      ],
+    },
+  ];
+})();
+
+const getProductImg = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (n.includes("sportigio")) return "/sportigio-sygnet.png";
+  return undefined;
+};
+
+const getProductIcon = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (n.includes("sportigio")) return undefined; // image instead
+  if (
+    n.includes("strona") ||
+    n.includes("website") ||
+    n.includes("webseite") ||
+    n.includes("site") ||
+    n.includes("pagina") ||
+    n.includes("página")
+  )
+    return "public";
+  if (
+    n.includes("bilet") ||
+    n.includes("ticket") ||
+    n.includes("karnet") ||
+    n.includes("entrada") ||
+    n.includes("abono")
+  )
+    return "confirmation_number";
+  if (
+    n.includes("sklep") ||
+    n.includes("store") ||
+    n.includes("shop") ||
+    n.includes("tienda") ||
+    n.includes("laden")
+  )
+    return "storefront";
+  if (
+    n.includes("zarab") ||
+    n.includes("monet") ||
+    n.includes("revenue") ||
+    n.includes("ingres") ||
+    n.includes("einnah") ||
+    n.includes("money")
+  )
+    return "trending_up";
+  if (
+    n.includes("typer") ||
+    n.includes("quiz") ||
+    n.includes("tippen") ||
+    n.includes("trivia") ||
+    n.includes("prono")
+  )
+    return "quiz";
+  if (
+    n.includes("automatycz") ||
+    (n.includes("auto") && n.includes("wynik")) ||
+    n.includes("results") ||
+    n.includes("score")
+  )
+    return "sports_score";
+  if (n.includes("reklam") || n.includes("ads") || n.includes("sponsor"))
+    return "ads_click";
+  if (
+    n.includes("mail") ||
+    n.includes("powiadom") ||
+    n.includes("notifi") ||
+    n.includes("correo")
+  )
+    return "notifications";
+  if (n.includes("baza") && (n.includes("fan") || n.includes("kibic")))
+    return "diversity_3";
+  if (
+    n.includes("asystent") ||
+    (n.includes("assistant") && n.includes("ai")) ||
+    n === "ai" ||
+    n.includes("inteligenc")
+  )
+    return "smart_toy";
+  if (
+    n.includes("wszystkie") ||
+    (n.includes("all") && n.includes("funkc")) ||
+    n.includes("features")
+  )
+    return "apps";
+  if (n.includes("zlec") || n.includes("we do") || n.includes("wir"))
+    return "support_agent";
+  if (
+    n.includes("zrob") ||
+    n.includes("diy") ||
+    n.includes("do it yourself") ||
+    n.includes("mach es selbst")
+  )
+    return "build";
+  return undefined;
+};
+
+const productGroups = i18nMegaProduct.map((group) => ({
+  ...group,
+  items: group.items.map((it) => ({
+    ...it,
+    img: getProductImg(it.label),
+    icon: getProductImg(it.label) ? undefined : getProductIcon(it.label),
+  })),
+}));
+
+// Resources: i18n + icons
+const i18nMegaResources = ((): MegaGroup[] => {
+  try {
+    const raw = getTranslations(lang) as any;
+    const groups = raw?.navigation?.mega?.menus?.resources?.groups as
+      | MegaGroup[]
+      | undefined;
+    if (Array.isArray(groups) && groups.length > 0) {
+      return groups.map((g: any) => ({
+        title: g.title,
+        items: (g.items || []).map((it: any) => ({
+          label: it.label,
+          href: it.href || "#",
+          description: it.description,
+        })),
+      }));
+    }
+  } catch {}
+  return [
+    {
+      title: "Poznaj nas",
+      items: [
+        { label: "O firmie", href: "#" },
+        { label: "Co nowego", href: "#" },
+        { label: "Umów Demo", href: "#" },
+        { label: "Blog", href: "#" },
+      ],
+    },
+    {
+      title: "Wsparcie",
+      items: [
+        { label: "Baza wiedzy", href: "#" },
+        { label: "Webinary", href: "#" },
+        { label: "Instrukcje wideo", href: "#" },
+        { label: "API", href: "#" },
+        { label: "Kontakt", href: "#" },
+      ],
+    },
+    {
+      title: "Usługi",
+      items: [
+        { label: "Wdrożenie", href: "#" },
+        { label: "Migracja danych", href: "#" },
+        { label: "Szkolenia", href: "#" },
+        { label: "Outsourcing", href: "#" },
+      ],
+    },
+    {
+      title: "Historie klientów",
+      items: [
+        { label: "News", href: "#" },
+        { label: "Zobacz wszystkie", href: "#" },
+      ],
+    },
+  ];
+})();
+
+const getResourcesIcon = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (
+    n.includes("o firmie") ||
+    n.includes("about") ||
+    n.includes("über") ||
+    n.includes("acerca") ||
+    n.includes("sobre")
+  )
+    return "info";
+  if (
+    n.includes("co nowego") ||
+    (n.includes("what") && n.includes("new")) ||
+    n.includes("novedad") ||
+    n.includes("neuigkeiten") ||
+    n.includes("changelog")
+  )
+    return "new_releases";
+  if (n.includes("demo")) return "calendar_month";
+  if (n.includes("blog")) return "article";
+  if (
+    n.includes("baza wiedzy") ||
+    n.includes("knowledge") ||
+    n.includes("docs") ||
+    n.includes("documentation")
+  )
+    return "menu_book";
+  if (n.includes("webinar")) return "video_library";
+  if (
+    n.includes("instrukcje") ||
+    n.includes("tutorial") ||
+    (n.includes("video") && n.includes("instruc"))
+  )
+    return "play_lesson";
+  if (n === "api" || n.includes("api")) return "code";
+  if (n.includes("kontakt") || n.includes("contact") || n.includes("support"))
+    return "support_agent";
+  if (
+    n.includes("wdro") ||
+    n.includes("implement") ||
+    n.includes("onboard") ||
+    n.includes("deploy")
+  )
+    return "rocket_launch";
+  if (n.includes("migrac") || n.includes("migration") || n.includes("migrate"))
+    return "swap_vert";
+  if (n.includes("szkolen") || n.includes("training") || n.includes("kurs"))
+    return "school";
+  if (n.includes("outsourcing")) return "work";
+  if (n.includes("news")) return "newspaper";
+  if (
+    (n.includes("zobacz") || n.includes("see") || n.includes("all")) &&
+    (n.includes("wszyst") || n.includes("all"))
+  )
+    return "list_alt";
+  return undefined;
+};
+
+const resourcesGroups = i18nMegaResources.map((group) => ({
+  ...group,
+  items: group.items.map((it) => ({
+    ...it,
+    icon: getResourcesIcon(it.label),
+  })),
+}));
 ---
 
-<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50">
+<nav
+  class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50"
+>
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-2 group">
-          <img src="/sportigio-logo-black.png" alt="Sportigio" class="h-8 w-auto group-hover:scale-110 transition-transform duration-300" />
+          <img
+            src="/sportigio-logo-black.png"
+            alt="Sportigio"
+            class="h-8 w-auto group-hover:scale-110 transition-transform duration-300"
+          />
         </a>
       </div>
 
@@ -121,7 +512,7 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
       <div class="hidden lg:flex items-center space-x-6">
         <!-- Produkt with mega menu -->
         <div class="relative">
-          <button 
+          <button
             id="mega-trigger-product"
             type="button"
             aria-haspopup="true"
@@ -129,81 +520,101 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
             aria-controls="mega-menu-product"
             class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >
-            <span>{t('navigation.product') || (lang === 'pl' ? 'Produkt' : 'Product')}</span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.product") ||
+                  (lang === "pl" ? "Produkt" : "Product")
+              }</span
+            >
+            <svg
+              class="w-3.5 h-3.5 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
-          <div 
+          <div
             id="mega-menu-product"
             class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[880px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
             role="menu"
           >
             <div class="h-1 w-full sportigio-gradient"></div>
             <div class="grid grid-cols-3 gap-6 p-6">
-              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.length ? (
-                (getTranslations(lang) as any).navigation.mega.menus.product.groups.map((group: { title: string; items: { label: string; href?: string; description?: string }[] }) => (
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
-                    <ul class="space-y-2">
-                      {group.items.map((item: { label: string; href?: string; description?: string }) => (
-                        <li>
-                          <a href={item.href || '#'} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{item.label}</div>
-                            {item.description ? (
-                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
-                            ) : null}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Platforma</h4>
-                    <ul class="space-y-2">
-                      {['Sportigio', 'Strona', 'Bilety online', 'Sklep'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Możliwości</h4>
-                    <ul class="space-y-2">
-                      {['Zarabianie', 'Typer i Quiz', 'Automatyczne wyniki', 'Reklamy i sponsorzy', 'Mailing i powiadomienia', 'Baza fanów', 'Asystent AI', 'Wszystkie funkcje'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Jak zacząć?</h4>
-                    <ul class="space-y-2">
-                      {['Zleć to nam', 'Zrób to sam'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              )}
+              {
+                productGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                      img?: string;
+                    }[];
+                  }) => (
+                    <div>
+                      <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                        {group.title}
+                      </h4>
+                      <ul class="space-y-2">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                            img?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
+                                role="menuitem"
+                              >
+                                {item.img ? (
+                                  <img
+                                    src={item.img}
+                                    alt="Sportigio"
+                                    class="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                ) : item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-semibold">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600 mt-0.5">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
           </div>
         </div>
 
         <!-- Rozwiązania with mega menu -->
         <div class="relative">
-          <button 
+          <button
             id="mega-trigger-kitchen"
             type="button"
             aria-haspopup="true"
@@ -211,158 +622,243 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
             aria-controls="mega-menu-kitchen"
             class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >
-            <span>{t('navigation.solutions') || (lang === 'pl' ? 'Rozwiązania' : 'Solutions')}</span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.solutions") ||
+                  (lang === "pl" ? "Rozwiązania" : "Solutions")
+              }</span
+            >
+            <svg
+              class="w-3.5 h-3.5 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
-          <div 
+          <div
             id="mega-menu-kitchen"
             class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[920px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
             role="menu"
           >
             <div class="h-1 w-full sportigio-gradient"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-              {kitchenGroups.map((group: { title: string; items: { label: string; href: string; description?: string; icon?: string }[] }) => (
-                <div>
-                  <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
-                  <ul class="space-y-2">
-                    {group.items.map((item: { label: string; href: string; description?: string; icon?: string }) => (
-                      <li>
-                        <a href={item.href} class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900" role="menuitem">
-                          {item.icon ? (
-                            <span class="material-symbols-rounded text-[20px] leading-5" aria-hidden="true">{item.icon}</span>
-                          ) : null}
-                          <div>
-                            <div class="text-sm font-semibold">{item.label}</div>
-                            {item.description ? (
-                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
-                            ) : null}
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6"
+            >
+              {
+                kitchenGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                    }[];
+                  }) => (
+                    <div>
+                      <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                        {group.title}
+                      </h4>
+                      <ul class="space-y-2">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
+                                role="menuitem"
+                              >
+                                {item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-semibold">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600 mt-0.5">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
-            
           </div>
         </div>
 
         <!-- Simple links without mega menu -->
-        <a href="#" onclick="return false;" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.custom_plan') || (lang === 'pl' ? 'Plan dedykowany' : 'Custom plan')}</a>
+        <a
+          href="#"
+          onclick="return false;"
+          class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
+          >{
+            t("navigation.custom_plan") ||
+              (lang === "pl" ? "Plan dedykowany" : "Custom plan")
+          }</a
+        >
 
         <!-- Materiały with mega menu -->
         <div class="relative">
-          <button 
+          <button
             id="mega-trigger-resources"
             type="button"
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="mega-menu-resources"
-            class={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${activePage === 'blog' ? 'text-[#0B2360]' : 'text-gray-600 hover:text-[#0B2360]'}`}
+            class={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${activePage === "blog" ? "text-[#0B2360]" : "text-gray-600 hover:text-[#0B2360]"}`}
           >
-            <span>{t('navigation.resources') || (lang === 'pl' ? 'Materiały' : 'Resources')}</span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.resources") ||
+                  (lang === "pl" ? "Materiały" : "Resources")
+              }</span
+            >
+            <svg
+              class="w-3.5 h-3.5 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
-          <div 
+          <div
             id="mega-menu-resources"
             class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[980px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
             role="menu"
           >
             <div class="h-1 w-full sportigio-gradient"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.length ? (
-                (getTranslations(lang) as any).navigation.mega.menus.resources.groups.map((group: { title: string; items: { label: string; href?: string; description?: string }[] }) => (
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
-                    <ul class="space-y-2">
-                      {group.items.map((item: { label: string; href?: string; description?: string }) => (
-                        <li>
-                          <a href={item.href || '#'} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{item.label}</div>
-                            {item.description ? (
-                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
-                            ) : null}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Poznaj nas</h4>
-                    <ul class="space-y-2">
-                      {['O firmie', 'Co nowego', 'Umów Demo', 'Blog'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Wsparcie</h4>
-                    <ul class="space-y-2">
-                      {['Baza wiedzy', 'Webinary', 'Instrukcje wideo', 'API', 'Kontakt'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Usługi</h4>
-                    <ul class="space-y-2">
-                      {['Wdrożenie', 'Migracja danych', 'Szkolenia', 'Outsourcing'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Historie klientów</h4>
-                    <ul class="space-y-2">
-                      {['News', 'Zobacz wszystkie'].map((label) => (
-                        <li>
-                          <a href="#" class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem" onclick="return false;">
-                            <div class="text-sm font-semibold text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              )}
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6"
+            >
+              {
+                resourcesGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                    }[];
+                  }) => (
+                    <div>
+                      <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                        {group.title}
+                      </h4>
+                      <ul class="space-y-2">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
+                                role="menuitem"
+                              >
+                                {item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-semibold">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600 mt-0.5">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
           </div>
         </div>
 
-        <a href="/pricing" class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200">{t('navigation.pricing') || (lang === 'pl' ? 'Cennik' : 'Pricing')}</a>
+        <a
+          href="/pricing"
+          class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
+          >{
+            t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
+          }</a
+        >
       </div>
 
       <!-- Desktop CTA Buttons -->
       <div class="hidden lg:flex items-center space-x-4">
-        <a href="/login" class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg" style="--sportigio-gradient: var(--sportigio-gradient-2);">
-          {t('navigation.login') || (lang === 'pl' ? 'Zaloguj' : 'Login')}
+        <a
+          href="/login"
+          class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg"
+          style="--sportigio-gradient: var(--sportigio-gradient-2);"
+        >
+          {t("navigation.login") || (lang === "pl" ? "Zaloguj" : "Login")}
         </a>
-        <a href="/pricing" class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg" style="--sportigio-gradient: var(--sportigio-gradient-2);">
-          {t('common.try_free')}
+        <a
+          href="/pricing"
+          class="btn-style-1 px-5 py-2 text-sm text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg"
+          style="--sportigio-gradient: var(--sportigio-gradient-2);"
+        >
+          {t("common.try_free")}
         </a>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="lg:hidden">
-        <button id="mobile-menu-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200" aria-label={t('navigation.open_menu') || 'Otwórz menu'}>
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        <button
+          id="mobile-menu-button"
+          class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+          aria-label={t("navigation.open_menu") || "Otwórz menu"}
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -373,256 +869,382 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
 </nav>
 
 <!-- Mobile Full-screen Sheet (portaled outside nav to avoid fixed-in-transformed-parent issue) -->
-<div id="mobile-sheet-backdrop" class="fixed inset-0 bg-black/40 z-[60] hidden"></div>
-<div 
+<div id="mobile-sheet-backdrop" class="fixed inset-0 bg-black/40 z-[60] hidden">
+</div>
+<div
   id="mobile-sheet"
   class="fixed inset-0 z-[61] hidden overscroll-contain"
-  role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mobile-menu-title"
 >
   <div class="absolute inset-0 bg-white flex flex-col">
-    <div class="h-16 flex items-center justify-between px-4 border-b border-gray-200">
+    <div
+      class="h-16 flex items-center justify-between px-4 border-b border-gray-200"
+    >
       <a href="/" class="flex items-center space-x-2">
-        <img src="/sportigio-logo-black.png" alt="Sportigio" class="h-8 w-auto" />
+        <img
+          src="/sportigio-logo-black.png"
+          alt="Sportigio"
+          class="h-8 w-auto"
+        />
       </a>
-      <button id="mobile-close-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Zamknij">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      <button
+        id="mobile-close-button"
+        class="p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+        aria-label="Zamknij"
+      >
+        <svg
+          class="w-6 h-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          aria-hidden="true"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path></svg
+        >
       </button>
     </div>
     <div class="flex-1 overflow-y-auto px-4 py-4 overscroll-contain">
       <ul class="space-y-2">
         <li>
-          <button 
+          <button
             id="mobile-acc-product-toggle"
             type="button"
             aria-controls="mobile-acc-product"
             aria-expanded="false"
             class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
           >
-            <span>{t('navigation.product') || (lang === 'pl' ? 'Produkt' : 'Product')}</span>
-            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.product") ||
+                  (lang === "pl" ? "Produkt" : "Product")
+              }</span
+            >
+            <svg
+              class="w-4 h-4 text-gray-600 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
           <div id="mobile-acc-product" class="hidden mt-2">
-            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
-              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.map((group: { title: string; items: { label: string; href?: string; description?: string }[] }) => (
-                <div class="px-4 py-3">
-                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
-                  <ul class="space-y-1">
-                    {group.items.map((item: { label: string; href?: string; description?: string }) => (
-                      <li>
-                        <a href={item.href || '#'} class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
-                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              {!(getTranslations(lang) as any)?.navigation?.mega?.menus?.product?.groups?.length ? (
-                <>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Platforma</div>
-                    <ul class="space-y-1">
-                      {['Sportigio', 'Strona', 'Bilety online', 'Sklep'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Możliwości</div>
-                    <ul class="space-y-1">
-                      {['Zarabianie', 'Typer i Quiz', 'Automatyczne wyniki', 'Reklamy i sponsorzy', 'Mailing i powiadomienia', 'Baza fanów', 'Asystent AI', 'Wszystkie funkcje'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Jak zacząć?</div>
-                    <ul class="space-y-1">
-                      {['Zleć to nam', 'Zrób to sam'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              ) : null}
+            <div
+              class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
+            >
+              {
+                productGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                      img?: string;
+                    }[];
+                  }) => (
+                    <div class="px-4 py-3">
+                      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                        {group.title}
+                      </div>
+                      <ul class="space-y-1">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                            img?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
+                              >
+                                {item.img ? (
+                                  <img
+                                    src={item.img}
+                                    alt="Sportigio"
+                                    class="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                ) : item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-medium">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
           </div>
         </li>
         <li>
-          <button 
+          <button
             id="mobile-acc-kitchen-toggle"
             type="button"
             aria-controls="mobile-acc-kitchen"
             aria-expanded="false"
             class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
           >
-            <span>{t('navigation.solutions') || (lang === 'pl' ? 'Rozwiązania' : 'Solutions')}</span>
-            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.solutions") ||
+                  (lang === "pl" ? "Rozwiązania" : "Solutions")
+              }</span
+            >
+            <svg
+              class="w-4 h-4 text-gray-600 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
           <div id="mobile-acc-kitchen" class="hidden mt-2">
-            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
-              {kitchenGroups.map((group: { title: string; items: { label: string; href: string; description?: string; icon?: string }[] }) => (
-                <div class="px-4 py-3">
-                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
-                  <ul class="space-y-1">
-                    {group.items.map((item: { label: string; href: string; description?: string; icon?: string }) => (
-                      <li>
-                        <a href={item.href} class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900">
-                          {item.icon ? (
-                            <span class="material-symbols-rounded text-[20px] leading-5" aria-hidden="true">{item.icon}</span>
-                          ) : null}
-                          <div>
-                            <div class="text-sm font-medium">{item.label}</div>
-                            {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div
+              class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
+            >
+              {
+                kitchenGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                    }[];
+                  }) => (
+                    <div class="px-4 py-3">
+                      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                        {group.title}
+                      </div>
+                      <ul class="space-y-1">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
+                              >
+                                {item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-medium">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
           </div>
         </li>
-        <li><a href="#" onclick="return false;" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.custom_plan') || (lang === 'pl' ? 'Plan dedykowany' : 'Custom plan')}</a></li>
         <li>
-          <button 
+          <a
+            href="#"
+            onclick="return false;"
+            class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+            >{
+              t("navigation.custom_plan") ||
+                (lang === "pl" ? "Plan dedykowany" : "Custom plan")
+            }</a
+          >
+        </li>
+        <li>
+          <button
             id="mobile-acc-resources-toggle"
             type="button"
             aria-controls="mobile-acc-resources"
             aria-expanded="false"
             class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
           >
-            <span>{t('navigation.resources') || (lang === 'pl' ? 'Materiały' : 'Resources')}</span>
-            <svg class="w-4 h-4 text-gray-600 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"/></svg>
+            <span
+              >{
+                t("navigation.resources") ||
+                  (lang === "pl" ? "Materiały" : "Resources")
+              }</span
+            >
+            <svg
+              class="w-4 h-4 text-gray-600 transition-transform duration-200"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
+              ></path></svg
+            >
           </button>
           <div id="mobile-acc-resources" class="hidden mt-2">
-            <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
-              {(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.map((group: { title: string; items: { label: string; href?: string; description?: string }[] }) => (
-                <div class="px-4 py-3">
-                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
-                  <ul class="space-y-1">
-                    {group.items.map((item: { label: string; href?: string; description?: string }) => (
-                      <li>
-                        <a href={item.href || '#'} class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
-                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              {!(getTranslations(lang) as any)?.navigation?.mega?.menus?.resources?.groups?.length ? (
-                <>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Poznaj nas</div>
-                    <ul class="space-y-1">
-                      {['O firmie', 'Co nowego', 'Umów Demo', 'Blog'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Wsparcie</div>
-                    <ul class="space-y-1">
-                      {['Baza wiedzy', 'Webinary', 'Instrukcje wideo', 'API', 'Kontakt'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Usługi</div>
-                    <ul class="space-y-1">
-                      {['Wdrożenie', 'Migracja danych', 'Szkolenia', 'Outsourcing'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div class="px-4 py-3">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Historie klientów</div>
-                    <ul class="space-y-1">
-                      {['News', 'Zobacz wszystkie'].map((label) => (
-                        <li>
-                          <a href="#" class="block px-2 py-2 rounded-lg hover:bg-gray-50" onclick="return false;">
-                            <div class="text-sm font-medium text-gray-900">{label}</div>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              ) : null}
+            <div
+              class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
+            >
+              {
+                resourcesGroups.map(
+                  (group: {
+                    title: string;
+                    items: {
+                      label: string;
+                      href: string;
+                      description?: string;
+                      icon?: string;
+                    }[];
+                  }) => (
+                    <div class="px-4 py-3">
+                      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                        {group.title}
+                      </div>
+                      <ul class="space-y-1">
+                        {group.items.map(
+                          (item: {
+                            label: string;
+                            href: string;
+                            description?: string;
+                            icon?: string;
+                          }) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
+                              >
+                                {item.icon ? (
+                                  <span
+                                    class="material-symbols-rounded text-[20px] leading-5"
+                                    aria-hidden="true"
+                                  >
+                                    {item.icon}
+                                  </span>
+                                ) : null}
+                                <div>
+                                  <div class="text-sm font-medium">
+                                    {item.label}
+                                  </div>
+                                  {item.description ? (
+                                    <div class="text-xs text-gray-600">
+                                      {item.description}
+                                    </div>
+                                  ) : null}
+                                </div>
+                              </a>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </div>
+                  ),
+                )
+              }
             </div>
           </div>
         </li>
-        <li><a href="/pricing" class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium">{t('navigation.pricing') || (lang === 'pl' ? 'Cennik' : 'Pricing')}</a></li>
+        <li>
+          <a
+            href="/pricing"
+            class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+            >{
+              t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
+            }</a
+          >
+        </li>
       </ul>
     </div>
-    
   </div>
 </div>
 
 <script>
   // Vanilla interactions: desktop mega menu on specific nav item (click) + mobile sheet
-  document.addEventListener('DOMContentLoaded', () => {
-    const triggerProduct = document.getElementById('mega-trigger-product');
-    const panelProduct = document.getElementById('mega-menu-product');
-    const caretProduct = triggerProduct?.querySelector('svg');
-    const triggerKitchen = document.getElementById('mega-trigger-kitchen');
-    const panelKitchen = document.getElementById('mega-menu-kitchen');
-    const caretKitchen = triggerKitchen?.querySelector('svg');
-    const triggerResources = document.getElementById('mega-trigger-resources');
-    const panelResources = document.getElementById('mega-menu-resources');
-    const caretResources = triggerResources?.querySelector('svg');
-    const mobileBtn = document.getElementById('mobile-menu-button');
-    const mobileSheet = document.getElementById('mobile-sheet');
-    const mobileBackdrop = document.getElementById('mobile-sheet-backdrop');
-    const mobileClose = document.getElementById('mobile-close-button');
-    const mobileAccProductToggle = document.getElementById('mobile-acc-product-toggle');
-    const mobileAccProduct = document.getElementById('mobile-acc-product');
-    const mobileAccKitchenToggle = document.getElementById('mobile-acc-kitchen-toggle');
-    const mobileAccKitchen = document.getElementById('mobile-acc-kitchen');
-    const mobileAccResourcesToggle = document.getElementById('mobile-acc-resources-toggle');
-    const mobileAccResources = document.getElementById('mobile-acc-resources');
+  document.addEventListener("DOMContentLoaded", () => {
+    const triggerProduct = document.getElementById("mega-trigger-product");
+    const panelProduct = document.getElementById("mega-menu-product");
+    const caretProduct = triggerProduct?.querySelector("svg");
+    const triggerKitchen = document.getElementById("mega-trigger-kitchen");
+    const panelKitchen = document.getElementById("mega-menu-kitchen");
+    const caretKitchen = triggerKitchen?.querySelector("svg");
+    const triggerResources = document.getElementById("mega-trigger-resources");
+    const panelResources = document.getElementById("mega-menu-resources");
+    const caretResources = triggerResources?.querySelector("svg");
+    const mobileBtn = document.getElementById("mobile-menu-button");
+    const mobileSheet = document.getElementById("mobile-sheet");
+    const mobileBackdrop = document.getElementById("mobile-sheet-backdrop");
+    const mobileClose = document.getElementById("mobile-close-button");
+    const mobileAccProductToggle = document.getElementById(
+      "mobile-acc-product-toggle",
+    );
+    const mobileAccProduct = document.getElementById("mobile-acc-product");
+    const mobileAccKitchenToggle = document.getElementById(
+      "mobile-acc-kitchen-toggle",
+    );
+    const mobileAccKitchen = document.getElementById("mobile-acc-kitchen");
+    const mobileAccResourcesToggle = document.getElementById(
+      "mobile-acc-resources-toggle",
+    );
+    const mobileAccResources = document.getElementById("mobile-acc-resources");
 
     // Hover intent control
     let animating = false;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     const onTransitionEnd = (el: HTMLElement, cb?: () => void) => {
       const handler = (e: TransitionEvent) => {
-        if (e.propertyName === 'opacity') {
-          el.removeEventListener('transitionend', handler);
+        if (e.propertyName === "opacity") {
+          el.removeEventListener("transitionend", handler);
           cb?.();
         }
       };
-      el.addEventListener('transitionend', handler as EventListener);
+      el.addEventListener("transitionend", handler as EventListener);
     };
 
     let scrollLocks = 0;
@@ -633,30 +1255,60 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
       e.preventDefault();
     };
     const preventKeyScroll = (e: KeyboardEvent) => {
-      const keys = [' ', 'Spacebar', 'PageUp', 'PageDown', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+      const keys = [
+        " ",
+        "Spacebar",
+        "PageUp",
+        "PageDown",
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+      ];
       if (keys.includes(e.key)) {
         const active = document.activeElement as HTMLElement | null;
-        if (allowedScrollEl && active && allowedScrollEl.contains(active)) return; // allow keys inside allowed container
+        if (allowedScrollEl && active && allowedScrollEl.contains(active))
+          return; // allow keys inside allowed container
         e.preventDefault();
       }
     };
     const lockScroll = (el?: HTMLElement | null) => {
       if (scrollLocks++ === 0) {
         allowedScrollEl = el || null;
-        window.addEventListener('wheel', preventScroll, { passive: false });
-        window.addEventListener('touchmove', preventScroll, { passive: false });
-        document.addEventListener('touchmove', preventScroll, { passive: false });
-        window.addEventListener('keydown', preventKeyScroll, { passive: false });
+        window.addEventListener("wheel", preventScroll, { passive: false });
+        window.addEventListener("touchmove", preventScroll, { passive: false });
+        document.addEventListener("touchmove", preventScroll, {
+          passive: false,
+        });
+        window.addEventListener("keydown", preventKeyScroll, {
+          passive: false,
+        });
       } else {
         allowedScrollEl = el || allowedScrollEl;
       }
     };
     const unlockScroll = () => {
       if (scrollLocks > 0 && --scrollLocks === 0) {
-        window.removeEventListener('wheel', preventScroll as any, { passive: false } as any);
-        window.removeEventListener('touchmove', preventScroll as any, { passive: false } as any);
-        document.removeEventListener('touchmove', preventScroll as any, { passive: false } as any);
-        window.removeEventListener('keydown', preventKeyScroll as any, { passive: false } as any);
+        window.removeEventListener(
+          "wheel",
+          preventScroll as any,
+          { passive: false } as any,
+        );
+        window.removeEventListener(
+          "touchmove",
+          preventScroll as any,
+          { passive: false } as any,
+        );
+        document.removeEventListener(
+          "touchmove",
+          preventScroll as any,
+          { passive: false } as any,
+        );
+        window.removeEventListener(
+          "keydown",
+          preventKeyScroll as any,
+          { passive: false } as any,
+        );
         allowedScrollEl = null;
       }
     };
@@ -664,27 +1316,27 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     const openPanelKitchen = () => {
       if (!panelKitchen) return;
       // Close Product panel if open
-      if (typeof closePanelProduct === 'function') closePanelProduct();
-      if (typeof closePanelResources === 'function') closePanelResources();
-      triggerKitchen?.setAttribute('aria-expanded', 'true');
-      caretKitchen?.classList.add('rotate-180');
+      if (typeof closePanelProduct === "function") closePanelProduct();
+      if (typeof closePanelResources === "function") closePanelResources();
+      triggerKitchen?.setAttribute("aria-expanded", "true");
+      caretKitchen?.classList.add("rotate-180");
 
       if (prefersReduced) {
-        panelKitchen.classList.remove('hidden');
+        panelKitchen.classList.remove("hidden");
         lockScroll(panelKitchen as HTMLElement);
         return;
       }
 
       // If hidden, play opening animation from 0 -> 1
-      if (panelKitchen.classList.contains('hidden')) {
-        panelKitchen.classList.remove('hidden');
+      if (panelKitchen.classList.contains("hidden")) {
+        panelKitchen.classList.remove("hidden");
         animating = true;
-        panelKitchen.style.willChange = 'transform, opacity';
-        panelKitchen.classList.add('opacity-0', 'scale-95');
+        panelKitchen.style.willChange = "transform, opacity";
+        panelKitchen.classList.add("opacity-0", "scale-95");
         void panelKitchen.offsetWidth; // reflow
-        panelKitchen.classList.remove('opacity-0', 'scale-95');
+        panelKitchen.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelKitchen, () => {
-          panelKitchen.style.willChange = '';
+          panelKitchen.style.willChange = "";
           animating = false;
           lockScroll(panelKitchen as HTMLElement);
         });
@@ -692,12 +1344,15 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
       }
 
       // If visible but mid-closing, reverse to open by removing closing classes
-      if (panelKitchen.classList.contains('opacity-0') || panelKitchen.classList.contains('scale-95')) {
+      if (
+        panelKitchen.classList.contains("opacity-0") ||
+        panelKitchen.classList.contains("scale-95")
+      ) {
         animating = true;
-        panelKitchen.style.willChange = 'transform, opacity';
-        panelKitchen.classList.remove('opacity-0', 'scale-95');
+        panelKitchen.style.willChange = "transform, opacity";
+        panelKitchen.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelKitchen, () => {
-          panelKitchen.style.willChange = '';
+          panelKitchen.style.willChange = "";
           animating = false;
           lockScroll(panelKitchen as HTMLElement);
         });
@@ -705,22 +1360,22 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     };
     const closePanelKitchen = () => {
       if (!panelKitchen) return;
-      if (panelKitchen.classList.contains('hidden')) return;
-      triggerKitchen?.setAttribute('aria-expanded', 'false');
-      caretKitchen?.classList.remove('rotate-180');
+      if (panelKitchen.classList.contains("hidden")) return;
+      triggerKitchen?.setAttribute("aria-expanded", "false");
+      caretKitchen?.classList.remove("rotate-180");
       if (prefersReduced) {
-        panelKitchen.classList.add('hidden');
+        panelKitchen.classList.add("hidden");
         unlockScroll();
         return;
       }
       animating = true;
-      panelKitchen.style.willChange = 'transform, opacity';
+      panelKitchen.style.willChange = "transform, opacity";
       // Animate to closed state
-      panelKitchen.classList.add('opacity-0', 'scale-95');
+      panelKitchen.classList.add("opacity-0", "scale-95");
       onTransitionEnd(panelKitchen, () => {
-        panelKitchen.classList.add('hidden');
-        panelKitchen.classList.remove('opacity-0', 'scale-95');
-        panelKitchen.style.willChange = '';
+        panelKitchen.classList.add("hidden");
+        panelKitchen.classList.remove("opacity-0", "scale-95");
+        panelKitchen.style.willChange = "";
         animating = false;
         unlockScroll();
       });
@@ -729,18 +1384,22 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     // Desktop: open on hover/focus, close on leave/escape/clickOutside
     if (triggerKitchen && panelKitchen) {
       // Click toggle
-      triggerKitchen.addEventListener('click', (e) => {
+      triggerKitchen.addEventListener("click", (e) => {
         e.preventDefault();
-        if (panelKitchen.classList.contains('hidden')) openPanelKitchen();
+        if (panelKitchen.classList.contains("hidden")) openPanelKitchen();
         else closePanelKitchen();
       });
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closePanelKitchen();
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePanelKitchen();
       });
-      document.addEventListener('click', (e: MouseEvent) => {
+      document.addEventListener("click", (e: MouseEvent) => {
         const target = e.target as Node | null;
-        if (target && !panelKitchen.contains(target) && !triggerKitchen.contains(target)) {
+        if (
+          target &&
+          !panelKitchen.contains(target) &&
+          !triggerKitchen.contains(target)
+        ) {
           closePanelKitchen();
         }
       });
@@ -750,36 +1409,39 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     const openPanelProduct = () => {
       if (!panelProduct) return;
       // Close Kitchen panel if open
-      if (typeof closePanelKitchen === 'function') closePanelKitchen();
-      if (typeof closePanelResources === 'function') closePanelResources();
-      triggerProduct?.setAttribute('aria-expanded', 'true');
-      caretProduct?.classList.add('rotate-180');
+      if (typeof closePanelKitchen === "function") closePanelKitchen();
+      if (typeof closePanelResources === "function") closePanelResources();
+      triggerProduct?.setAttribute("aria-expanded", "true");
+      caretProduct?.classList.add("rotate-180");
 
       if (prefersReduced) {
-        panelProduct.classList.remove('hidden');
+        panelProduct.classList.remove("hidden");
         lockScroll(panelProduct as HTMLElement);
         return;
       }
-      if (panelProduct.classList.contains('hidden')) {
-        panelProduct.classList.remove('hidden');
+      if (panelProduct.classList.contains("hidden")) {
+        panelProduct.classList.remove("hidden");
         animating = true;
-        panelProduct.style.willChange = 'transform, opacity';
-        panelProduct.classList.add('opacity-0', 'scale-95');
+        panelProduct.style.willChange = "transform, opacity";
+        panelProduct.classList.add("opacity-0", "scale-95");
         void panelProduct.offsetWidth;
-        panelProduct.classList.remove('opacity-0', 'scale-95');
+        panelProduct.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelProduct, () => {
-          panelProduct.style.willChange = '';
+          panelProduct.style.willChange = "";
           animating = false;
           lockScroll(panelProduct as HTMLElement);
         });
         return;
       }
-      if (panelProduct.classList.contains('opacity-0') || panelProduct.classList.contains('scale-95')) {
+      if (
+        panelProduct.classList.contains("opacity-0") ||
+        panelProduct.classList.contains("scale-95")
+      ) {
         animating = true;
-        panelProduct.style.willChange = 'transform, opacity';
-        panelProduct.classList.remove('opacity-0', 'scale-95');
+        panelProduct.style.willChange = "transform, opacity";
+        panelProduct.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelProduct, () => {
-          panelProduct.style.willChange = '';
+          panelProduct.style.willChange = "";
           animating = false;
           lockScroll(panelProduct as HTMLElement);
         });
@@ -787,37 +1449,41 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     };
     const closePanelProduct = () => {
       if (!panelProduct) return;
-      if (panelProduct.classList.contains('hidden')) return;
-      triggerProduct?.setAttribute('aria-expanded', 'false');
-      caretProduct?.classList.remove('rotate-180');
+      if (panelProduct.classList.contains("hidden")) return;
+      triggerProduct?.setAttribute("aria-expanded", "false");
+      caretProduct?.classList.remove("rotate-180");
       if (prefersReduced) {
-        panelProduct.classList.add('hidden');
+        panelProduct.classList.add("hidden");
         unlockScroll();
         return;
       }
       animating = true;
-      panelProduct.style.willChange = 'transform, opacity';
-      panelProduct.classList.add('opacity-0', 'scale-95');
+      panelProduct.style.willChange = "transform, opacity";
+      panelProduct.classList.add("opacity-0", "scale-95");
       onTransitionEnd(panelProduct, () => {
-        panelProduct.classList.add('hidden');
-        panelProduct.classList.remove('opacity-0', 'scale-95');
-        panelProduct.style.willChange = '';
+        panelProduct.classList.add("hidden");
+        panelProduct.classList.remove("opacity-0", "scale-95");
+        panelProduct.style.willChange = "";
         animating = false;
         unlockScroll();
       });
     };
     if (triggerProduct && panelProduct) {
-      triggerProduct.addEventListener('click', (e) => {
+      triggerProduct.addEventListener("click", (e) => {
         e.preventDefault();
-        if (panelProduct.classList.contains('hidden')) openPanelProduct();
+        if (panelProduct.classList.contains("hidden")) openPanelProduct();
         else closePanelProduct();
       });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closePanelProduct();
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePanelProduct();
       });
-      document.addEventListener('click', (e: MouseEvent) => {
+      document.addEventListener("click", (e: MouseEvent) => {
         const target = e.target as Node | null;
-        if (target && !panelProduct.contains(target) && !triggerProduct.contains(target)) {
+        if (
+          target &&
+          !panelProduct.contains(target) &&
+          !triggerProduct.contains(target)
+        ) {
           closePanelProduct();
         }
       });
@@ -827,36 +1493,39 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     const openPanelResources = () => {
       if (!panelResources) return;
       // Close others
-      if (typeof closePanelProduct === 'function') closePanelProduct();
-      if (typeof closePanelKitchen === 'function') closePanelKitchen();
-      triggerResources?.setAttribute('aria-expanded', 'true');
-      caretResources?.classList.add('rotate-180');
+      if (typeof closePanelProduct === "function") closePanelProduct();
+      if (typeof closePanelKitchen === "function") closePanelKitchen();
+      triggerResources?.setAttribute("aria-expanded", "true");
+      caretResources?.classList.add("rotate-180");
 
       if (prefersReduced) {
-        panelResources.classList.remove('hidden');
+        panelResources.classList.remove("hidden");
         lockScroll(panelResources as HTMLElement);
         return;
       }
-      if (panelResources.classList.contains('hidden')) {
-        panelResources.classList.remove('hidden');
+      if (panelResources.classList.contains("hidden")) {
+        panelResources.classList.remove("hidden");
         animating = true;
-        panelResources.style.willChange = 'transform, opacity';
-        panelResources.classList.add('opacity-0', 'scale-95');
+        panelResources.style.willChange = "transform, opacity";
+        panelResources.classList.add("opacity-0", "scale-95");
         void panelResources.offsetWidth;
-        panelResources.classList.remove('opacity-0', 'scale-95');
+        panelResources.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelResources, () => {
-          panelResources.style.willChange = '';
+          panelResources.style.willChange = "";
           animating = false;
           lockScroll(panelResources as HTMLElement);
         });
         return;
       }
-      if (panelResources.classList.contains('opacity-0') || panelResources.classList.contains('scale-95')) {
+      if (
+        panelResources.classList.contains("opacity-0") ||
+        panelResources.classList.contains("scale-95")
+      ) {
         animating = true;
-        panelResources.style.willChange = 'transform, opacity';
-        panelResources.classList.remove('opacity-0', 'scale-95');
+        panelResources.style.willChange = "transform, opacity";
+        panelResources.classList.remove("opacity-0", "scale-95");
         onTransitionEnd(panelResources, () => {
-          panelResources.style.willChange = '';
+          panelResources.style.willChange = "";
           animating = false;
           lockScroll(panelResources as HTMLElement);
         });
@@ -864,37 +1533,41 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
     };
     const closePanelResources = () => {
       if (!panelResources) return;
-      if (panelResources.classList.contains('hidden')) return;
-      triggerResources?.setAttribute('aria-expanded', 'false');
-      caretResources?.classList.remove('rotate-180');
+      if (panelResources.classList.contains("hidden")) return;
+      triggerResources?.setAttribute("aria-expanded", "false");
+      caretResources?.classList.remove("rotate-180");
       if (prefersReduced) {
-        panelResources.classList.add('hidden');
+        panelResources.classList.add("hidden");
         unlockScroll();
         return;
       }
       animating = true;
-      panelResources.style.willChange = 'transform, opacity';
-      panelResources.classList.add('opacity-0', 'scale-95');
+      panelResources.style.willChange = "transform, opacity";
+      panelResources.classList.add("opacity-0", "scale-95");
       onTransitionEnd(panelResources, () => {
-        panelResources.classList.add('hidden');
-        panelResources.classList.remove('opacity-0', 'scale-95');
-        panelResources.style.willChange = '';
+        panelResources.classList.add("hidden");
+        panelResources.classList.remove("opacity-0", "scale-95");
+        panelResources.style.willChange = "";
         animating = false;
         unlockScroll();
       });
     };
     if (triggerResources && panelResources) {
-      triggerResources.addEventListener('click', (e) => {
+      triggerResources.addEventListener("click", (e) => {
         e.preventDefault();
-        if (panelResources.classList.contains('hidden')) openPanelResources();
+        if (panelResources.classList.contains("hidden")) openPanelResources();
         else closePanelResources();
       });
-      document.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Escape') closePanelResources();
+      document.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Escape") closePanelResources();
       });
-      document.addEventListener('click', (e: MouseEvent) => {
+      document.addEventListener("click", (e: MouseEvent) => {
         const target = e.target as Node | null;
-        if (target && !panelResources.contains(target) && !triggerResources.contains(target)) {
+        if (
+          target &&
+          !panelResources.contains(target) &&
+          !triggerResources.contains(target)
+        ) {
           closePanelResources();
         }
       });
@@ -902,69 +1575,82 @@ const kitchenGroups = i18nMegaKitchen.map((group) => {
 
     // Mobile: full-screen sheet
     const openSheet = () => {
-      mobileSheet?.classList.remove('hidden');
-      mobileBackdrop?.classList.remove('hidden');
+      mobileSheet?.classList.remove("hidden");
+      mobileBackdrop?.classList.remove("hidden");
       lockScroll(mobileSheet as HTMLElement);
-      if (mobileClose && mobileClose instanceof HTMLElement) mobileClose.focus();
+      if (mobileClose && mobileClose instanceof HTMLElement)
+        mobileClose.focus();
     };
     const closeSheet = () => {
-      mobileSheet?.classList.add('hidden');
-      mobileBackdrop?.classList.add('hidden');
+      mobileSheet?.classList.add("hidden");
+      mobileBackdrop?.classList.add("hidden");
       unlockScroll();
     };
-    mobileBtn?.addEventListener('click', openSheet);
-    mobileClose?.addEventListener('click', closeSheet);
-    mobileBackdrop?.addEventListener('click', closeSheet);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeSheet();
+    mobileBtn?.addEventListener("click", openSheet);
+    mobileClose?.addEventListener("click", closeSheet);
+    mobileBackdrop?.addEventListener("click", closeSheet);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSheet();
     });
 
     // Close on link click inside sheet
-    mobileSheet?.querySelectorAll('a')?.forEach((a) => {
-      a.addEventListener('click', () => closeSheet());
+    mobileSheet?.querySelectorAll("a")?.forEach((a) => {
+      a.addEventListener("click", () => closeSheet());
     });
 
     // Mobile accordion: Product
     if (mobileAccProductToggle && mobileAccProduct) {
-      const caret = mobileAccProductToggle.querySelector('svg');
-      mobileAccProductToggle.addEventListener('click', (e) => {
+      const caret = mobileAccProductToggle.querySelector("svg");
+      mobileAccProductToggle.addEventListener("click", (e) => {
         e.preventDefault();
-        const expanded = mobileAccProductToggle.getAttribute('aria-expanded') === 'true';
-        mobileAccProductToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        caret?.classList.toggle('rotate-180', !expanded);
-        mobileAccProduct.classList.toggle('hidden', expanded);
+        const expanded =
+          mobileAccProductToggle.getAttribute("aria-expanded") === "true";
+        mobileAccProductToggle.setAttribute(
+          "aria-expanded",
+          expanded ? "false" : "true",
+        );
+        caret?.classList.toggle("rotate-180", !expanded);
+        mobileAccProduct.classList.toggle("hidden", expanded);
       });
     }
 
     // Mobile accordion: Kitchen
     if (mobileAccKitchenToggle && mobileAccKitchen) {
-      const caret = mobileAccKitchenToggle.querySelector('svg');
-      mobileAccKitchenToggle.addEventListener('click', (e) => {
+      const caret = mobileAccKitchenToggle.querySelector("svg");
+      mobileAccKitchenToggle.addEventListener("click", (e) => {
         e.preventDefault();
-        const expanded = mobileAccKitchenToggle.getAttribute('aria-expanded') === 'true';
-        mobileAccKitchenToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        caret?.classList.toggle('rotate-180', !expanded);
-        mobileAccKitchen.classList.toggle('hidden', expanded);
+        const expanded =
+          mobileAccKitchenToggle.getAttribute("aria-expanded") === "true";
+        mobileAccKitchenToggle.setAttribute(
+          "aria-expanded",
+          expanded ? "false" : "true",
+        );
+        caret?.classList.toggle("rotate-180", !expanded);
+        mobileAccKitchen.classList.toggle("hidden", expanded);
       });
     }
 
     // Mobile accordion: Resources
     if (mobileAccResourcesToggle && mobileAccResources) {
-      const caret = mobileAccResourcesToggle.querySelector('svg');
-      mobileAccResourcesToggle.addEventListener('click', (e) => {
+      const caret = mobileAccResourcesToggle.querySelector("svg");
+      mobileAccResourcesToggle.addEventListener("click", (e) => {
         e.preventDefault();
-        const expanded = mobileAccResourcesToggle.getAttribute('aria-expanded') === 'true';
-        mobileAccResourcesToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        caret?.classList.toggle('rotate-180', !expanded);
-        mobileAccResources.classList.toggle('hidden', expanded);
+        const expanded =
+          mobileAccResourcesToggle.getAttribute("aria-expanded") === "true";
+        mobileAccResourcesToggle.setAttribute(
+          "aria-expanded",
+          expanded ? "false" : "true",
+        );
+        caret?.classList.toggle("rotate-180", !expanded);
+        mobileAccResources.classList.toggle("hidden", expanded);
       });
     }
 
     // Navbar shadow on scroll
-    const navbar = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) navbar?.classList.add('shadow-lg');
-      else navbar?.classList.remove('shadow-lg');
+    const navbar = document.querySelector("nav");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) navbar?.classList.add("shadow-lg");
+      else navbar?.classList.remove("shadow-lg");
     });
   });
 </script>
