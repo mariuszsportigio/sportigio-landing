@@ -24,7 +24,7 @@
     "blog": "Blog",
     "kitchen": "Kitchen Sink",
     "features": "Funkcje",
-    "pricing": "Cennik", 
+    "pricing": "Cennik",
     "about": "O nas",
     "contact": "Kontakt",
     "login": "Zaloguj",
@@ -163,19 +163,19 @@
     "badge": "Nowa generacja zarządzania klubem",
     "title": "Komunikacja klubu w 1 prostej",
     "title_highlight": "aplikacji",
-    "subtitle": "Zrewolucjonizuj sposób zarządzania klubem sportowym. Komunikacja, harmonogramy, płatności i analityki - wszystko w jednym miejscu.",
+    "subtitle": "Zrewolucjonizuj sposób zarządzania klubem sportowym. Komunikacja, harmonogramy, płatności i analityka — wszystko w jednym miejscu.",
     "social_proof_clubs": "500+ zadowolonych klubów",
     "social_proof_rating": "4.8/5 ocena"
   },
   "testimonials": {
     "title": "Co mówią nasi zadowoleni użytkownicy",
     "subtitle": "Najnowsze opinie naszych zadowolonych klientów",
-    "ai_summary": "AI Analysis",
+    "ai_summary": "Analiza AI",
     "ai_text": "Według analizy tysięcy opinii, Sportigio zapewnia kompleksowe rozwiązanie dla klubów sportowych. Najczęściej doceniane funkcje to automatyzacja procesów administracyjnych, która oszczędza średnio 10 godzin tygodniowo, oraz zaawansowana komunikacja z rodzicami i zawodnikami.",
     "ai_insights": {
       "time_saving": "Oszczędność czasu (10h/tydzień)",
-      "ease_of_use": "Prostotę użytkowania",
-      "communication": "Lepszą komunikację z rodzicami",
+      "ease_of_use": "Prostota użytkowania",
+      "communication": "Lepsza komunikacja z rodzicami",
       "attendance": "Wzrost frekwencji (25%)"
     },
     "cta_text": "Dołącz do ponad 500+ zadowolonych klubów",
@@ -187,11 +187,11 @@
       },
       "review_2": {
         "text": "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi.",
-        "author": "Anna Szymańska", 
+        "author": "Anna Szymańska",
         "position": "Trener, UKS Wisła"
       },
       "review_3": {
-        "text": "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!",
+        "text": "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już gonić za składkami!",
         "author": "Piotr Wiśniewski",
         "position": "Sekretarz, Legia Warszawa"
       },
@@ -228,7 +228,7 @@
     "subtitle": "Proste, przejrzyste ceny. Bez ukrytych kosztów. Zmień pakiet w każdej chwili.",
     "currency": "Waluta:",
     "monthly": "Miesięcznie",
-    "yearly": "Rocznie", 
+    "yearly": "Rocznie",
     "save_badge": "Oszczędź do 20%",
     "need_more": "Potrzebujesz więcej?",
     "premium_package": "Pakiet Dedykowany Premium",
@@ -240,7 +240,7 @@
     "detailed_comparison": "Szczegółowe porównanie funkcji",
     "features": {
       "website": "STRONA INTERNETOWA",
-      "communication": "KOMUNIKACJA Z KIBICAMI", 
+      "communication": "KOMUNIKACJA Z KIBICAMI",
       "database": "BAZA DANYCH I ANALITYKA",
       "gamification": "GAMIFIKACJA",
       "sales": "SPRZEDAŻ I PŁATNOŚCI",
@@ -255,7 +255,7 @@
       "badge": "Sportigio dla Akademii",
       "title": "Zarządzaj swoją akademią jak profesjonalista",
       "title_highlight": "wszystko w 1 prostym narzędziu",
-      "subtitle": "Komunikacja z rodzicami, płatności, obecności i harmonogramy - wszystko w jednej aplikacji dla akademii sportowych.",
+      "subtitle": "Komunikacja z rodzicami, płatności, obecności i harmonogramy — wszystko w jednej aplikacji dla akademii sportowych.",
       "cta_primary": "Umów prezentację",
       "cta_secondary": "Zobacz demo dla akademii"
     },
@@ -266,12 +266,12 @@
         "Rodzice pytają, dzwonią, nie wiedzą gdzie i kiedy są zajęcia",
         "Płatności? Trzeba pilnować, przypominać, wysyłać ręcznie",
         "Trenerzy przekazują obecności na papierze lub w Excelu",
-        "Rodzice zgłaszają nieobecności… przez SMS lub przypadkiem",
-        "Brakuje systemu – chaos narasta przy większej liczbie dzieci"
+        "Rodzice zgłaszają nieobecności przypadkowo lub przez SMS",
+        "Brakuje systemu — chaos narasta przy większej liczbie dzieci"
       ]
     },
     "solutions": {
-      "title": "Z Sportigio wszystko masz pod kontrolą",
+      "title": "Ze Sportigio wszystko masz pod kontrolą",
       "subtitle": "Profesjonalne narzędzia dla nowoczesnych akademii",
       "features": [
         {
@@ -280,7 +280,7 @@
           "icon": "calendar"
         },
         {
-          "title": "Płatności i faktury", 
+          "title": "Płatności i faktury",
           "description": "Automatyczne przypomnienia, płatność online, lista zaległości bez Excela",
           "icon": "payment"
         },
@@ -291,7 +291,7 @@
         },
         {
           "title": "Komunikacja bez chaosu",
-          "description": "Wiadomości grupowe, ogłoszenia, indywidualny kontakt – wszystko w systemie",
+          "description": "Wiadomości grupowe, ogłoszenia, indywidualny kontakt — wszystko w systemie",
           "icon": "communication"
         },
         {
@@ -305,93 +305,62 @@
       "title": "Co zyskujesz jako właściciel akademii?",
       "subtitle": "Konkretne korzyści dla Twojej akademii",
       "items": [
-        {
-          "title": "Oszczędność czasu",
-          "description": "mniej telefonów, wiadomości, papierów",
-          "icon": "time"
-        },
-        {
-          "title": "Spokój i porządek",
-          "description": "wszystko działa, nawet gdy Ciebie nie ma",
-          "icon": "peace"
-        },
-        {
-          "title": "Więcej pieniędzy na czas",
-          "description": "system przypomina, ułatwia i przyspiesza płatności",
-          "icon": "money"
-        },
-        {
-          "title": "Zadowolonych rodziców",
-          "description": "którzy polecają Cię innym",
-          "icon": "happy"
-        },
-        {
-          "title": "Nowoczesny wizerunek",
-          "description": "pokazujesz, że jesteś profesjonalistą",
-          "icon": "modern"
-        }
+        { "title": "Oszczędność czasu", "description": "mniej telefonów, wiadomości, papierów", "icon": "time" },
+        { "title": "Spokój i porządek", "description": "wszystko działa, nawet gdy Ciebie nie ma", "icon": "peace" },
+        { "title": "Więcej pieniędzy na czas", "description": "system przypomina, ułatwia i przyspiesza płatności", "icon": "money" },
+        { "title": "Zadowoleni rodzice", "description": "którzy polecają Cię innym", "icon": "happy" },
+        { "title": "Nowoczesny wizerunek", "description": "pokazujesz, że jesteś profesjonalistą", "icon": "modern" }
       ]
     },
     "target_groups": {
       "title": "Dla kogo to działa?",
       "subtitle": "Korzyści dla wszystkich w akademii",
       "groups": [
-        {
-          "title": "Dla Ciebie – właściciela",
-          "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.",
-          "icon": "owner"
-        },
-        {
-          "title": "Dla trenerów",
-          "description": "Lista obecności i szybki kontakt z rodzicem – wszystko z telefonu.",
-          "icon": "trainer"
-        },
-        {
-          "title": "Dla rodziców",
-          "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.",
-          "icon": "parent"
-        }
+        { "title": "Dla Ciebie — właściciela", "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.", "icon": "owner" },
+        { "title": "Dla trenerów", "description": "Lista obecności i szybki kontakt z rodzicem — wszystko z telefonu.", "icon": "trainer" },
+        { "title": "Dla rodziców", "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.", "icon": "parent" }
       ]
     },
     "how_to_start": {
       "title": "Jak zacząć?",
-      "subtitle": "Prosty proces wdrożenia - robimy wszystko za Ciebie",
+      "subtitle": "Prosty proces wdrożenia — robimy wszystko za Ciebie",
       "steps": [
-        {
-          "step": "1",
-          "title": "Umów się na bezpłatną prezentację online",
-          "description": "15 min"
-        },
-        {
-          "step": "2", 
-          "title": "Wgrywamy dane i konfigurujemy Twoją akademię",
-          "description": "my robimy to za Ciebie"
-        },
-        {
-          "step": "3",
-          "title": "Startujesz z gotowym systemem i aplikacją dla rodziców",
-          "description": "gotowe do użycia"
-        }
+        { "step": "1", "title": "Umów się na bezpłatną prezentację online", "description": "15 min" },
+        { "step": "2", "title": "Wgrywamy dane i konfigurujemy Twoją akademię", "description": "my robimy to za Ciebie" },
+        { "step": "3", "title": "Startujesz z gotowym systemem i aplikacją dla rodziców", "description": "gotowe do użycia" }
       ]
     },
     "bonus": {
       "title": "BONUS na start",
       "description": "Pierwsze 2 miesiące za 0 zł, pełna funkcjonalność",
-      "subtitle": "Brak opłat za wdrożenie – my robimy wszystko za Ciebie"
+      "subtitle": "Brak opłat za wdrożenie — my robimy wszystko za Ciebie"
     },
     "contact_section": {
       "title": "Umów prezentację teraz",
-      "description": "Porozmawiaj z naszym doradcą i zobacz jak Sportigio może pomóc Twojej akademii",
+      "description": "Porozmawiaj z naszym doradcą i zobacz, jak Sportigio może pomóc Twojej akademii",
       "cta_primary": "Umów rozmowę z doradcą",
-      "contact_info": {
-        "email": "kontakt@sportigio.com",
-        "phone": "+48 600 000 000"
-      }
+      "contact_info": { "email": "kontakt@sportigio.com", "phone": "+48 600 000 000" }
     },
     "social_proof": {
       "title": "Dołącz do nowoczesnych akademii",
       "description": "Już ponad 60 klubów i akademii korzysta ze Sportigio.",
       "subtitle": "Dołącz do nich i zacznij zarządzać mądrzej, prościej i szybciej."
     }
+  },
+  "footer": {
+    "company_blurb": "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze.",
+    "newsletter": {
+      "title": "Zostań na bieżąco",
+      "desc": "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi.",
+      "placeholder": "Twój adres e‑mail",
+      "cta": "Zapisz się"
+    },
+    "legal": {
+      "privacy": "Polityka prywatności",
+      "terms": "Regulamin",
+      "cookies": "Pliki cookie",
+      "rodo": "RODO"
+    }
   }
-} 
+}
+

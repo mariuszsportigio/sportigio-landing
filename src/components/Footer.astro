@@ -1,8 +1,32 @@
+---
+import {
+  type Language,
+  defaultLanguage,
+  createTranslator,
+  getTranslations,
+} from "../i18n";
+
+export interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+const t = createTranslator(lang);
+
+type MegaItem = { label: string; href: string; description?: string };
+type MegaGroup = { title: string; items: MegaItem[] };
+
+const raw = getTranslations(lang) as any;
+const productGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.product?.groups || []) as MegaGroup[];
+const kitchenGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.kitchen?.groups || []) as MegaGroup[];
+const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.groups || []) as MegaGroup[];
+---
+
 <footer class="bg-gray-900 text-white">
   <div class="max-w-5xl mx-auto px-6">
     <!-- Main Footer Content -->
     <div class="py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
         <!-- Company Info -->
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-2 mb-4">
@@ -10,8 +34,9 @@
           </div>
           
           <p class="text-gray-400 mb-6 leading-relaxed max-w-md">
-            Platforma zarządzania klubami sportowymi nowej generacji. 
-            Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze.
+            {t("footer.company_blurb") || (lang === "pl"
+              ? "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze."
+              : "Next‑generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.")}
           </p>
           
           <!-- Social Media: X, Instagram, Facebook, LinkedIn -->
@@ -40,40 +65,84 @@
           </div>
         </div>
 
-        <!-- Product Links -->
+        <!-- Product Links (from Navbar mega menu) -->
         <div>
-          <h3 class="text-lg font-semibold mb-6">Produkt</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Funkcje</a></li>
-            <li><a href="/academy" class="text-gray-400 hover:text-white transition-colors duration-200">Dla Akademii</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Cennik</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Integracje</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">API</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Bezpieczeństwo</a></li>
-          </ul>
+          <h3 class="text-lg font-semibold mb-4">{t("navigation.product") || (lang === "pl" ? "Produkt" : "Product")}</h3>
+          {productGroups && productGroups.length > 0 ? (
+            <div class="space-y-5">
+              {productGroups.map((group) => (
+                <div>
+                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
+                  <ul class="space-y-2">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ul class="space-y-3">
+              <li><a href="/pricing" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")}</a></li>
+              <li><a href="/blog" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.blog") || "Blog"}</a></li>
+            </ul>
+          )}
         </div>
 
-        <!-- Resources Links -->
+        <!-- Solutions Links (from Navbar mega menu: kitchen) -->
         <div>
-          <h3 class="text-lg font-semibold mb-6">Zasoby</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Blog</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Baza wiedzy</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Webinary</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Case studies</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Szablony</a></li>
-          </ul>
+          <h3 class="text-lg font-semibold mb-4">{t("navigation.solutions") || (lang === "pl" ? "Rozwiązania" : "Solutions")}</h3>
+          {kitchenGroups && kitchenGroups.length > 0 ? (
+            <div class="space-y-5">
+              {kitchenGroups.map((group) => (
+                <div>
+                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
+                  <ul class="space-y-2">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
 
-        <!-- Company Links -->
+        <!-- Resources Links (from Navbar mega menu) -->
         <div>
-          <h3 class="text-lg font-semibold mb-6">Firma</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">O nas</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Kariera</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Kontakt</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Wsparcie</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Partnerzy</a></li>
+          <h3 class="text-lg font-semibold mb-4">{t("navigation.resources") || (lang === "pl" ? "Materiały" : "Resources")}</h3>
+          {resourcesGroups && resourcesGroups.length > 0 ? (
+            <div class="space-y-5">
+              {resourcesGroups.map((group) => (
+                <div>
+                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
+                  <ul class="space-y-2">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        <!-- Quick Nav Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">{t("navigation.menu") || (lang === "pl" ? "Nawigacja" : "Navigation")}</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="/plan-dedykowany" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.custom_plan") || (lang === "pl" ? "Plan dedykowany" : "Custom plan")}</a>
+            </li>
+            <li>
+              <a href="/pricing" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")}</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -82,17 +151,19 @@
       <div class="mt-16 pt-16 border-t border-gray-800">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-2xl font-bold font-poppins mb-4">Zostań na bieżąco</h3>
+            <h3 class="text-2xl font-bold font-poppins mb-4">{t("footer.newsletter.title") || (lang === "pl" ? "Zostań na bieżąco" : "Stay up to date")}</h3>
             <p class="text-gray-400">
-              Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi.
+              {t("footer.newsletter.desc") || (lang === "pl"
+                ? "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi."
+                : "Get the latest feature updates, tips and articles about sports club management.")}
             </p>
           </div>
           
           <div class="flex flex-col sm:flex-row gap-4">
-            <input type="email" placeholder="Twój adres email" class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200">
+            <input type="email" placeholder={t("footer.newsletter.placeholder") || (lang === "pl" ? "Twój adres e‑mail" : "Your email address")} class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200">
             
             <button class="bg-secondary px-6 py-3 text-primary font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg">
-              Zapisz się
+              {t("footer.newsletter.cta") || (lang === "pl" ? "Zapisz się" : "Subscribe")}
             </button>
           </div>
         </div>
@@ -109,10 +180,10 @@
         </div>
         
         <div class="flex flex-wrap gap-6 text-sm">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Polityka prywatności</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Regulamin</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Pliki cookie</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">RODO</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.privacy") || (lang === "pl" ? "Polityka prywatności" : "Privacy Policy")}</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.terms") || (lang === "pl" ? "Regulamin" : "Terms")}</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.cookies") || (lang === "pl" ? "Pliki cookie" : "Cookies")}</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.rodo") || (lang === "pl" ? "RODO" : "GDPR")}</a>
         </div>
       </div>
     </div>
