@@ -117,4 +117,35 @@
       </div>
     </div>
   </div>
+  
 </footer> 
+
+<script is:inline>
+  (() => {
+    const url = 'https://dfdu1vke3eg77.cloudfront.net/spaces/95/uploads/HzkZ1wbPB2KpSpmj37Y3NzjXR5jP7xirGRsz2lpN.pdf';
+    const run = () => {
+      try {
+        const anchors = Array.from(document.querySelectorAll('footer a'));
+        const findPrivacy = (a) => {
+          const txt = (a.textContent || '').toLowerCase();
+          return txt.includes('polityka') && txt.includes('prywatno');
+        };
+        const privacy = anchors.find(findPrivacy);
+        if (privacy) {
+          privacy.setAttribute('href', url);
+          privacy.setAttribute('target', '_blank');
+          privacy.setAttribute('rel', 'noopener noreferrer');
+          privacy.addEventListener('click', (e) => {
+            // Fallback in case some global handler prevents default
+            if (!privacy.getAttribute('href') || privacy.getAttribute('href') === '#') {
+              e.preventDefault();
+              window.open(url, '_blank', 'noopener');
+            }
+          });
+        }
+      } catch {}
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+    else run();
+  })();
+</script>
