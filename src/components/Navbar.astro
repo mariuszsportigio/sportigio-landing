@@ -11,7 +11,7 @@ const { activePage, lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
 
 // Types and i18n for per-item mega menus
-type MegaItem = { label: string; href: string; description?: string };
+type MegaItem = { label: string; href: string; description?: string; icon?: string };
 type MegaGroup = { title: string; items: MegaItem[] };
 
 const i18nMegaKitchen = ((): MegaGroup[] => {
@@ -37,6 +37,28 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
     }
   ];
 })();
+
+// Map discipline names to Material Symbols icons (per language)
+const disciplineTitles = new Set(['Dyscyplina', 'Discipline', 'Disciplina', 'Disziplin']);
+const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+const getDisciplineIcon = (label: string): string | undefined => {
+  const n = normalize(label);
+  if (n.includes('futsal')) return 'stadium';
+  if (n.includes('football') || n.includes('futbol') || n.includes('fútbol') || n.includes('pilka') || n.includes('piłka') || n.includes('fussball') || n.includes('fußball')) return 'sports_soccer';
+  if (n.includes('basket') || n.includes('koszy') || n.includes('baloncesto')) return 'sports_basketball';
+  if (n.includes('vole') || n.includes('volley') || n.includes('siatk')) return 'sports_volleyball';
+  if (n.includes('hockey') || n.includes('hokej')) return 'sports_hockey';
+  if (n.includes('other') || n.includes('inne') || n.includes('otros') || n.includes('andere')) return 'sports';
+  return undefined;
+};
+
+const kitchenGroups = i18nMegaKitchen.map((group) => {
+  if (!disciplineTitles.has(group.title)) return group;
+  return {
+    ...group,
+    items: group.items.map((it) => ({ ...it, icon: getDisciplineIcon(it.label) }))
+  };
+});
 ---
 
 <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50">
@@ -153,17 +175,22 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
           >
             <div class="h-1 w-full sportigio-gradient"></div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-              {i18nMegaKitchen.map((group: { title: string; items: { label: string; href: string; description?: string }[] }) => (
+              {kitchenGroups.map((group: { title: string; items: { label: string; href: string; description?: string; icon?: string }[] }) => (
                 <div>
                   <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{group.title}</h4>
                   <ul class="space-y-2">
-                    {group.items.map((item: { label: string; href: string; description?: string }) => (
+                    {group.items.map((item: { label: string; href: string; description?: string; icon?: string }) => (
                       <li>
-                        <a href={item.href} class="block rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors" role="menuitem">
-                          <div class="text-sm font-semibold text-gray-900">{item.label}</div>
-                          {item.description ? (
-                            <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                        <a href={item.href} class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900" role="menuitem">
+                          {item.icon ? (
+                            <span class="material-symbols-rounded text-[20px] leading-5" aria-hidden="true">{item.icon}</span>
                           ) : null}
+                          <div>
+                            <div class="text-sm font-semibold">{item.label}</div>
+                            {item.description ? (
+                              <div class="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                            ) : null}
+                          </div>
                         </a>
                       </li>
                     ))}
@@ -401,15 +428,20 @@ const i18nMegaKitchen = ((): MegaGroup[] => {
           </button>
           <div id="mobile-acc-kitchen" class="hidden mt-2">
             <div class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden">
-              {i18nMegaKitchen.map((group: { title: string; items: { label: string; href: string; description?: string }[] }) => (
+              {kitchenGroups.map((group: { title: string; items: { label: string; href: string; description?: string; icon?: string }[] }) => (
                 <div class="px-4 py-3">
                   <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">{group.title}</div>
                   <ul class="space-y-1">
-                    {group.items.map((item: { label: string; href: string; description?: string }) => (
+                    {group.items.map((item: { label: string; href: string; description?: string; icon?: string }) => (
                       <li>
-                        <a href={item.href} class="block px-2 py-2 rounded-lg hover:bg-gray-50">
-                          <div class="text-sm font-medium text-gray-900">{item.label}</div>
-                          {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
+                        <a href={item.href} class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900">
+                          {item.icon ? (
+                            <span class="material-symbols-rounded text-[20px] leading-5" aria-hidden="true">{item.icon}</span>
+                          ) : null}
+                          <div>
+                            <div class="text-sm font-medium">{item.label}</div>
+                            {item.description ? (<div class="text-xs text-gray-600">{item.description}</div>) : null}
+                          </div>
                         </a>
                       </li>
                     ))}
