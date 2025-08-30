@@ -8,12 +8,147 @@
     "read_more": "Leer más"
   },
   "navigation": {
+    "home": "Inicio",
+    "product": "Producto",
+    "solutions": "Soluciones",
+    "resources": "Recursos",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funciones",
     "pricing": "Precios", 
     "about": "Acerca de",
     "contact": "Contacto",
     "login": "Iniciar sesión",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menú",
+    "open_menu": "Abrir menú",
+    "custom_plan": "Plan dedicado",
+    "mega": {
+      "groups": [
+        {
+          "title": "Producto",
+          "items": [
+            { "label": "Precios", "href": "/pricing", "description": "Planes simples y transparentes" },
+            { "label": "Blog", "href": "/blog", "description": "Ideas y novedades" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Componentes y estilos" }
+          ]
+        },
+        {
+          "title": "Navegar",
+          "items": [
+            { "label": "Inicio", "href": "/", "description": "Comienzo" }
+          ]
+        }
+      ],
+      "menus": {
+        "product": {
+          "groups": [
+            {
+              "title": "Plataforma",
+              "items": [
+                { "label": "Sportigio", "href": "#", "description": "" },
+                { "label": "Sitio web", "href": "#", "description": "" },
+                { "label": "Entradas online", "href": "#", "description": "" },
+                { "label": "Tienda", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Capacidades",
+              "items": [
+                { "label": "Monetización", "href": "#", "description": "" },
+                { "label": "Pronóstico y Quiz", "href": "#", "description": "" },
+                { "label": "Resultados automáticos", "href": "#", "description": "" },
+                { "label": "Anuncios y patrocinadores", "href": "#", "description": "" },
+                { "label": "Mailing y notificaciones", "href": "#", "description": "" },
+                { "label": "Base de fans", "href": "#", "description": "" },
+                { "label": "Asistente IA", "href": "#", "description": "" },
+                { "label": "Todas las funciones", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Cómo empezar",
+              "items": [
+                { "label": "Déjalo en nuestras manos", "href": "#", "description": "" },
+                { "label": "Hazlo tú mismo", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Para quién",
+              "items": [
+                { "label": "Dirección", "href": "#", "description": "" },
+                { "label": "Marketing", "href": "#", "description": "" },
+                { "label": "Patrocinador", "href": "#", "description": "" },
+                { "label": "Aficionado", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Disciplina",
+              "items": [
+                { "label": "Fútbol", "href": "#", "description": "" },
+                { "label": "Baloncesto", "href": "#", "description": "" },
+                { "label": "Voleibol", "href": "#", "description": "" },
+                { "label": "Hockey", "href": "#", "description": "" },
+                { "label": "Futsal", "href": "#", "description": "" },
+                { "label": "Otros deportes", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Casos de uso",
+              "items": [
+                { "label": "Venta de entradas y abonos", "href": "#", "description": "" },
+                { "label": "Merch sin costes", "href": "#", "description": "" },
+                { "label": "Paquetes de apoyo", "href": "#", "description": "" },
+                { "label": "Engagement de fans", "href": "#", "description": "" },
+                { "label": "Historias de clientes", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Conócenos",
+              "items": [
+                { "label": "Acerca de", "href": "#", "description": "" },
+                { "label": "Novedades", "href": "#", "description": "" },
+                { "label": "Reservar demo", "href": "#", "description": "" },
+                { "label": "Blog", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Soporte",
+              "items": [
+                { "label": "Base de conocimiento", "href": "#", "description": "" },
+                { "label": "Webinars", "href": "#", "description": "" },
+                { "label": "Tutoriales en video", "href": "#", "description": "" },
+                { "label": "API", "href": "#", "description": "" },
+                { "label": "Contacto", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Servicios",
+              "items": [
+                { "label": "Implementación", "href": "#", "description": "" },
+                { "label": "Migración de datos", "href": "#", "description": "" },
+                { "label": "Formación", "href": "#", "description": "" },
+                { "label": "Externalización", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Historias de clientes",
+              "items": [
+                { "label": "Noticias", "href": "#", "description": "" },
+                { "label": "Ver todos", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Nueva generación de gestión de club",

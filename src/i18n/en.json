@@ -5,15 +5,159 @@
     "contact_us": "Contact us",
     "learn_more": "Learn more",
     "get_started": "Get started",
-    "read_more": "Read more"
+    "read_more": "Read more",
+    "under_construction": {
+      "title": "Page under construction – check back soon",
+      "desc": "We're working on the Sportigio platform content: modules, integrations and case studies.",
+      "cta_demo": "Book a Demo",
+      "cta_blog": "Blog",
+      "meta_updated": "Last updated",
+      "meta_plan": "Publishing plan: product sections and FAQ",
+      "meta_support": "Questions? Write to: kontakt@sportigio.com"
+    }
   },
   "navigation": {
+    "home": "Home",
+    "product": "Product",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Features",
     "pricing": "Pricing", 
     "about": "About",
     "contact": "Contact",
     "login": "Login",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menu",
+    "open_menu": "Open menu",
+    "custom_plan": "Custom plan",
+    "mega": {
+      "groups": [
+        {
+          "title": "Product",
+          "items": [
+            { "label": "Pricing", "href": "/pricing", "description": "Simple, transparent plans" },
+            { "label": "Blog", "href": "/blog", "description": "Insights and updates" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Components and styles" }
+          ]
+        },
+        {
+          "title": "Navigate",
+          "items": [
+            { "label": "Home", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "product": {
+          "groups": [
+            {
+              "title": "Platform",
+              "items": [
+                { "label": "Sportigio", "href": "/platforma", "description": "" },
+                { "label": "Website", "href": "/strona", "description": "" },
+                { "label": "Online Tickets", "href": "/bilety-online", "description": "" },
+                { "label": "Shop", "href": "/sklep", "description": "" }
+              ]
+            },
+            {
+              "title": "Capabilities",
+              "items": [
+                { "label": "Monetization", "href": "/zarabianie", "description": "" },
+                { "label": "Predictor & Quiz", "href": "/typer-quiz", "description": "" },
+                { "label": "Automatic Results", "href": "/automatyczne-wyniki", "description": "" },
+                { "label": "Ads & Sponsors", "href": "/reklamy-sponsorzy", "description": "" },
+                { "label": "Mailing & Notifications", "href": "/mailing-powiadomienia", "description": "" },
+                { "label": "Fans Database", "href": "/baza-fanow", "description": "" },
+                { "label": "AI Assistant", "href": "/asystent-ai", "description": "" },
+                { "label": "All Features", "href": "/wszystkie-funkcje", "description": "" }
+              ]
+            },
+            {
+              "title": "Getting Started",
+              "items": [
+                { "label": "Let Us Do It", "href": "/zlec-to-nam", "description": "" },
+                { "label": "Do It Yourself", "href": "/zrob-to-sam", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "For whom",
+              "items": [
+                { "label": "Management", "href": "/zarzad", "description": "" },
+                { "label": "Marketing", "href": "/marketing", "description": "" },
+                { "label": "Sponsor", "href": "/sponsor", "description": "" },
+                { "label": "Fan", "href": "/kibic", "description": "" }
+              ]
+            },
+            {
+              "title": "Discipline",
+              "items": [
+                { "label": "Football", "href": "/pilka-nozna", "description": "" },
+                { "label": "Basketball", "href": "/koszykowka", "description": "" },
+                { "label": "Volleyball", "href": "/siatkowka", "description": "" },
+                { "label": "Hockey", "href": "/hokej", "description": "" },
+                { "label": "Futsal", "href": "/futsal", "description": "" },
+                { "label": "Other sports", "href": "/inne-sporty", "description": "" }
+              ]
+            },
+            {
+              "title": "Use cases",
+              "items": [
+                { "label": "Ticket and season pass sales", "href": "/bilety-karnety", "description": "" },
+                { "label": "Merch at no cost", "href": "/merch", "description": "" },
+                { "label": "Support packages", "href": "/pakiety-wsparcia", "description": "" },
+                { "label": "Fan engagement", "href": "/fan-engagement", "description": "" },
+                { "label": "Customer stories", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Get to know us",
+              "items": [
+                { "label": "About", "href": "/o-firmie", "description": "" },
+                { "label": "What’s new", "href": "/co-nowego", "description": "" },
+                { "label": "Book a Demo", "href": "/demo", "description": "" },
+                { "label": "Blog", "href": "/blog", "description": "" }
+              ]
+            },
+            {
+              "title": "Support",
+              "items": [
+                { "label": "Knowledge base", "href": "/baza-wiedzy", "description": "" },
+                { "label": "Webinars", "href": "/webinary", "description": "" },
+                { "label": "Video tutorials", "href": "/instrukcje-wideo", "description": "" },
+                { "label": "API", "href": "/api", "description": "" },
+                { "label": "Contact", "href": "/kontakt", "description": "" }
+              ]
+            },
+            {
+              "title": "Services",
+              "items": [
+                { "label": "Implementation", "href": "/wdrozenie", "description": "" },
+                { "label": "Data migration", "href": "/migracja-danych", "description": "" },
+                { "label": "Training", "href": "/szkolenia", "description": "" },
+                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
+              ]
+            },
+            {
+              "title": "Customer stories",
+              "items": [
+                { "label": "News", "href": "/news", "description": "" },
+                { "label": "See all", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Next generation club management",

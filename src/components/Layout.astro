@@ -14,6 +14,8 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Material Symbols (Google Fonts) for icons used in menus -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
@@ -37,7 +39,7 @@ const { title } = Astro.props;
 
       // Observe all elements with scroll-animate class
       document.addEventListener('DOMContentLoaded', () => {
-        const animatedElements = document.querySelectorAll('.scroll-animate');
+        const animatedElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
         animatedElements.forEach(el => observer.observe(el));
 
         // Add staggered animation delays
@@ -46,19 +48,19 @@ const { title } = Astro.props;
         });
 
         // Smooth scrolling for navigation links
-        const navLinks = document.querySelectorAll('a[href^="#"]');
-        navLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
+        const navLinks = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+        navLinks.forEach((link) => {
+          link.addEventListener('click', (e: MouseEvent) => {
             e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
+            const href = link.getAttribute('href');
+            if (!href) return;
+            const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
             
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
+            targetElement?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
           });
         });
 
@@ -67,7 +69,7 @@ const { title } = Astro.props;
         
         function updateParallax() {
           const scrolled = window.pageYOffset;
-          const parallaxElements = document.querySelectorAll('.float-animation, .float-animation-reverse, .float-animation-delayed');
+          const parallaxElements = document.querySelectorAll<HTMLElement>('.float-animation, .float-animation-reverse, .float-animation-delayed');
           
           parallaxElements.forEach((el, index) => {
             const speed = 0.5 + (index * 0.1);
@@ -88,9 +90,9 @@ const { title } = Astro.props;
         window.addEventListener('scroll', requestTick);
 
         // 3D tilt effect for cards
-        const cards = document.querySelectorAll('.card-3d');
+        const cards = document.querySelectorAll<HTMLElement>('.card-3d');
         cards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
+          card.addEventListener('mousemove', (e: MouseEvent) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -115,18 +117,18 @@ const { title } = Astro.props;
         });
 
         // Animated counter for stats
-        const animateCounter = (element, target, duration = 2000) => {
+        const animateCounter = (element: HTMLElement, target: number, duration: number = 2000) => {
           let start = 0;
           const increment = target / (duration / 16);
           
           const timer = setInterval(() => {
             start += increment;
             if (start >= target) {
-              element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+              element.textContent = String(target) + (element.textContent?.includes('+') ? '+' : '') + (element.textContent?.includes('%') ? '%' : '');
               clearInterval(timer);
             } else {
               const value = Math.floor(start);
-              element.textContent = value + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+              element.textContent = String(value) + (element.textContent?.includes('+') ? '+' : '') + (element.textContent?.includes('%') ? '%' : '');
             }
           }, 16);
         };
@@ -135,27 +137,27 @@ const { title } = Astro.props;
         const statsObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              const text = entry.target.textContent;
-              const number = parseInt(text.replace(/[^0-9]/g, ''));
+              const text = entry.target.textContent ?? '';
+              const number = parseInt(text.replace(/[^0-9]/g, ''), 10);
               if (number && !entry.target.classList.contains('animated')) {
                 entry.target.classList.add('animated');
-                animateCounter(entry.target, number);
+                animateCounter(entry.target as HTMLElement, number);
               }
             }
           });
         });
 
-        const statNumbers = document.querySelectorAll('.text-gradient, [class*="text-4xl"], [class*="text-5xl"]');
+        const statNumbers = document.querySelectorAll<HTMLElement>('.text-gradient, [class*="text-4xl"], [class*="text-5xl"]');
         statNumbers.forEach(stat => {
-          if (stat.textContent.match(/\d/)) {
+          if (stat.textContent?.match(/\d/)) {
             statsObserver.observe(stat);
           }
         });
 
         // Magnetic effect for buttons
-        const magneticButtons = document.querySelectorAll('.btn-glow');
+        const magneticButtons = document.querySelectorAll<HTMLElement>('.btn-glow');
         magneticButtons.forEach(button => {
-          button.addEventListener('mousemove', (e) => {
+          button.addEventListener('mousemove', (e: MouseEvent) => {
             const rect = button.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
@@ -176,7 +178,7 @@ const { title } = Astro.props;
           particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
           particle.style.animationDelay = Math.random() * 5 + 's';
           
-          const particlesContainer = document.querySelector('.particles-bg');
+          const particlesContainer = document.querySelector<HTMLElement>('.particles-bg');
           if (particlesContainer) {
             particlesContainer.appendChild(particle);
             
