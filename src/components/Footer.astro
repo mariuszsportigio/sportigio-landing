@@ -182,7 +182,7 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.g
         <div class="flex flex-wrap gap-6 text-sm">
           <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.privacy") || (lang === "pl" ? "Polityka prywatności" : "Privacy Policy")}</a>
           <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.terms") || (lang === "pl" ? "Regulamin" : "Terms")}</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.cookies") || (lang === "pl" ? "Pliki cookie" : "Cookies")}</a>
+          <a href="#" data-cc-open class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.cookies") || (lang === "pl" ? "Pliki cookie" : "Cookies")}</a>
           <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.rodo") || (lang === "pl" ? "RODO" : "GDPR")}</a>
         </div>
       </div>
@@ -211,6 +211,16 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.g
             if (!privacy.getAttribute('href') || privacy.getAttribute('href') === '#') {
               e.preventDefault();
               window.open(url, '_blank', 'noopener');
+            }
+          });
+        }
+        // Wire Cookies link to open CookieConsent preferences
+        const ccLink = document.querySelector('footer a[data-cc-open]');
+        if (ccLink) {
+          ccLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window.CookieConsent && typeof window.CookieConsent.showPreferences === 'function') {
+              window.CookieConsent.showPreferences();
             }
           });
         }

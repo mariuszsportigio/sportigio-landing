@@ -168,5 +168,41 @@
     "related_articles": "Artículos relacionados",
     "published_on": "Publicado el",
     "share_article": "Compartir artículo"
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "Usamos cookies",
+      "description": "Utilizamos cookies esenciales para que este sitio funcione y cookies opcionales para analítica (Google Analytics, Microsoft Clarity) y marketing (Meta). Puedes cambiar tus preferencias en cualquier momento.",
+      "acceptAllBtn": "Aceptar todo",
+      "acceptNecessaryBtn": "Rechazar opcionales",
+      "showPreferencesBtn": "Preferencias"
+    },
+    "preferencesModal": {
+      "title": "Configuración de cookies",
+      "acceptAllBtn": "Aceptar todo",
+      "acceptNecessaryBtn": "Sólo esenciales",
+      "savePreferencesBtn": "Guardar configuración",
+      "sections": [
+        {
+          "title": "Uso de cookies",
+          "description": "Usamos cookies para proporcionar funcionalidades básicas y mejorar el rendimiento mediante analítica y marketing. Las cookies de analítica y marketing son opcionales."
+        },
+        {
+          "title": "Esenciales",
+          "description": "Estas cookies son necesarias para que el sitio funcione y no se pueden desactivar.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analítica (GA, Clarity)",
+          "description": "Nos ayudan a medir el tráfico y el comportamiento de los usuarios para mejorar el sitio (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketing (Meta)",
+          "description": "Se usan para personalizar anuncios y medir su eficacia (p.ej., Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
   }
-} 
+}

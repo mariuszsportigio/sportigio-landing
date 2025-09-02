@@ -168,5 +168,41 @@
     "related_articles": "Verwandte Artikel",
     "published_on": "Veröffentlicht am",
     "share_article": "Artikel teilen"
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "Wir verwenden Cookies",
+      "description": "Wir verwenden notwendige Cookies, damit die Website funktioniert, sowie optionale Cookies für Analysen (Google Analytics, Microsoft Clarity) und Marketing (Meta). Du kannst deine Einstellungen jederzeit ändern.",
+      "acceptAllBtn": "Alle akzeptieren",
+      "acceptNecessaryBtn": "Optionale ablehnen",
+      "showPreferencesBtn": "Einstellungen"
+    },
+    "preferencesModal": {
+      "title": "Cookie-Einstellungen",
+      "acceptAllBtn": "Alle akzeptieren",
+      "acceptNecessaryBtn": "Nur notwendige",
+      "savePreferencesBtn": "Einstellungen speichern",
+      "sections": [
+        {
+          "title": "Verwendung von Cookies",
+          "description": "Wir verwenden Cookies für grundlegende Funktionen der Website sowie zur Verbesserung der Leistung durch Analysen und Marketing. Analyse- und Marketing-Cookies sind optional."
+        },
+        {
+          "title": "Notwendig",
+          "description": "Diese Cookies sind für die Funktion der Website erforderlich und können nicht deaktiviert werden.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analytik (GA, Clarity)",
+          "description": "Hilft uns, Traffic und Nutzerverhalten zu messen, um die Website zu verbessern (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketing (Meta)",
+          "description": "Wird zur Personalisierung von Anzeigen und zur Messung ihrer Wirksamkeit verwendet (z. B. Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
   }
-} 
+}

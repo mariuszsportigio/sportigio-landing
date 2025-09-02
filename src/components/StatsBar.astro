@@ -53,7 +53,7 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
     </div>
 
     <!-- Club Logos Marquee -->
-    <div class="logo-marquee mb-8 opacity-80">
+    <div class="logo-marquee mb-8">
       <div
         class="marquee-track"
         style={`--marquee-duration: ${durationSeconds}s`}
@@ -240,22 +240,12 @@ durationSeconds = Math.max(16, Math.round(logos.length * 3.5));
     animation: marquee var(--marquee-duration, 30s) linear infinite;
   }
 
-  .logo-marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
   .logo-marquee img {
     height: 2.5rem; /* h-10 */
     width: auto;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.9;
-    transition: opacity 150ms ease-in-out;
-  }
-
-  .logo-marquee img:hover {
-    opacity: 1;
     filter: none;
+    opacity: 1;
   }
 
   @keyframes marquee {

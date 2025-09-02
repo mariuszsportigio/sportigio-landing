@@ -361,6 +361,41 @@
       "cookies": "Pliki cookie",
       "rodo": "RODO"
     }
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "Używamy plików cookie",
+      "description": "Korzystamy z niezbędnych plików cookie, aby strona działała poprawnie oraz opcjonalnych do analityki (Google Analytics, Microsoft Clarity) i marketingu (Meta). Możesz w każdej chwili zmienić swoje preferencje.",
+      "acceptAllBtn": "Akceptuj wszystkie",
+      "acceptNecessaryBtn": "Odrzuć opcjonalne",
+      "showPreferencesBtn": "Preferencje"
+    },
+    "preferencesModal": {
+      "title": "Ustawienia plików cookie",
+      "acceptAllBtn": "Akceptuj wszystkie",
+      "acceptNecessaryBtn": "Tylko niezbędne",
+      "savePreferencesBtn": "Zapisz ustawienia",
+      "sections": [
+        {
+          "title": "Korzystanie z plików cookie",
+          "description": "Używamy plików cookie, aby zapewnić podstawowe działanie serwisu oraz ulepszać jego działanie poprzez analizę i marketing. Zgody na analitykę i marketing są opcjonalne."
+        },
+        {
+          "title": "Niezbędne",
+          "description": "Te pliki cookie są wymagane do prawidłowego działania strony i nie mogą być wyłączone.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analityczne (GA, Clarity)",
+          "description": "Pozwalają mierzyć ruch i zachowanie użytkowników, aby ulepszać serwis (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketingowe (Meta)",
+          "description": "Służą do personalizacji reklam oraz pomiaru ich skuteczności (np. Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
   }
 }
-
