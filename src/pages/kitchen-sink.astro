@@ -1,9 +1,14 @@
 ---
 // Kitchen Sink - pełny dawny landing + proste reużywalne sekcje
-import LandingPage from '../components/LandingPage.astro';
-import { defaultLanguage } from '../i18n';
+import LandingPage from "../components/LandingPage.astro";
+import { defaultLanguage } from "../i18n";
 
 const lang = defaultLanguage;
 ---
 
-<LandingPage lang={lang} showSimpleFeatures={true} matchHeroWidth={true} />
+<LandingPage
+    lang={lang}
+    showSimpleFeatures={true}
+    matchHeroWidth={true}
+    showTwoColumnExample={true}
+/>

@@ -1,0 +1,44 @@
+---
+export interface Props {
+    title: string;
+    imageSrc: string;
+    imageAlt?: string;
+    reverse?: boolean;
+}
+
+const {
+    title,
+    imageSrc,
+    imageAlt = "",
+    reverse = false,
+} = Astro.props as Props;
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div class={reverse ? "order-2 md:order-2" : "order-1 md:order-1"}>
+                <div class="relative">
+                    <img
+                        src={imageSrc}
+                        alt={imageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-auto rounded-xl shadow-lg object-cover"
+                    />
+                </div>
+            </div>
+
+            <div class={reverse ? "order-1 md:order-1" : "order-2 md:order-2"}>
+                <h2
+                    class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-4 font-poppins"
+                >
+                    {title}
+                </h2>
+                <div class="text-base text-gray-600 leading-relaxed">
+                    <slot />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

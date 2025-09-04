@@ -15,18 +15,21 @@ import FAQ from "./FAQ.astro";
 import CTASection from "./CTASection.astro";
 import Footer from "./Footer.astro";
 import { type Language, defaultLanguage } from "../i18n";
+import TwoColumnMedia from "./TwoColumnMedia.astro";
 import SimpleFeature from "./SimpleFeature.astro";
 
 interface Props {
   lang?: Language;
   showSimpleFeatures?: boolean;
   matchHeroWidth?: boolean;
+  showTwoColumnExample?: boolean;
 }
 
 const {
   lang = defaultLanguage,
   showSimpleFeatures = false,
   matchHeroWidth = false,
+  showTwoColumnExample = false,
 } = Astro.props as Props;
 ---
 
@@ -92,6 +95,27 @@ const {
       <section id="funkcje">
         <FeatureSection />
       </section>
+
+      {
+        showTwoColumnExample ? (
+          <section id="two-column-example">
+            <TwoColumnMedia
+              title="Zarządzaj wszystkim z jednego miejsca"
+              imageSrc="/screens/analytics_01.png"
+              imageAlt="Sportigio - panel analiz"
+            >
+              <p>
+                Prosty układ dwóch kolumn: po lewej obraz, po prawej nagłówek i
+                treść. Idealny do krótkich sekcji z ilustracją funkcji.
+              </p>
+              <p class="mt-4">
+                Komponent wspiera <code>reverse</code> dla zamiany stron i w
+                pełni korzysta z klas Tailwind oraz systemu typografii.
+              </p>
+            </TwoColumnMedia>
+          </section>
+        ) : null
+      }
 
       <!-- Before/After Comparison -->
       <section id="porownanie">
