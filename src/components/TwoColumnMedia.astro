@@ -4,6 +4,11 @@ export interface Props {
     imageSrc: string;
     imageAlt?: string;
     reverse?: boolean;
+    bullets?: string[]; // up to 3 bullet points under the text
+    ctaVariant?: "button" | "link";
+    ctaText?: string;
+    ctaHref?: string;
+    tallOnDesktop?: boolean; // enforce lg:min-h-[90vh]
 }
 
 const {
@@ -11,10 +16,17 @@ const {
     imageSrc,
     imageAlt = "",
     reverse = false,
+    bullets = [],
+    ctaVariant = "link",
+    ctaText = "",
+    ctaHref = "#",
+    tallOnDesktop = false,
 } = Astro.props as Props;
 ---
 
-<section class="py-16 bg-white">
+<section
+    class={`py-16 bg-white ${tallOnDesktop ? "lg:min-h-[90vh] flex items-center" : ""}`}
+>
     <div class="max-w-6xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-10 items-center">
             <div class={reverse ? "order-2 md:order-2" : "order-1 md:order-1"}>
@@ -38,6 +50,38 @@ const {
                 <div class="text-base text-gray-600 leading-relaxed">
                     <slot />
                 </div>
+                {
+                    bullets && bullets.length ? (
+                        <ul class="mt-5 space-y-2 text-gray-700 text-sm">
+                            {bullets.slice(0, 3).map((item) => (
+                                <li class="flex items-start">
+                                    <span class="mt-1 mr-3 inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#0B2360]" />
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : null
+                }
+
+                {
+                    ctaText ? (
+                        ctaVariant === "button" ? (
+                            <a
+                                href={ctaHref}
+                                class="inline-flex mt-6 items-center px-5 py-3 rounded-lg btn-gradient-primary text-white font-medium shadow-md hover:shadow-lg transition"
+                            >
+                                {ctaText}
+                            </a>
+                        ) : (
+                            <a
+                                href={ctaHref}
+                                class="inline-flex mt-6 items-center text-[#0B2360] hover:text-[#081A4A] font-semibold underline"
+                            >
+                                {ctaText}
+                            </a>
+                        )
+                    ) : null
+                }
             </div>
         </div>
     </div>
