@@ -10,6 +10,8 @@
   --sportigio-gradient-3: linear-gradient(120deg, #0B2360 10%, #00052E 70%, #01DFEC 100%);
   --sportigio-gradient-4: linear-gradient(135deg, #A91DC8 0%, #0B2360 60%, #00052E 100%);
   --sportigio-gradient-5: linear-gradient(135deg, #0B2360 0%, #00052E 100%);
+  /* Icon-focused variant with emphasized corner colors (magenta + cyan) */
+  --sportigio-gradient-icon: linear-gradient(55deg, #A91DC8 0%, #A91DC8 14%, #0B2360 30%, #00052E 52%, #01DFEC 86%, #01DFEC 100%);
 }
 
 /* Primary gradient combinations using brand colors */
@@ -146,6 +148,11 @@
 
 .icon-gradient-tertiary {
   background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Stronger primary gradient just for icons (more magenta and cyan visibility) */
+.icon-gradient-primary-strong {
+  background: var(--sportigio-gradient-icon);
 }
 
 /* Border gradients */
