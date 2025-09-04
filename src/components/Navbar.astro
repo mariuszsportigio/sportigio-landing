@@ -368,6 +368,27 @@ const productGroups = i18nMegaProduct.map((group) => ({
   })),
 }));
 
+// Helper: mark AI Assistant as coming soon
+const isAiAssistant = (label: string): boolean => {
+  const n = normalize(label);
+  if (n.includes("asystent ai")) return true; // PL
+  if (
+    (n.includes("assistant") ||
+      n.includes("assistent") ||
+      n.includes("asistente")) &&
+    (n.includes("ai") || n.includes("ki"))
+  )
+    return true; // EN/DE/ES
+  return false;
+};
+const badgeSoon = "Wkrótce";
+
+// Temporarily hide AI Assistant item from the Product mega menu
+const productGroupsFiltered = productGroups.map((group) => ({
+  ...group,
+  items: group.items.filter((it) => !isAiAssistant(it.label)),
+}));
+
 // Resources: i18n + icons
 const i18nMegaResources = ((): MegaGroup[] => {
   try {
@@ -544,7 +565,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
             <div class="h-1 w-full sportigio-gradient"></div>
             <div class="grid grid-cols-3 gap-6 p-6">
               {
-                productGroups.map(
+                productGroupsFiltered.map(
                   (group: {
                     title: string;
                     items: {
@@ -590,8 +611,15 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
                                   </span>
                                 ) : null}
                                 <div>
-                                  <div class="text-sm font-semibold">
-                                    {item.label}
+                                  <div class="flex items-center gap-2">
+                                    <div class="text-sm font-semibold">
+                                      {item.label}
+                                    </div>
+                                    {isAiAssistant(item.label) ? (
+                                      <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-600 border border-gray-200">
+                                        {badgeSoon}
+                                      </span>
+                                    ) : null}
                                   </div>
                                   {item.description ? (
                                     <div class="text-xs text-gray-600 mt-0.5">
@@ -937,7 +965,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
               class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
             >
               {
-                productGroups.map(
+                productGroupsFiltered.map(
                   (group: {
                     title: string;
                     items: {

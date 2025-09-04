@@ -17,49 +17,108 @@ type MegaItem = { label: string; href: string; description?: string };
 type MegaGroup = { title: string; items: MegaItem[] };
 
 const raw = getTranslations(lang) as any;
-const productGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.product?.groups || []) as MegaGroup[];
-const kitchenGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.kitchen?.groups || []) as MegaGroup[];
-const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.groups || []) as MegaGroup[];
+const productGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.product
+  ?.groups || []) as MegaGroup[];
+const kitchenGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.kitchen
+  ?.groups || []) as MegaGroup[];
+const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
+  ?.groups || []) as MegaGroup[];
 ---
 
 <footer class="bg-gray-900 text-white">
   <div class="max-w-5xl mx-auto px-6">
     <!-- Main Footer Content -->
     <div class="py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         <!-- Company Info -->
-        <div class="lg:col-span-2">
+        <div class="col-span-2 lg:col-span-2">
           <div class="flex items-center space-x-2 mb-4">
-            <img src="/sportigio-logo-white.png" alt="Sportigio" class="h-8 w-auto" />
+            <img
+              src="/sportigio-logo-white.png"
+              alt="Sportigio"
+              class="h-8 w-auto"
+            />
           </div>
-          
+
           <p class="text-gray-400 mb-6 leading-relaxed max-w-md">
-            {t("footer.company_blurb") || (lang === "pl"
-              ? "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze."
-              : "Next‑generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.")}
+            {
+              t("footer.company_blurb") ||
+                (lang === "pl"
+                  ? "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze."
+                  : "Next‑generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.")
+            }
           </p>
-          
+
           <!-- Social Media: X, Instagram, Facebook, LinkedIn -->
           <div class="flex space-x-4">
             <!-- X (Twitter) using asset from /public, colorized to match (white) -->
-            <a href="https://x.com/sportigio" aria-label="Sportigio on X" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300">
-              <img src="/X-logo.png" alt="X" class="w-7 h-7 object-contain" loading="lazy" style="filter: brightness(0) invert(1);" />
+            <a
+              href="https://x.com/sportigio"
+              aria-label="Sportigio on X"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/X-logo.png"
+                alt="X"
+                class="w-7 h-7 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
 
             <!-- Instagram using asset from /public, colorized to match (white) -->
-            <a href="https://www.instagram.com/sportigio.polska/" aria-label="Sportigio on Instagram" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300">
-              <img src="/instagram-logo.png" alt="Instagram" class="w-7 h-7 object-contain" loading="lazy" style="filter: brightness(0) invert(1);" />
+            <a
+              href="https://www.instagram.com/sportigio.polska/"
+              aria-label="Sportigio on Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/instagram-logo.png"
+                alt="Instagram"
+                class="w-7 h-7 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
 
             <!-- Facebook using asset from /public, colorized to match (white) -->
-            <a href="https://www.facebook.com/sportigio.polska" aria-label="Sportigio on Facebook" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300">
-              <img src="/facebook-logo.png" alt="Facebook" class="w-6 h-6 object-contain" loading="lazy" style="filter: brightness(0) invert(1);" />
+            <a
+              href="https://www.facebook.com/sportigio.polska"
+              aria-label="Sportigio on Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/facebook-logo.png"
+                alt="Facebook"
+                class="w-6 h-6 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
 
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/company/sportigio/posts/?feedView=all" aria-label="Sportigio on LinkedIn" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            <a
+              href="https://www.linkedin.com/company/sportigio/posts/?feedView=all"
+              aria-label="Sportigio on LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                ></path>
               </svg>
             </a>
           </div>
@@ -67,81 +126,154 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.g
 
         <!-- Product Links (from Navbar mega menu) -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">{t("navigation.product") || (lang === "pl" ? "Produkt" : "Product")}</h3>
-          {productGroups && productGroups.length > 0 ? (
-            <div class="space-y-5">
-              {productGroups.map((group) => (
-                <div>
-                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
-                  <ul class="space-y-2">
-                    {group.items.map((item) => (
-                      <li>
-                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <ul class="space-y-3">
-              <li><a href="/pricing" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")}</a></li>
-              <li><a href="/blog" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.blog") || "Blog"}</a></li>
-            </ul>
-          )}
+          <h3 class="text-lg font-semibold mb-4">
+            {t("navigation.product") || (lang === "pl" ? "Produkt" : "Product")}
+          </h3>
+          {
+            productGroups && productGroups.length > 0 ? (
+              <div class="space-y-5">
+                {productGroups.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
+                      {group.title}
+                    </h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a
+                            href={item.href || "#"}
+                            class="text-gray-400 hover:text-white transition-colors duration-200"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="/pricing"
+                    class="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {t("navigation.pricing") ||
+                      (lang === "pl" ? "Cennik" : "Pricing")}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    class="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {t("navigation.blog") || "Blog"}
+                  </a>
+                </li>
+              </ul>
+            )
+          }
         </div>
 
         <!-- Solutions Links (from Navbar mega menu: kitchen) -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">{t("navigation.solutions") || (lang === "pl" ? "Rozwiązania" : "Solutions")}</h3>
-          {kitchenGroups && kitchenGroups.length > 0 ? (
-            <div class="space-y-5">
-              {kitchenGroups.map((group) => (
-                <div>
-                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
-                  <ul class="space-y-2">
-                    {group.items.map((item) => (
-                      <li>
-                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ) : null}
+          <h3 class="text-lg font-semibold mb-4">
+            {
+              t("navigation.solutions") ||
+                (lang === "pl" ? "Rozwiązania" : "Solutions")
+            }
+          </h3>
+          {
+            kitchenGroups && kitchenGroups.length > 0 ? (
+              <div class="space-y-5">
+                {kitchenGroups.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
+                      {group.title}
+                    </h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a
+                            href={item.href || "#"}
+                            class="text-gray-400 hover:text-white transition-colors duration-200"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : null
+          }
         </div>
 
         <!-- Resources Links (from Navbar mega menu) -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">{t("navigation.resources") || (lang === "pl" ? "Materiały" : "Resources")}</h3>
-          {resourcesGroups && resourcesGroups.length > 0 ? (
-            <div class="space-y-5">
-              {resourcesGroups.map((group) => (
-                <div>
-                  <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">{group.title}</h4>
-                  <ul class="space-y-2">
-                    {group.items.map((item) => (
-                      <li>
-                        <a href={item.href || "#"} class="text-gray-400 hover:text-white transition-colors duration-200">{item.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ) : null}
+          <h3 class="text-lg font-semibold mb-4">
+            {
+              t("navigation.resources") ||
+                (lang === "pl" ? "Materiały" : "Resources")
+            }
+          </h3>
+          {
+            resourcesGroups && resourcesGroups.length > 0 ? (
+              <div class="space-y-5">
+                {resourcesGroups.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
+                      {group.title}
+                    </h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a
+                            href={item.href || "#"}
+                            class="text-gray-400 hover:text-white transition-colors duration-200"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : null
+          }
         </div>
 
         <!-- Quick Nav Links -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">{t("navigation.menu") || (lang === "pl" ? "Nawigacja" : "Navigation")}</h3>
+          <h3 class="text-lg font-semibold mb-4">
+            {
+              t("navigation.menu") ||
+                (lang === "pl" ? "Nawigacja" : "Navigation")
+            }
+          </h3>
           <ul class="space-y-2">
             <li>
-              <a href="/plan-dedykowany" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.custom_plan") || (lang === "pl" ? "Plan dedykowany" : "Custom plan")}</a>
+              <a
+                href="/plan-dedykowany"
+                class="text-gray-400 hover:text-white transition-colors duration-200"
+                >{
+                  t("navigation.custom_plan") ||
+                    (lang === "pl" ? "Plan dedykowany" : "Custom plan")
+                }</a
+              >
             </li>
             <li>
-              <a href="/pricing" class="text-gray-400 hover:text-white transition-colors duration-200">{t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")}</a>
+              <a
+                href="/pricing"
+                class="text-gray-400 hover:text-white transition-colors duration-200"
+                >{
+                  t("navigation.pricing") ||
+                    (lang === "pl" ? "Cennik" : "Pricing")
+                }</a
+              >
             </li>
           </ul>
         </div>
@@ -151,25 +283,41 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.g
       <div class="mt-16 pt-16 border-t border-gray-800">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-2xl font-bold font-poppins mb-4">{t("footer.newsletter.title") || (lang === "pl" ? "Zostań na bieżąco" : "Stay up to date")}</h3>
+            <h3 class="text-2xl font-bold font-poppins mb-4">
+              {
+                t("footer.newsletter.title") ||
+                  (lang === "pl" ? "Zostań na bieżąco" : "Stay up to date")
+              }
+            </h3>
             <p class="text-gray-400">
-              {t("footer.newsletter.desc") || (lang === "pl"
-                ? "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi."
-                : "Get the latest feature updates, tips and articles about sports club management.")}
+              {
+                t("footer.newsletter.desc") ||
+                  (lang === "pl"
+                    ? "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi."
+                    : "Get the latest feature updates, tips and articles about sports club management.")
+              }
             </p>
           </div>
-          
+
           <div class="flex flex-col sm:flex-row gap-4">
-            <input type="email" placeholder={t("footer.newsletter.placeholder") || (lang === "pl" ? "Twój adres e‑mail" : "Your email address")} class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200">
-            
-            <button class="bg-secondary px-6 py-3 text-primary font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg">
-              {t("footer.newsletter.cta") || (lang === "pl" ? "Zapisz się" : "Subscribe")}
+            <input
+              type="email"
+              placeholder={t("footer.newsletter.placeholder") ||
+                (lang === "pl" ? "Twój adres e‑mail" : "Your email address")}
+              class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200"
+            />
+
+            <button
+              class="bg-secondary px-6 py-3 text-primary font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg"
+            >
+              {
+                t("footer.newsletter.cta") ||
+                  (lang === "pl" ? "Zapisz się" : "Subscribe")
+              }
             </button>
           </div>
         </div>
       </div>
-
-      
     </div>
 
     <!-- Bottom Footer -->
@@ -178,55 +326,89 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources?.g
         <div class="text-gray-400 text-sm">
           © {new Date().getFullYear()} Sportigio. Wszystkie prawa zastrzeżone.
         </div>
-        
-        <div class="flex flex-wrap gap-6 text-sm">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.privacy") || (lang === "pl" ? "Polityka prywatności" : "Privacy Policy")}</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.terms") || (lang === "pl" ? "Regulamin" : "Terms")}</a>
-          <a href="#" data-cc-open class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.cookies") || (lang === "pl" ? "Pliki cookie" : "Cookies")}</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">{t("footer.legal.rodo") || (lang === "pl" ? "RODO" : "GDPR")}</a>
+
+        <div
+          class="grid grid-cols-2 gap-3 text-sm md:flex md:flex-wrap md:gap-6"
+        >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.privacy") ||
+                (lang === "pl" ? "Polityka prywatności" : "Privacy Policy")
+            }</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.terms") || (lang === "pl" ? "Regulamin" : "Terms")
+            }</a
+          >
+          <a
+            href="#"
+            data-cc-open
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.cookies") ||
+                (lang === "pl" ? "Pliki cookie" : "Cookies")
+            }</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{t("footer.legal.rodo") || (lang === "pl" ? "RODO" : "GDPR")}</a
+          >
         </div>
       </div>
     </div>
   </div>
-  
-</footer> 
+</footer>
 
 <script is:inline>
   (() => {
-    const url = 'https://dfdu1vke3eg77.cloudfront.net/spaces/95/uploads/HzkZ1wbPB2KpSpmj37Y3NzjXR5jP7xirGRsz2lpN.pdf';
+    const url =
+      "https://dfdu1vke3eg77.cloudfront.net/spaces/95/uploads/HzkZ1wbPB2KpSpmj37Y3NzjXR5jP7xirGRsz2lpN.pdf";
     const run = () => {
       try {
-        const anchors = Array.from(document.querySelectorAll('footer a'));
+        const anchors = Array.from(document.querySelectorAll("footer a"));
         const findPrivacy = (a) => {
-          const txt = (a.textContent || '').toLowerCase();
-          return txt.includes('polityka') && txt.includes('prywatno');
+          const txt = (a.textContent || "").toLowerCase();
+          return txt.includes("polityka") && txt.includes("prywatno");
         };
         const privacy = anchors.find(findPrivacy);
         if (privacy) {
-          privacy.setAttribute('href', url);
-          privacy.setAttribute('target', '_blank');
-          privacy.setAttribute('rel', 'noopener noreferrer');
-          privacy.addEventListener('click', (e) => {
+          privacy.setAttribute("href", url);
+          privacy.setAttribute("target", "_blank");
+          privacy.setAttribute("rel", "noopener noreferrer");
+          privacy.addEventListener("click", (e) => {
             // Fallback in case some global handler prevents default
-            if (!privacy.getAttribute('href') || privacy.getAttribute('href') === '#') {
+            if (
+              !privacy.getAttribute("href") ||
+              privacy.getAttribute("href") === "#"
+            ) {
               e.preventDefault();
-              window.open(url, '_blank', 'noopener');
+              window.open(url, "_blank", "noopener");
             }
           });
         }
         // Wire Cookies link to open CookieConsent preferences
-        const ccLink = document.querySelector('footer a[data-cc-open]');
+        const ccLink = document.querySelector("footer a[data-cc-open]");
         if (ccLink) {
-          ccLink.addEventListener('click', (e) => {
+          ccLink.addEventListener("click", (e) => {
             e.preventDefault();
-            if (window.CookieConsent && typeof window.CookieConsent.showPreferences === 'function') {
+            if (
+              window.CookieConsent &&
+              typeof window.CookieConsent.showPreferences === "function"
+            ) {
               window.CookieConsent.showPreferences();
             }
           });
         }
       } catch {}
     };
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", run);
     else run();
   })();
 </script>
