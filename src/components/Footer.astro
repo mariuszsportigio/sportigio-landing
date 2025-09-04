@@ -299,16 +299,36 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
             </p>
           </div>
 
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div
+            class="flex flex-col sm:flex-row gap-4"
+            data-newsletter
+            data-invalid={lang === "pl"
+              ? "Nieprawidłowy e‑mail"
+              : "Invalid email"}
+            data-success={lang === "pl"
+              ? "Dziękujemy! Sprawdź skrzynkę."
+              : "Thanks! Please check your inbox."}
+            data-failure={lang === "pl"
+              ? "Nie udało się zapisać."
+              : "Subscription failed."}
+          >
             <input
+              id="newsletter-email"
               type="email"
               placeholder={t("footer.newsletter.placeholder") ||
                 (lang === "pl" ? "Twój adres e‑mail" : "Your email address")}
               class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200"
+              aria-label={lang === "pl" ? "Adres e‑mail" : "Email address"}
             />
 
             <button
+              id="newsletter-submit"
               class="bg-secondary px-6 py-3 text-primary font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg"
+              data-label-default={t("footer.newsletter.cta") ||
+                (lang === "pl" ? "Zapisz się" : "Subscribe")}
+              data-label-loading={lang === "pl"
+                ? "Zapisywanie…"
+                : "Subscribing…"}
             >
               {
                 t("footer.newsletter.cta") ||
@@ -316,6 +336,11 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
               }
             </button>
           </div>
+          <p
+            id="newsletter-message"
+            class="mt-2 text-sm text-gray-400 min-h-[1rem]"
+          >
+          </p>
         </div>
       </div>
     </div>
@@ -371,6 +396,74 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
       "https://dfdu1vke3eg77.cloudfront.net/spaces/95/uploads/HzkZ1wbPB2KpSpmj37Y3NzjXR5jP7xirGRsz2lpN.pdf";
     const run = () => {
       try {
+        // Newsletter handler
+        const scope = document.querySelector("[data-newsletter]");
+        const input = document.getElementById("newsletter-email");
+        const button = document.getElementById("newsletter-submit");
+        const msg = document.getElementById("newsletter-message");
+        const setMessage = (text, ok = false) => {
+          if (!msg) return;
+          msg.textContent = text || "";
+          msg.classList.remove("text-red-400", "text-green-400");
+          msg.classList.add(ok ? "text-green-400" : "text-red-400");
+        };
+        const emailRegex = /.+@.+\..+/;
+        if (
+          scope &&
+          input instanceof HTMLInputElement &&
+          button instanceof HTMLButtonElement
+        ) {
+          const defaultLabel =
+            button.getAttribute("data-label-default") ||
+            button.textContent ||
+            "";
+          const loadingLabel = button.getAttribute("data-label-loading") || "…";
+          const submit = async () => {
+            const email = (input.value || "").trim();
+            setMessage("");
+            if (!emailRegex.test(email)) {
+              setMessage(
+                scope?.getAttribute("data-invalid") || "Invalid email",
+              );
+              return;
+            }
+            button.disabled = true;
+            button.textContent = loadingLabel;
+            try {
+              const res = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+              });
+              if (res.ok) {
+                setMessage(
+                  scope?.getAttribute("data-success") ||
+                    "Thanks! Please check your inbox.",
+                  true,
+                );
+                input.value = "";
+              } else {
+                const data = await res.json().catch(() => ({}));
+                const detail = (data && (data.message || data.error)) || "";
+                setMessage(
+                  (scope?.getAttribute("data-failure") ||
+                    "Subscription failed.") + (detail ? ` (${detail})` : ""),
+                );
+              }
+            } catch (e) {
+              setMessage(
+                scope?.getAttribute("data-failure") || "Subscription failed.",
+              );
+            } finally {
+              button.disabled = false;
+              button.textContent = defaultLabel;
+            }
+          };
+          button.addEventListener("click", submit);
+          input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") submit();
+          });
+        }
         const anchors = Array.from(document.querySelectorAll("footer a"));
         const findPrivacy = (a) => {
           const txt = (a.textContent || "").toLowerCase();
