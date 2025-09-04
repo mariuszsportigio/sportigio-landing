@@ -349,12 +349,14 @@ const props = href ? { href, target } : {};
     const cards = document.querySelectorAll('.cursor-pointer');
     
     cards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-4px) scale(1.02)';
+      card.addEventListener('mouseenter', (e) => {
+        const el = e.currentTarget as HTMLElement | null;
+        if (el) el.style.transform = 'translateY(-4px) scale(1.02)';
       });
       
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+      card.addEventListener('mouseleave', (e) => {
+        const el = e.currentTarget as HTMLElement | null;
+        if (el) el.style.transform = 'translateY(0) scale(1)';
       });
     });
     
@@ -364,7 +366,7 @@ const props = href ? { href, target } : {};
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
+          (entry.target as HTMLElement).style.animationPlayState = 'running';
         }
       });
     }, {
@@ -372,7 +374,7 @@ const props = href ? { href, target } : {};
     });
     
     animatedCards.forEach(card => {
-      card.style.animationPlayState = 'paused';
+      (card as HTMLElement).style.animationPlayState = 'paused';
       observer.observe(card);
     });
   });
