@@ -9,6 +9,7 @@ import TabSection from "./TabSection.astro";
 import ConnectedCards from "./ConnectedCards.astro";
 import DarkShowcase from "./DarkShowcase.astro";
 import TestimonialCarousel from "./TestimonialCarousel.astro";
+import TrustedClubsSection from "./TrustedClubsSection.astro";
 import BlogSection from "./BlogSection.astro";
 import FAQ from "./FAQ.astro";
 import CTASection from "./CTASection.astro";
@@ -81,6 +82,11 @@ const {
           </section>
         ) : null
       }
+
+      <!-- Trusted Clubs Logos (moved under "Proste sekcje") -->
+      <section id="zaufali-nam">
+        <TrustedClubsSection />
+      </section>
 
       <!-- Features Section -->
       <section id="funkcje">

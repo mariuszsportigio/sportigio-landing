@@ -1,103 +1,116 @@
-<section class="py-16 bg-white border-b border-gray-200">
-  <div class="max-w-container mx-auto px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <p class="text-body text-gray-600 font-medium">
-        Zaufało nam ponad 100+ klubów sportowych na całym świecie
+---
+// TrustedClubsSection.astro
+// Scrolling marquee of trusted club logos
+const logos = [
+  { src: "/teams/legia.avif", alt: "Legia" },
+  { src: "/teams/wisla.avif", alt: "Wisła" },
+  { src: "/teams/trefl.avif", alt: "Trefl" },
+  { src: "/teams/widzew.avif", alt: "Widzew" },
+  { src: "/teams/king-wilki.avif", alt: "King Wilki" },
+  { src: "/teams/projekt-warszawa.avif", alt: "Projekt Warszawa" },
+  { src: "/teams/radomka.avif", alt: "Radomka" },
+  { src: "/teams/twarde.avif", alt: "Twarde" },
+  { src: "/teams/fc-torun.avif", alt: "FC Toruń" },
+  { src: "/teams/notec.avif", alt: "Noteć" },
+];
+---
+
+<section class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <p class="text-sm md:text-base text-gray-600">
+        Zaufało nam ponad 100 klubów
       </p>
     </div>
 
-    <div
-      class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center"
-    >
-      <!-- Logo placeholders - these would be actual club logos -->
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gradient-main rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-300"
-        >
-          <div class="text-white font-bold text-lg">FC</div>
-        </div>
+    <div class="relative overflow-hidden">
+      <div
+        class="pointer-events-none edge-fade edge-fade-left"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none edge-fade edge-fade-right"
+        aria-hidden="true"
+      >
       </div>
 
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center group-hover:bg-gradient-main group-hover:shadow-card transition-all duration-300"
-        >
-          <div class="text-primary group-hover:text-white font-bold text-lg">
-            SK
-          </div>
-        </div>
-      </div>
-
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center group-hover:bg-gradient-main group-hover:shadow-card transition-all duration-300"
-        >
-          <div class="text-primary group-hover:text-white font-bold text-lg">
-            TB
-          </div>
-        </div>
-      </div>
-
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center group-hover:bg-gradient-main group-hover:shadow-card transition-all duration-300"
-        >
-          <div class="text-primary group-hover:text-white font-bold text-lg">
-            VC
-          </div>
-        </div>
-      </div>
-
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center group-hover:bg-gradient-main group-hover:shadow-card transition-all duration-300"
-        >
-          <div class="text-primary group-hover:text-white font-bold text-lg">
-            BC
-          </div>
-        </div>
-      </div>
-
-      <div class="group cursor-pointer">
-        <div
-          class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center group-hover:bg-gradient-main group-hover:shadow-card transition-all duration-300"
-        >
-          <div class="text-primary group-hover:text-white font-bold text-lg">
-            AC
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats row -->
-    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      <div class="space-y-2">
-        <div
-          class="text-heading font-bold bg-gradient-main bg-clip-text text-transparent"
-        >
-          150M+
-        </div>
-        <div class="text-small text-gray-600">Wysłanych wiadomości</div>
-      </div>
-
-      <div class="space-y-2">
-        <div
-          class="text-heading font-bold bg-gradient-main bg-clip-text text-transparent"
-        >
-          25K+
-        </div>
-        <div class="text-small text-gray-600">Zorganizowanych treningów</div>
-      </div>
-
-      <div class="space-y-2">
-        <div
-          class="text-heading font-bold bg-gradient-main bg-clip-text text-transparent"
-        >
-          99.9%
-        </div>
-        <div class="text-small text-gray-600">Gwarantowana dostępność</div>
+      <div class="flex items-center gap-10 marquee-track" aria-hidden="false">
+        {
+          logos.map((logo) => (
+            <div class="shrink-0">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                class="h-10 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))
+        }
+        {
+          logos.map((logo) => (
+            <div class="shrink-0" aria-hidden="true">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                class="h-10 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
-</section>
 
+  <style>
+    .marquee-track {
+      width: max-content;
+      animation: marquee-scroll 28s linear infinite;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track {
+        animation: none;
+      }
+    }
+
+    .edge-fade {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 10;
+    }
+
+    .edge-fade-left {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    }
+
+    .edge-fade-right {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    }
+  </style>
+</section>
