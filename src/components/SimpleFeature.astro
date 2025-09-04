@@ -4,10 +4,10 @@ interface Props {
   description: string;
   iconPath?: string; // optional SVG path d="..."
   imageSrc?: string; // optional image path
-  ctaVariant?: 'none' | 'link' | 'button';
+  ctaVariant?: "none" | "link" | "button";
   ctaText?: string;
   ctaHref?: string;
-  alignment?: 'center' | 'left';
+  alignment?: "center" | "left";
 }
 
 const props = Astro.props as Props;
@@ -16,49 +16,106 @@ const {
   description,
   iconPath,
   imageSrc,
-  ctaVariant = 'none',
-  ctaText = 'Learn more',
-  ctaHref = '#',
-  alignment = 'center',
+  ctaVariant = "none",
+  ctaText = "Learn more",
+  ctaHref = "#",
+  alignment = "center",
 } = props;
 ---
 
-<div class={`w-full rounded-2xl bg-white shadow-sm border border-gray-100 p-8 ${alignment === 'center' ? 'text-center' : 'text-left'}`}>
-  {iconPath && (
-    <div class={`w-14 h-14 rounded-xl mx-auto ${alignment === 'center' ? '' : 'mx-0'} bg-sportigio-primary flex items-center justify-center text-white shadow-md mb-5`}>
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPath}></path>
-      </svg>
-    </div>
-  )}
+<div
+  class={`w-full rounded-2xl bg-white shadow-sm border border-gray-100 p-8 ${alignment === "center" ? "text-center" : "text-left"}`}
+>
+  {
+    iconPath && (
+      <div
+        class={`w-14 h-14 rounded-xl mx-auto ${alignment === "center" ? "" : "mx-0"} icon-gradient-primary-strong flex items-center justify-center text-white shadow-md mb-5`}
+      >
+        <svg
+          class="w-7 h-7"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d={iconPath}
+          />
+        </svg>
+      </div>
+    )
+  }
 
-  {!iconPath && imageSrc && (
-    <img src={imageSrc} alt={title} class={`w-full rounded-xl shadow mb-6 ${alignment === 'center' ? 'mx-auto' : ''}`} />
-  )}
+  {
+    !iconPath && imageSrc && (
+      <img
+        src={imageSrc}
+        alt={title}
+        class={`w-full rounded-xl shadow mb-6 ${alignment === "center" ? "mx-auto" : ""}`}
+      />
+    )
+  }
 
-  <h3 class="font-poppins font-semibold text-2xl text-gray-900 mb-3">{title}</h3>
-  <p class={`text-gray-600 leading-relaxed ${alignment === 'center' ? 'mx-auto' : ''}`}>{description}</p>
+  <h3 class="font-poppins font-semibold text-2xl text-gray-900 mb-3">
+    {title}
+  </h3>
+  <p
+    class={`text-gray-600 leading-relaxed ${alignment === "center" ? "mx-auto" : ""}`}
+  >
+    {description}
+  </p>
 
-  {ctaVariant !== 'none' && (
-    <div class={`mt-6 ${alignment === 'center' ? 'flex justify-center' : ''}`}>
-      {ctaVariant === 'link' && (
-        <a href={ctaHref} class="text-[#0B2360] font-medium inline-flex items-center gap-2 group">
-          <span>{ctaText}</span>
-          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      )}
+  {
+    ctaVariant !== "none" && (
+      <div
+        class={`mt-6 ${alignment === "center" ? "flex justify-center" : ""}`}
+      >
+        {ctaVariant === "link" && (
+          <a
+            href={ctaHref}
+            class="text-[#0B2360] font-medium inline-flex items-center gap-2 group"
+          >
+            <span>{ctaText}</span>
+            <svg
+              class="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        )}
 
-      {ctaVariant === 'button' && (
-        <a href={ctaHref} class="btn-style-1 px-5 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center gap-2">
-          <span>{ctaText}</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      )}
-    </div>
-  )}
+        {ctaVariant === "button" && (
+          <a
+            href={ctaHref}
+            class="btn-style-1 px-5 py-2.5 rounded-lg text-sm font-semibold inline-flex items-center gap-2"
+          >
+            <span>{ctaText}</span>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        )}
+      </div>
+    )
+  }
 </div>
-
