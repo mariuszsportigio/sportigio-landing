@@ -204,5 +204,53 @@
         }
       ]
     }
+  },
+  "platform": {
+    "badge": "Sportigio Link",
+    "title": "Perfil profesional del club",
+    "title_highlight": "sin sitio web",
+    "subtitle": "Herramienta todo en uno — lista justo después del registro. Perfecta para el enlace en bio de Facebook, Instagram y TikTok.",
+    "cta_primary": "Crea el perfil en 2 minutos",
+    "cta_secondary": "Ver demo",
+    "sections": {
+      "what_is": {
+        "title": "¿Qué es Sportigio Link?",
+        "body": "Como Linktree, pero deportivo — con funciones para clubes.",
+        "bullets": [
+          "Calendario y resultados en tiempo real",
+          "Entradas, abonos y ventas online",
+          "Analítica de tráfico y conversiones"
+        ]
+      },
+      "features": {
+        "title": "Todo en un solo lugar",
+        "items": [
+          { "title": "Calendario y Resultados", "description": "Publica partidos y resultados automáticamente." },
+          { "title": "Entradas y Abonos", "description": "Vende entradas y abonos online." },
+          { "title": "Tienda y Merch", "description": "Enlaza productos o habilita una tienda." },
+          { "title": "Analítica", "description": "Mide tráfico, clics y ventas." }
+        ]
+      },
+      "compare": {
+        "before_title": "Link‑in‑bio típico",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Solo enlaces",
+          "Sin resultados ni calendario",
+          "Sin integración de entradas"
+        ],
+        "after_items": [
+          "Resultados y calendario integrados",
+          "Entradas y abonos",
+          "Estadísticas y conversiones"
+        ]
+      },
+      "cta": {
+        "title": "Empieza ahora",
+        "subtitle": "Tu perfil está listo inmediatamente tras registrarte",
+        "primary": "Crear perfil del club",
+        "secondary": "Reservar una demo breve"
+      }
+    }
   }
 }

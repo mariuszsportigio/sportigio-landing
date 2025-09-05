@@ -397,5 +397,53 @@
         }
       ]
     }
+  },
+  "platform": {
+    "badge": "Platforma Sportigio",
+    "title": "Profesjonalny profil klubu",
+    "title_highlight": "bez strony WWW",
+    "subtitle": "Narzędzie wszystko w jednym — gotowe od razu po rejestracji. Idealne do linku w bio na Facebooku, Instagramie i TikToku.",
+    "cta_primary": "Załóż profil w 2 minuty",
+    "cta_secondary": "Zobacz demo",
+    "sections": {
+      "what_is": {
+        "title": "Co to jest Sportigio Link?",
+        "body": "To jak Linktree, ale sportowe — z funkcjami dla klubów.",
+        "bullets": [
+          "Terminarz i wyniki w czasie rzeczywistym",
+          "Bilety, karnety i sprzedaż online",
+          "Analityka wejść i konwersji"
+        ]
+      },
+      "features": {
+        "title": "Wszystko w jednym miejscu",
+        "items": [
+          { "title": "Terminarz i wyniki", "description": "Publikuj mecze i wyniki automatycznie." },
+          { "title": "Bilety i karnety", "description": "Sprzedawaj bilety i karnety online." },
+          { "title": "Sklep i merch", "description": "Linkuj produkty lub włącz sklep." },
+          { "title": "Analityka", "description": "Mierz ruch, kliknięcia i sprzedaż." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typowy link-in-bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Tylko linki",
+          "Brak wyników i terminarza",
+          "Brak integracji z biletami"
+        ],
+        "after_items": [
+          "Wyniki i terminarz wbudowane",
+          "Bilety i karnety",
+          "Statystyki i konwersje"
+        ]
+      },
+      "cta": {
+        "title": "Zacznij teraz",
+        "subtitle": "Twój profil jest gotowy od razu po rejestracji",
+        "primary": "Utwórz profil klubu",
+        "secondary": "Umów krótkie demo"
+      }
+    }
   }
 }

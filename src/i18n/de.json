@@ -204,5 +204,53 @@
         }
       ]
     }
+  },
+  "platform": {
+    "badge": "Sportigio Link",
+    "title": "Professionelles Vereinsprofil",
+    "title_highlight": "ohne Website",
+    "subtitle": "All‑in‑one‑Tool — sofort nach der Registrierung einsatzbereit. Perfekt für Bio‑Links auf Facebook, Instagram und TikTok.",
+    "cta_primary": "Profil in 2 Minuten erstellen",
+    "cta_secondary": "Demo ansehen",
+    "sections": {
+      "what_is": {
+        "title": "Was ist Sportigio Link?",
+        "body": "Wie Linktree, aber sportlich — mit Vereins‑Features.",
+        "bullets": [
+          "Spielplan und Live‑Ergebnisse",
+          "Tickets, Dauerkarten und Online‑Verkauf",
+          "Traffic‑ und Conversion‑Analytics"
+        ]
+      },
+      "features": {
+        "title": "Alles an einem Ort",
+        "items": [
+          { "title": "Spielplan & Ergebnisse", "description": "Spiele und Ergebnisse automatisch veröffentlichen." },
+          { "title": "Tickets & Dauerkarten", "description": "Tickets und Dauerkarten online verkaufen." },
+          { "title": "Shop & Merch", "description": "Produkte verlinken oder Shop aktivieren." },
+          { "title": "Analytics", "description": "Traffic, Klicks und Verkäufe messen." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typischer Link‑in‑Bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Nur Links",
+          "Keine Ergebnisse oder Spielplan",
+          "Keine Ticket‑Integration"
+        ],
+        "after_items": [
+          "Integrierte Ergebnisse und Spielplan",
+          "Tickets und Dauerkarten",
+          "Statistiken und Conversions"
+        ]
+      },
+      "cta": {
+        "title": "Jetzt starten",
+        "subtitle": "Dein Profil ist sofort nach der Registrierung bereit",
+        "primary": "Vereinsprofil erstellen",
+        "secondary": "Kurze Demo vereinbaren"
+      }
+    }
   }
 }

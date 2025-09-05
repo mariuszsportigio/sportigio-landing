@@ -237,5 +237,53 @@
         }
       ]
     }
+  },
+  "platform": {
+    "badge": "Sportigio Link",
+    "title": "Professional club profile",
+    "title_highlight": "without a website",
+    "subtitle": "All‑in‑one tool — ready right after registration. Perfect for bio links on Facebook, Instagram and TikTok.",
+    "cta_primary": "Create profile in 2 minutes",
+    "cta_secondary": "See demo",
+    "sections": {
+      "what_is": {
+        "title": "What is Sportigio Link?",
+        "body": "Like Linktree, but for sports — with club‑specific features.",
+        "bullets": [
+          "Schedules and live results",
+          "Tickets, season passes and online sales",
+          "Traffic and conversion analytics"
+        ]
+      },
+      "features": {
+        "title": "Everything in one place",
+        "items": [
+          { "title": "Schedule & Results", "description": "Publish fixtures and results automatically." },
+          { "title": "Tickets & Passes", "description": "Sell tickets and season passes online." },
+          { "title": "Shop & Merch", "description": "Link products or enable a shop." },
+          { "title": "Analytics", "description": "Measure traffic, clicks and sales." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typical link‑in‑bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Links only",
+          "No results or schedule",
+          "No ticketing integration"
+        ],
+        "after_items": [
+          "Built‑in results and schedule",
+          "Tickets and passes",
+          "Stats and conversions"
+        ]
+      },
+      "cta": {
+        "title": "Start now",
+        "subtitle": "Your profile is ready immediately after sign‑up",
+        "primary": "Create club profile",
+        "secondary": "Book a short demo"
+      }
+    }
   }
 }
