@@ -34,19 +34,24 @@ const t = createTranslator(lang);
       </div>
       -->
 
-      
-
       <!-- Testimonial 1 (updated) -->
       <div
-        class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak prowadzenie Facebooka. Panel admina jest bardzo intuicyjny
+          Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak
+          prowadzenie Facebooka. Panel admina jest bardzo intuicyjny
         </p>
         <div class="flex items-center">
-          <img src="/teams/trefl.avif" alt="Trefl Sopot" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
+          <img
+            src="/teams/trefl.avif"
+            alt="Trefl Sopot"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">Barbara Lewandowska-Paluch</p>
+            <p class="text-gray-900 font-semibold text-sm">
+              Barbara Lewandowska-Paluch
+            </p>
             <p class="text-gray-500 text-xs">Trefl Sopot</p>
           </div>
         </div>
@@ -54,13 +59,18 @@ const t = createTranslator(lang);
 
       <!-- Testimonial 2 (updated) -->
       <div
-        class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          Rankingi i punkty w aplikacji to strzał w dziesiątkę. Kibice są zachwyceni, a sponsorzy mają nowe możliwości promocji.
+          Rankingi i punkty w aplikacji to strzał w dziesiątkę. Kibice są
+          zachwyceni, a sponsorzy mają nowe możliwości promocji.
         </p>
         <div class="flex items-center">
-          <img src="/teams/projekt-warszawa.avif" alt="PGE Projekt Warszawa" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
+          <img
+            src="/teams/projekt-warszawa.avif"
+            alt="PGE Projekt Warszawa"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
           <div>
             <p class="text-gray-900 font-semibold text-sm">Piotr Iwańczyk</p>
             <p class="text-gray-500 text-xs">PGE Projekt Warszawa</p>
@@ -70,13 +80,18 @@ const t = createTranslator(lang);
 
       <!-- Testimonial 3 (updated) -->
       <div
-        class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.
+          Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga
+          i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.
         </p>
         <div class="flex items-center">
-          <img src="/teams/astra-krotoszyn.avif" alt="KKS Astra Krotoszyn" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
+          <img
+            src="/teams/astra-krotoszyn.avif"
+            alt="KKS Astra Krotoszyn"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
           <div>
             <p class="text-gray-900 font-semibold text-sm">Mariusz Ratajczak</p>
             <p class="text-gray-500 text-xs">KKS Astra Krotoszyn</p>
@@ -157,7 +172,7 @@ const t = createTranslator(lang);
   }
 
   /* Hover effects for cards */
-  .bg-white:hover,
+  .testimonial-card:hover,
   .ai-analysis-card:hover {
     transform: translateY(-8px) scale(1.02);
   }
@@ -378,20 +393,17 @@ const t = createTranslator(lang);
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const aiCard = document.querySelector(
-      ".ai-analysis-card",
-    ) as HTMLElement | null;
-    const typewriterText = document.querySelector(
-      ".typewriter-text",
-    ) as HTMLElement | null;
-    const typewriterContainer = document.querySelector(
-      ".ai-typewriter",
-    ) as HTMLElement | null;
+    const aiCard = document.querySelector<HTMLElement>(".ai-analysis-card");
+    const typewriterText =
+      document.querySelector<HTMLElement>(".typewriter-text");
+    const typewriterContainer =
+      document.querySelector<HTMLElement>(".ai-typewriter");
 
     if (!aiCard || !typewriterText || !typewriterContainer) return;
 
     const aiCardEl: HTMLElement = aiCard;
     const typewriterTextEl: HTMLElement = typewriterText;
+    const typewriterContainerEl: HTMLElement = typewriterContainer;
 
     // Intersection Observer for scroll trigger
     const observer = new IntersectionObserver(
@@ -443,15 +455,15 @@ const t = createTranslator(lang);
       measure.style.whiteSpace = "normal";
       // Ensure it inherits typography from container
       measure.className = "text-gray-600 text-sm leading-relaxed";
-      typewriterContainer.appendChild(measure);
+      typewriterContainerEl.appendChild(measure);
       const height = measure.offsetHeight;
-      typewriterContainer.style.minHeight = height + "px";
+      typewriterContainerEl.style.minHeight = height + "px";
       measure.remove();
 
       // Recalculate on resize if the container width changes
-      let lastWidth = typewriterContainer.offsetWidth;
+      let lastWidth = typewriterContainerEl.offsetWidth;
       const onResize = () => {
-        const w = typewriterContainer.offsetWidth;
+        const w = typewriterContainerEl.offsetWidth;
         if (w !== lastWidth) {
           lastWidth = w;
           const m = document.createElement("span");
@@ -463,10 +475,10 @@ const t = createTranslator(lang);
           m.style.right = "0";
           m.style.whiteSpace = "normal";
           m.className = "text-gray-600 text-sm leading-relaxed";
-          typewriterContainer.appendChild(m);
+          typewriterContainerEl.appendChild(m);
           const h = m.offsetHeight;
           m.remove();
-          typewriterContainer.style.minHeight = h + "px";
+          typewriterContainerEl.style.minHeight = h + "px";
         }
       };
       window.addEventListener("resize", onResize, { passive: true });

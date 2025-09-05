@@ -325,17 +325,17 @@ const Tag = level;
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Enhanced typewriter effect
-    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    const typewriterElements = document.querySelectorAll<HTMLElement>('.typewriter-text');
     
     typewriterElements.forEach((element, index) => {
-      const text = element.textContent;
+      const originalText = element.textContent ?? '';
       element.textContent = '';
       
       setTimeout(() => {
         let i = 0;
         const timer = setInterval(() => {
-          if (i < text.length) {
-            element.textContent += text.charAt(i);
+          if (i < originalText.length) {
+            element.textContent += originalText.charAt(i);
             i++;
           } else {
             clearInterval(timer);
@@ -349,11 +349,11 @@ const Tag = level;
     });
     
     // Intersection Observer for scroll animations
-    const animatedTexts = document.querySelectorAll('[data-animation]');
+    const animatedTexts = document.querySelectorAll<HTMLElement>('[data-animation]');
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.target instanceof HTMLElement) {
           const animation = entry.target.getAttribute('data-animation');
           if (animation !== 'none') {
             entry.target.style.animationPlayState = 'running';
@@ -364,37 +364,37 @@ const Tag = level;
       threshold: 0.1
     });
     
-    animatedTexts.forEach(text => {
-      if (text.getAttribute('data-animation') !== 'none') {
-        text.style.animationPlayState = 'paused';
-        observer.observe(text);
+    animatedTexts.forEach(el => {
+      if (el.getAttribute('data-animation') !== 'none') {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
       }
     });
     
     // Dynamic text sizing based on content length
-    const heroTexts = document.querySelectorAll('.font-poppins.font-extrabold');
-    heroTexts.forEach(text => {
-      const length = text.textContent.length;
+    const heroTexts = document.querySelectorAll<HTMLElement>('.font-poppins.font-extrabold');
+    heroTexts.forEach(el => {
+      const length = (el.textContent ?? '').length;
       if (length > 100) {
-        text.classList.add('text-3xl');
-        text.classList.remove('text-4xl', 'text-5xl');
+        el.classList.add('text-3xl');
+        el.classList.remove('text-4xl', 'text-5xl');
       } else if (length > 50) {
-        text.classList.add('text-4xl');
-        text.classList.remove('text-5xl');
+        el.classList.add('text-4xl');
+        el.classList.remove('text-5xl');
       }
     });
     
     // Add reading time estimation
-    const bodyTexts = document.querySelectorAll('.font-normal.leading-relaxed');
-    bodyTexts.forEach(text => {
-      const wordCount = text.textContent.split(' ').length;
+    const bodyTexts = document.querySelectorAll<HTMLElement>('.font-normal.leading-relaxed');
+    bodyTexts.forEach(el => {
+      const wordCount = (el.textContent ?? '').split(' ').filter(Boolean).length;
       const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
       
       if (readingTime > 1) {
         const readingTimeElement = document.createElement('div');
         readingTimeElement.className = 'text-sm text-gray-500 mt-2';
         readingTimeElement.textContent = `Czas czytania: ${readingTime} min`;
-        text.parentElement.appendChild(readingTimeElement);
+        el.parentElement?.appendChild(readingTimeElement);
       }
     });
   });
