@@ -168,8 +168,8 @@
     "social_proof_rating": "4.8/5 ocena"
   },
   "testimonials": {
-    "title": "Co mówią nasi zadowoleni użytkownicy",
-    "subtitle": "Najnowsze opinie naszych zadowolonych klientów",
+    "title": "Co mówią nasi użytkownicy",
+    "subtitle": "Poznaj opinie naszych zadowolonych klientów",
     "ai_summary": "Analiza AI",
     "ai_text": "Według analizy tysięcy opinii, Sportigio zapewnia kompleksowe rozwiązanie dla klubów sportowych. Najczęściej doceniane funkcje to automatyzacja procesów administracyjnych, która oszczędza średnio 10 godzin tygodniowo, oraz zaawansowana komunikacja z rodzicami i zawodnikami.",
     "ai_insights": {
@@ -178,7 +178,7 @@
       "communication": "Lepsza komunikacja z rodzicami",
       "attendance": "Wzrost frekwencji (25%)"
     },
-    "cta_text": "Dołącz do ponad 100+ zadowolonych klubów",
+    "cta_text": "Dołącz do ponad 100+ klubów",
     "reviews": {
       "review_1": {
         "text": "Sportigio całkowicie zrewolucjonizowało sposób zarządzania naszym klubem. Oszczędzamy 10 godzin tygodniowo na administracji!",

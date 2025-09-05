@@ -24,209 +24,62 @@ const t = createTranslator(lang);
       <p class="text-lg text-gray-600 mb-8">{t("testimonials.subtitle")}</p>
     </div>
 
-    <!-- Testimonials Grid with AI Summary as first card -->
+    <!-- Testimonials Grid (AI card disabled) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- AI Analysis Card -->
+      <!-- AI Analysis Card (disabled)
       <div
         class="ai-analysis-card bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gradient relative overflow-hidden"
       >
-        <!-- Background pattern -->
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-[#0B2360]/3 to-[#01DFEC]/3 opacity-50"
-        >
-        </div>
-        <div class="relative z-10">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-            </div>
-            <span class="ml-2 text-sm text-gray-500">AI Powered</span>
-          </div>
-          <p class="ai-typewriter text-gray-600 text-sm mb-4 leading-relaxed">
-            <span class="typewriter-placeholder">"Ładowanie analizy AI..."</span
-            >
-            <span
-              class="typewriter-text"
-              data-text={`"${t("testimonials.ai_text")}"`}></span>
-            <span class="typewriter-cursor">|</span>
-          </p>
-          <!-- Summary tags -->
-          <div class="ai-insights flex flex-wrap gap-2 mb-4">
-            <span
-              class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium"
-            >
-              💰 {t("testimonials.ai_insights.time_saving")}
-            </span>
-            <span
-              class="px-3 py-1 bg-[#01DFEC]/10 text-[#01DFEC] rounded-full text-xs font-medium"
-            >
-              📱 {t("testimonials.ai_insights.ease_of_use")}
-            </span>
-            <span
-              class="px-3 py-1 bg-[#EA36E1]/10 text-[#EA36E1] rounded-full text-xs font-medium"
-            >
-              📊 {t("testimonials.ai_insights.communication")}
-            </span>
-            <span
-              class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium"
-            >
-              📈 {t("testimonials.ai_insights.attendance")}
-            </span>
-          </div>
-          <div class="flex items-center">
-            <div
-              class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-            >
-              <!-- AI Robot Icon -->
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                ></path>
-                <circle cx="9" cy="9" r="1"></circle>
-                <circle cx="15" cy="9" r="1"></circle>
-                <path d="M8 13h8v1H8z"></path>
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">
-                {t("testimonials.ai_summary")}
-              </p>
-              <p class="text-gray-500 text-xs">Analiza tysięcy opinii</p>
-            </div>
-          </div>
-        </div>
+        ... (disabled)
       </div>
+      -->
 
-      <!-- Testimonial 1 -->
+      
+
+      <!-- Testimonial 1 (updated) -->
       <div
         class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "{t("testimonials.reviews.review_1.text")}"
+          Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak prowadzenie Facebooka. Panel admina jest bardzo intuicyjny
         </p>
         <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-          >
-            MK
-          </div>
+          <img src="/teams/trefl.avif" alt="Trefl Sopot" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">
-              {t("testimonials.reviews.review_1.author")}
-            </p>
-            <p class="text-gray-500 text-xs">
-              {t("testimonials.reviews.review_1.position")}
-            </p>
+            <p class="text-gray-900 font-semibold text-sm">Barbara Lewandowska-Paluch</p>
+            <p class="text-gray-500 text-xs">Trefl Sopot</p>
           </div>
         </div>
       </div>
 
-      <!-- Testimonial 2 -->
+      <!-- Testimonial 2 (updated) -->
       <div
         class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na
-          bieżąco z treningami i wydarzeniami klubowymi."
+          Rankingi i punkty w aplikacji to strzał w dziesiątkę. Kibice są zachwyceni, a sponsorzy mają nowe możliwości promocji.
         </p>
         <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-          >
-            AS
-          </div>
+          <img src="/teams/projekt-warszawa.avif" alt="PGE Projekt Warszawa" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">Anna Szymańska</p>
-            <p class="text-gray-500 text-xs">Trener, UKS Wisła</p>
+            <p class="text-gray-900 font-semibold text-sm">Piotr Iwańczyk</p>
+            <p class="text-gray-500 text-xs">PGE Projekt Warszawa</p>
           </div>
         </div>
       </div>
 
-      <!-- Testimonial 3 -->
+      <!-- Testimonial 3 (updated) -->
       <div
         class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
       >
         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie.
-          Nie muszę już ganiać za składkami!"
+          Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.
         </p>
         <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-          >
-            PW
-          </div>
+          <img src="/teams/astra-krotoszyn.avif" alt="KKS Astra Krotoszyn" class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1" />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">Piotr Wiśniewski</p>
-            <p class="text-gray-500 text-xs">Sekretarz, Legia Warszawa</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 4 -->
-      <div
-        class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
-      >
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić
-          harmonogram treningów w każdej chwili."
-        </p>
-        <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-          >
-            KN
-          </div>
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Katarzyna Nowak</p>
-            <p class="text-gray-500 text-xs">Koordynator, Lech Poznań</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 5 -->
-      <div
-        class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
-      >
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy.
-          Frekwencja wzrosła o 25%!"
-        </p>
-        <div class="flex items-center">
-          <div
-            class="w-10 h-10 rounded-full icon-gradient-primary-strong flex items-center justify-center text-white font-semibold text-sm mr-3"
-          >
-            ŁZ
-          </div>
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Łukasz Zieliński</p>
-            <p class="text-gray-500 text-xs">
-              Dyrektor sportowy, Zagłębie Lubin
-            </p>
+            <p class="text-gray-900 font-semibold text-sm">Mariusz Ratajczak</p>
+            <p class="text-gray-500 text-xs">KKS Astra Krotoszyn</p>
           </div>
         </div>
       </div>
@@ -531,8 +384,11 @@ const t = createTranslator(lang);
     const typewriterText = document.querySelector(
       ".typewriter-text",
     ) as HTMLElement | null;
+    const typewriterContainer = document.querySelector(
+      ".ai-typewriter",
+    ) as HTMLElement | null;
 
-    if (!aiCard || !typewriterText) return;
+    if (!aiCard || !typewriterText || !typewriterContainer) return;
 
     const aiCardEl: HTMLElement = aiCard;
     const typewriterTextEl: HTMLElement = typewriterText;
@@ -563,6 +419,9 @@ const t = createTranslator(lang);
       const fullText = typewriterTextEl.getAttribute("data-text");
       if (!fullText) return;
 
+      // Reserve space to prevent layout shift while typing
+      reserveTypewriterHeight(fullText);
+
       // Clear any existing content
       typewriterTextEl.textContent = "";
 
@@ -570,6 +429,47 @@ const t = createTranslator(lang);
       setTimeout(() => {
         typewriterEffect(typewriterTextEl, fullText, 30); // 30ms per character
       }, 800);
+    }
+
+    function reserveTypewriterHeight(text: string) {
+      // Create a hidden measuring element with same typography and width
+      const measure = document.createElement("span");
+      measure.textContent = text;
+      measure.style.position = "absolute";
+      measure.style.visibility = "hidden";
+      measure.style.pointerEvents = "none";
+      measure.style.left = "0";
+      measure.style.right = "0";
+      measure.style.whiteSpace = "normal";
+      // Ensure it inherits typography from container
+      measure.className = "text-gray-600 text-sm leading-relaxed";
+      typewriterContainer.appendChild(measure);
+      const height = measure.offsetHeight;
+      typewriterContainer.style.minHeight = height + "px";
+      measure.remove();
+
+      // Recalculate on resize if the container width changes
+      let lastWidth = typewriterContainer.offsetWidth;
+      const onResize = () => {
+        const w = typewriterContainer.offsetWidth;
+        if (w !== lastWidth) {
+          lastWidth = w;
+          const m = document.createElement("span");
+          m.textContent = text;
+          m.style.position = "absolute";
+          m.style.visibility = "hidden";
+          m.style.pointerEvents = "none";
+          m.style.left = "0";
+          m.style.right = "0";
+          m.style.whiteSpace = "normal";
+          m.className = "text-gray-600 text-sm leading-relaxed";
+          typewriterContainer.appendChild(m);
+          const h = m.offsetHeight;
+          m.remove();
+          typewriterContainer.style.minHeight = h + "px";
+        }
+      };
+      window.addEventListener("resize", onResize, { passive: true });
     }
 
     function typewriterEffect(
