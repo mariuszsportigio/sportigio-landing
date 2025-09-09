@@ -4,6 +4,10 @@
 
 <section class="py-12 bg-white">
   <div class="max-w-5xl mx-auto px-4">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <!-- Section Header -->
     <div class="text-center mb-12">
       <h2
@@ -65,6 +69,14 @@
 
         <button
           class="tab-button flex items-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all duration-300 min-w-[140px] justify-center"
+          data-tab="members"
+        >
+          <span class="material-symbols-outlined text-[18px]">qr_code</span>
+          <span>Bilety</span>
+        </button>
+
+        <button
+          class="tab-button flex items-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all duration-300 min-w-[140px] justify-center"
           data-tab="analytics"
         >
           <svg
@@ -101,26 +113,6 @@
             ></path>
           </svg>
           <span>Płatności</span>
-        </button>
-
-        <button
-          class="tab-button flex items-center gap-2 px-4 py-3 rounded-xl font-semibold transition-all duration-300 min-w-[140px] justify-center"
-          data-tab="members"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-            ></path>
-          </svg>
-          <span>Członkowie</span>
         </button>
       </div>
     </div>
@@ -585,11 +577,11 @@
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <h3 class="text-2xl font-bold font-poppins text-gray-900 mb-4">
-              Zarządzanie członkami
+              Bilety
             </h3>
             <p class="text-gray-600 mb-6">
-              Kompleksowa baza danych członków klubu. Profile zawodników, grupy
-              treningowe, historia aktywności - wszystko w jednym miejscu.
+              Sprzedaż biletów online, prosta kontrola wejść i budowanie
+              lojalności kibiców — wszystko w jednym miejscu.
             </p>
 
             <div class="space-y-4">
@@ -612,10 +604,11 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-900 mb-1">
-                    Profile zawodników
+                    Prostota i elegancja = KONWERSJA
                   </h4>
                   <p class="text-gray-600">
-                    Szczegółowe karty z danymi osobowymi i historią
+                    Stawiamy na szybki i łatwy proces zakupu, bez wychodzenia ze
+                    strony klubowej.
                   </p>
                 </div>
               </div>
@@ -639,10 +632,11 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-900 mb-1">
-                    Grupy i drużyny
+                    Kontrola biletów w telefonie
                   </h4>
                   <p class="text-gray-600">
-                    Organizuj członków w logiczne grupy treningowe
+                    Kontrolerem biletów może być każdy, kto ma telefon z
+                    internetem i przeglądarką internetową.
                   </p>
                 </div>
               </div>
@@ -666,10 +660,11 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-900 mb-1">
-                    Import/Export
+                    38% większa szansa na lojalność
                   </h4>
                   <p class="text-gray-600">
-                    Łatwy import danych z Excel i eksport raportów
+                    Tworzymy Twoją bazę danych kibiców i znacząco zwiększamy
+                    szanse na ponowne zakupy.
                   </p>
                 </div>
               </div>
@@ -682,7 +677,7 @@
             >
               <img
                 src="/screens/tickets-preview-mobile.avif"
-                alt="Sportigio - bilety i członkowie"
+                alt="Sportigio - bilety"
                 class="w-full h-auto rounded-2xl"
                 loading="lazy"
                 decoding="async"
