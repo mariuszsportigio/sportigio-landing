@@ -12,6 +12,8 @@
   --sportigio-gradient-5: linear-gradient(135deg, #0B2360 0%, #00052E 100%);
   /* Icon-focused variant with emphasized corner colors (magenta + cyan) */
   --sportigio-gradient-icon: linear-gradient(55deg, #A91DC8 0%, #A91DC8 14%, #0B2360 30%, #00052E 60%, #01DFEC 90%, #01DFEC 100%);
+  /* Purple (accent) → Dark Navy using brand variables */
+  --sportigio-gradient-purple-navy: linear-gradient(135deg, var(--sportigio-accent) 0%, var(--sportigio-primary) 60%);
 }
 
 /* Primary gradient combinations using brand colors */
@@ -35,6 +37,11 @@
 
 .gradient-tertiary {
   background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Requested: Purple → Dark Navy (from main variables) */
+.gradient-purple-navy {
+  background: var(--sportigio-gradient-purple-navy);
 }
 
 /* Additional Sportigio gradient utility classes */
@@ -77,6 +84,11 @@
 
 .bg-sportigio-navy {
   background: var(--sportigio-gradient-5);
+}
+
+/* Tailwind-like utility alias */
+.bg-sportigio-purple-navy {
+  background: var(--sportigio-gradient-purple-navy);
 }
 
 /* Text gradients */

@@ -51,6 +51,7 @@ export default {
         'sportigio-gradient-3': 'linear-gradient(120deg, #0B2360 10%, #00052E 70%, #01DFEC 100%)',
         'sportigio-gradient-4': 'linear-gradient(135deg, #A91DC8 0%, #0B2360 60%, #00052E 100%)',
         'sportigio-gradient-5': 'linear-gradient(135deg, #0B2360 0%, #00052E 100%)',
+        'sportigio-purple-navy': 'linear-gradient(135deg, #EA36E1 0%, #0B2360 100%)',
       },
     },
   },
