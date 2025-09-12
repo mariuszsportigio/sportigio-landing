@@ -260,6 +260,42 @@ const {
   .ks-scope .xl\:container {
     max-width: 64rem !important;
   }
+
+  /*
+    Normalize all section H2 heading sizes inside Kitchen Sink to match
+    SectionHeader scale: text-2xl md:text-3xl lg:text-4xl
+  */
+  .ks-scope h2 {
+    font-size: 1.5rem !important; /* 2xl */
+    line-height: 2rem !important;
+    font-weight: 700 !important; /* font-bold */
+    font-family:
+      "Poppins",
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      "Liberation Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji" !important;
+  }
+  @media (min-width: 768px) {
+    .ks-scope h2 {
+      font-size: 1.875rem !important; /* 3xl */
+      line-height: 2.25rem !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ks-scope h2 {
+      font-size: 2.25rem !important; /* 4xl */
+      line-height: 2.5rem !important;
+    }
+  }
 </style>
 
 <script>
