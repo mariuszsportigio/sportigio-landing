@@ -51,34 +51,24 @@ const {
             <div class="max-w-6xl mx-auto px-4">
               <div class="mb-10 text-center">
                 <h2 class="font-poppins text-3xl font-bold text-gray-900 mb-2">
-                  Proste sekcje
+                  Sklep internetowy
                 </h2>
-                <p class="text-gray-600">
-                  Minimalne komponenty do szybkiego budowania podstron
-                </p>
+                <p class="text-gray-600">Oferujemy dwie opcje sklepu internetowego</p>
               </div>
-              <div class="grid md:grid-cols-3 gap-6">
+              <div class="grid md:grid-cols-2 gap-6">
                 <SimpleFeature
-                  title="Szybki start"
-                  description="Rozpocznij wdrożenie klubu w kilka minut, bez zbędnych konfiguracji."
-                  iconPath="M13 7l5 5m0 0l-5 5m5-5H6"
-                  ctaVariant="link"
-                  ctaText="Zobacz jak"
-                  ctaHref="#"
-                />
-                <SimpleFeature
-                  title="Płatności online"
-                  description="Bezpieczne i szybkie rozliczenia dla składek i opłat za zajęcia."
-                  iconPath="M12 8c-1.657 0-3 1.343-3 3v5h6v-5c0-1.657-1.343-3-3-3zm0-5a3 3 0 013 3v1H9V6a3 3 0 013-3z"
-                  ctaVariant="button"
-                  ctaText="Zobacz więcej"
-                  ctaHref="#"
-                />
-                <SimpleFeature
-                  title="Komunikacja"
-                  description="Wiadomości, ogłoszenia i powiadomienia w jednym miejscu."
-                  iconPath="M7 8h10M7 12h6m5 8H6a2 2 0 01-2-2V6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2z"
+                  title="Sprzedaż online w Sportigio"
+                  description="Zlecasz sprzedaż gadżetów do Sportigio w formule &quot;druk na żądanie&quot;"
+                  iconImageSrc="/sportigio-sygnet.png"
                   ctaVariant="none"
+                  alignment="left"
+                />
+                <SimpleFeature
+                  title="Własny sklep internetowy"
+                  description="Prowadzisz własny sklep internetowy z kontrolą magazynów, płatności, itp."
+                  iconName="storefront"
+                  ctaVariant="none"
+                  alignment="left"
                 />
               </div>
             </div>
@@ -266,9 +256,10 @@ const {
     SectionHeader scale: text-2xl md:text-3xl lg:text-4xl
   */
   .ks-scope h2 {
+    /* Standardize all section headers to match FAQ: 2xl base, 3xl on lg, font-black */
     font-size: 1.5rem !important; /* 2xl */
     line-height: 2rem !important;
-    font-weight: 700 !important; /* font-bold */
+    font-weight: 900 !important; /* font-black */
     font-family:
       "Poppins",
       ui-sans-serif,
@@ -292,8 +283,8 @@ const {
   }
   @media (min-width: 1024px) {
     .ks-scope h2 {
-      font-size: 2.25rem !important; /* 4xl */
-      line-height: 2.5rem !important;
+      font-size: 1.875rem !important; /* keep 3xl at lg to match FAQ */
+      line-height: 2.25rem !important;
     }
   }
 </style>

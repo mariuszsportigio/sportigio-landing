@@ -3,6 +3,8 @@ interface Props {
   title: string;
   description: string;
   iconPath?: string; // optional SVG path d="..."
+  iconName?: string; // Material Symbols Rounded icon name
+  iconImageSrc?: string; // optional image used inside icon container
   imageSrc?: string; // optional image path
   ctaVariant?: "none" | "link" | "button";
   ctaText?: string;
@@ -15,6 +17,8 @@ const {
   title,
   description,
   iconPath,
+  iconName,
+  iconImageSrc,
   imageSrc,
   ctaVariant = "none",
   ctaText = "Learn more",
@@ -27,29 +31,37 @@ const {
   class={`w-full rounded-2xl bg-white shadow-sm border border-gray-100 p-8 ${alignment === "center" ? "text-center" : "text-left"}`}
 >
   {
-    iconPath && (
+    (iconName || iconPath || iconImageSrc) && (
       <div
         class={`w-14 h-14 rounded-xl mx-auto ${alignment === "center" ? "" : "mx-0"} icon-gradient-primary-strong flex items-center justify-center text-white shadow-md mb-5`}
       >
-        <svg
-          class="w-7 h-7"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d={iconPath}
-          />
-        </svg>
+        {iconName ? (
+          <span class="material-symbols-rounded text-[28px] leading-none">
+            {iconName}
+          </span>
+        ) : iconPath ? (
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d={iconPath}
+            />
+          </svg>
+        ) : (
+          <img src={iconImageSrc!} alt="" class="w-7 h-7 brightness-0 invert" />
+        )}
       </div>
     )
   }
 
   {
-    !iconPath && imageSrc && (
+    !iconName && !iconPath && !iconImageSrc && imageSrc && (
       <img
         src={imageSrc}
         alt={title}
