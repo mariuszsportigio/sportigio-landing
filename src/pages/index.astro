@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import FAQ from "../components/FAQ.astro";
 import SimpleFeature from "../components/SimpleFeature.astro";
 import TrustedClubsSection from "../components/TrustedClubsSection.astro";
 import { defaultLanguage } from "../i18n";
@@ -52,6 +54,12 @@ const lang = defaultLanguage;
       </div>
     </section>
   </main>
+  <section id="faq">
+    <FAQ />
+  </section>
+  <section id="cta">
+    <CTASection />
+  </section>
   <Footer lang={lang} />
 </Layout>
 
