@@ -9,6 +9,7 @@ import SimpleFeature from "../components/SimpleFeature.astro";
 import TrustedClubsSection from "../components/TrustedClubsSection.astro";
 import TestimonialCarousel from "../components/TestimonialCarousel.astro";
 import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import VerticalTabs from "../components/VerticalTabs.astro";
 import { defaultLanguage } from "../i18n";
 
 // Domyślnie używamy polskiego dla strony głównej
@@ -249,6 +250,18 @@ const lang = defaultLanguage;
           />
         </div>
       </div>
+    </section>
+    <!-- Heading above Vertical Tabs -->
+    <section class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 text-center pb-6">
+        <h2 class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins">
+          3 kroki do startu - zacznij już dziś
+        </h2>
+      </div>
+    </section>
+    <!-- Vertical Tabs -->
+    <section>
+      <VerticalTabs />
     </section>
     <section id="faq">
       <FAQ />
