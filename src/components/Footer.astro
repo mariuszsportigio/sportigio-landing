@@ -19,10 +19,19 @@ type MegaGroup = { title: string; items: MegaItem[] };
 const raw = getTranslations(lang) as any;
 const productGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.product
   ?.groups || []) as MegaGroup[];
-const kitchenGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.kitchen
-  ?.groups || []) as MegaGroup[];
-const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
-  ?.groups || []) as MegaGroup[];
+// V1: only show core product links in footer; hide kitchen/resources entirely
+const allowedProductHrefs = new Set([
+  "/strona",
+  "/bilety-online",
+  "/sklep-sportigio",
+  "/sklep-wlasny",
+]);
+const productGroupsV1: MegaGroup[] = productGroups
+  .map((g) => ({
+    title: g.title,
+    items: (g.items || []).filter((it) => allowedProductHrefs.has(it.href)),
+  }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <footer class="bg-gray-900 text-white">
@@ -130,9 +139,9 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
             {t("navigation.product") || (lang === "pl" ? "Produkt" : "Product")}
           </h3>
           {
-            productGroups && productGroups.length > 0 ? (
+            productGroupsV1 && productGroupsV1.length > 0 ? (
               <div class="space-y-5">
-                {productGroups.map((group) => (
+                {productGroupsV1.map((group) => (
                   <div>
                     <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
                       {group.title}
@@ -176,75 +185,7 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
           }
         </div>
 
-        <!-- Solutions Links (from Navbar mega menu: kitchen) -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">
-            {
-              t("navigation.solutions") ||
-                (lang === "pl" ? "Rozwiązania" : "Solutions")
-            }
-          </h3>
-          {
-            kitchenGroups && kitchenGroups.length > 0 ? (
-              <div class="space-y-5">
-                {kitchenGroups.map((group) => (
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
-                      {group.title}
-                    </h4>
-                    <ul class="space-y-2">
-                      {group.items.map((item) => (
-                        <li>
-                          <a
-                            href={item.href || "#"}
-                            class="text-gray-400 hover:text-white transition-colors duration-200"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : null
-          }
-        </div>
-
-        <!-- Resources Links (from Navbar mega menu) -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">
-            {
-              t("navigation.resources") ||
-                (lang === "pl" ? "Materiały" : "Resources")
-            }
-          </h3>
-          {
-            resourcesGroups && resourcesGroups.length > 0 ? (
-              <div class="space-y-5">
-                {resourcesGroups.map((group) => (
-                  <div>
-                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
-                      {group.title}
-                    </h4>
-                    <ul class="space-y-2">
-                      {group.items.map((item) => (
-                        <li>
-                          <a
-                            href={item.href || "#"}
-                            class="text-gray-400 hover:text-white transition-colors duration-200"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : null
-          }
-        </div>
+        <!-- Solutions/Resources hidden for v1 -->
 
         <!-- Quick Nav Links -->
         <div>
@@ -257,22 +198,19 @@ const resourcesGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.resources
           <ul class="space-y-2">
             <li>
               <a
-                href="/plan-dedykowany"
-                class="text-gray-400 hover:text-white transition-colors duration-200"
-                >{
-                  t("navigation.custom_plan") ||
-                    (lang === "pl" ? "Plan dedykowany" : "Custom plan")
-                }</a
-              >
-            </li>
-            <li>
-              <a
                 href="/pricing"
                 class="text-gray-400 hover:text-white transition-colors duration-200"
                 >{
                   t("navigation.pricing") ||
                     (lang === "pl" ? "Cennik" : "Pricing")
                 }</a
+              >
+            </li>
+            <li>
+              <a
+                href="/blog"
+                class="text-gray-400 hover:text-white transition-colors duration-200"
+                >{t("navigation.blog") || "Blog"}</a
               >
             </li>
           </ul>

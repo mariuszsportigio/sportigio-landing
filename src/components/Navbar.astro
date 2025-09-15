@@ -389,6 +389,20 @@ const productGroupsFiltered = productGroups.map((group) => ({
   items: group.items.filter((it) => !isAiAssistant(it.label)),
 }));
 
+// V1: restrict Product mega menu to core pages only
+const allowedProductHrefs = new Set([
+  "/strona",
+  "/bilety-online",
+  "/sklep-sportigio",
+  "/sklep-wlasny",
+]);
+const productGroupsV1 = productGroupsFiltered
+  .map((group) => ({
+    ...group,
+    items: group.items.filter((it) => allowedProductHrefs.has(it.href)),
+  }))
+  .filter((group) => group.items.length > 0);
+
 // Resources: i18n + icons
 const i18nMegaResources = ((): MegaGroup[] => {
   try {
@@ -559,13 +573,13 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
           </button>
           <div
             id="mega-menu-product"
-            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[880px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
+            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-auto min-w-[320px] max-w-[92vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
             role="menu"
           >
             <div class="h-1 w-full sportigio-gradient"></div>
-            <div class="grid grid-cols-3 gap-6 p-6">
+            <div class="grid grid-cols-1 gap-3 p-4">
               {
-                productGroupsFiltered.map(
+                productGroupsV1.map(
                   (group: {
                     title: string;
                     items: {
@@ -580,7 +594,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
                       <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
                         {group.title}
                       </h4>
-                      <ul class="space-y-2">
+                      <ul class="space-y-1.5">
                         {group.items.map(
                           (item: {
                             label: string;
@@ -592,7 +606,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
                             <li>
                               <a
                                 href={item.href}
-                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
+                                class="flex items-start gap-3 rounded-xl px-2.5 py-2.5 hover:bg-gray-50 transition-colors text-gray-900"
                                 role="menuitem"
                               >
                                 {item.img ? (
@@ -640,212 +654,17 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
           </div>
         </div>
 
-        <!-- Rozwiązania with mega menu -->
-        <div class="relative">
-          <button
-            id="mega-trigger-kitchen"
-            type="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="mega-menu-kitchen"
-            class="flex items-center gap-1 text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
-          >
-            <span
-              >{
-                t("navigation.solutions") ||
-                  (lang === "pl" ? "Rozwiązania" : "Solutions")
-              }</span
-            >
-            <svg
-              class="w-3.5 h-3.5 transition-transform duration-200"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
-              ></path></svg
-            >
-          </button>
-          <div
-            id="mega-menu-kitchen"
-            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[920px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
-            role="menu"
-          >
-            <div class="h-1 w-full sportigio-gradient"></div>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6"
-            >
-              {
-                kitchenGroups.map(
-                  (group: {
-                    title: string;
-                    items: {
-                      label: string;
-                      href: string;
-                      description?: string;
-                      icon?: string;
-                    }[];
-                  }) => (
-                    <div>
-                      <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                        {group.title}
-                      </h4>
-                      <ul class="space-y-2">
-                        {group.items.map(
-                          (item: {
-                            label: string;
-                            href: string;
-                            description?: string;
-                            icon?: string;
-                          }) => (
-                            <li>
-                              <a
-                                href={item.href}
-                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
-                                role="menuitem"
-                              >
-                                {item.icon ? (
-                                  <span
-                                    class="material-symbols-rounded text-[20px] leading-5"
-                                    aria-hidden="true"
-                                  >
-                                    {item.icon}
-                                  </span>
-                                ) : null}
-                                <div>
-                                  <div class="text-sm font-semibold">
-                                    {item.label}
-                                  </div>
-                                  {item.description ? (
-                                    <div class="text-xs text-gray-600 mt-0.5">
-                                      {item.description}
-                                    </div>
-                                  ) : null}
-                                </div>
-                              </a>
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  ),
-                )
-              }
-            </div>
-          </div>
-        </div>
-
-        <!-- Simple links without mega menu -->
-        <a
-          href="/plan-dedykowany"
-          class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
-          >{
-            t("navigation.custom_plan") ||
-              (lang === "pl" ? "Plan dedykowany" : "Custom plan")
-          }</a
-        >
-
-        <!-- Materiały with mega menu -->
-        <div class="relative">
-          <button
-            id="mega-trigger-resources"
-            type="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="mega-menu-resources"
-            class={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${activePage === "blog" ? "text-[#0B2360]" : "text-gray-600 hover:text-[#0B2360]"}`}
-          >
-            <span
-              >{
-                t("navigation.resources") ||
-                  (lang === "pl" ? "Materiały" : "Resources")
-              }</span
-            >
-            <svg
-              class="w-3.5 h-3.5 transition-transform duration-200"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
-              ></path></svg
-            >
-          </button>
-          <div
-            id="mega-menu-resources"
-            class="hidden absolute left-1/2 -translate-x-1/2 top-12 w-[980px] max-w-[95vw] bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition ease-out duration-150 transform"
-            role="menu"
-          >
-            <div class="h-1 w-full sportigio-gradient"></div>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6"
-            >
-              {
-                resourcesGroups.map(
-                  (group: {
-                    title: string;
-                    items: {
-                      label: string;
-                      href: string;
-                      description?: string;
-                      icon?: string;
-                    }[];
-                  }) => (
-                    <div>
-                      <h4 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                        {group.title}
-                      </h4>
-                      <ul class="space-y-2">
-                        {group.items.map(
-                          (item: {
-                            label: string;
-                            href: string;
-                            description?: string;
-                            icon?: string;
-                          }) => (
-                            <li>
-                              <a
-                                href={item.href}
-                                class="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-gray-50 transition-colors text-gray-900"
-                                role="menuitem"
-                              >
-                                {item.icon ? (
-                                  <span
-                                    class="material-symbols-rounded text-[20px] leading-5"
-                                    aria-hidden="true"
-                                  >
-                                    {item.icon}
-                                  </span>
-                                ) : null}
-                                <div>
-                                  <div class="text-sm font-semibold">
-                                    {item.label}
-                                  </div>
-                                  {item.description ? (
-                                    <div class="text-xs text-gray-600 mt-0.5">
-                                      {item.description}
-                                    </div>
-                                  ) : null}
-                                </div>
-                              </a>
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  ),
-                )
-              }
-            </div>
-          </div>
-        </div>
-
         <a
           href="/pricing"
           class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >{
             t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
           }</a
+        >
+        <a
+          href="/blog"
+          class={`text-sm font-medium transition-colors duration-200 ${activePage === "blog" ? "text-[#0B2360]" : "text-gray-600 hover:text-[#0B2360]"}`}
+          >{t("navigation.blog") || "Blog"}</a
         >
       </div>
 
@@ -965,7 +784,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
               class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
             >
               {
-                productGroupsFiltered.map(
+                productGroupsV1.map(
                   (group: {
                     title: string;
                     items: {
@@ -1032,194 +851,19 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
           </div>
         </li>
         <li>
-          <button
-            id="mobile-acc-kitchen-toggle"
-            type="button"
-            aria-controls="mobile-acc-kitchen"
-            aria-expanded="false"
-            class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
-          >
-            <span
-              >{
-                t("navigation.solutions") ||
-                  (lang === "pl" ? "Rozwiązania" : "Solutions")
-              }</span
-            >
-            <svg
-              class="w-4 h-4 text-gray-600 transition-transform duration-200"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
-              ></path></svg
-            >
-          </button>
-          <div id="mobile-acc-kitchen" class="hidden mt-2">
-            <div
-              class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
-            >
-              {
-                kitchenGroups.map(
-                  (group: {
-                    title: string;
-                    items: {
-                      label: string;
-                      href: string;
-                      description?: string;
-                      icon?: string;
-                    }[];
-                  }) => (
-                    <div class="px-4 py-3">
-                      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                        {group.title}
-                      </div>
-                      <ul class="space-y-1">
-                        {group.items.map(
-                          (item: {
-                            label: string;
-                            href: string;
-                            description?: string;
-                            icon?: string;
-                          }) => (
-                            <li>
-                              <a
-                                href={item.href}
-                                class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
-                              >
-                                {item.icon ? (
-                                  <span
-                                    class="material-symbols-rounded text-[20px] leading-5"
-                                    aria-hidden="true"
-                                  >
-                                    {item.icon}
-                                  </span>
-                                ) : null}
-                                <div>
-                                  <div class="text-sm font-medium">
-                                    {item.label}
-                                  </div>
-                                  {item.description ? (
-                                    <div class="text-xs text-gray-600">
-                                      {item.description}
-                                    </div>
-                                  ) : null}
-                                </div>
-                              </a>
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  ),
-                )
-              }
-            </div>
-          </div>
-        </li>
-        <li>
-          <a
-            href="/plan-dedykowany"
-            class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
-            >{
-              t("navigation.custom_plan") ||
-                (lang === "pl" ? "Plan dedykowany" : "Custom plan")
-            }</a
-          >
-        </li>
-        <li>
-          <button
-            id="mobile-acc-resources-toggle"
-            type="button"
-            aria-controls="mobile-acc-resources"
-            aria-expanded="false"
-            class="w-full flex items-center justify-between px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
-          >
-            <span
-              >{
-                t("navigation.resources") ||
-                  (lang === "pl" ? "Materiały" : "Resources")
-              }</span
-            >
-            <svg
-              class="w-4 h-4 text-gray-600 transition-transform duration-200"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-              ><path
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.216l3.71-3.985a.75.75 0 111.08 1.04l-4.24 4.55a.75.75 0 01-1.08 0l-4.24-4.55a.75.75 0 01.02-1.06z"
-              ></path></svg
-            >
-          </button>
-          <div id="mobile-acc-resources" class="hidden mt-2">
-            <div
-              class="rounded-xl border border-gray-200 divide-y divide-gray-100 overflow-hidden"
-            >
-              {
-                resourcesGroups.map(
-                  (group: {
-                    title: string;
-                    items: {
-                      label: string;
-                      href: string;
-                      description?: string;
-                      icon?: string;
-                    }[];
-                  }) => (
-                    <div class="px-4 py-3">
-                      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                        {group.title}
-                      </div>
-                      <ul class="space-y-1">
-                        {group.items.map(
-                          (item: {
-                            label: string;
-                            href: string;
-                            description?: string;
-                            icon?: string;
-                          }) => (
-                            <li>
-                              <a
-                                href={item.href}
-                                class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
-                              >
-                                {item.icon ? (
-                                  <span
-                                    class="material-symbols-rounded text-[20px] leading-5"
-                                    aria-hidden="true"
-                                  >
-                                    {item.icon}
-                                  </span>
-                                ) : null}
-                                <div>
-                                  <div class="text-sm font-medium">
-                                    {item.label}
-                                  </div>
-                                  {item.description ? (
-                                    <div class="text-xs text-gray-600">
-                                      {item.description}
-                                    </div>
-                                  ) : null}
-                                </div>
-                              </a>
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  ),
-                )
-              }
-            </div>
-          </div>
-        </li>
-        <li>
           <a
             href="/pricing"
             class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
             >{
               t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
             }</a
+          >
+        </li>
+        <li>
+          <a
+            href="/blog"
+            class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
+            >{t("navigation.blog") || "Blog"}</a
           >
         </li>
       </ul>
