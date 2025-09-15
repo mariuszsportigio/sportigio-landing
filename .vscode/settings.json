@@ -1,4 +1,25 @@
 {
+  "files.exclude": {
+    "**/.vercel": true,
+    "**/dist": true
+  },
+  "search.exclude": {
+    "**/.vercel": true,
+    "**/dist": true
+  },
+  "typescript.tsserver.excludeDirectories": [
+    "**/.vercel",
+    "**/dist",
+    "**/node_modules"
+  ],
+  "javascript.tsserver.excludeDirectories": [
+    "**/.vercel",
+    "**/dist",
+    "**/node_modules"
+  ]
+}
+
+{
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "less.lint.unknownAtRules": "ignore",
