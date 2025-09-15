@@ -27,6 +27,93 @@ const lang = defaultLanguage;
       <section id="zaufali-nam">
         <TrustedClubsSection />
       </section>
+      <!-- Benefits strip (1 row) -->
+      <section id="benefits" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <!-- Section header + modules row -->
+          <div class="mb-8 text-center">
+            <h2
+              class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins"
+            >
+              Platforma Sportigio dla klubu sportowego
+            </h2>
+            <p class="text-gray-600 mt-3">
+              Możesz skorzystać z 1 lub wielu modułów. Decyduj w dowolnym
+              momencie.
+            </p>
+          </div>
+
+          <div
+            class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >phone_iphone</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Strona Mobilna</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >storefront</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Sklep Online</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >confirmation_number</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Bilety Online</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <SimpleFeature
+              title="Bez zmartwień technicznych"
+              description="Zapewniamy serwer, aktualizacje kodu oraz bezpieczeństwo danych."
+              iconName="dns"
+              ctaVariant="none"
+              alignment="left"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Działasz od razu"
+              description="Korzystasz z produktu pod swoją marką, bez czekania i inwestycji."
+              iconName="verified_user"
+              ctaVariant="none"
+              alignment="left"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Ciągłe wsparcie"
+              description="Monitoring techniczny 24/7, wsparcie ludzkie przez e‑mail i czat."
+              iconName="headset_mic"
+              ctaVariant="none"
+              alignment="left"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Twoja marka w internecie"
+              description="My utrzymujemy system, a Ty tworzysz treści, promujesz sponsorów."
+              iconName="language"
+              ctaVariant="none"
+              alignment="left"
+              size="sm"
+            />
+          </div>
+        </div>
+      </section>
       <section id="testimonials">
         <TestimonialCarousel lang={lang} />
       </section>
