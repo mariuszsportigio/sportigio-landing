@@ -1,8 +1,0 @@
-  backup/before-merge-f82e254          [m f82e254 poprawki kolorów, sekcja z tabs
-  backup/before-rollback-3e3cef0       [m 3e3cef0 fix(ts): popraw DOM typings, nasłuchiwacze zdarzeń i CookieConsent
-  backup/before-rollback-f84914a       [m f84914a feat: aktualizacje landing page, nawigacji i layoutu
-* [32mkarol/poprawki-kolorow               [m ab6d1b8 [[34morigin/karol/poprawki-kolorow[m] linkowanie logo w navbarze na / zamiast /kitchen-sink
-  master                               [m cf94fc3 [[34morigin/master[m] Update - colors
-  [31mremotes/origin/HEAD                  [m -> origin/master
-  [31mremotes/origin/karol/poprawki-kolorow[m ab6d1b8 linkowanie logo w navbarze na / zamiast /kitchen-sink
-  [31mremotes/origin/master                [m cf94fc3 Update - colors
