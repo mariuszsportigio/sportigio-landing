@@ -58,7 +58,8 @@
                 { "label": "Sportigio", "href": "/platforma", "description": "" },
                 { "label": "Website", "href": "/strona", "description": "" },
                 { "label": "Online Tickets", "href": "/bilety-online", "description": "" },
-                { "label": "Shop", "href": "/sklep", "description": "" }
+                { "label": "Sportigio Shop", "href": "/sklep-sportigio", "description": "" },
+                { "label": "Own shop", "href": "/sklep-wlasny", "description": "" }
               ]
             },
             {

@@ -58,7 +58,8 @@
                 { "label": "Sportigio", "href": "/platforma", "description": "" },
                 { "label": "Strona", "href": "/strona", "description": "" },
                 { "label": "Bilety online", "href": "/bilety-online", "description": "" },
-                { "label": "Sklep", "href": "/sklep", "description": "" }
+                { "label": "Sklep Sportigio", "href": "/sklep-sportigio", "description": "" },
+                { "label": "Sklep własny", "href": "/sklep-wlasny", "description": "" }
               ]
             },
             {
