@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
+import PricingThreeColumn from "../components/PricingThreeColumn.astro";
 import TwoColumnMedia from "../components/TwoColumnMedia.astro";
 import ExamplesSection from "../components/ExamplesSection.astro";
 import { defaultLanguage, type Language } from "../i18n";
@@ -83,6 +84,150 @@ const { lang = defaultLanguage } = Astro.props as Props;
         </TwoColumnMedia>
 
         <ExamplesSection />
+
+        <!-- Pricing: uruchomienie strony (jednorazowo) -->
+        <PricingThreeColumn
+            id="setup-pricing"
+            badge="Cennik (1/2)"
+            title="Uruchomienie strony WWW"
+            subtitle="Jednorazowa opłata za start — trzy opcje dopasowane do Twoich potrzeb"
+            topBadges={[
+                { icon: "dns", label: "Utrzymanie hostingu" },
+                { icon: "verified_user", label: "Certyfikat SSL" },
+                { icon: "support_agent", label: "Wsparcie techniczne" },
+            ]}
+            plans={[
+                {
+                    name: "Standardowe",
+                    price: "599 zł",
+                    priceNote: "netto",
+                    description:
+                        "Podstawowa konfiguracja i wsparcie dla klubu, który chce ruszyć samodzielnie",
+                    features: [
+                        "1h szkolenia z obsługi lub konsultacji",
+                        "Migracja artykułów ze starej strony*",
+                        "Wsparcie mailowe i przez czat",
+                        "Pomoc w podpięciu domeny i starcie",
+                    ],
+                    extras: [
+                        "Działasz samodzielnie na swoim demo",
+                        "Konsultujemy przebieg prac i wspieramy Cię technicznie",
+                    ],
+                },
+                {
+                    name: "Komfortowe",
+                    price: "2 100 zł",
+                    priceNote: "netto",
+                    description:
+                        "Dla klubów, które chcą mieć wszystko przygotowane i ruszyć bez stresu",
+                    highlight: true,
+                    badge: "Najczęściej wybierane",
+                    features: [
+                        "2h szkolenia z obsługi lub konsultacji",
+                        "Migracja artykułów ze starej strony",
+                        "Wsparcie przez WhatsApp (7 dni)",
+                        "3h prac nad uzupełnieniem treści",
+                    ],
+                    extras: [
+                        "Przesyłasz nam materiały lub linki",
+                        "Otrzymujesz stronę gotową do startu",
+                    ],
+                },
+                {
+                    name: "Dedykowane",
+                    price: "Indywidualnie",
+                    description:
+                        "Dla większych projektów, wymagających więcej pracy lub migracji dużej ilości treści",
+                    featuresTitle: "Wszystko co w Komfortowym oraz:",
+                    features: [
+                        "Migracja galerii zdjęć lub plików",
+                        "Dodatkowe dostosowanie szablonu",
+                        "Uzupełnianie treści ponad 3h pracy",
+                        "Dedykowane szkolenia i instrukcje",
+                        "Integracje z innymi narzędziami",
+                    ],
+                    extras: [
+                        "Wycena tych działań to zazwyczaj 5–7 tys. zł, maks. ~20 tys. zł przy dużym projekcie",
+                    ],
+                },
+            ]}
+            footnote="* Przenosimy newsy z WordPress lub podobnego systemu. W przypadku braku archiwum dodajemy 6 artykułów na start z dowolnego źródła."
+        />
+
+        <!-- Pricing: abonament za utrzymanie (miesięcznie) -->
+        <PricingThreeColumn
+            id="subscription-pricing"
+            badge="Cennik (2/2)"
+            title="Abonament za utrzymanie"
+            subtitle="Miesięczne plany — zawsze zawiera: hosting, SSL, wsparcie i aktualizacje"
+            topBadges={[
+                { icon: "dns", label: "Utrzymanie hostingu" },
+                { icon: "verified_user", label: "Certyfikat SSL" },
+                { icon: "support_agent", label: "Wsparcie techniczne" },
+                { icon: "cloud_download", label: "Dostęp do aktualizacji" },
+            ]}
+            plans={[
+                {
+                    name: "PRO",
+                    price: "199 zł",
+                    priceNote: "(2388 zł za rok)",
+                    description:
+                        "W sam raz, by mieć pełnoprawną, funkcjonalną stronę klubową",
+                    features: [
+                        "Własna domena i brak reklam",
+                        "Zarządzanie drabinką sponsorską",
+                        "Edytor strony głównej (blokowy)",
+                        "Zarządzanie menu w panelu",
+                    ],
+                    extras: [
+                        "100 zdjęć w 1 galerii zdjęć",
+                        "1 GB przestrzeni na pliki",
+                        "20 podstron",
+                        "180 dni analityki strony",
+                    ],
+                },
+                {
+                    name: "PRO+",
+                    price: "290 zł",
+                    priceNote: "(3488 zł za rok)",
+                    description:
+                        "Większa personalizacja i limity dla profesjonalnej i komfortowej strony",
+                    highlight: true,
+                    badge: "Rekomendowane",
+                    featuresTitle: "Wszystko co w PRO oraz:",
+                    features: [
+                        "Większa personalizacja, dzięki własnej wersji CSS i JS (do 5 elementów)",
+                        "1h dedykowanego wsparcia na start",
+                    ],
+                    extras: [
+                        "120 zdjęć w 1 galerii zdjęć",
+                        "3 GB przestrzeni na pliki",
+                        "30 podstron",
+                        "365 dni analityki strony",
+                    ],
+                },
+                {
+                    name: "CHAMPION",
+                    price: "499 zł",
+                    priceNote: "(5988 zł za rok)",
+                    description:
+                        "Jeśli Twoja strona to centrum komunikacji klubu – pakiet idealny",
+                    featuresTitle: "Wszystko co w PRO+ oraz:",
+                    features: [
+                        "Pełna personalizacja (CSS + JS)",
+                        "Zarabianie na SEO (artykuły sponsorów)",
+                        "Wsparcie przez WhatsApp",
+                    ],
+                    extras: [
+                        "150 zdjęć w 1 galerii zdjęć",
+                        "5 GB przestrzeni na pliki",
+                        "50 podstron",
+                        "2 lata analityki strony",
+                    ],
+                },
+            ]}
+            footnote="Ceny netto — podane przy płatności z góry za rok lub co miesiąc przy podpięciu auto-płatności kartą."
+        />
 
         <CTASection />
     </main>
