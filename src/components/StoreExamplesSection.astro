@@ -1,0 +1,83 @@
+---
+interface StoreExampleItem {
+    title: string;
+    imageSrc: string;
+    imageAlt: string;
+    href: string;
+}
+
+// Two shop examples; images live in /public/screens
+const examples: StoreExampleItem[] = [
+    {
+        title: "Legia Koszykówka – Sklep",
+        imageSrc: "/screens/legia-kosz-sklep-mobile-orig.webp",
+        imageAlt: "Legia Koszykówka – podgląd sklepu (mobile)",
+        href: "https://sklep.legiakosz.com/",
+    },
+    {
+        title: "Trefl Sopot – Sklep",
+        imageSrc: "/screens/trefl-sopot-sklep-mobile-orig.webp",
+        imageAlt: "Trefl Sopot – podgląd sklepu (mobile)",
+        href: "https://sklep.treflsopot.pl/",
+    },
+];
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-8 text-center">
+            <h2
+                class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins"
+            >
+                Przykładowe sklepy klubowe
+            </h2>
+            <p class="text-gray-600 mt-3">
+                Wybrane wdrożenia sklepów internetowych
+            </p>
+        </div>
+
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12 justify-items-center"
+        >
+            {
+                examples.map((ex) => (
+                    <div class="flex flex-col items-center">
+                        <div class="aspect-[9/16] w-full max-w-[320px] lg:max-w-[360px] overflow-hidden">
+                            <img
+                                src={ex.imageSrc}
+                                alt={ex.imageAlt}
+                                class="h-full w-full object-contain rounded-xl shadow-md"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-900 mt-3 text-center">
+                            {ex.title}
+                        </h3>
+                        <a
+                            href={ex.href}
+                            class="btn-style-1 mt-2 px-4 py-2 text-sm font-semibold rounded-lg text-white inline-flex items-center gap-2"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span>Otwórz sklep</span>
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
