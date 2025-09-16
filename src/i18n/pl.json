@@ -447,4 +447,43 @@
       }
     }
   }
+  ,
+  "shopSportigio": {
+    "how": {
+      "title": "Jak to działa?",
+      "subtitle": "Sklep Sportigio sprzedaje, Snapwear realizuje, klub zarabia.",
+      "actors": {
+        "customer": "Klient",
+        "seller": "Sprzedawca: Sportigio",
+        "producer": "Producent: Snapwear",
+        "beneficiary": "Beneficjent: Klub"
+      },
+      "orderFlow": {
+        "a_to_b": "Złożenie zamówienia",
+        "b_to_c": "Automatyczne przekazanie do produkcji",
+        "b_to_c_note": "bez ręcznego zlecenia ze strony Sportigio",
+        "c_to_a": "Wysyłka zamówienia",
+        "c_to_a_chip": "ok. 48 h"
+      },
+      "headings": {
+        "order": "Flow zamówienia",
+        "finance": "Flow finansów"
+      },
+      "actorShort": {
+        "customer": "Klient",
+        "seller": "Sportigio",
+        "shopify": "Shopify",
+        "producer": "Snapwear",
+        "beneficiary": "Klub"
+      },
+      "financeFlow": {
+        "step4": "Rozliczenie sprzedaży miesięczne",
+        "step4_note": "raport sztuk i wartości",
+        "step5": "Faktura klubu za korzystanie z logo",
+        "step6": "Płatność na konto",
+        "step6_chip": "do 48 h od faktury"
+      },
+      "cta": "Chcę uruchomić sklep"
+    }
+  }
 }

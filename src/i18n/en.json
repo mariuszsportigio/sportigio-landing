@@ -287,4 +287,43 @@
       }
     }
   }
+  ,
+  "shopSportigio": {
+    "how": {
+      "title": "How it works",
+      "subtitle": "Sportigio Shop sells, Snapwear fulfills, the club earns.",
+      "actors": {
+        "customer": "Customer",
+        "seller": "Seller: Sportigio (Shopify store)",
+        "producer": "Producer: Snapwear (print‑on‑demand + fulfillment)",
+        "beneficiary": "Beneficiary: Club"
+      },
+      "orderFlow": {
+        "a_to_b": "Order placed",
+        "b_to_c": "Automatic hand‑off to production",
+        "b_to_c_note": "no manual action from Sportigio",
+        "c_to_a": "Order shipped",
+        "c_to_a_chip": "~48 h"
+      },
+      "headings": {
+        "order": "Order flow",
+        "finance": "Finance flow"
+      },
+      "actorShort": {
+        "customer": "Customer",
+        "seller": "Sportigio",
+        "shopify": "Shopify",
+        "producer": "Snapwear",
+        "beneficiary": "Club"
+      },
+      "financeFlow": {
+        "step4": "Monthly sales settlement",
+        "step4_note": "units and value report",
+        "step5": "Club invoice for logo usage",
+        "step6": "Payout to club account",
+        "step6_chip": "within 48 h of invoice"
+      },
+      "cta": "I want to launch the club shop"
+    }
+  }
 }

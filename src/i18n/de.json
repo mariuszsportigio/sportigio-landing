@@ -253,4 +253,43 @@
       }
     }
   }
+  ,
+  "shopSportigio": {
+    "how": {
+      "title": "So funktioniert es",
+      "subtitle": "Sportigio Shop verkauft, Snapwear erfüllt, der Verein verdient.",
+      "actors": {
+        "customer": "Kunde",
+        "seller": "Verkäufer: Sportigio (Shopify‑Shop)",
+        "producer": "Produzent: Snapwear (Print‑on‑Demand + Fulfillment)",
+        "beneficiary": "Begünstigter: Verein"
+      },
+      "orderFlow": {
+        "a_to_b": "Bestellung aufgegeben",
+        "b_to_c": "Automatische Übergabe an die Produktion",
+        "b_to_c_note": "keine manuelle Aktion von Sportigio",
+        "c_to_a": "Bestellung versandt",
+        "c_to_a_chip": "~48 Std."
+      },
+      "headings": {
+        "order": "Bestellfluss",
+        "finance": "Finanzfluss"
+      },
+      "actorShort": {
+        "customer": "Kunde",
+        "seller": "Sportigio",
+        "shopify": "Shopify",
+        "producer": "Snapwear",
+        "beneficiary": "Verein"
+      },
+      "financeFlow": {
+        "step4": "Monatliche Verkaufsabrechnung",
+        "step4_note": "Bericht über Stückzahl und Wert",
+        "step5": "Vereinsrechnung für Logo‑Nutzung",
+        "step6": "Auszahlung auf Vereinskonto",
+        "step6_chip": "innerhalb von 48 Std. nach Rechnung"
+      },
+      "cta": "Ich möchte den Vereins‑Shop starten"
+    }
+  }
 }

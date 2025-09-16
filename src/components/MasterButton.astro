@@ -54,8 +54,7 @@ const variantClasses = {
   outline:
     "btn-style-3 bg-transparent text-[#0B2360] border-2 border-[#0B2360] hover:bg-[#0B2360] hover:text-white",
   ghost: "bg-transparent text-[#0B2360] hover:bg-[#0B2360]/10",
-  gradient:
-    "btn-style-4 bg-gradient-to-r from-[#0B2360] via-[#01DFEC] to-[#EA36E1] text-white shadow-lg",
+  gradient: "btn-style-4 text-white shadow-lg",
   navy: "bg-[#0B2360] text-white border border-[#0B2360] hover:bg-[#081a4a] shadow-lg",
 };
 
@@ -190,17 +189,17 @@ const props = href ? { href, target } : { type, disabled };
   }
 
   .btn-style-4 {
-    background: linear-gradient(135deg, #0b2360 0%, #01dfec 50%, #ea36e1 100%);
-    background-size: 200% 200%;
+    background: var(--sportigio-gradient);
+    background-size: 100% 100%;
     position: relative;
     overflow: hidden;
   }
 
   .btn-style-4:hover {
-    background-position: right center;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(11, 35, 96, 0.4);
-    filter: brightness(1.1);
+    background-position: center;
+    transform: none;
+    box-shadow: 0 15px 40px rgba(11, 35, 96, 0.3);
+    filter: none;
   }
 
   /* Magnetic button effect */
@@ -209,7 +208,7 @@ const props = href ? { href, target } : { type, disabled };
   }
 
   .btn-magnetic:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: none;
   }
 
   /* Glow effect */
@@ -281,8 +280,8 @@ const props = href ? { href, target } : { type, disabled };
   .btn-style-1:active::after,
   .btn-style-2:active::after,
   .btn-style-4:active::after {
-    width: 300px;
-    height: 300px;
+    width: 0;
+    height: 0;
   }
 
   /* Focus states */
@@ -339,7 +338,7 @@ const props = href ? { href, target } : { type, disabled };
   .btn-style-2:hover svg,
   .btn-style-3:hover svg,
   .btn-style-4:hover svg {
-    transform: scale(1.1);
+    transform: none;
   }
 </style>
 
