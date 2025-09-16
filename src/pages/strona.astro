@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import ExamplesSection from "../components/ExamplesSection.astro";
 import { defaultLanguage, type Language } from "../i18n";
 
 interface Props {
@@ -21,11 +23,66 @@ const { lang = defaultLanguage } = Astro.props as Props;
                 <h1
                     class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins"
                 >
-                    Strona
+                    Strona WWW
                 </h1>
-                <p class="text-gray-600 mt-4">Treść w przygotowaniu.</p>
             </div>
         </section>
+
+        <TwoColumnMedia
+            title="Profesjonalna strona internetowa klubu"
+            imageSrc="/screens/website-preview-mobile.avif"
+            imageAlt="Sportigio - Strona internetowa klubu"
+            ctaVariant="button"
+            ctaText="Zobacz więcej"
+            ctaHref="/strona"
+        >
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+                        >rocket_launch</span
+                    >
+                    <div>
+                        <p class="text-gray-900 font-semibold">
+                            Szybki start i pewne działanie
+                        </p>
+                        <p class="text-gray-600">
+                            Działamy na gotowym i sprawdzonym dla sportu
+                            szablonie. Utrzymujemy łącznie ponad 100 stron.
+                        </p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+                        >edit_note</span
+                    >
+                    <div>
+                        <p class="text-gray-900 font-semibold">
+                            Samodzielna i prosta edycja
+                        </p>
+                        <p class="text-gray-600">
+                            Pokochasz panel admina za ułatwienia terminarza,
+                            sponsorów, bannerów, dodawania i edycji treści.
+                        </p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+                        >trending_up</span
+                    >
+                    <div>
+                        <p class="text-gray-900 font-semibold">
+                            37% wzrost popularności
+                        </p>
+                        <p class="text-gray-600">
+                            Porównując roczne statystyki odsłon, strony w
+                            Sportigio generują ok. 37% więcej odsłon.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </TwoColumnMedia>
+
+        <ExamplesSection />
 
         <CTASection />
     </main>

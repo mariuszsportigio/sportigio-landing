@@ -1,0 +1,90 @@
+---
+interface ExampleItem {
+    title: string;
+    imageSrc: string;
+    imageAlt: string;
+    href: string;
+}
+
+const examples: ExampleItem[] = [
+    {
+        title: "Wisła Kraków",
+        imageSrc: "/screens/wisla-krakow-mobile.webp",
+        imageAlt: "Wisła Kraków – podgląd strony mobilnej",
+        href: "#wisla",
+    },
+    {
+        title: "Legia Koszykówka",
+        imageSrc: "/screens/legia-kosz-mobile.webp",
+        imageAlt: "Legia – podgląd strony mobilnej",
+        href: "#legia",
+    },
+    {
+        title: "MKS Będzin",
+        imageSrc: "/screens/mks-bedzin-mobile.webp",
+        imageAlt: "MKS Będzin – podgląd strony mobilnej",
+        href: "#bedzin",
+    },
+    {
+        title: "Panthers Wrocław",
+        imageSrc: "/screens/panthers-wroclaw-mobile.webp",
+        imageAlt: "Panthers Wrocław – podgląd strony mobilnej",
+        href: "#panthers",
+    },
+];
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-8 text-center">
+            <h2
+                class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins"
+            >
+                Przykłady realizacji
+            </h2>
+            <p class="text-gray-600 mt-3">
+                Wybrane wdrożenia w klubach sportowych
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {
+                examples.map((ex) => (
+                    <div class="flex flex-col items-center">
+                        <div class="aspect-[9/16] w-full max-w-[240px] overflow-hidden">
+                            <img
+                                src={ex.imageSrc}
+                                alt={ex.imageAlt}
+                                class="h-full w-full object-contain rounded-xl shadow-md"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-900 mt-3 text-center">
+                            {ex.title}
+                        </h3>
+                        <a
+                            href={ex.href}
+                            class="btn-style-1 mt-2 px-4 py-2 text-sm font-semibold rounded-lg text-white inline-flex items-center gap-2"
+                        >
+                            <span>Odwiedź stronę</span>
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
