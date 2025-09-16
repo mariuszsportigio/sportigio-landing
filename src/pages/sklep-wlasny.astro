@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
 import StoreExamplesSection from "../components/StoreExamplesSection.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
 import { defaultLanguage, type Language } from "../i18n";
 
 interface Props {
@@ -29,6 +30,29 @@ const { lang = defaultLanguage } = Astro.props as Props;
                 </p>
             </div>
         </section>
+
+        <TwoColumnMedia
+            title="Pełna kontrola"
+            imageSrc="/screens/store-preview-mobile.avif"
+            imageAlt="Podgląd sklepu (mobile)"
+            reverse={false}
+            bullets={[
+                "Implementacja: 6 000 zł netto",
+                "Utrzymanie: 200 zł + 2% od obrotów sklepu / miesiąc",
+            ]}
+        >
+            <p>
+                Gdy Twój klub ma już wyprodukowane gadżety, sam je magazynuje i
+                wysyła — to opcja dla Ciebie. Pełna personalizacja i pro usługa.
+            </p>
+        </TwoColumnMedia>
+
+        <div class="max-w-6xl mx-auto px-4 mt-2">
+            <p class="text-xs text-gray-500 italic">
+                * Podstawowa konfiguracja sklepu i utrzymanie w oparciu o silnik
+                Shopify. Możliwe dodatkowe opłaty przy zaawansowanych funkcjach
+            </p>
+        </div>
 
         <StoreExamplesSection />
 
