@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
 import { defaultLanguage, type Language } from "../i18n";
 
 interface Props {
@@ -18,15 +19,65 @@ const { lang = defaultLanguage } = Astro.props as Props;
   <main class="bg-white min-h-screen">
     <section class="py-20">
       <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins">Bilety online</h1>
-        <p class="text-gray-600 mt-4">Treść w przygotowaniu.</p>
+        <h1
+          class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins"
+        >
+          Bilety online
+        </h1>
       </div>
     </section>
+
+    <TwoColumnMedia
+      title="Sprzedawaj bilety online"
+      imageSrc="/screens/tickets-preview-mobile.avif"
+      imageAlt="Sportigio - Bilety online"
+      reverse={true}
+    >
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+            >bolt</span
+          >
+          <div>
+            <p class="text-gray-900 font-semibold">
+              Prostota i elegancja = KONWERSJA
+            </p>
+            <p class="text-gray-600">
+              Szybki i łatwy proces zakupu, bez wychodzenia ze strony klubowej.
+            </p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+            >qr_code_scanner</span
+          >
+          <div>
+            <p class="text-gray-900 font-semibold">
+              Kontrola biletów w telefonie
+            </p>
+            <p class="text-gray-600">
+              Kontrolerem biletów może być każdy z telefonem i przeglądarką.
+            </p>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+            >trending_up</span
+          >
+          <div>
+            <p class="text-gray-900 font-semibold">
+              38% większa szansa na lojalność
+            </p>
+            <p class="text-gray-600">
+              Budujemy bazę kibiców i zwiększamy szanse na ponowne zakupy.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </TwoColumnMedia>
 
     <CTASection />
   </main>
 
   <Footer lang={lang} />
 </Layout>
-
-
