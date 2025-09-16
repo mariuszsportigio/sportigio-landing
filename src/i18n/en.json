@@ -5,22 +5,167 @@
     "contact_us": "Contact us",
     "learn_more": "Learn more",
     "get_started": "Get started",
-    "read_more": "Read more"
+    "read_more": "Read more",
+    "under_construction": {
+      "title": "Page under construction – check back soon",
+      "desc": "We're working on the Sportigio platform content: modules, integrations and case studies.",
+      "cta_demo": "Book a Demo",
+      "cta_blog": "Blog",
+      "meta_updated": "Last updated",
+      "meta_plan": "Publishing plan: product sections and FAQ",
+      "meta_support": "Questions? Write to: kontakt@sportigio.com"
+    }
   },
   "navigation": {
+    "home": "Home",
+    "product": "Product",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Features",
     "pricing": "Pricing", 
     "about": "About",
     "contact": "Contact",
     "login": "Login",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menu",
+    "open_menu": "Open menu",
+    "custom_plan": "Custom plan",
+    "mega": {
+      "groups": [
+        {
+          "title": "Product",
+          "items": [
+            { "label": "Pricing", "href": "/pricing", "description": "Simple, transparent plans" },
+            { "label": "Blog", "href": "/blog", "description": "Insights and updates" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Components and styles" }
+          ]
+        },
+        {
+          "title": "Navigate",
+          "items": [
+            { "label": "Home", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "product": {
+          "groups": [
+            {
+              "title": "Platform",
+              "items": [
+                { "label": "Sportigio", "href": "/platforma", "description": "" },
+                { "label": "Website", "href": "/strona", "description": "" },
+                { "label": "Online Tickets", "href": "/bilety-online", "description": "" },
+                { "label": "Sportigio Shop", "href": "/sklep-sportigio", "description": "" },
+                { "label": "Own shop", "href": "/sklep-wlasny", "description": "" }
+              ]
+            },
+            {
+              "title": "Capabilities",
+              "items": [
+                { "label": "Monetization", "href": "/zarabianie", "description": "" },
+                { "label": "Predictor & Quiz", "href": "/typer-quiz", "description": "" },
+                { "label": "Automatic Results", "href": "/automatyczne-wyniki", "description": "" },
+                { "label": "Ads & Sponsors", "href": "/reklamy-sponsorzy", "description": "" },
+                { "label": "Mailing & Notifications", "href": "/mailing-powiadomienia", "description": "" },
+                { "label": "Fans Database", "href": "/baza-fanow", "description": "" },
+                { "label": "AI Assistant", "href": "/asystent-ai", "description": "" },
+                { "label": "All Features", "href": "/wszystkie-funkcje", "description": "" }
+              ]
+            },
+            {
+              "title": "Getting Started",
+              "items": [
+                { "label": "Let Us Do It", "href": "/zlec-to-nam", "description": "" },
+                { "label": "Do It Yourself", "href": "/zrob-to-sam", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "For whom",
+              "items": [
+                { "label": "Management", "href": "/zarzad", "description": "" },
+                { "label": "Marketing", "href": "/marketing", "description": "" },
+                { "label": "Sponsor", "href": "/sponsor", "description": "" },
+                { "label": "Fan", "href": "/kibic", "description": "" }
+              ]
+            },
+            {
+              "title": "Discipline",
+              "items": [
+                { "label": "Football", "href": "/pilka-nozna", "description": "" },
+                { "label": "Basketball", "href": "/koszykowka", "description": "" },
+                { "label": "Volleyball", "href": "/siatkowka", "description": "" },
+                { "label": "Hockey", "href": "/hokej", "description": "" },
+                { "label": "Futsal", "href": "/futsal", "description": "" },
+                { "label": "Other sports", "href": "/inne-sporty", "description": "" }
+              ]
+            },
+            {
+              "title": "Use cases",
+              "items": [
+                { "label": "Ticket and season pass sales", "href": "/bilety-karnety", "description": "" },
+                { "label": "Merch at no cost", "href": "/merch", "description": "" },
+                { "label": "Support packages", "href": "/pakiety-wsparcia", "description": "" },
+                { "label": "Fan engagement", "href": "/fan-engagement", "description": "" },
+                { "label": "Customer stories", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Get to know us",
+              "items": [
+                { "label": "About", "href": "/o-firmie", "description": "" },
+                { "label": "What’s new", "href": "/co-nowego", "description": "" },
+                { "label": "Book a Demo", "href": "/demo", "description": "" },
+                { "label": "Blog", "href": "/blog", "description": "" }
+              ]
+            },
+            {
+              "title": "Support",
+              "items": [
+                { "label": "Knowledge base", "href": "/baza-wiedzy", "description": "" },
+                { "label": "Webinars", "href": "/webinary", "description": "" },
+                { "label": "Video tutorials", "href": "/instrukcje-wideo", "description": "" },
+                { "label": "API", "href": "/api", "description": "" },
+                { "label": "Contact", "href": "/kontakt", "description": "" }
+              ]
+            },
+            {
+              "title": "Services",
+              "items": [
+                { "label": "Implementation", "href": "/wdrozenie", "description": "" },
+                { "label": "Data migration", "href": "/migracja-danych", "description": "" },
+                { "label": "Training", "href": "/szkolenia", "description": "" },
+                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
+              ]
+            },
+            {
+              "title": "Customer stories",
+              "items": [
+                { "label": "News", "href": "/news", "description": "" },
+                { "label": "See all", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Next generation club management",
     "title": "Club communication in 1 simple",
     "title_highlight": "application",
     "subtitle": "Revolutionize the way you manage your sports club. Communication, schedules, payments and analytics - all in one place.",
-    "social_proof_clubs": "500+ satisfied clubs",
+    "social_proof_clubs": "100+ satisfied clubs",
     "social_proof_rating": "4.8/5 rating"
   },
   "testimonials": {
@@ -34,7 +179,7 @@
       "communication": "Better communication with parents",
       "attendance": "Attendance increase (25%)"
     },
-    "cta_text": "Join over 500+ satisfied clubs"
+    "cta_text": "Join over 100+ satisfied clubs"
   },
   "blog": {
     "title": "Latest Articles",
@@ -57,5 +202,89 @@
     "faq_title": "Have questions?",
     "faq_subtitle": "We're here to help your club grow online.",
     "faq_button": "Frequently asked questions"
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "We use cookies",
+      "description": "We use essential cookies to make this site work and optional cookies for analytics (Google Analytics, Microsoft Clarity) and marketing (Meta). You can change your preferences at any time.",
+      "acceptAllBtn": "Accept all",
+      "acceptNecessaryBtn": "Reject optional",
+      "showPreferencesBtn": "Preferences"
+    },
+    "preferencesModal": {
+      "title": "Cookie settings",
+      "acceptAllBtn": "Accept all",
+      "acceptNecessaryBtn": "Essential only",
+      "savePreferencesBtn": "Save settings",
+      "sections": [
+        {
+          "title": "Cookie usage",
+          "description": "We use cookies to provide core site functionality and to improve performance via analytics and marketing. Analytics and marketing cookies are optional."
+        },
+        {
+          "title": "Essential",
+          "description": "These cookies are required for the website to function and cannot be disabled.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analytics (GA, Clarity)",
+          "description": "Helps us measure traffic and user behavior to improve the site (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketing (Meta)",
+          "description": "Used to personalize ads and measure their effectiveness (e.g., Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
+  },
+  "platform": {
+    "badge": "Sportigio Link",
+    "title": "Professional club profile",
+    "title_highlight": "without a website",
+    "subtitle": "All‑in‑one tool — ready right after registration. Perfect for bio links on Facebook, Instagram and TikTok.",
+    "cta_primary": "Create profile in 2 minutes",
+    "cta_secondary": "See demo",
+    "sections": {
+      "what_is": {
+        "title": "What is Sportigio Link?",
+        "body": "Like Linktree, but for sports — with club‑specific features.",
+        "bullets": [
+          "Schedules and live results",
+          "Tickets, season passes and online sales",
+          "Traffic and conversion analytics"
+        ]
+      },
+      "features": {
+        "title": "Everything in one place",
+        "items": [
+          { "title": "Schedule & Results", "description": "Publish fixtures and results automatically." },
+          { "title": "Tickets & Passes", "description": "Sell tickets and season passes online." },
+          { "title": "Shop & Merch", "description": "Link products or enable a shop." },
+          { "title": "Analytics", "description": "Measure traffic, clicks and sales." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typical link‑in‑bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Links only",
+          "No results or schedule",
+          "No ticketing integration"
+        ],
+        "after_items": [
+          "Built‑in results and schedule",
+          "Tickets and passes",
+          "Stats and conversions"
+        ]
+      },
+      "cta": {
+        "title": "Start now",
+        "subtitle": "Your profile is ready immediately after sign‑up",
+        "primary": "Create club profile",
+        "secondary": "Book a short demo"
+      }
+    }
   }
-} 
+}

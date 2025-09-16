@@ -1,0 +1,121 @@
+---
+import { defaultLanguage, createTranslator, type Language } from "../i18n";
+
+export interface Props {
+    lang?: Language;
+    class?: string;
+    minHeight?: string; // e.g. "min-h-[65vh]"
+}
+
+const {
+    lang = defaultLanguage,
+    class: className = "",
+    minHeight = "min-h-[65vh] md:min-h-[75vh]",
+} = Astro.props as Props;
+const t = createTranslator(lang);
+---
+
+<div
+    class={`relative overflow-hidden rounded-3xl bg-white border border-gray-200 ${minHeight} ${className}`.trim()}
+>
+    <!-- Main content -->
+    <div
+        class="relative z-10 flex flex-col items-center justify-center h-full px-6 py-12 text-center"
+    >
+        <!-- Icon with animated glow -->
+        <div class="relative mb-8">
+            <div
+                class="absolute inset-0 sportigio-gradient rounded-2xl blur-lg opacity-60 animate-pulse"
+            >
+            </div>
+            <div
+                class="relative w-20 h-20 rounded-2xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                style="background: var(--sportigio-primary);"
+            >
+                <span
+                    class="material-symbols-rounded text-4xl text-white"
+                    aria-hidden="true">construction</span
+                >
+            </div>
+        </div>
+
+        <!-- Text content -->
+        <div class="max-w-lg mx-auto mb-10">
+            <h2
+                class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight"
+            >
+                {t("common.under_construction.title")}
+            </h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                {t("common.under_construction.desc")}
+            </p>
+        </div>
+
+        <!-- Action buttons with improved layout -->
+        <div class="flex flex-col lg:flex-row gap-4 w-full max-w-2xl">
+            <a
+                href="/pricing"
+                class="flex-1 btn-style-1 btn-hover-calm btn-nohover-shadow text-white font-semibold rounded-xl px-4 py-4 inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap"
+                style="--sportigio-gradient: var(--sportigio-gradient-2);"
+            >
+                <span class="material-symbols-rounded mr-2 text-[20px]"
+                    >rocket_launch</span
+                >
+                {t("common.try_free")}
+            </a>
+            <a
+                href="/blog"
+                class="flex-1 btn-style-3 btn-hover-calm btn-nohover-shadow-outline font-semibold rounded-xl px-4 py-4 inline-flex items-center justify-center transition-all duration-300 hover:scale-105 whitespace-nowrap"
+            >
+                <span class="material-symbols-rounded mr-2 text-[20px]"
+                    >article</span
+                >
+                {t("navigation.blog") || "Blog"}
+            </a>
+            <a
+                href="mailto:kontakt@sportigio.com"
+                class="flex-1 btn-style-3 btn-hover-calm btn-nohover-shadow-outline font-semibold rounded-xl px-4 py-4 inline-flex items-center justify-center transition-all duration-300 hover:scale-105 whitespace-nowrap"
+            >
+                <span class="material-symbols-rounded mr-2 text-[20px]"
+                    >mail</span
+                >
+                {t("common.contact_us")}
+            </a>
+        </div>
+
+        <!-- Progress indicator -->
+        <div class="mt-12 flex items-center gap-2 text-sm text-gray-500">
+            <div
+                class="w-2 h-2 bg-sportigio-gradient rounded-full animate-bounce"
+            >
+            </div>
+            <div
+                class="w-2 h-2 bg-sportigio-gradient rounded-full animate-bounce"
+                style="animation-delay: 0.1s;"
+            >
+            </div>
+            <div
+                class="w-2 h-2 bg-sportigio-gradient rounded-full animate-bounce"
+                style="animation-delay: 0.2s;"
+            >
+            </div>
+        </div>
+
+        <style>
+            /* Custom animations */
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+        </style>
+    </div>
+</div>

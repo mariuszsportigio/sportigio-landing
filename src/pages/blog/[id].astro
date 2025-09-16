@@ -633,8 +633,10 @@ export async function getStaticPaths() {
         if (!table.closest('.article-content-table-wrapper')) {
           const wrapper = document.createElement('div');
           wrapper.className = 'article-content-table-wrapper';
-          table.parentNode.insertBefore(wrapper, table);
-          wrapper.appendChild(table);
+          if (table.parentNode) {
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+          }
         }
       });
 
@@ -651,13 +653,16 @@ export async function getStaticPaths() {
           
           const wrapper = document.createElement('div');
           wrapper.className = 'article-content-embed-wrapper';
-          embed.parentNode.insertBefore(wrapper, embed);
-          wrapper.appendChild(embed);
+          if (embed.parentNode) {
+            embed.parentNode.insertBefore(wrapper, embed);
+            wrapper.appendChild(embed);
+          }
           
           // Remove individual styling as wrapper handles it
-          embed.style.margin = '0';
-          embed.style.borderRadius = '0';
-          embed.style.boxShadow = 'none';
+          const el = embed as HTMLElement;
+          el.style.margin = '0';
+          el.style.borderRadius = '0';
+          el.style.boxShadow = 'none';
         }
       });
     }

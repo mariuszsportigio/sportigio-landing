@@ -1,0 +1,210 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import SimpleFeature from "../components/SimpleFeature.astro";
+import ComparisonCard from "../components/ComparisonCard.astro";
+import {
+    defaultLanguage,
+    createTranslator,
+    type Language,
+    getTranslations,
+} from "../i18n";
+
+interface Props {
+    lang?: Language;
+}
+const { lang = defaultLanguage } = Astro.props as Props;
+const t = createTranslator(lang);
+const tr = getTranslations(lang) as any;
+const bulletsWhatIs: string[] = (tr?.platform?.sections?.what_is?.bullets ??
+    []) as string[];
+const featuresItems: { title: string; description: string }[] = (tr?.platform
+    ?.sections?.features?.items ?? []) as {
+    title: string;
+    description: string;
+}[];
+const compareBeforeItems = (
+    (tr?.platform?.sections?.compare?.before_items ?? []) as string[]
+).map((s: string) => ({ text: s }));
+const compareAfterItems = (
+    (tr?.platform?.sections?.compare?.after_items ?? []) as string[]
+).map((s: string) => ({ text: s }));
+---
+
+<Layout title="Sportigio – Platforma">
+    <Navbar lang={lang} activePage="platforma" />
+    <div aria-hidden="true" class="h-16"></div>
+
+    <main class="bg-white min-h-screen">
+        <!-- Hero -->
+        <section
+            class="hero-glassmorphism relative pt-20 pb-16 lg:pt-28 lg:pb-20 overflow-hidden"
+        >
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div
+                            class="inline-flex items-center px-4 py-2 bg-secondary/20 backdrop-blur-sm border border-white/20 text-[#0B2360] rounded-full text-sm font-medium mb-5"
+                        >
+                            <svg
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            {t("platform.badge")}
+                        </div>
+
+                        <h1
+                            class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight font-poppins"
+                        >
+                            <span class={`block ${lang === "pl" ? "pb-1" : ""}`}
+                                >{t("platform.title")}</span
+                            >
+                            <span
+                                class="block text-transparent bg-clip-text bg-sportigio-primary"
+                                >{t("platform.title_highlight")}</span
+                            >
+                        </h1>
+
+                        <p
+                            class="text-base lg:text-lg text-gray-600 mt-4 max-w-xl leading-relaxed"
+                        >
+                            {t("platform.subtitle")}
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                            <a
+                                href="/pricing"
+                                class="btn-style-1 px-6 py-3 text-white font-semibold rounded-xl"
+                            >
+                                {t("platform.cta_primary")}
+                            </a>
+                            <a
+                                href="/demo"
+                                class="btn-style-3 px-6 py-3 font-semibold rounded-xl"
+                            >
+                                {t("platform.cta_secondary")}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img
+                            src="/screens/placeholder_png.png"
+                            alt="Sportigio Link - profil klubu"
+                            class="w-full h-auto rounded-2xl drop-shadow-[0_25px_80px_rgba(11,35,96,0.35)]"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is -->
+        <TwoColumnMedia
+            title={t("platform.sections.what_is.title")}
+            imageSrc="/screens/01_feature.png"
+            imageAlt="Sportigio Link przykładowy profil"
+            bullets={bulletsWhatIs}
+            ctaVariant="button"
+            ctaText={t("platform.cta_primary")}
+            ctaHref="/pricing"
+        >
+            <p>{t("platform.sections.what_is.body")}</p>
+            <p class="mt-3 text-sm">
+                <a href="/demo" class="text-[#0B2360] underline font-semibold"
+                    >{t("platform.cta_secondary")}</a
+                >
+            </p>
+        </TwoColumnMedia>
+
+        <!-- Features -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2
+                    class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-8 font-poppins"
+                >
+                    {t("platform.sections.features.title")}
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {
+                        featuresItems.map((it) => (
+                            <SimpleFeature
+                                title={it.title}
+                                description={it.description}
+                                alignment="left"
+                                ctaVariant="none"
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Compare -->
+        <section class="py-16 bg-gradient-subtle-primary">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <ComparisonCard
+                        type="before"
+                        title={t("platform.sections.compare.before_title")}
+                        items={compareBeforeItems}
+                    />
+                    <ComparisonCard
+                        type="after"
+                        title={t("platform.sections.compare.after_title")}
+                        items={compareAfterItems}
+                        variant="gradient"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="relative py-16 overflow-hidden">
+            <div class="absolute inset-0 sportigio-gradient-5"></div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+                <h3
+                    class="text-3xl lg:text-4xl font-extrabold text-white mb-3 font-poppins"
+                >
+                    {t("platform.sections.cta.title")}
+                </h3>
+                <p class="text-gray-200 mb-6">
+                    {t("platform.sections.cta.subtitle")}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="/pricing"
+                        class="bg-secondary text-primary px-6 py-3 font-semibold text-sm rounded-xl"
+                    >
+                        {t("platform.sections.cta.primary")}
+                    </a>
+                    <a
+                        href="/demo"
+                        class="px-6 py-3 border-2 border-white/25 text-white font-semibold text-sm rounded-xl"
+                    >
+                        {t("platform.sections.cta.secondary")}
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer lang={lang} />
+</Layout>
+
+<style>
+    .btn-style-1,
+    .btn-style-3 {
+        /* rely on existing global classes; ensure minimal override */
+    }
+</style>

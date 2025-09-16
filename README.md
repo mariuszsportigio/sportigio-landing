@@ -42,6 +42,20 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Environment variables
+
+Create a `.env` file in the project root with:
+
+```
+MAILERLITE_API_KEY=your_live_api_key_here
+MAILERLITE_GROUP_ID_NEWSLETTER=your_group_id_here
+```
+
+Notes:
+- `MAILERLITE_API_KEY` is the personal API token from MailerLite (bearer token).
+- `MAILERLITE_GROUP_ID_NEWSLETTER` is the numeric/string id of the group that new subscribers should be added to.
+- Both variables are read server-side by the `POST /api/subscribe` route.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

@@ -1,6 +1,6 @@
 ---
 // TestimonialCarousel.astro
-import { createTranslator, type Language } from '../i18n';
+import { createTranslator, type Language } from "../i18n";
 
 // Props interface
 export interface Props {
@@ -8,7 +8,7 @@ export interface Props {
   lang?: Language;
 }
 
-const { id = "testimonials", lang = 'pl' } = Astro.props;
+const { id = "testimonials", lang = "pl" } = Astro.props;
 
 // Create translator function for this component
 const t = createTranslator(lang);
@@ -18,179 +18,102 @@ const t = createTranslator(lang);
   <div class="container mx-auto px-4">
     <!-- Header -->
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold font-poppins text-gray-900 mb-4">{t('testimonials.title')}</h2>
-      <p class="text-lg text-gray-600 mb-8">{t('testimonials.subtitle')}</p>
+      <h2
+        class="text-2xl lg:text-3xl font-black font-poppins text-gray-900 mb-4"
+      >
+        {t("testimonials.title")}
+      </h2>
+      <p class="text-lg text-gray-600 mb-8">{t("testimonials.subtitle")}</p>
     </div>
 
-    <!-- Testimonials Grid with AI Summary as first card -->
+    <!-- Testimonials Grid (AI card disabled) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- AI Analysis Card -->
-      <div class="ai-analysis-card bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gradient relative overflow-hidden">
-        <!-- Background pattern -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0B2360]/3 to-[#01DFEC]/3 opacity-50"></div>
-        <div class="relative z-10">
-          <div class="flex items-center mb-4">
-            <div class="flex text-[#01DFEC] text-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-              </svg>
-            </div>
-            <span class="ml-2 text-sm text-gray-500">AI Powered</span>
-          </div>
-          <p class="ai-typewriter text-gray-600 text-sm mb-4 leading-relaxed">
-            <span class="typewriter-placeholder">"Ładowanie analizy AI..."</span>
-            <span class="typewriter-text" data-text={`"${t('testimonials.ai_text')}"`}></span>
-            <span class="typewriter-cursor">|</span>
-          </p>
-          <!-- Summary tags -->
-          <div class="ai-insights flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium">
-              💰 {t('testimonials.ai_insights.time_saving')}
-            </span>
-            <span class="px-3 py-1 bg-[#01DFEC]/10 text-[#01DFEC] rounded-full text-xs font-medium">
-              📱 {t('testimonials.ai_insights.ease_of_use')}
-            </span>
-            <span class="px-3 py-1 bg-[#EA36E1]/10 text-[#EA36E1] rounded-full text-xs font-medium">
-              📊 {t('testimonials.ai_insights.communication')}
-            </span>
-            <span class="px-3 py-1 bg-[#0B2360]/10 text-[#0B2360] rounded-full text-xs font-medium">
-              📈 {t('testimonials.ai_insights.attendance')}
-            </span>
-          </div>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-sportigio-primary flex items-center justify-center text-white font-semibold text-sm mr-3">
-              <!-- AI Robot Icon -->
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                <circle cx="9" cy="9" r="1"/>
-                <circle cx="15" cy="9" r="1"/>
-                <path d="M8 13h8v1H8z"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">{t('testimonials.ai_summary')}</p>
-              <p class="text-gray-500 text-xs">Analiza tysięcy opinii</p>
-            </div>
+      <!-- AI Analysis Card (disabled)
+      <div
+        class="ai-analysis-card bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gradient relative overflow-hidden"
+      >
+        ... (disabled)
+      </div>
+      -->
+
+      <!-- Testimonial 1 (updated) -->
+      <div
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
+      >
+        <p class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed">
+          Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak
+          prowadzenie Facebooka. Panel admina jest bardzo intuicyjny
+        </p>
+        <div class="mt-auto flex items-center">
+          <img
+            src="/teams/trefl.avif"
+            alt="Trefl Sopot"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
+          <div>
+            <p class="text-gray-900 font-semibold text-sm">
+              Barbara Lewandowska-Paluch
+            </p>
+            <p class="text-gray-500 text-xs">Trefl Sopot</p>
           </div>
         </div>
       </div>
 
-      <!-- Testimonial 1 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "{t('testimonials.reviews.review_1.text')}"
+      <!-- Testimonial 2 (updated) -->
+      <div
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
+      >
+        <p class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed">
+          Zaczęliśmy od odświeżenia klubowej strony www. I tu pierwsze WOW wśród
+          odbiorców. Okazało się, że dla wielu MTS Żory stał się marką PREMIUM,
+          tylko dlatego że został ładnie opakowany.
         </p>
-         <div class="flex items-center">
-           <div class="w-10 h-10 rounded-full bg-sportigio-primary flex items-center justify-center text-white font-semibold text-sm mr-3">
-             MK
-           </div>
-           <div>
-             <p class="text-gray-900 font-semibold text-sm">{t('testimonials.reviews.review_1.author')}</p>
-             <p class="text-gray-500 text-xs">{t('testimonials.reviews.review_1.position')}</p>
-           </div>
-         </div>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi."
-        </p>
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-sportigio-secondary flex items-center justify-center text-white font-semibold text-sm mr-3">
-            AS
-          </div>
+        <div class="mt-auto flex items-center">
+          <img
+            src="/teams/mts-zory.avif"
+            alt="MTS Żory"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">Anna Szymańska</p>
-            <p class="text-gray-500 text-xs">Trener, UKS Wisła</p>
+            <p class="text-gray-900 font-semibold text-sm">
+              Daniel Asztemborski
+            </p>
+            <p class="text-gray-500 text-xs">MTS Żory</p>
           </div>
         </div>
       </div>
 
-      <!-- Testimonial 3 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!"
+      <!-- Testimonial 3 (updated) -->
+      <div
+        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
+      >
+        <p class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed">
+          Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga
+          i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.
         </p>
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-sportigio-quaternary flex items-center justify-center text-white font-semibold text-sm mr-3">
-            PW
-          </div>
+        <div class="mt-auto flex items-center">
+          <img
+            src="/teams/astra-krotoszyn.avif"
+            alt="KKS Astra Krotoszyn"
+            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+          />
           <div>
-            <p class="text-gray-900 font-semibold text-sm">Piotr Wiśniewski</p>
-            <p class="text-gray-500 text-xs">Sekretarz, Legia Warszawa</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 4 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić harmonogram treningów w każdej chwili."
-        </p>
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#0B2360] to-[#EA36E1] flex items-center justify-center text-white font-semibold text-sm mr-3">
-            KN
-          </div>
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Katarzyna Nowak</p>
-            <p class="text-gray-500 text-xs">Koordynator, Lech Poznań</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 5 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy. Frekwencja wzrosła o 25%!"
-        </p>
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#01DFEC] to-[#0B2360] flex items-center justify-center text-white font-semibold text-sm mr-3">
-            ŁZ
-          </div>
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Łukasz Zieliński</p>
-            <p class="text-gray-500 text-xs">Dyrektor sportowy, Zagłębie Lubin</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 6 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-          "Intuicyjny interfejs sprawia, że nawet najmniej techniczni członkowie zarządu mogą korzystać z systemu bez problemów."
-        </p>
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EA36E1] to-[#01DFEC] flex items-center justify-center text-white font-semibold text-sm mr-3">
-            MW
-          </div>
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Maria Wójcik</p>
-            <p class="text-gray-500 text-xs">Prezes, Pogoń Szczecin</p>
+            <p class="text-gray-900 font-semibold text-sm">Mariusz Ratajczak</p>
+            <p class="text-gray-500 text-xs">KKS Astra Krotoszyn</p>
           </div>
         </div>
       </div>
     </div>
 
-         <!-- CTA Section -->
-     <div class="text-center mt-12">
-       <p class="text-gray-600 mb-6">{t('testimonials.cta_text')}</p>
-       <button class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg">
-         {t('common.try_free')}
-       </button>
-     </div>
+    <!-- CTA Section -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 mb-6">{t("testimonials.cta_text")}</p>
+      <button
+        class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg"
+      >
+        {t("common.try_free")}
+      </button>
+    </div>
   </div>
 </section>
 
@@ -201,30 +124,48 @@ const t = createTranslator(lang);
     border: 1px solid transparent;
     background-clip: padding-box;
   }
-  
+
   .ai-analysis-card::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(11, 35, 96, 0.2), rgba(1, 223, 236, 0.2), rgba(234, 54, 225, 0.2));
+    background: linear-gradient(
+      135deg,
+      rgba(11, 35, 96, 0.2),
+      rgba(1, 223, 236, 0.2),
+      rgba(234, 54, 225, 0.2)
+    );
     border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
   }
 
   .ai-analysis-card::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -30px;
     left: -30px;
     right: -30px;
     bottom: -30px;
-    background: 
-      radial-gradient(circle at 30% 40%, rgba(11, 35, 96, 0.08) 0%, transparent 60%),
-      radial-gradient(circle at 70% 60%, rgba(1, 223, 236, 0.06) 0%, transparent 60%),
-      radial-gradient(circle at 50% 80%, rgba(234, 54, 225, 0.04) 0%, transparent 60%);
+    background: radial-gradient(
+        circle at 30% 40%,
+        rgba(11, 35, 96, 0.08) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(1, 223, 236, 0.06) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 50% 80%,
+        rgba(234, 54, 225, 0.04) 0%,
+        transparent 60%
+      );
     filter: blur(30px);
     z-index: -1;
     opacity: 0.7;
@@ -236,18 +177,30 @@ const t = createTranslator(lang);
   }
 
   /* Hover effects for cards */
-  .bg-white:hover, .ai-analysis-card:hover {
+  .testimonial-card:hover,
+  .ai-analysis-card:hover {
     transform: translateY(-8px) scale(1.02);
   }
 
   /* Pulsing effect for AI card */
   .ai-analysis-card {
-    animation: fadeInUp 0.6s ease-out forwards, aiPulse 4s ease-in-out infinite;
+    animation:
+      fadeInUp 0.6s ease-out forwards,
+      aiPulse 4s ease-in-out infinite;
   }
 
   @keyframes aiPulse {
-    0%, 100% { box-shadow: 0 10px 25px -5px rgba(11, 35, 96, 0.1), 0 4px 6px -2px rgba(11, 35, 96, 0.05); }
-    50% { box-shadow: 0 20px 40px -5px rgba(1, 223, 236, 0.15), 0 8px 12px -2px rgba(1, 223, 236, 0.08); }
+    0%,
+    100% {
+      box-shadow:
+        0 10px 25px -5px rgba(11, 35, 96, 0.1),
+        0 4px 6px -2px rgba(11, 35, 96, 0.05);
+    }
+    50% {
+      box-shadow:
+        0 20px 40px -5px rgba(1, 223, 236, 0.15),
+        0 8px 12px -2px rgba(1, 223, 236, 0.08);
+    }
   }
 
   /* Smooth animations */
@@ -255,13 +208,27 @@ const t = createTranslator(lang);
     animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  .grid > div:nth-child(1) { animation-delay: 0.0s; } /* AI card appears first */
-  .grid > div:nth-child(2) { animation-delay: 0.15s; }
-  .grid > div:nth-child(3) { animation-delay: 0.3s; }
-  .grid > div:nth-child(4) { animation-delay: 0.45s; }
-  .grid > div:nth-child(5) { animation-delay: 0.6s; }
-  .grid > div:nth-child(6) { animation-delay: 0.75s; }
-  .grid > div:nth-child(7) { animation-delay: 0.9s; }
+  .grid > div:nth-child(1) {
+    animation-delay: 0s;
+  } /* AI card appears first */
+  .grid > div:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .grid > div:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .grid > div:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+  .grid > div:nth-child(5) {
+    animation-delay: 0.6s;
+  }
+  .grid > div:nth-child(6) {
+    animation-delay: 0.75s;
+  }
+  .grid > div:nth-child(7) {
+    animation-delay: 0.9s;
+  }
 
   @keyframes fadeInUp {
     from {
@@ -277,7 +244,13 @@ const t = createTranslator(lang);
   /* Special gradient borders */
   .border-gradient {
     border: 1px solid;
-    border-image: linear-gradient(135deg, rgba(11, 35, 96, 0.3), rgba(1, 223, 236, 0.3), rgba(234, 54, 225, 0.3)) 1;
+    border-image: linear-gradient(
+        135deg,
+        rgba(11, 35, 96, 0.3),
+        rgba(1, 223, 236, 0.3),
+        rgba(234, 54, 225, 0.3)
+      )
+      1;
   }
 
   /* AI Typewriter Effect */
@@ -287,7 +260,7 @@ const t = createTranslator(lang);
   }
 
   .typewriter-placeholder {
-    color: #9CA3AF;
+    color: #9ca3af;
     font-style: italic;
     display: inline;
   }
@@ -298,7 +271,7 @@ const t = createTranslator(lang);
 
   .typewriter-cursor {
     display: inline-block;
-    background-color: #01DFEC;
+    background-color: #01dfec;
     width: 2px;
     height: 1.2em;
     margin-left: 2px;
@@ -317,39 +290,38 @@ const t = createTranslator(lang);
 
   .ai-analysis-card.ai-animate .typewriter-cursor {
     opacity: 1;
-    animation: 
+    animation:
       cursor-thinking 0.8s ease-in-out,
       blink 1s 0.8s infinite;
   }
 
   @keyframes cursor-thinking {
-    0%, 100% { 
-      background-color: #01DFEC;
+    0%,
+    100% {
+      background-color: #01dfec;
       transform: scaleY(1);
     }
     25% {
-      background-color: #EA36E1;
+      background-color: #ea36e1;
       transform: scaleY(1.2);
     }
-    50% { 
-      background-color: #0B2360;
+    50% {
+      background-color: #0b2360;
       transform: scaleY(0.8);
     }
     75% {
-      background-color: #01DFEC;
+      background-color: #01dfec;
       transform: scaleY(1.1);
     }
   }
 
-
-
-
-
   @keyframes blink {
-    0%, 50% {
+    0%,
+    50% {
       opacity: 1;
     }
-    51%, 100% {
+    51%,
+    100% {
       opacity: 0;
     }
   }
@@ -378,7 +350,7 @@ const t = createTranslator(lang);
   }
 
   .ai-analysis-card.ai-animate .ai-insights span:nth-child(3) {
-    animation: popIn 0.4s 5.0s ease-out forwards;
+    animation: popIn 0.4s 5s ease-out forwards;
   }
 
   .ai-analysis-card.ai-animate .ai-insights span:nth-child(4) {
@@ -425,44 +397,105 @@ const t = createTranslator(lang);
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const aiCard = document.querySelector('.ai-analysis-card');
-    const typewriterText = document.querySelector('.typewriter-text');
-    
-    if (!aiCard || !typewriterText) return;
+  document.addEventListener("DOMContentLoaded", function () {
+    const aiCard = document.querySelector<HTMLElement>(".ai-analysis-card");
+    const typewriterText =
+      document.querySelector<HTMLElement>(".typewriter-text");
+    const typewriterContainer =
+      document.querySelector<HTMLElement>(".ai-typewriter");
+
+    if (!aiCard || !typewriterText || !typewriterContainer) return;
+
+    const aiCardEl: HTMLElement = aiCard;
+    const typewriterTextEl: HTMLElement = typewriterText;
+    const typewriterContainerEl: HTMLElement = typewriterContainer;
 
     // Intersection Observer for scroll trigger
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !aiCard.classList.contains('ai-animate')) {
-          startAIAnimation();
-        }
-      });
-    }, {
-      threshold: 0.5 // Trigger when 50% of the card is visible
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            !aiCardEl.classList.contains("ai-animate")
+          ) {
+            startAIAnimation();
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the card is visible
+      },
+    );
 
-    observer.observe(aiCard);
+    observer.observe(aiCardEl);
 
     function startAIAnimation() {
-      aiCard.classList.add('ai-animate');
-      
+      aiCardEl.classList.add("ai-animate");
+
       // Get text from data attribute
-      const fullText = typewriterText.getAttribute('data-text');
+      const fullText = typewriterTextEl.getAttribute("data-text");
       if (!fullText) return;
 
+      // Reserve space to prevent layout shift while typing
+      reserveTypewriterHeight(fullText);
+
       // Clear any existing content
-      typewriterText.textContent = '';
-      
+      typewriterTextEl.textContent = "";
+
       // Start typewriter effect after AI thinking period (800ms)
       setTimeout(() => {
-        typewriterEffect(typewriterText, fullText, 30); // 30ms per character
+        typewriterEffect(typewriterTextEl, fullText, 30); // 30ms per character
       }, 800);
     }
 
-    function typewriterEffect(element, text, speed) {
+    function reserveTypewriterHeight(text: string) {
+      // Create a hidden measuring element with same typography and width
+      const measure = document.createElement("span");
+      measure.textContent = text;
+      measure.style.position = "absolute";
+      measure.style.visibility = "hidden";
+      measure.style.pointerEvents = "none";
+      measure.style.left = "0";
+      measure.style.right = "0";
+      measure.style.whiteSpace = "normal";
+      // Ensure it inherits typography from container
+      measure.className = "text-gray-600 text-sm leading-relaxed";
+      typewriterContainerEl.appendChild(measure);
+      const height = measure.offsetHeight;
+      typewriterContainerEl.style.minHeight = height + "px";
+      measure.remove();
+
+      // Recalculate on resize if the container width changes
+      let lastWidth = typewriterContainerEl.offsetWidth;
+      const onResize = () => {
+        const w = typewriterContainerEl.offsetWidth;
+        if (w !== lastWidth) {
+          lastWidth = w;
+          const m = document.createElement("span");
+          m.textContent = text;
+          m.style.position = "absolute";
+          m.style.visibility = "hidden";
+          m.style.pointerEvents = "none";
+          m.style.left = "0";
+          m.style.right = "0";
+          m.style.whiteSpace = "normal";
+          m.className = "text-gray-600 text-sm leading-relaxed";
+          typewriterContainerEl.appendChild(m);
+          const h = m.offsetHeight;
+          m.remove();
+          typewriterContainerEl.style.minHeight = h + "px";
+        }
+      };
+      window.addEventListener("resize", onResize, { passive: true });
+    }
+
+    function typewriterEffect(
+      element: HTMLElement,
+      text: string,
+      speed: number,
+    ) {
       let i = 0;
-      
+
       function typeCharacter() {
         if (i < text.length) {
           element.textContent += text.charAt(i);
@@ -470,8 +503,8 @@ const t = createTranslator(lang);
           setTimeout(typeCharacter, speed);
         }
       }
-      
+
       typeCharacter();
     }
   });
-</script> 
+</script>

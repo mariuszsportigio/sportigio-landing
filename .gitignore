@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # speedway project folder
 speedwayeuro/
+
+.vercel

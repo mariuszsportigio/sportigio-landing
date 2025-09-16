@@ -1,10 +1,18 @@
 ---
 // MasterBadge.astro - Universal badge component with Hero-inspired styling
 export interface Props {
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'gradient' | 'glass';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  variant?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "error"
+    | "info"
+    | "gradient"
+    | "glass";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   icon?: string;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
   dot?: boolean;
   pulse?: boolean;
   removable?: boolean;
@@ -13,103 +21,149 @@ export interface Props {
 }
 
 const {
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   icon,
-  iconPosition = 'left',
+  iconPosition = "left",
   dot = false,
   pulse = false,
   removable = false,
-  className = '',
-  onClick
+  className = "",
+  onClick,
 } = Astro.props;
 
 const baseClasses = [
-  'inline-flex items-center justify-center',
-  'font-medium rounded-full transition-all duration-200',
-  'select-none whitespace-nowrap'
+  "inline-flex items-center justify-center",
+  "font-medium rounded-full transition-all duration-200",
+  "select-none whitespace-nowrap",
 ];
 
 const variantClasses = {
-  primary: 'bg-[#0B2360]/10 text-[#0B2360] border border-[#0B2360]/20',
-  secondary: 'bg-[#01DFEC]/10 text-[#01DFEC] border border-[#01DFEC]/20',
-  success: 'bg-green-100 text-green-800 border border-green-200',
-  warning: 'bg-yellow-100 text-yellow-800 border border-yellow-200',
-  error: 'bg-red-100 text-red-800 border border-red-200',
-  info: 'bg-blue-100 text-blue-800 border border-blue-200',
-  gradient: 'bg-sportigio-primary text-white shadow-lg',
-  glass: 'bg-white/20 backdrop-blur-md text-[#0B2360] border border-white/30'
+  primary: "bg-[#0B2360]/10 text-[#0B2360] border border-[#0B2360]/20",
+  secondary: "bg-[#01DFEC]/10 text-[#01DFEC] border border-[#01DFEC]/20",
+  success: "bg-green-100 text-green-800 border border-green-200",
+  warning: "bg-yellow-100 text-yellow-800 border border-yellow-200",
+  error: "bg-red-100 text-red-800 border border-red-200",
+  info: "bg-blue-100 text-blue-800 border border-blue-200",
+  gradient: "bg-sportigio-primary text-white shadow-lg",
+  glass: "bg-white/20 backdrop-blur-md text-[#0B2360] border border-white/30",
 };
 
 const sizeClasses = {
-  xs: 'px-2 py-0.5 text-xs',
-  sm: 'px-2.5 py-1 text-xs',
-  md: 'px-3 py-1.5 text-sm',
-  lg: 'px-4 py-2 text-base',
-  xl: 'px-5 py-2.5 text-lg'
+  xs: "px-2 py-0.5 text-xs",
+  sm: "px-2.5 py-1 text-xs",
+  md: "px-3 py-1.5 text-sm",
+  lg: "px-4 py-2 text-base",
+  xl: "px-5 py-2.5 text-lg",
 };
 
 const badgeClasses = [
   ...baseClasses,
   variantClasses[variant],
   sizeClasses[size],
-  pulse ? 'animate-pulse' : '',
-  removable ? 'pr-1' : '',
-  className
-].filter(Boolean).join(' ');
+  pulse ? "animate-pulse" : "",
+  removable ? "pr-1" : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
 
 const iconSizeClasses = {
-  xs: 'w-3 h-3',
-  sm: 'w-3 h-3',
-  md: 'w-4 h-4',
-  lg: 'w-5 h-5',
-  xl: 'w-6 h-6'
+  xs: "w-3 h-3",
+  sm: "w-3 h-3",
+  md: "w-4 h-4",
+  lg: "w-5 h-5",
+  xl: "w-6 h-6",
 };
 
 const iconSize = iconSizeClasses[size];
 ---
 
-<span 
-  class={badgeClasses}
-  onclick={onClick}
->
-  {dot && (
-    <span class={`w-2 h-2 rounded-full mr-2 ${
-      variant === 'primary' ? 'bg-[#0B2360]' :
-      variant === 'secondary' ? 'bg-[#01DFEC]' :
-      variant === 'success' ? 'bg-green-500' :
-      variant === 'warning' ? 'bg-yellow-500' :
-      variant === 'error' ? 'bg-red-500' :
-      variant === 'info' ? 'bg-blue-500' :
-      variant === 'gradient' ? 'bg-white' :
-      'bg-[#0B2360]'
-    } ${pulse ? 'animate-ping' : ''}`}></span>
-  )}
-  
-  {icon && iconPosition === 'left' && (
-    <svg class={`${iconSize} mr-1.5`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon}></path>
-    </svg>
-  )}
-  
-  <slot />
-  
-  {icon && iconPosition === 'right' && (
-    <svg class={`${iconSize} ml-1.5`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon}></path>
-    </svg>
-  )}
-  
-  {removable && (
-    <button 
-      class="ml-1.5 p-0.5 rounded-full hover:bg-black/10 transition-colors"
-      onclick="this.parentElement.remove()"
-    >
-      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+<span class={badgeClasses} onclick={onClick}>
+  {
+    dot && (
+      <span
+        class={`w-2 h-2 rounded-full mr-2 ${
+          variant === "primary"
+            ? "bg-[#0B2360]"
+            : variant === "secondary"
+              ? "bg-[#01DFEC]"
+              : variant === "success"
+                ? "bg-green-500"
+                : variant === "warning"
+                  ? "bg-yellow-500"
+                  : variant === "error"
+                    ? "bg-red-500"
+                    : variant === "info"
+                      ? "bg-blue-500"
+                      : variant === "gradient"
+                        ? "bg-white"
+                        : "bg-[#0B2360]"
+        } ${pulse ? "animate-ping" : ""}`}
+      />
+    )
+  }
+
+  {
+    icon && iconPosition === "left" && (
+      <svg
+        class={`${iconSize} mr-1.5`}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d={icon}
+        />
       </svg>
-    </button>
-  )}
+    )
+  }
+
+  <slot />
+
+  {
+    icon && iconPosition === "right" && (
+      <svg
+        class={`${iconSize} ml-1.5`}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d={icon}
+        />
+      </svg>
+    )
+  }
+
+  {
+    removable && (
+      <button
+        class="ml-1.5 p-0.5 rounded-full hover:bg-black/10 transition-colors"
+        onclick="this.parentElement.remove()"
+      >
+        <svg
+          class="w-3 h-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    )
+  }
 </span>
 
 <style>
@@ -118,17 +172,17 @@ const iconSize = iconSizeClasses[size];
     background-color: rgba(11, 35, 96, 0.1);
     transition: all 0.3s ease;
   }
-  
+
   .bg-\[\#0B2360\]\/10:hover {
     background-color: rgba(11, 35, 96, 0.15);
     transform: translateY(-1px);
   }
-  
+
   .bg-\[\#01DFEC\]\/10 {
     background-color: rgba(1, 223, 236, 0.1);
     transition: all 0.3s ease;
   }
-  
+
   .bg-\[\#01DFEC\]\/10:hover {
     background-color: rgba(1, 223, 236, 0.15);
     transform: translateY(-1px);
@@ -139,7 +193,7 @@ const iconSize = iconSizeClasses[size];
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
   }
-  
+
   .bg-gradient-to-r.from-\[\#0B2360\].to-\[\#01DFEC\]:hover {
     background-position: right center;
     transform: translateY(-1px) scale(1.05);
@@ -153,7 +207,7 @@ const iconSize = iconSizeClasses[size];
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 4px 12px rgba(11, 35, 96, 0.1);
   }
-  
+
   .bg-white\/20:hover {
     background-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
@@ -165,7 +219,8 @@ const iconSize = iconSizeClasses[size];
   }
 
   @keyframes ping {
-    75%, 100% {
+    75%,
+    100% {
       transform: scale(2);
       opacity: 0;
     }
@@ -176,17 +231,17 @@ const iconSize = iconSizeClasses[size];
     background-color: rgb(220, 252, 231);
     transform: translateY(-1px);
   }
-  
+
   .bg-yellow-100:hover {
     background-color: rgb(254, 249, 195);
     transform: translateY(-1px);
   }
-  
+
   .bg-red-100:hover {
     background-color: rgb(254, 226, 226);
     transform: translateY(-1px);
   }
-  
+
   .bg-blue-100:hover {
     background-color: rgb(219, 234, 254);
     transform: translateY(-1px);
@@ -198,7 +253,7 @@ const iconSize = iconSizeClasses[size];
     opacity: 0.7;
     transition: all 0.2s ease;
   }
-  
+
   .pr-1 button:hover {
     opacity: 1;
     transform: scale(1.1);
@@ -208,30 +263,41 @@ const iconSize = iconSizeClasses[size];
   svg {
     transition: all 0.2s ease;
   }
-  
+
   .inline-flex:hover svg {
     transform: scale(1.1);
   }
 
   /* Gradient animation */
   @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   /* Special effects for different variants */
   .bg-gradient-to-r::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
     transition: left 0.5s ease;
   }
-  
+
   .bg-gradient-to-r:hover::before {
     left: 100%;
   }
@@ -254,48 +320,74 @@ const iconSize = iconSizeClasses[size];
     position: relative;
     overflow: hidden;
   }
-  
+
   .notification-badge::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
     transform: translateX(-100%);
     animation: shine 2s ease-in-out infinite;
   }
-  
+
   @keyframes shine {
-    0% { transform: translateX(-100%); }
-    50% { transform: translateX(100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 
   /* Custom dot colors */
-  .dot-primary { background-color: #0B2360; }
-  .dot-secondary { background-color: #01DFEC; }
-  .dot-success { background-color: #10B981; }
-  .dot-warning { background-color: #F59E0B; }
-  .dot-error { background-color: #EF4444; }
-  .dot-info { background-color: #3B82F6; }
+  .dot-primary {
+    background-color: #0b2360;
+  }
+  .dot-secondary {
+    background-color: #01dfec;
+  }
+  .dot-success {
+    background-color: #10b981;
+  }
+  .dot-warning {
+    background-color: #f59e0b;
+  }
+  .dot-error {
+    background-color: #ef4444;
+  }
+  .dot-info {
+    background-color: #3b82f6;
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener("DOMContentLoaded", function () {
     // Add click tracking for badges
     const badges = document.querySelectorAll('[class*="bg-"]');
-    
-    badges.forEach(badge => {
-      badge.addEventListener('click', function(e) {
+
+    badges.forEach((badge) => {
+      badge.addEventListener("click", (e) => {
+        if (!(e instanceof MouseEvent)) return;
         // Add ripple effect
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement("span");
+        const target = e.currentTarget as HTMLElement | null;
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
+
         ripple.style.cssText = `
           position: absolute;
           border-radius: 50%;
@@ -308,32 +400,34 @@ const iconSize = iconSizeClasses[size];
           top: ${y}px;
           pointer-events: none;
         `;
-        
-        this.style.position = 'relative';
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        
+
+        target.style.position = "relative";
+        target.style.overflow = "hidden";
+        target.appendChild(ripple);
+
         setTimeout(() => {
           ripple.remove();
         }, 600);
       });
     });
-    
+
     // Add notification badge shine effect
-    const notificationBadges = document.querySelectorAll('.notification-badge');
-    notificationBadges.forEach(badge => {
-      badge.addEventListener('mouseenter', function() {
-        this.style.animation = 'shine 0.5s ease-in-out';
+    const notificationBadges = document.querySelectorAll(".notification-badge");
+    notificationBadges.forEach((badge) => {
+      badge.addEventListener("mouseenter", (e) => {
+        const el = e.currentTarget as HTMLElement | null;
+        if (el) el.style.animation = "shine 0.5s ease-in-out";
       });
-      
-      badge.addEventListener('animationend', function() {
-        this.style.animation = '';
+
+      badge.addEventListener("animationend", (e) => {
+        const el = e.currentTarget as HTMLElement | null;
+        if (el) el.style.animation = "";
       });
     });
   });
-  
+
   // Add ripple animation to CSS
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = `
     @keyframes ripple {
       to {

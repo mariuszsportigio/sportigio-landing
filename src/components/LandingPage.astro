@@ -1,131 +1,165 @@
 ---
 // LandingPage.astro
-import Layout from '../layouts/Layout.astro';
-import Navbar from './Navbar.astro';
-import Hero from './Hero.astro';
-import StatsBar from './StatsBar.astro';
-import FeatureSection from './FeatureSection.astro';
-import BeforeAfter from './BeforeAfter.astro';
-import TabSection from './TabSection.astro';
-import ConnectedCards from './ConnectedCards.astro';
-import DarkShowcase from './DarkShowcase.astro';
-import TestimonialCarousel from './TestimonialCarousel.astro';
-import BlogSection from './BlogSection.astro';
-import FAQ from './FAQ.astro';
-import CTASection from './CTASection.astro';
-import Footer from './Footer.astro';
-import { type Language, defaultLanguage } from '../i18n';
-import SimpleFeature from './SimpleFeature.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "./Navbar.astro";
+import Hero from "./Hero.astro";
+import FeatureSection from "./FeatureSection.astro";
+import BeforeAfter from "./BeforeAfter.astro";
+import TabSection from "./TabSection.astro";
+import ConnectedCards from "./ConnectedCards.astro";
+import DarkShowcase from "./DarkShowcase.astro";
+import TestimonialCarousel from "./TestimonialCarousel.astro";
+import TrustedClubsSection from "./TrustedClubsSection.astro";
+import BlogSection from "./BlogSection.astro";
+import FAQ from "./FAQ.astro";
+import CTASection from "./CTASection.astro";
+import Footer from "./Footer.astro";
+import { type Language, defaultLanguage } from "../i18n";
+import TwoColumnMedia from "./TwoColumnMedia.astro";
+import SimpleFeature from "./SimpleFeature.astro";
 
 interface Props {
   lang?: Language;
   showSimpleFeatures?: boolean;
+  matchHeroWidth?: boolean;
+  showTwoColumnExample?: boolean;
 }
 
-const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Props;
+const {
+  lang = defaultLanguage,
+  showSimpleFeatures = false,
+  matchHeroWidth = false,
+  showTwoColumnExample = false,
+} = Astro.props as Props;
 ---
 
 <Layout title="Sportigio - Zarządzanie klubem sportowym w jednej aplikacji">
-  <!-- Fixed Navigation -->
-  <Navbar />
-  
-  <!-- Main Content -->
-  <main class="bg-white">
-    <!-- Hero Section -->
-    <section id="hero">
-      <Hero lang={lang} />
-    </section>
+  <!-- Fixed Navigation kept full-width -->
+  <Navbar lang={lang} />
 
-    {showSimpleFeatures ? (
-      <section class="py-16 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-          <div class="mb-10 text-center">
-            <h2 class="font-poppins text-3xl font-bold text-gray-900 mb-2">Proste sekcje</h2>
-            <p class="text-gray-600">Minimalne komponenty do szybkiego budowania podstron</p>
-          </div>
-          <div class="grid md:grid-cols-3 gap-6">
-            <SimpleFeature 
-              title="Szybki start"
-              description="Rozpocznij wdrożenie klubu w kilka minut, bez zbędnych konfiguracji."
-              iconPath="M13 7l5 5m0 0l-5 5m5-5H6"
-              ctaVariant="link"
-              ctaText="Zobacz jak"
-              ctaHref="#"
-            />
-            <SimpleFeature 
-              title="Płatności online"
-              description="Bezpieczne i szybkie rozliczenia dla składek i opłat za zajęcia."
-              iconPath="M12 8c-1.657 0-3 1.343-3 3v5h6v-5c0-1.657-1.343-3-3-3zm0-5a3 3 0 013 3v1H9V6a3 3 0 013-3z"
-              ctaVariant="button"
-              ctaText="Zobacz więcej"
-              ctaHref="#"
-            />
-            <SimpleFeature 
-              title="Komunikacja"
-              description="Wiadomości, ogłoszenia i powiadomienia w jednym miejscu."
-              iconPath="M7 8h10M7 12h6m5 8H6a2 2 0 01-2-2V6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2z"
-              ctaVariant="none"
-            />
-          </div>
-        </div>
+  <div class={matchHeroWidth ? "ks-scope" : ""}>
+    <!-- Main Content -->
+    <main class="bg-white">
+      <!-- Hero Section -->
+      <section id="hero">
+        <Hero lang={lang} />
       </section>
-    ) : null}
 
-    <!-- Social Proof / Stats -->
-    <section id="stats">
-      <StatsBar />
-    </section>
+      {
+        showSimpleFeatures ? (
+          <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+              <div class="mb-10 text-center">
+                <h2 class="font-poppins text-3xl font-bold text-gray-900 mb-2">
+                  Sklep internetowy
+                </h2>
+                <p class="text-gray-600">Oferujemy dwie opcje sklepu internetowego</p>
+              </div>
+              <div class="grid md:grid-cols-2 gap-6">
+                <SimpleFeature
+                  title="Sprzedaż online w Sportigio"
+                  description="Zlecasz sprzedaż gadżetów do Sportigio w formule &quot;druk na żądanie&quot;"
+                  iconImageSrc="/sportigio-sygnet.png"
+                  ctaVariant="none"
+                  alignment="left"
+                />
+                <SimpleFeature
+                  title="Własny sklep internetowy"
+                  description="Prowadzisz własny sklep internetowy z kontrolą magazynów, płatności, itp."
+                  iconName="storefront"
+                  ctaVariant="none"
+                  alignment="left"
+                />
+              </div>
+            </div>
+          </section>
+        ) : null
+      }
 
-    <!-- Features Section -->
-    <section id="funkcje">
-      <FeatureSection />
-    </section>
+      <!-- Trusted Clubs Logos (moved under "Proste sekcje") -->
+      <section id="zaufali-nam">
+        <TrustedClubsSection />
+      </section>
 
-    <!-- Before/After Comparison -->
-    <section id="porownanie">
-      <BeforeAfter />
-    </section>
+      <!-- Features Section -->
+      <section id="funkcje">
+        <FeatureSection />
+      </section>
 
-    <!-- Tab Section -->
-    <section id="funkcjonalnosci">
-      <TabSection />
-    </section>
+      {
+        showTwoColumnExample ? (
+          <section id="two-column-example">
+            <TwoColumnMedia
+              title="Zarządzaj wszystkim z jednego miejsca"
+              imageSrc="/screens/website-preview-mobile.avif"
+              imageAlt="Sportigio - panel analiz"
+              bullets={[
+                "Szybki podgląd kluczowych metryk",
+                "Wszystkie narzędzia w jednym panelu",
+                "Prosty onboarding dla zespołu",
+              ]}
+              ctaVariant="button"
+              ctaText="Zobacz demo"
+              ctaHref="#demo"
+              tallOnDesktop={true}
+            >
+              <p>
+                Prosty układ dwóch kolumn: po lewej obraz, po prawej nagłówek i
+                treść. Idealny do krótkich sekcji z ilustracją funkcji.
+              </p>
+              <p class="mt-4">
+                Komponent wspiera <code>reverse</code> dla zamiany stron i w
+                pełni korzysta z klas Tailwind oraz systemu typografii.
+              </p>
+            </TwoColumnMedia>
+          </section>
+        ) : null
+      }
 
-    <!-- Connected Cards Section -->
-    <section id="narzedzia">
-      <ConnectedCards />
-    </section>
+      <!-- Before/After Comparison -->
+      <section id="porownanie">
+        <BeforeAfter />
+      </section>
 
-    <!-- Dark Showcase Section -->
-    <section id="aplikacja">
-      <DarkShowcase />
-    </section>
+      <!-- Tab Section -->
+      <section id="funkcjonalnosci">
+        <TabSection />
+      </section>
 
+      <!-- Connected Cards Section -->
+      <section id="narzedzia">
+        <ConnectedCards />
+      </section>
 
+      <!-- Dark Showcase Section -->
+      <section id="aplikacja">
+        <DarkShowcase />
+      </section>
 
-    <!-- Testimonials Section -->
-    <section id="opinie">
-      <TestimonialCarousel lang={lang} />
-    </section>
+      <!-- Testimonials Section -->
+      <section id="opinie">
+        <TestimonialCarousel lang={lang} />
+      </section>
 
-    <!-- Blog Section -->
-    <section id="blog">
-      <BlogSection lang={lang} />
-    </section>
+      <!-- Blog Section -->
+      <section id="blog">
+        <BlogSection lang={lang} />
+      </section>
 
-    <!-- FAQ Section -->
-    <section id="faq">
-      <FAQ />
-    </section>
+      <!-- FAQ Section -->
+      <section id="faq">
+        <FAQ />
+      </section>
 
-    <!-- Final CTA Section -->
-    <section id="cta">
-      <CTASection />
-    </section>
-  </main>
+      <!-- Final CTA Section -->
+      <section id="cta">
+        <CTASection />
+      </section>
+    </main>
 
-  <!-- Footer -->
-  <Footer />
+    <!-- Footer -->
+    <Footer lang={lang} />
+  </div>
 </Layout>
 
 <style>
@@ -180,45 +214,113 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
   }
 
   /* Stagger animation delays for sections */
-  section:nth-child(1) { animation-delay: 0.1s; }
-  section:nth-child(2) { animation-delay: 0.2s; }
-  section:nth-child(3) { animation-delay: 0.3s; }
-  section:nth-child(4) { animation-delay: 0.4s; }
-  section:nth-child(5) { animation-delay: 0.5s; }
-  section:nth-child(6) { animation-delay: 0.6s; }
-  section:nth-child(7) { animation-delay: 0.7s; }
+  section:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  section:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  section:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  section:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  section:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  section:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  section:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+</style>
+
+<style is:global>
+  /*
+    When `matchHeroWidth` is true, constrain broad containers to Hero width (max-w-5xl = 64rem)
+    Only applies within this LandingPage instance via `.ks-scope` wrapper.
+  */
+  .ks-scope .container,
+  .ks-scope .container-default,
+  .ks-scope .container-wide,
+  .ks-scope .max-w-6xl,
+  .ks-scope .max-w-7xl,
+  .ks-scope .xl\:container {
+    max-width: 64rem !important;
+  }
+
+  /*
+    Normalize all section H2 heading sizes inside Kitchen Sink to match
+    SectionHeader scale: text-2xl md:text-3xl lg:text-4xl
+  */
+  .ks-scope h2 {
+    /* Standardize all section headers to match FAQ: 2xl base, 3xl on lg, font-black */
+    font-size: 1.5rem !important; /* 2xl */
+    line-height: 2rem !important;
+    font-weight: 900 !important; /* font-black */
+    font-family:
+      "Poppins",
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      "Liberation Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji" !important;
+  }
+  @media (min-width: 768px) {
+    .ks-scope h2 {
+      font-size: 1.875rem !important; /* 3xl */
+      line-height: 2.25rem !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ks-scope h2 {
+      font-size: 1.875rem !important; /* keep 3xl at lg to match FAQ */
+      line-height: 2.25rem !important;
+    }
+  }
 </style>
 
 <script>
   // Enhanced page functionality
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Intersection Observer for smooth animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          (entry.target as HTMLElement).style.animation =
+            "fadeInUp 0.6s ease-out forwards";
         }
       });
     }, observerOptions);
 
     // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
+    document.querySelectorAll("section").forEach((section) => {
       observer.observe(section);
     });
 
     // Performance optimization: Lazy loading for images
     const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
+          const img = entry.target as HTMLImageElement;
+          const dataSrc = (img as HTMLElement).dataset?.src;
+          if (dataSrc) {
+            img.src = dataSrc;
+            img.classList.remove("lazy");
             imageObserver.unobserve(img);
           }
         }
@@ -226,112 +328,125 @@ const { lang = defaultLanguage, showSimpleFeatures = false } = Astro.props as Pr
     });
 
     // Apply lazy loading to images
-    document.querySelectorAll('img[data-src]').forEach(img => {
+    document.querySelectorAll("img[data-src]").forEach((img) => {
       imageObserver.observe(img);
     });
 
     // Back to top button functionality
-    const backToTop = document.createElement('button');
+    const backToTop = document.createElement("button");
     backToTop.innerHTML = `
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
       </svg>
     `;
-    backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-sportigio-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none';
-    backToTop.style.transition = 'opacity 0.3s ease-in-out';
-    
+    backToTop.className =
+      "fixed bottom-8 right-8 w-12 h-12 sportigio-gradient-5 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-40 opacity-0 pointer-events-none flex items-center justify-center";
+    backToTop.style.transition = "opacity 0.3s ease-in-out";
+
     document.body.appendChild(backToTop);
 
     // Show/hide back to top button
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       if (window.pageYOffset > 300) {
-        backToTop.style.opacity = '1';
-        backToTop.style.pointerEvents = 'auto';
+        backToTop.style.opacity = "1";
+        backToTop.style.pointerEvents = "auto";
       } else {
-        backToTop.style.opacity = '0';
-        backToTop.style.pointerEvents = 'none';
+        backToTop.style.opacity = "0";
+        backToTop.style.pointerEvents = "none";
       }
     });
 
     // Smooth scroll to top
-    backToTop.addEventListener('click', () => {
+    backToTop.addEventListener("click", () => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     });
 
     // Enhanced analytics tracking (placeholder)
-    const trackEvent = (eventName, properties = {}) => {
+    const trackEvent = (
+      eventName: string,
+      properties: Record<string, unknown> = {},
+    ) => {
       // Replace with your analytics solution (Google Analytics, Mixpanel, etc.)
       console.log(`Event: ${eventName}`, properties);
     };
 
     // Track button clicks
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const buttonText = e.target.textContent.trim();
-        trackEvent('button_click', {
+    document.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", (e: MouseEvent) => {
+        const target = e.currentTarget as HTMLElement;
+        const buttonText = target.textContent?.trim() ?? "";
+        const sectionId =
+          (target.closest("section") as HTMLElement | null)?.id ?? "unknown";
+        trackEvent("button_click", {
           button_text: buttonText,
-          section: e.target.closest('section')?.id || 'unknown'
+          section: sectionId,
         });
       });
     });
 
     // Track section views
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-          trackEvent('section_view', {
-            section_id: entry.target.id,
-            section_name: entry.target.querySelector('h2')?.textContent || entry.target.id
-          });
-        }
-      });
-    }, { threshold: 0.5 });
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            const targetEl = entry.target as HTMLElement;
+            trackEvent("section_view", {
+              section_id: targetEl.id,
+              section_name:
+                targetEl.querySelector("h2")?.textContent || targetEl.id,
+            });
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
 
-    document.querySelectorAll('section[id]').forEach(section => {
+    document.querySelectorAll("section[id]").forEach((section) => {
       sectionObserver.observe(section);
     });
 
     // Mobile performance optimizations
     if (window.innerWidth <= 768) {
       // Reduce animation complexity on mobile
-      document.querySelectorAll('[class*="animate"]').forEach(el => {
-        el.style.animation = 'none';
+      document.querySelectorAll('[class*="animate"]').forEach((el) => {
+        (el as HTMLElement).style.animation = "none";
       });
     }
 
     // Preload critical resources
     const preloadLinks = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
+      "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
     ];
 
-    preloadLinks.forEach(href => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'style';
+    preloadLinks.forEach((href) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "style";
       link.href = href;
       document.head.appendChild(link);
     });
   });
 
   // Error handling for failed resources
-  window.addEventListener('error', (e) => {
-    console.error('Resource loading error:', e);
+  window.addEventListener("error", (e) => {
+    console.error("Resource loading error:", e);
     // You could send this to your error tracking service
   });
 
   // Progressive Web App features
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
         .then((registration) => {
-          console.log('SW registered: ', registration);
+          console.log("SW registered: ", registration);
         })
         .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
+          console.log("SW registration failed: ", registrationError);
         });
     });
   }
-</script> 
+</script>

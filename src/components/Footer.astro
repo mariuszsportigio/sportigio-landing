@@ -1,78 +1,218 @@
+---
+import {
+  type Language,
+  defaultLanguage,
+  createTranslator,
+  getTranslations,
+} from "../i18n";
+
+export interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+const t = createTranslator(lang);
+
+type MegaItem = { label: string; href: string; description?: string };
+type MegaGroup = { title: string; items: MegaItem[] };
+
+const raw = getTranslations(lang) as any;
+const productGroups: MegaGroup[] = (raw?.navigation?.mega?.menus?.product
+  ?.groups || []) as MegaGroup[];
+// V1: only show core product links in footer; hide kitchen/resources entirely
+const allowedProductHrefs = new Set([
+  "/strona",
+  "/bilety-online",
+  "/sklep-sportigio",
+  "/sklep-wlasny",
+]);
+const productGroupsV1: MegaGroup[] = productGroups
+  .map((g) => ({
+    title: g.title,
+    items: (g.items || []).filter((it) => allowedProductHrefs.has(it.href)),
+  }))
+  .filter((g) => g.items.length > 0);
+---
+
 <footer class="bg-gray-900 text-white">
   <div class="max-w-5xl mx-auto px-6">
     <!-- Main Footer Content -->
     <div class="py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         <!-- Company Info -->
-        <div class="lg:col-span-2">
+        <div class="col-span-2 lg:col-span-2">
           <div class="flex items-center space-x-2 mb-4">
-            <img src="/sportigio-logo-white.png" alt="Sportigio" class="h-8 w-auto" />
+            <img
+              src="/sportigio-logo-white.png"
+              alt="Sportigio"
+              class="h-8 w-auto"
+            />
           </div>
-          
+
           <p class="text-gray-400 mb-6 leading-relaxed max-w-md">
-            Platforma zarządzania klubami sportowymi nowej generacji. 
-            Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze.
+            {
+              t("footer.company_blurb") ||
+                (lang === "pl"
+                  ? "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze."
+                  : "Next‑generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.")
+            }
           </p>
-          
-          <!-- Social Media -->
+
+          <!-- Social Media: X, Instagram, Facebook, LinkedIn -->
           <div class="flex space-x-4">
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#0B2360] transition-colors duration-300">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-              </svg>
+            <!-- X (Twitter) using asset from /public, colorized to match (white) -->
+            <a
+              href="https://x.com/sportigio"
+              aria-label="Sportigio on X"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/X-logo.png"
+                alt="X"
+                class="w-7 h-7 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#0B2360] transition-colors duration-300">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-              </svg>
+
+            <!-- Instagram using asset from /public, colorized to match (white) -->
+            <a
+              href="https://www.instagram.com/sportigio.polska/"
+              aria-label="Sportigio on Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/instagram-logo.png"
+                alt="Instagram"
+                class="w-7 h-7 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#0B2360] transition-colors duration-300">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
+
+            <!-- Facebook using asset from /public, colorized to match (white) -->
+            <a
+              href="https://www.facebook.com/sportigio.polska"
+              aria-label="Sportigio on Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <img
+                src="/facebook-logo.png"
+                alt="Facebook"
+                class="w-6 h-6 object-contain"
+                loading="lazy"
+                style="filter: brightness(0) invert(1);"
+              />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#0B2360] transition-colors duration-300">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.752-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/company/sportigio/posts/?feedView=all"
+              aria-label="Sportigio on LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-300"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                ></path>
               </svg>
             </a>
           </div>
         </div>
 
-        <!-- Product Links -->
+        <!-- Product Links (from Navbar mega menu) -->
         <div>
-          <h3 class="text-lg font-semibold mb-6">Produkt</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Funkcje</a></li>
-            <li><a href="/academy" class="text-gray-400 hover:text-white transition-colors duration-200">Dla Akademii</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Cennik</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Integracje</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">API</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Bezpieczeństwo</a></li>
-          </ul>
+          <h3 class="text-lg font-semibold mb-4">
+            {t("navigation.product") || (lang === "pl" ? "Produkt" : "Product")}
+          </h3>
+          {
+            productGroupsV1 && productGroupsV1.length > 0 ? (
+              <div class="space-y-5">
+                {productGroupsV1.map((group) => (
+                  <div>
+                    <h4 class="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-2">
+                      {group.title}
+                    </h4>
+                    <ul class="space-y-2">
+                      {group.items.map((item) => (
+                        <li>
+                          <a
+                            href={item.href || "#"}
+                            class="text-gray-400 hover:text-white transition-colors duration-200"
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="/pricing"
+                    class="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {t("navigation.pricing") ||
+                      (lang === "pl" ? "Cennik" : "Pricing")}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    class="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {t("navigation.blog") || "Blog"}
+                  </a>
+                </li>
+              </ul>
+            )
+          }
         </div>
 
-        <!-- Resources Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-6">Zasoby</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Blog</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Baza wiedzy</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Webinary</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Case studies</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Szablony</a></li>
-          </ul>
-        </div>
+        <!-- Solutions/Resources hidden for v1 -->
 
-        <!-- Company Links -->
+        <!-- Quick Nav Links -->
         <div>
-          <h3 class="text-lg font-semibold mb-6">Firma</h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">O nas</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Kariera</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Kontakt</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Wsparcie</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Partnerzy</a></li>
+          <h3 class="text-lg font-semibold mb-4">
+            {
+              t("navigation.menu") ||
+                (lang === "pl" ? "Nawigacja" : "Navigation")
+            }
+          </h3>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="/pricing"
+                class="text-gray-400 hover:text-white transition-colors duration-200"
+                >{
+                  t("navigation.pricing") ||
+                    (lang === "pl" ? "Cennik" : "Pricing")
+                }</a
+              >
+            </li>
+            <li>
+              <a
+                href="/blog"
+                class="text-gray-400 hover:text-white transition-colors duration-200"
+                >{t("navigation.blog") || "Blog"}</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -81,39 +221,225 @@
       <div class="mt-16 pt-16 border-t border-gray-800">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-2xl font-bold font-poppins mb-4">Zostań na bieżąco</h3>
+            <h3 class="text-2xl font-bold font-poppins mb-4">
+              {
+                t("footer.newsletter.title") ||
+                  (lang === "pl" ? "Zostań na bieżąco" : "Stay up to date")
+              }
+            </h3>
             <p class="text-gray-400">
-              Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi.
+              {
+                t("footer.newsletter.desc") ||
+                  (lang === "pl"
+                    ? "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi."
+                    : "Get the latest feature updates, tips and articles about sports club management.")
+              }
             </p>
           </div>
-          
-          <div class="flex flex-col sm:flex-row gap-4">
-            <input type="email" placeholder="Twój adres email" class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200">
-            
-            <button class="btn-style-1 px-6 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg">
-              Zapisz się
+
+          <div
+            class="flex flex-col sm:flex-row gap-4"
+            data-newsletter
+            data-invalid={lang === "pl"
+              ? "Nieprawidłowy e‑mail"
+              : "Invalid email"}
+            data-success={lang === "pl"
+              ? "Dziękujemy! Sprawdź skrzynkę."
+              : "Thanks! Please check your inbox."}
+            data-failure={lang === "pl"
+              ? "Nie udało się zapisać."
+              : "Subscription failed."}
+          >
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder={t("footer.newsletter.placeholder") ||
+                (lang === "pl" ? "Twój adres e‑mail" : "Your email address")}
+              class="flex-1 px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:border-[#0B2360] transition-colors duration-200"
+              aria-label={lang === "pl" ? "Adres e‑mail" : "Email address"}
+            />
+
+            <button
+              id="newsletter-submit"
+              class="bg-secondary px-6 py-3 text-primary font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg"
+              data-label-default={t("footer.newsletter.cta") ||
+                (lang === "pl" ? "Zapisz się" : "Subscribe")}
+              data-label-loading={lang === "pl"
+                ? "Zapisywanie…"
+                : "Subscribing…"}
+            >
+              {
+                t("footer.newsletter.cta") ||
+                  (lang === "pl" ? "Zapisz się" : "Subscribe")
+              }
             </button>
           </div>
+          <p
+            id="newsletter-message"
+            class="mt-2 text-sm text-gray-400 min-h-[1rem]"
+          >
+          </p>
         </div>
       </div>
-
-      
     </div>
 
     <!-- Bottom Footer -->
     <div class="py-8 border-t border-gray-800">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-gray-400 text-sm">
-          © 2024 Sportigio. Wszystkie prawa zastrzeżone.
+          © {new Date().getFullYear()} Sportigio. Wszystkie prawa zastrzeżone.
         </div>
-        
-        <div class="flex flex-wrap gap-6 text-sm">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Polityka prywatności</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Regulamin</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Pliki cookie</a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">RODO</a>
+
+        <div
+          class="grid grid-cols-2 gap-3 text-sm md:flex md:flex-wrap md:gap-6"
+        >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.privacy") ||
+                (lang === "pl" ? "Polityka prywatności" : "Privacy Policy")
+            }</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.terms") || (lang === "pl" ? "Regulamin" : "Terms")
+            }</a
+          >
+          <a
+            href="#"
+            data-cc-open
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{
+              t("footer.legal.cookies") ||
+                (lang === "pl" ? "Pliki cookie" : "Cookies")
+            }</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors duration-200"
+            >{t("footer.legal.rodo") || (lang === "pl" ? "RODO" : "GDPR")}</a
+          >
         </div>
       </div>
     </div>
   </div>
-</footer> 
+</footer>
+
+<script is:inline>
+  (() => {
+    const url =
+      "https://dfdu1vke3eg77.cloudfront.net/spaces/95/uploads/HzkZ1wbPB2KpSpmj37Y3NzjXR5jP7xirGRsz2lpN.pdf";
+    const run = () => {
+      try {
+        // Newsletter handler
+        const scope = document.querySelector("[data-newsletter]");
+        const input = document.getElementById("newsletter-email");
+        const button = document.getElementById("newsletter-submit");
+        const msg = document.getElementById("newsletter-message");
+        const setMessage = (text, ok = false) => {
+          if (!msg) return;
+          msg.textContent = text || "";
+          msg.classList.remove("text-red-400", "text-green-400");
+          msg.classList.add(ok ? "text-green-400" : "text-red-400");
+        };
+        const emailRegex = /.+@.+\..+/;
+        if (
+          scope &&
+          input instanceof HTMLInputElement &&
+          button instanceof HTMLButtonElement
+        ) {
+          const defaultLabel =
+            button.getAttribute("data-label-default") ||
+            button.textContent ||
+            "";
+          const loadingLabel = button.getAttribute("data-label-loading") || "…";
+          const submit = async () => {
+            const email = (input.value || "").trim();
+            setMessage("");
+            if (!emailRegex.test(email)) {
+              setMessage(
+                scope?.getAttribute("data-invalid") || "Invalid email",
+              );
+              return;
+            }
+            button.disabled = true;
+            button.textContent = loadingLabel;
+            try {
+              const res = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+              });
+              if (res.ok) {
+                setMessage(
+                  scope?.getAttribute("data-success") ||
+                    "Thanks! Please check your inbox.",
+                  true,
+                );
+                input.value = "";
+              } else {
+                const data = await res.json().catch(() => ({}));
+                const detail = (data && (data.message || data.error)) || "";
+                setMessage(
+                  (scope?.getAttribute("data-failure") ||
+                    "Subscription failed.") + (detail ? ` (${detail})` : ""),
+                );
+              }
+            } catch (e) {
+              setMessage(
+                scope?.getAttribute("data-failure") || "Subscription failed.",
+              );
+            } finally {
+              button.disabled = false;
+              button.textContent = defaultLabel;
+            }
+          };
+          button.addEventListener("click", submit);
+          input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") submit();
+          });
+        }
+        const anchors = Array.from(document.querySelectorAll("footer a"));
+        const findPrivacy = (a) => {
+          const txt = (a.textContent || "").toLowerCase();
+          return txt.includes("polityka") && txt.includes("prywatno");
+        };
+        const privacy = anchors.find(findPrivacy);
+        if (privacy) {
+          privacy.setAttribute("href", url);
+          privacy.setAttribute("target", "_blank");
+          privacy.setAttribute("rel", "noopener noreferrer");
+          privacy.addEventListener("click", (e) => {
+            // Fallback in case some global handler prevents default
+            if (
+              !privacy.getAttribute("href") ||
+              privacy.getAttribute("href") === "#"
+            ) {
+              e.preventDefault();
+              window.open(url, "_blank", "noopener");
+            }
+          });
+        }
+        // Wire Cookies link to open CookieConsent preferences
+        const ccLink = document.querySelector("footer a[data-cc-open]");
+        if (ccLink) {
+          ccLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (
+              window.CookieConsent &&
+              typeof window.CookieConsent.showPreferences === "function"
+            ) {
+              window.CookieConsent.showPreferences();
+            }
+          });
+        }
+      } catch {}
+    };
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", run);
+    else run();
+  })();
+</script>

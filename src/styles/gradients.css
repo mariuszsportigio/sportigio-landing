@@ -1,12 +1,19 @@
-/* Master Gradient Styles for Sportigio */
-
-/* CSS Variables for Sportigio Gradients */
+/* CSS Variables for Sportigio Colors */
 :root {
+  /* Solid brand colors */
+  --sportigio-primary: #0B2360;  /* dark navy */
+  --sportigio-secondary: #01DFEC; /* cyan */
+  --sportigio-accent: #EA36E1;   /* magenta */
+
   --sportigio-gradient: linear-gradient(55deg, #A91DC8 0%, #0B2360 8%, #00052E 80%, #01DFEC 100%, #00052E 100%);
   --sportigio-gradient-2: linear-gradient(55deg, #A91DC8 0%, #0B2360 20%, #00052E 66%, #01DFEC 100%, #00052E 100%);
   --sportigio-gradient-3: linear-gradient(120deg, #0B2360 10%, #00052E 70%, #01DFEC 100%);
   --sportigio-gradient-4: linear-gradient(135deg, #A91DC8 0%, #0B2360 60%, #00052E 100%);
   --sportigio-gradient-5: linear-gradient(135deg, #0B2360 0%, #00052E 100%);
+  /* Icon-focused variant with emphasized corner colors (magenta + cyan) */
+  --sportigio-gradient-icon: linear-gradient(55deg, #A91DC8 0%, #A91DC8 14%, #0B2360 30%, #00052E 60%, #01DFEC 90%, #01DFEC 100%);
+  /* Purple (accent) → Dark Navy using brand variables */
+  --sportigio-gradient-purple-navy: linear-gradient(135deg, var(--sportigio-accent) 0%, var(--sportigio-primary) 60%);
 }
 
 /* Primary gradient combinations using brand colors */
@@ -30,6 +37,11 @@
 
 .gradient-tertiary {
   background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Requested: Purple → Dark Navy (from main variables) */
+.gradient-purple-navy {
+  background: var(--sportigio-gradient-purple-navy);
 }
 
 /* Additional Sportigio gradient utility classes */
@@ -72,6 +84,11 @@
 
 .bg-sportigio-navy {
   background: var(--sportigio-gradient-5);
+}
+
+/* Tailwind-like utility alias */
+.bg-sportigio-purple-navy {
+  background: var(--sportigio-gradient-purple-navy);
 }
 
 /* Text gradients */
@@ -143,6 +160,11 @@
 
 .icon-gradient-tertiary {
   background: linear-gradient(135deg, #EA36E1 0%, #0B2360 100%);
+}
+
+/* Stronger primary gradient just for icons (more magenta and cyan visibility) */
+.icon-gradient-primary-strong {
+  background: var(--sportigio-gradient-icon);
 }
 
 /* Border gradients */

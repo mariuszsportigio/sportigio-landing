@@ -1,109 +1,174 @@
 ---
-import LandingPage from '../components/LandingPage.astro';
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import SectionHeader from '../components/SectionHeader.astro';
-import { createTranslator, type Language, defaultLanguage } from '../i18n';
+import LandingPage from "../components/LandingPage.astro";
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import {
+  createTranslator,
+  type Language,
+  defaultLanguage,
+  getTranslations,
+} from "../i18n";
 
 // Domyślnie używamy polskiego dla strony akademii
 const lang = defaultLanguage;
 const t = createTranslator(lang);
+const dict: any = getTranslations(lang);
+
+// Arrays used in this page (typed for TS)
+const problemsItems: string[] = dict?.academy?.problems?.items ?? [];
+const solutionsFeatures: { title: string; description: string }[] =
+  dict?.academy?.solutions?.features ?? [];
+const benefitsItems: { title: string; description: string }[] =
+  dict?.academy?.benefits?.items ?? [];
+const targetGroups: { title: string; description: string }[] =
+  dict?.academy?.target_groups?.groups ?? [];
+const steps: { step: string | number; title: string; description: string }[] =
+  dict?.academy?.how_to_start?.steps ?? [];
 ---
 
-<Layout title="Sportigio dla Akademii - Zarządzanie akademią sportową w jednej aplikacji">
+<Layout
+  title="Sportigio dla Akademii - Zarządzanie akademią sportową w jednej aplikacji"
+>
   <!-- Fixed Navigation -->
   <Navbar />
-  
+
   <!-- Main Content -->
   <main>
     <!-- Hero Section for Academy -->
-    <section id="hero" class="hero-glassmorphism relative pt-24 pb-16 min-h-screen max-h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      class="hero-glassmorphism relative pt-24 pb-16 min-h-screen max-h-screen flex items-center overflow-hidden"
+    >
       <div class="max-w-5xl mx-auto px-4 relative z-10 w-full">
         <div class="grid lg:grid-cols-2 gap-8 items-center">
           <!-- Left Content -->
           <div class="text-center lg:text-left">
             <!-- Badge with glassmorphism -->
-            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-blue-700 rounded-full text-sm font-medium mb-5">
-              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            <div
+              class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-blue-700 rounded-full text-sm font-medium mb-5"
+            >
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
               </svg>
-              {t('academy.hero.badge')}
+              {t("academy.hero.badge")}
             </div>
-            
+
             <!-- Heading -->
-            <h1 class="text-3xl lg:text-5xl font-black text-gray-900 mb-5 leading-tight font-poppins">
-              {t('academy.hero.title')}
-              <span class="block text-transparent bg-clip-text bg-sportigio-primary">
-                {t('academy.hero.title_highlight')}
+            <h1
+              class="text-3xl lg:text-5xl font-black text-gray-900 mb-5 leading-tight font-poppins"
+            >
+              {t("academy.hero.title")}
+              <span
+                class="block text-transparent bg-clip-text bg-sportigio-primary"
+              >
+                {t("academy.hero.title_highlight")}
               </span>
             </h1>
-            
+
             <!-- Subheading -->
-            <p class="text-base lg:text-lg text-gray-600 mb-6 max-w-lg leading-relaxed">
-              {t('academy.hero.subtitle')}
+            <p
+              class="text-base lg:text-lg text-gray-600 mb-6 max-w-lg leading-relaxed"
+            >
+              {t("academy.hero.subtitle")}
             </p>
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-3 mb-8">
               <!-- Primary CTA -->
-              <button class="btn-style-1 px-6 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-sm">
-                {t('academy.hero.cta_primary')}
+              <button
+                class="btn-style-1 px-6 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-sm"
+              >
+                {t("academy.hero.cta_primary")}
               </button>
-              
+
               <!-- Secondary CTA -->
-              <button class="btn-style-3 px-6 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-200 text-sm">
-                {t('academy.hero.cta_secondary')}
+              <button
+                class="btn-style-3 px-6 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-200 text-sm"
+              >
+                {t("academy.hero.cta_secondary")}
               </button>
             </div>
 
-                         <!-- Social Proof -->
-             <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-sm text-gray-500">
-               <div class="flex items-center">
-                 <div class="flex -space-x-2 mr-3">
-                   <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 border-2 border-white"></div>
-                   <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-green-600 border-2 border-white"></div>
-                   <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 border-2 border-white"></div>
-                 </div>
-                 <span>60+ akademii już korzysta</span>
-               </div>
-               <div class="flex items-center">
-                 <div class="flex text-yellow-400 mr-2">
-                   ★★★★★
-                 </div>
-                 <span>4.8/5 ocena</span>
-               </div>
-             </div>
+            <!-- Social Proof -->
+            <div
+              class="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-sm text-gray-500"
+            >
+              <div class="flex items-center">
+                <div class="flex -space-x-2 mr-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 border-2 border-white"
+                  >
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-green-600 border-2 border-white"
+                  >
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-purple-600 border-2 border-white"
+                  >
+                  </div>
+                </div>
+                <span>60+ akademii już korzysta</span>
+              </div>
+              <div class="flex items-center">
+                <div class="flex text-yellow-400 mr-2">★★★★★</div>
+                <span>4.8/5 ocena</span>
+              </div>
+            </div>
           </div>
 
           <!-- Right Content - Phone Mockup -->
           <div class="flex justify-center lg:justify-end">
             <div class="relative">
               <!-- Phone mockup with glassmorphism effect -->
-              <div class="w-72 h-96 bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl p-3 shadow-2xl relative">
-                <div class="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden">
+              <div
+                class="w-72 h-96 bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl p-3 shadow-2xl relative"
+              >
+                <div
+                  class="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden"
+                >
                   <!-- App interface mockup -->
                   <div class="p-4">
                     <div class="text-center mb-4">
                       <h3 class="font-bold text-gray-900">Akademia Futbolu</h3>
-                      <p class="text-xs text-gray-500">Dashboard dla rodziców</p>
+                      <p class="text-xs text-gray-500">
+                        Dashboard dla rodziców
+                      </p>
                     </div>
-                    
+
                     <!-- Quick stats -->
                     <div class="grid grid-cols-2 gap-2 mb-4">
                       <div class="bg-blue-50 p-3 rounded-lg text-center">
                         <div class="text-lg font-bold text-blue-600">12</div>
-                        <div class="text-xs text-blue-400">Treningi w miesiącu</div>
+                        <div class="text-xs text-blue-400">
+                          Treningi w miesiącu
+                        </div>
                       </div>
                       <div class="bg-green-50 p-3 rounded-lg text-center">
                         <div class="text-lg font-bold text-green-600">€85</div>
-                        <div class="text-xs text-green-400">Opłacone składki</div>
+                        <div class="text-xs text-green-400">
+                          Opłacone składki
+                        </div>
                       </div>
                     </div>
 
                     <!-- Upcoming training -->
                     <div class="bg-white rounded-lg p-3 shadow-sm mb-3">
-                      <div class="text-xs text-gray-500 mb-1">Następny trening</div>
+                      <div class="text-xs text-gray-500 mb-1">
+                        Następny trening
+                      </div>
                       <div class="font-semibold text-gray-900">Jutro 16:00</div>
                       <div class="text-xs text-blue-600">Boisko nr 2</div>
                     </div>
@@ -112,19 +177,27 @@ const t = createTranslator(lang);
                     <div class="space-y-2">
                       <div class="flex items-center justify-between text-xs">
                         <span class="text-gray-600">Obecność: Środa 14.03</span>
-                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded">Obecny</span>
+                        <span
+                          class="bg-green-100 text-green-800 px-2 py-1 rounded"
+                          >Obecny</span
+                        >
                       </div>
                       <div class="flex items-center justify-between text-xs">
                         <span class="text-gray-600">Płatność: Marzec 2024</span>
-                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Opłacone</span>
+                        <span
+                          class="bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                          >Opłacone</span
+                        >
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <!-- Floating notification -->
-              <div class="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3 animate-bounce">
+              <div
+                class="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3 animate-bounce"
+              >
                 <div class="text-xs text-gray-600">Nowa wiadomość</div>
                 <div class="text-sm font-semibold">Trening odwołany</div>
               </div>
@@ -135,38 +208,59 @@ const t = createTranslator(lang);
 
       <!-- Background Effects -->
       <div class="absolute inset-0 -z-10">
-        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-white to-cyan-50"></div>
-        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-200/30 rounded-full blur-3xl"></div>
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-white to-cyan-50"
+        >
+        </div>
+        <div
+          class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-200/30 rounded-full blur-3xl"
+        >
+        </div>
       </div>
     </section>
 
     <!-- Problems Section -->
     <section id="problems" class="section-spacing bg-red-50">
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Znane problemy"
-          title={t('academy.problems.title')}
+          title={t("academy.problems.title")}
           titleBreak=""
-          subtitle={t('academy.problems.subtitle')}
+          subtitle={t("academy.problems.subtitle")}
         />
 
         <div class="max-w-4xl mx-auto">
           <div class="space-y-4">
-            {t('academy.problems.items').map((item, index) => (
-              <div class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm border border-red-100">
-                <div class="flex-shrink-0">
-                  <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+            {
+              problemsItems.map((item: string, index: number) => (
+                <div class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-sm border border-red-100">
+                  <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                      <svg
+                        class="w-5 h-5 text-red-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-gray-700 leading-relaxed">{item}</p>
                   </div>
                 </div>
-                <div class="flex-1">
-                  <p class="text-gray-700 leading-relaxed">{item}</p>
-                </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         </div>
       </div>
@@ -175,54 +269,97 @@ const t = createTranslator(lang);
     <!-- Solutions Section -->
     <section id="solutions" class="section-spacing bg-white">
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Rozwiązania Sportigio"
-          title={t('academy.solutions.title')}
+          title={t("academy.solutions.title")}
           titleBreak=""
-          subtitle={t('academy.solutions.subtitle')}
+          subtitle={t("academy.solutions.subtitle")}
         />
 
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t('academy.solutions.features').map((feature, index) => (
-              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
-                <div class="w-12 h-12 bg-sportigio-primary rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p class="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+            {
+              solutionsFeatures.map(
+                (
+                  feature: { title: string; description: string },
+                  index: number,
+                ) => (
+                  <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                    <div class="w-12 h-12 bg-sportigio-primary rounded-lg flex items-center justify-center mb-4">
+                      <svg
+                        class="w-6 h-6 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">
+                      {feature.title}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                ),
+              )
+            }
           </div>
         </div>
       </div>
     </section>
 
     <!-- Benefits Section -->
-    <section id="benefits" class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
+    <section
+      id="benefits"
+      class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50"
+    >
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Korzyści"
-          title={t('academy.benefits.title')}
+          title={t("academy.benefits.title")}
           titleBreak=""
-          subtitle={t('academy.benefits.subtitle')}
+          subtitle={t("academy.benefits.subtitle")}
         />
 
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t('academy.benefits.items').map((benefit, index) => (
-              <div class="text-center p-6">
-                <div class="w-16 h-16 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                <p class="text-gray-600">{benefit.description}</p>
-              </div>
-            ))}
+            {
+              benefitsItems.map(
+                (
+                  benefit: { title: string; description: string },
+                  index: number,
+                ) => (
+                  <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">
+                      {benefit.title}
+                    </h3>
+                    <p class="text-gray-600">{benefit.description}</p>
+                  </div>
+                ),
+              )
+            }
           </div>
         </div>
       </div>
@@ -231,62 +368,113 @@ const t = createTranslator(lang);
     <!-- Target Groups Section -->
     <section id="target-groups" class="section-spacing bg-white">
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Dla każdego"
-          title={t('academy.target_groups.title')}
+          title={t("academy.target_groups.title")}
           titleBreak=""
-          subtitle={t('academy.target_groups.subtitle')}
+          subtitle={t("academy.target_groups.subtitle")}
         />
 
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {t('academy.target_groups.groups').map((group, index) => (
-              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
-                <div class="w-20 h-20 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                  </svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">{group.title}</h3>
-                <p class="text-gray-600 leading-relaxed">{group.description}</p>
-              </div>
-            ))}
+            {
+              targetGroups.map(
+                (
+                  group: { title: string; description: string },
+                  index: number,
+                ) => (
+                  <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300">
+                    <div class="w-20 h-20 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg
+                        class="w-10 h-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                      {group.title}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      {group.description}
+                    </p>
+                  </div>
+                ),
+              )
+            }
           </div>
         </div>
       </div>
     </section>
 
     <!-- How to Start Section -->
-    <section id="how-to-start" class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
+    <section
+      id="how-to-start"
+      class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50"
+    >
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Proces wdrożenia"
-          title={t('academy.how_to_start.title')}
+          title={t("academy.how_to_start.title")}
           titleBreak=""
-          subtitle={t('academy.how_to_start.subtitle')}
+          subtitle={t("academy.how_to_start.subtitle")}
         />
 
         <div class="max-w-5xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {t('academy.how_to_start.steps').map((step, index) => (
-              <div class="relative">
-                <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div class="w-16 h-16 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span class="text-2xl font-bold text-white">{step.step}</span>
+            {
+              steps.map(
+                (
+                  step: {
+                    step: string | number;
+                    title: string;
+                    description: string;
+                  },
+                  index: number,
+                ) => (
+                  <div class="relative">
+                    <div class="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300">
+                      <div class="w-16 h-16 bg-sportigio-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">
+                          {step.step}
+                        </span>
+                      </div>
+                      <h3 class="text-xl font-bold text-gray-900 mb-4">
+                        {step.title}
+                      </h3>
+                      <p class="text-blue-600 font-semibold">
+                        {step.description}
+                      </p>
+                    </div>
+
+                    {index < steps.length - 1 && (
+                      <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                        <svg
+                          class="w-8 h-8 text-blue-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                  <h3 class="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                  <p class="text-blue-600 font-semibold">{step.description}</p>
-                </div>
-                
-                {index < t('academy.how_to_start.steps').length - 1 && (
-                  <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                    <svg class="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
+                ),
+              )
+            }
           </div>
         </div>
       </div>
@@ -296,23 +484,35 @@ const t = createTranslator(lang);
     <section id="bonus" class="section-spacing bg-sportigio-primary">
       <div class="container-default">
         <div class="text-center max-w-4xl mx-auto">
-          <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-full text-sm font-medium mb-6">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+          <div
+            class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-full text-sm font-medium mb-6"
+          >
+            <svg
+              class="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+              ></path>
             </svg>
             Oferta specjalna
           </div>
-          
+
           <h2 class="text-4xl lg:text-5xl font-black text-white mb-4">
-            {t('academy.bonus.title')}
+            {t("academy.bonus.title")}
           </h2>
-          
+
           <p class="text-xl text-white/90 mb-2 font-semibold">
-            {t('academy.bonus.description')}
+            {t("academy.bonus.description")}
           </p>
-          
+
           <p class="text-lg text-white/80 mb-8">
-            {t('academy.bonus.subtitle')}
+            {t("academy.bonus.subtitle")}
           </p>
         </div>
       </div>
@@ -321,27 +521,37 @@ const t = createTranslator(lang);
     <!-- Contact Section -->
     <section id="contact" class="section-spacing bg-white">
       <div class="container-default">
-        <SectionHeader 
+        <SectionHeader
           badge="Skontaktuj się"
-          title={t('academy.contact_section.title')}
+          title={t("academy.contact_section.title")}
           titleBreak=""
-          subtitle={t('academy.contact_section.description')}
+          subtitle={t("academy.contact_section.description")}
         />
 
         <div class="max-w-3xl mx-auto text-center">
           <div class="mb-8">
-            <button class="btn-style-1 px-8 py-4 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-lg mb-6">
-              {t('academy.contact_section.cta_primary')}
+            <button
+              class="btn-style-1 px-8 py-4 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-lg mb-6"
+            >
+              {t("academy.contact_section.cta_primary")}
             </button>
-            
+
             <div class="text-gray-600">
               <p class="mb-2">lub</p>
               <div class="space-y-2">
                 <p>
-                  📧 Napisz na: <a href="mailto:{t('academy.contact_section.contact_info.email')}" class="text-blue-600 hover:underline font-semibold">{t('academy.contact_section.contact_info.email')}</a>
+                  📧 Napisz na: <a
+                    href="mailto:{t('academy.contact_section.contact_info.email')}"
+                    class="text-blue-600 hover:underline font-semibold"
+                    >{t("academy.contact_section.contact_info.email")}</a
+                  >
                 </p>
                 <p>
-                  📞 Zadzwoń: <a href="tel:{t('academy.contact_section.contact_info.phone')}" class="text-blue-600 hover:underline font-semibold">{t('academy.contact_section.contact_info.phone')}</a>
+                  📞 Zadzwoń: <a
+                    href="tel:{t('academy.contact_section.contact_info.phone')}"
+                    class="text-blue-600 hover:underline font-semibold"
+                    >{t("academy.contact_section.contact_info.phone")}</a
+                  >
                 </p>
               </div>
             </div>
@@ -351,23 +561,28 @@ const t = createTranslator(lang);
     </section>
 
     <!-- Social Proof Section -->
-    <section id="social-proof" class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50">
+    <section
+      id="social-proof"
+      class="section-spacing bg-gradient-to-br from-gray-50 to-blue-50"
+    >
       <div class="container-default">
         <div class="text-center max-w-4xl mx-auto">
           <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-4">
-            {t('academy.social_proof.title')}
+            {t("academy.social_proof.title")}
           </h2>
-          
+
           <p class="text-xl text-gray-600 mb-4">
-            {t('academy.social_proof.description')}
-          </p>
-          
-          <p class="text-lg text-gray-600 mb-8">
-            {t('academy.social_proof.subtitle')}
+            {t("academy.social_proof.description")}
           </p>
 
-          <button class="btn-style-1 px-8 py-4 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-lg">
-            {t('academy.hero.cta_primary')}
+          <p class="text-lg text-gray-600 mb-8">
+            {t("academy.social_proof.subtitle")}
+          </p>
+
+          <button
+            class="btn-style-1 px-8 py-4 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg text-lg"
+          >
+            {t("academy.hero.cta_primary")}
           </button>
         </div>
       </div>
@@ -380,8 +595,8 @@ const t = createTranslator(lang);
 
 <style>
   /* Inheriting all styles from the main landing page */
-  @import '../styles/global.css';
-  @import '../styles/gradients.css';
+  @import "../styles/global.css";
+  @import "../styles/gradients.css";
 
   /* Smooth scrolling for the entire page */
   html {
@@ -424,19 +639,23 @@ const t = createTranslator(lang);
 
   .btn-style-3 {
     background: transparent;
-    color: #0B2360;
-    border: 2px solid #0B2360;
+    color: #0b2360;
+    border: 2px solid #0b2360;
     cursor: pointer;
   }
 
   .btn-style-3:hover {
-    background: #0B2360;
+    background: #0b2360;
     color: white;
   }
 
   /* Hero glassmorphism background */
   .hero-glassmorphism {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -459,81 +678,111 @@ const t = createTranslator(lang);
   }
 
   /* Stagger animation delays for sections */
-  section:nth-child(1) { animation-delay: 0.1s; }
-  section:nth-child(2) { animation-delay: 0.2s; }
-  section:nth-child(3) { animation-delay: 0.3s; }
-  section:nth-child(4) { animation-delay: 0.4s; }
-  section:nth-child(5) { animation-delay: 0.5s; }
-  section:nth-child(6) { animation-delay: 0.6s; }
-  section:nth-child(7) { animation-delay: 0.7s; }
-  section:nth-child(8) { animation-delay: 0.8s; }
-  section:nth-child(9) { animation-delay: 0.9s; }
-  section:nth-child(10) { animation-delay: 1.0s; }
+  section:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  section:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  section:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  section:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  section:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  section:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  section:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+  section:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+  section:nth-child(9) {
+    animation-delay: 0.9s;
+  }
+  section:nth-child(10) {
+    animation-delay: 1s;
+  }
 </style>
 
 <script>
   // Enhanced page functionality
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Intersection Observer for smooth animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+          (entry.target as HTMLElement).style.animation =
+            "fadeInUp 0.6s ease-out forwards";
         }
       });
     }, observerOptions);
 
     // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
+    document.querySelectorAll("section").forEach((section) => {
       observer.observe(section);
     });
 
     // Enhanced analytics tracking for academy page
-    const trackEvent = (eventName, properties = {}) => {
+    const trackEvent = (
+      eventName: string,
+      properties: Record<string, unknown> = {},
+    ) => {
       // Replace with your analytics solution
       console.log(`Academy Page Event: ${eventName}`, properties);
     };
 
     // Track button clicks specifically for academy
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const buttonText = e.target.textContent.trim();
-        trackEvent('academy_button_click', {
+    document.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const buttonText = target?.textContent?.trim() || "";
+        trackEvent("academy_button_click", {
           button_text: buttonText,
-          section: e.target.closest('section')?.id || 'unknown',
-          page: 'academy'
+          section: target.closest("section")?.id || "unknown",
+          page: "academy",
         });
       });
     });
 
     // Track section views for academy
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-          trackEvent('academy_section_view', {
-            section_id: entry.target.id,
-            section_name: entry.target.querySelector('h2')?.textContent || entry.target.id,
-            page: 'academy'
-          });
-        }
-      });
-    }, { threshold: 0.5 });
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            trackEvent("academy_section_view", {
+              section_id: entry.target.id,
+              section_name:
+                entry.target.querySelector("h2")?.textContent ||
+                entry.target.id,
+              page: "academy",
+            });
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
 
-    document.querySelectorAll('section[id]').forEach(section => {
+    document.querySelectorAll("section[id]").forEach((section) => {
       sectionObserver.observe(section);
     });
 
     // Mobile performance optimizations
     if (window.innerWidth <= 768) {
       // Reduce animation complexity on mobile
-      document.querySelectorAll('[class*="animate"]').forEach(el => {
-        el.style.animation = 'none';
+      document.querySelectorAll('[class*="animate"]').forEach((el) => {
+        (el as HTMLElement).style.animation = "none";
       });
     }
   });
-</script> 
+</script>

@@ -5,36 +5,181 @@
     "contact_us": "Skontaktuj się z nami",
     "learn_more": "Dowiedz się więcej",
     "get_started": "Rozpocznij teraz",
-    "read_more": "Czytaj więcej"
+    "read_more": "Czytaj więcej",
+    "under_construction": {
+      "title": "Strona w budowie",
+      "desc": "Pracujemy nad treściami, efekty już niedługo!",
+      "cta_demo": "Umów Demo",
+      "cta_blog": "Blog",
+      "meta_updated": "Ostatnia aktualizacja",
+      "meta_plan": "Plan publikacji: sekcje produktowe i FAQ",
+      "meta_support": "Masz pytania? Napisz: kontakt@sportigio.com"
+    }
   },
   "navigation": {
+    "home": "Strona główna",
+    "product": "Produkt",
+    "solutions": "Rozwiązania",
+    "resources": "Materiały",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funkcje",
-    "pricing": "Cennik", 
+    "pricing": "Cennik",
     "about": "O nas",
     "contact": "Kontakt",
-    "login": "Zaloguj się",
-    "demo": "Demo"
+    "login": "Zaloguj",
+    "custom_plan": "Plan dedykowany",
+    "demo": "Demo",
+    "menu": "Menu",
+    "open_menu": "Otwórz menu",
+    "mega": {
+      "groups": [
+        {
+          "title": "Produkt",
+          "items": [
+            { "label": "Cennik", "href": "/pricing", "description": "Proste, przejrzyste ceny" },
+            { "label": "Blog", "href": "/blog", "description": "Wiedza i aktualności" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Komponenty i style" }
+          ]
+        },
+        {
+          "title": "Nawigacja",
+          "items": [
+            { "label": "Strona główna", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "product": {
+          "groups": [
+            {
+              "title": "Platforma",
+              "items": [
+                { "label": "Sportigio", "href": "/platforma", "description": "" },
+                { "label": "Strona", "href": "/strona", "description": "" },
+                { "label": "Bilety online", "href": "/bilety-online", "description": "" },
+                { "label": "Sklep Sportigio", "href": "/sklep-sportigio", "description": "" },
+                { "label": "Sklep własny", "href": "/sklep-wlasny", "description": "" }
+              ]
+            },
+            {
+              "title": "Możliwości",
+              "items": [
+                { "label": "Zarabianie", "href": "/zarabianie", "description": "" },
+                { "label": "Typer i Quiz", "href": "/typer-quiz", "description": "" },
+                { "label": "Automatyczne wyniki", "href": "/automatyczne-wyniki", "description": "" },
+                { "label": "Reklamy i sponsorzy", "href": "/reklamy-sponsorzy", "description": "" },
+                { "label": "Mailing i powiadomienia", "href": "/mailing-powiadomienia", "description": "" },
+                { "label": "Baza fanów", "href": "/baza-fanow", "description": "" },
+                { "label": "Asystent AI", "href": "/asystent-ai", "description": "" },
+                { "label": "Wszystkie funkcje", "href": "/wszystkie-funkcje", "description": "" }
+              ]
+            },
+            {
+              "title": "Jak zacząć?",
+              "items": [
+                { "label": "Zleć to nam", "href": "/zlec-to-nam", "description": "" },
+                { "label": "Zrób to sam", "href": "/zrob-to-sam", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Dla kogo",
+              "items": [
+                { "label": "Zarząd", "href": "/zarzad", "description": "" },
+                { "label": "Marketing", "href": "/marketing", "description": "" },
+                { "label": "Sponsor", "href": "/sponsor", "description": "" },
+                { "label": "Kibic", "href": "/kibic", "description": "" }
+              ]
+            },
+            {
+              "title": "Dyscyplina",
+              "items": [
+                { "label": "Piłka nożna", "href": "/pilka-nozna", "description": "" },
+                { "label": "Koszykówka", "href": "/koszykowka", "description": "" },
+                { "label": "Siatkówka", "href": "/siatkowka", "description": "" },
+                { "label": "Hokej", "href": "/hokej", "description": "" },
+                { "label": "Futsal", "href": "/futsal", "description": "" },
+                { "label": "Inne sporty", "href": "/inne-sporty", "description": "" }
+              ]
+            },
+            {
+              "title": "Zastosowania",
+              "items": [
+                { "label": "Sprzedaż biletów i karnetów", "href": "/bilety-karnety", "description": "" },
+                { "label": "Merch bez kosztów", "href": "/merch", "description": "" },
+                { "label": "Pakiety wsparcia", "href": "/pakiety-wsparcia", "description": "" },
+                { "label": "Fan Engagement", "href": "/fan-engagement", "description": "" },
+                { "label": "Historie klientów", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Poznaj nas",
+              "items": [
+                { "label": "O firmie", "href": "/o-firmie", "description": "" },
+                { "label": "Co nowego", "href": "/co-nowego", "description": "" },
+                { "label": "Umów Demo", "href": "/demo", "description": "" },
+                { "label": "Blog", "href": "/blog", "description": "" }
+              ]
+            },
+            {
+              "title": "Wsparcie",
+              "items": [
+                { "label": "Baza wiedzy", "href": "/baza-wiedzy", "description": "" },
+                { "label": "Webinary", "href": "/webinary", "description": "" },
+                { "label": "Instrukcje wideo", "href": "/instrukcje-wideo", "description": "" },
+                { "label": "API", "href": "/api", "description": "" },
+                { "label": "Kontakt", "href": "/kontakt", "description": "" }
+              ]
+            },
+            {
+              "title": "Usługi",
+              "items": [
+                { "label": "Wdrożenie", "href": "/wdrozenie", "description": "" },
+                { "label": "Migracja danych", "href": "/migracja-danych", "description": "" },
+                { "label": "Szkolenia", "href": "/szkolenia", "description": "" },
+                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
+              ]
+            },
+            {
+              "title": "Historie klientów",
+              "items": [
+                { "label": "News", "href": "/news", "description": "" },
+                { "label": "Zobacz wszystkie", "href": "/historie-klientow", "description": "" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Nowa generacja zarządzania klubem",
     "title": "Komunikacja klubu w 1 prostej",
     "title_highlight": "aplikacji",
-    "subtitle": "Zrewolucjonizuj sposób zarządzania klubem sportowym. Komunikacja, harmonogramy, płatności i analityki - wszystko w jednym miejscu.",
-    "social_proof_clubs": "500+ zadowolonych klubów",
+    "subtitle": "Zapomnij o problemach i wysokich kosztach IT. Strona www, sklep i bilety dedykowane klubom sportowym każdej wielkości.",
+    "social_proof_clubs": "100+ zadowolonych klubów",
     "social_proof_rating": "4.8/5 ocena"
   },
   "testimonials": {
-    "title": "Co mówią nasi zadowoleni użytkownicy",
-    "subtitle": "Najnowsze opinie naszych zadowolonych klientów",
-    "ai_summary": "AI Analysis",
+    "title": "Co mówią nasi użytkownicy",
+    "subtitle": "Poznaj opinie naszych zadowolonych klientów",
+    "ai_summary": "Analiza AI",
     "ai_text": "Według analizy tysięcy opinii, Sportigio zapewnia kompleksowe rozwiązanie dla klubów sportowych. Najczęściej doceniane funkcje to automatyzacja procesów administracyjnych, która oszczędza średnio 10 godzin tygodniowo, oraz zaawansowana komunikacja z rodzicami i zawodnikami.",
     "ai_insights": {
       "time_saving": "Oszczędność czasu (10h/tydzień)",
-      "ease_of_use": "Prostotę użytkowania",
-      "communication": "Lepszą komunikację z rodzicami",
+      "ease_of_use": "Prostota użytkowania",
+      "communication": "Lepsza komunikacja z rodzicami",
       "attendance": "Wzrost frekwencji (25%)"
     },
-    "cta_text": "Dołącz do ponad 500+ zadowolonych klubów",
+    "cta_text": "Dołącz do ponad 100+ klubów",
     "reviews": {
       "review_1": {
         "text": "Sportigio całkowicie zrewolucjonizowało sposób zarządzania naszym klubem. Oszczędzamy 10 godzin tygodniowo na administracji!",
@@ -43,11 +188,11 @@
       },
       "review_2": {
         "text": "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi.",
-        "author": "Anna Szymańska", 
+        "author": "Anna Szymańska",
         "position": "Trener, UKS Wisła"
       },
       "review_3": {
-        "text": "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już ganiać za składkami!",
+        "text": "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już gonić za składkami!",
         "author": "Piotr Wiśniewski",
         "position": "Sekretarz, Legia Warszawa"
       },
@@ -84,7 +229,7 @@
     "subtitle": "Proste, przejrzyste ceny. Bez ukrytych kosztów. Zmień pakiet w każdej chwili.",
     "currency": "Waluta:",
     "monthly": "Miesięcznie",
-    "yearly": "Rocznie", 
+    "yearly": "Rocznie",
     "save_badge": "Oszczędź do 20%",
     "need_more": "Potrzebujesz więcej?",
     "premium_package": "Pakiet Dedykowany Premium",
@@ -96,7 +241,7 @@
     "detailed_comparison": "Szczegółowe porównanie funkcji",
     "features": {
       "website": "STRONA INTERNETOWA",
-      "communication": "KOMUNIKACJA Z KIBICAMI", 
+      "communication": "KOMUNIKACJA Z KIBICAMI",
       "database": "BAZA DANYCH I ANALITYKA",
       "gamification": "GAMIFIKACJA",
       "sales": "SPRZEDAŻ I PŁATNOŚCI",
@@ -111,7 +256,7 @@
       "badge": "Sportigio dla Akademii",
       "title": "Zarządzaj swoją akademią jak profesjonalista",
       "title_highlight": "wszystko w 1 prostym narzędziu",
-      "subtitle": "Komunikacja z rodzicami, płatności, obecności i harmonogramy - wszystko w jednej aplikacji dla akademii sportowych.",
+      "subtitle": "Komunikacja z rodzicami, płatności, obecności i harmonogramy — wszystko w jednej aplikacji dla akademii sportowych.",
       "cta_primary": "Umów prezentację",
       "cta_secondary": "Zobacz demo dla akademii"
     },
@@ -122,12 +267,12 @@
         "Rodzice pytają, dzwonią, nie wiedzą gdzie i kiedy są zajęcia",
         "Płatności? Trzeba pilnować, przypominać, wysyłać ręcznie",
         "Trenerzy przekazują obecności na papierze lub w Excelu",
-        "Rodzice zgłaszają nieobecności… przez SMS lub przypadkiem",
-        "Brakuje systemu – chaos narasta przy większej liczbie dzieci"
+        "Rodzice zgłaszają nieobecności przypadkowo lub przez SMS",
+        "Brakuje systemu — chaos narasta przy większej liczbie dzieci"
       ]
     },
     "solutions": {
-      "title": "Z Sportigio wszystko masz pod kontrolą",
+      "title": "Ze Sportigio wszystko masz pod kontrolą",
       "subtitle": "Profesjonalne narzędzia dla nowoczesnych akademii",
       "features": [
         {
@@ -136,7 +281,7 @@
           "icon": "calendar"
         },
         {
-          "title": "Płatności i faktury", 
+          "title": "Płatności i faktury",
           "description": "Automatyczne przypomnienia, płatność online, lista zaległości bez Excela",
           "icon": "payment"
         },
@@ -147,7 +292,7 @@
         },
         {
           "title": "Komunikacja bez chaosu",
-          "description": "Wiadomości grupowe, ogłoszenia, indywidualny kontakt – wszystko w systemie",
+          "description": "Wiadomości grupowe, ogłoszenia, indywidualny kontakt — wszystko w systemie",
           "icon": "communication"
         },
         {
@@ -161,93 +306,145 @@
       "title": "Co zyskujesz jako właściciel akademii?",
       "subtitle": "Konkretne korzyści dla Twojej akademii",
       "items": [
-        {
-          "title": "Oszczędność czasu",
-          "description": "mniej telefonów, wiadomości, papierów",
-          "icon": "time"
-        },
-        {
-          "title": "Spokój i porządek",
-          "description": "wszystko działa, nawet gdy Ciebie nie ma",
-          "icon": "peace"
-        },
-        {
-          "title": "Więcej pieniędzy na czas",
-          "description": "system przypomina, ułatwia i przyspiesza płatności",
-          "icon": "money"
-        },
-        {
-          "title": "Zadowolonych rodziców",
-          "description": "którzy polecają Cię innym",
-          "icon": "happy"
-        },
-        {
-          "title": "Nowoczesny wizerunek",
-          "description": "pokazujesz, że jesteś profesjonalistą",
-          "icon": "modern"
-        }
+        { "title": "Oszczędność czasu", "description": "mniej telefonów, wiadomości, papierów", "icon": "time" },
+        { "title": "Spokój i porządek", "description": "wszystko działa, nawet gdy Ciebie nie ma", "icon": "peace" },
+        { "title": "Więcej pieniędzy na czas", "description": "system przypomina, ułatwia i przyspiesza płatności", "icon": "money" },
+        { "title": "Zadowoleni rodzice", "description": "którzy polecają Cię innym", "icon": "happy" },
+        { "title": "Nowoczesny wizerunek", "description": "pokazujesz, że jesteś profesjonalistą", "icon": "modern" }
       ]
     },
     "target_groups": {
       "title": "Dla kogo to działa?",
       "subtitle": "Korzyści dla wszystkich w akademii",
       "groups": [
-        {
-          "title": "Dla Ciebie – właściciela",
-          "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.",
-          "icon": "owner"
-        },
-        {
-          "title": "Dla trenerów",
-          "description": "Lista obecności i szybki kontakt z rodzicem – wszystko z telefonu.",
-          "icon": "trainer"
-        },
-        {
-          "title": "Dla rodziców",
-          "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.",
-          "icon": "parent"
-        }
+        { "title": "Dla Ciebie — właściciela", "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.", "icon": "owner" },
+        { "title": "Dla trenerów", "description": "Lista obecności i szybki kontakt z rodzicem — wszystko z telefonu.", "icon": "trainer" },
+        { "title": "Dla rodziców", "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.", "icon": "parent" }
       ]
     },
     "how_to_start": {
       "title": "Jak zacząć?",
-      "subtitle": "Prosty proces wdrożenia - robimy wszystko za Ciebie",
+      "subtitle": "Prosty proces wdrożenia — robimy wszystko za Ciebie",
       "steps": [
-        {
-          "step": "1",
-          "title": "Umów się na bezpłatną prezentację online",
-          "description": "15 min"
-        },
-        {
-          "step": "2", 
-          "title": "Wgrywamy dane i konfigurujemy Twoją akademię",
-          "description": "my robimy to za Ciebie"
-        },
-        {
-          "step": "3",
-          "title": "Startujesz z gotowym systemem i aplikacją dla rodziców",
-          "description": "gotowe do użycia"
-        }
+        { "step": "1", "title": "Umów się na bezpłatną prezentację online", "description": "15 min" },
+        { "step": "2", "title": "Wgrywamy dane i konfigurujemy Twoją akademię", "description": "my robimy to za Ciebie" },
+        { "step": "3", "title": "Startujesz z gotowym systemem i aplikacją dla rodziców", "description": "gotowe do użycia" }
       ]
     },
     "bonus": {
       "title": "BONUS na start",
       "description": "Pierwsze 2 miesiące za 0 zł, pełna funkcjonalność",
-      "subtitle": "Brak opłat za wdrożenie – my robimy wszystko za Ciebie"
+      "subtitle": "Brak opłat za wdrożenie — my robimy wszystko za Ciebie"
     },
     "contact_section": {
       "title": "Umów prezentację teraz",
-      "description": "Porozmawiaj z naszym doradcą i zobacz jak Sportigio może pomóc Twojej akademii",
+      "description": "Porozmawiaj z naszym doradcą i zobacz, jak Sportigio może pomóc Twojej akademii",
       "cta_primary": "Umów rozmowę z doradcą",
-      "contact_info": {
-        "email": "kontakt@sportigio.com",
-        "phone": "+48 600 000 000"
-      }
+      "contact_info": { "email": "kontakt@sportigio.com", "phone": "+48 600 000 000" }
     },
     "social_proof": {
       "title": "Dołącz do nowoczesnych akademii",
       "description": "Już ponad 60 klubów i akademii korzysta ze Sportigio.",
       "subtitle": "Dołącz do nich i zacznij zarządzać mądrzej, prościej i szybciej."
     }
+  },
+  "footer": {
+    "company_blurb": "Platforma zarządzania klubami sportowymi nowej generacji. Uprość komunikację, automatyzuj procesy i skup się na tym, co najważniejsze.",
+    "newsletter": {
+      "title": "Zostań na bieżąco",
+      "desc": "Otrzymuj najnowsze informacje o funkcjach, wskazówki i artykuły o zarządzaniu klubami sportowymi.",
+      "placeholder": "Twój adres e‑mail",
+      "cta": "Zapisz się"
+    },
+    "legal": {
+      "privacy": "Polityka prywatności",
+      "terms": "Regulamin",
+      "cookies": "Pliki cookie",
+      "rodo": "RODO"
+    }
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "Używamy plików cookie",
+      "description": "Korzystamy z niezbędnych plików cookie, aby strona działała poprawnie oraz opcjonalnych do analityki (Google Analytics, Microsoft Clarity) i marketingu (Meta). Możesz w każdej chwili zmienić swoje preferencje.",
+      "acceptAllBtn": "Akceptuj wszystkie",
+      "acceptNecessaryBtn": "Odrzuć opcjonalne",
+      "showPreferencesBtn": "Preferencje"
+    },
+    "preferencesModal": {
+      "title": "Ustawienia plików cookie",
+      "acceptAllBtn": "Akceptuj wszystkie",
+      "acceptNecessaryBtn": "Tylko niezbędne",
+      "savePreferencesBtn": "Zapisz ustawienia",
+      "sections": [
+        {
+          "title": "Korzystanie z plików cookie",
+          "description": "Używamy plików cookie, aby zapewnić podstawowe działanie serwisu oraz ulepszać jego działanie poprzez analizę i marketing. Zgody na analitykę i marketing są opcjonalne."
+        },
+        {
+          "title": "Niezbędne",
+          "description": "Te pliki cookie są wymagane do prawidłowego działania strony i nie mogą być wyłączone.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analityczne (GA, Clarity)",
+          "description": "Pozwalają mierzyć ruch i zachowanie użytkowników, aby ulepszać serwis (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketingowe (Meta)",
+          "description": "Służą do personalizacji reklam oraz pomiaru ich skuteczności (np. Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
+  },
+  "platform": {
+    "badge": "Platforma Sportigio",
+    "title": "Profesjonalny profil klubu",
+    "title_highlight": "bez strony WWW",
+    "subtitle": "Narzędzie wszystko w jednym — gotowe od razu po rejestracji. Idealne do linku w bio na Facebooku, Instagramie i TikToku.",
+    "cta_primary": "Załóż profil w 2 minuty",
+    "cta_secondary": "Zobacz demo",
+    "sections": {
+      "what_is": {
+        "title": "Co to jest Sportigio Link?",
+        "body": "To jak Linktree, ale sportowe — z funkcjami dla klubów.",
+        "bullets": [
+          "Terminarz i wyniki w czasie rzeczywistym",
+          "Bilety, karnety i sprzedaż online",
+          "Analityka wejść i konwersji"
+        ]
+      },
+      "features": {
+        "title": "Wszystko w jednym miejscu",
+        "items": [
+          { "title": "Terminarz i wyniki", "description": "Publikuj mecze i wyniki automatycznie." },
+          { "title": "Bilety i karnety", "description": "Sprzedawaj bilety i karnety online." },
+          { "title": "Sklep i merch", "description": "Linkuj produkty lub włącz sklep." },
+          { "title": "Analityka", "description": "Mierz ruch, kliknięcia i sprzedaż." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typowy link-in-bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Tylko linki",
+          "Brak wyników i terminarza",
+          "Brak integracji z biletami"
+        ],
+        "after_items": [
+          "Wyniki i terminarz wbudowane",
+          "Bilety i karnety",
+          "Statystyki i konwersje"
+        ]
+      },
+      "cta": {
+        "title": "Zacznij teraz",
+        "subtitle": "Twój profil jest gotowy od razu po rejestracji",
+        "primary": "Utwórz profil klubu",
+        "secondary": "Umów krótkie demo"
+      }
+    }
   }
-} 
+}

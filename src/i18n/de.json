@@ -8,19 +8,154 @@
     "read_more": "Weiterlesen"
   },
   "navigation": {
+    "home": "Startseite",
+    "product": "Produkt",
+    "solutions": "Lösungen",
+    "resources": "Ressourcen",
+    "blog": "Blog",
+    "kitchen": "Kitchen Sink",
     "features": "Funktionen",
     "pricing": "Preise", 
     "about": "Über uns",
     "contact": "Kontakt",
     "login": "Anmelden",
-    "demo": "Demo"
+    "demo": "Demo",
+    "menu": "Menü",
+    "open_menu": "Menü öffnen",
+    "custom_plan": "Individueller Plan",
+    "mega": {
+      "groups": [
+        {
+          "title": "Produkt",
+          "items": [
+            { "label": "Preise", "href": "/pricing", "description": "Einfache, transparente Pläne" },
+            { "label": "Blog", "href": "/blog", "description": "Einblicke und Neuigkeiten" },
+            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Komponenten und Styles" }
+          ]
+        },
+        {
+          "title": "Navigation",
+          "items": [
+            { "label": "Startseite", "href": "/", "description": "Start" }
+          ]
+        }
+      ],
+      "menus": {
+        "product": {
+          "groups": [
+            {
+              "title": "Plattform",
+              "items": [
+                { "label": "Sportigio", "href": "#", "description": "" },
+                { "label": "Webseite", "href": "#", "description": "" },
+                { "label": "Online-Tickets", "href": "#", "description": "" },
+                { "label": "Shop", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Möglichkeiten",
+              "items": [
+                { "label": "Monetarisierung", "href": "#", "description": "" },
+                { "label": "Tipper & Quiz", "href": "#", "description": "" },
+                { "label": "Automatische Ergebnisse", "href": "#", "description": "" },
+                { "label": "Werbung & Sponsoren", "href": "#", "description": "" },
+                { "label": "Mailing & Benachrichtigungen", "href": "#", "description": "" },
+                { "label": "Fan-Datenbank", "href": "#", "description": "" },
+                { "label": "KI-Assistent", "href": "#", "description": "" },
+                { "label": "Alle Funktionen", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Einstieg",
+              "items": [
+                { "label": "Lass es uns machen", "href": "#", "description": "" },
+                { "label": "Mach es selbst", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "kitchen": {
+          "groups": [
+            {
+              "title": "Für wen",
+              "items": [
+                { "label": "Vorstand", "href": "#", "description": "" },
+                { "label": "Marketing", "href": "#", "description": "" },
+                { "label": "Sponsor", "href": "#", "description": "" },
+                { "label": "Fan", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Disziplin",
+              "items": [
+                { "label": "Fußball", "href": "#", "description": "" },
+                { "label": "Basketball", "href": "#", "description": "" },
+                { "label": "Volleyball", "href": "#", "description": "" },
+                { "label": "Hockey", "href": "#", "description": "" },
+                { "label": "Futsal", "href": "#", "description": "" },
+                { "label": "Andere Sportarten", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Anwendungsfälle",
+              "items": [
+                { "label": "Ticket- und Dauerkartenverkauf", "href": "#", "description": "" },
+                { "label": "Merch ohne Kosten", "href": "#", "description": "" },
+                { "label": "Unterstützungspakete", "href": "#", "description": "" },
+                { "label": "Fan-Engagement", "href": "#", "description": "" },
+                { "label": "Kundenstories", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "groups": [
+            {
+              "title": "Lernen Sie uns kennen",
+              "items": [
+                { "label": "Über uns", "href": "#", "description": "" },
+                { "label": "Neuigkeiten", "href": "#", "description": "" },
+                { "label": "Demo vereinbaren", "href": "#", "description": "" },
+                { "label": "Blog", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Support",
+              "items": [
+                { "label": "Wissensdatenbank", "href": "#", "description": "" },
+                { "label": "Webinare", "href": "#", "description": "" },
+                { "label": "Videoanleitungen", "href": "#", "description": "" },
+                { "label": "API", "href": "#", "description": "" },
+                { "label": "Kontakt", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Dienstleistungen",
+              "items": [
+                { "label": "Implementierung", "href": "#", "description": "" },
+                { "label": "Datenmigration", "href": "#", "description": "" },
+                { "label": "Schulungen", "href": "#", "description": "" },
+                { "label": "Outsourcing", "href": "#", "description": "" }
+              ]
+            },
+            {
+              "title": "Kundenstories",
+              "items": [
+                { "label": "News", "href": "#", "description": "" },
+                { "label": "Alle anzeigen", "href": "#", "description": "" }
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   "hero": {
     "badge": "Neue Generation der Vereinsverwaltung",
     "title": "Vereinskommunikation in 1 einfachen",
     "title_highlight": "Anwendung",
     "subtitle": "Revolutionieren Sie die Art, wie Sie Ihren Sportverein verwalten. Kommunikation, Zeitpläne, Zahlungen und Analysen - alles an einem Ort.",
-    "social_proof_clubs": "500+ zufriedene Vereine",
+    "social_proof_clubs": "100+ zufriedene Vereine",
     "social_proof_rating": "4.8/5 Bewertung"
   },
   "blog": {
@@ -33,5 +168,89 @@
     "related_articles": "Verwandte Artikel",
     "published_on": "Veröffentlicht am",
     "share_article": "Artikel teilen"
+  },
+  "cookies": {
+    "consentModal": {
+      "title": "Wir verwenden Cookies",
+      "description": "Wir verwenden notwendige Cookies, damit die Website funktioniert, sowie optionale Cookies für Analysen (Google Analytics, Microsoft Clarity) und Marketing (Meta). Du kannst deine Einstellungen jederzeit ändern.",
+      "acceptAllBtn": "Alle akzeptieren",
+      "acceptNecessaryBtn": "Optionale ablehnen",
+      "showPreferencesBtn": "Einstellungen"
+    },
+    "preferencesModal": {
+      "title": "Cookie-Einstellungen",
+      "acceptAllBtn": "Alle akzeptieren",
+      "acceptNecessaryBtn": "Nur notwendige",
+      "savePreferencesBtn": "Einstellungen speichern",
+      "sections": [
+        {
+          "title": "Verwendung von Cookies",
+          "description": "Wir verwenden Cookies für grundlegende Funktionen der Website sowie zur Verbesserung der Leistung durch Analysen und Marketing. Analyse- und Marketing-Cookies sind optional."
+        },
+        {
+          "title": "Notwendig",
+          "description": "Diese Cookies sind für die Funktion der Website erforderlich und können nicht deaktiviert werden.",
+          "linkedCategory": "necessary"
+        },
+        {
+          "title": "Analytik (GA, Clarity)",
+          "description": "Hilft uns, Traffic und Nutzerverhalten zu messen, um die Website zu verbessern (Google Analytics, Microsoft Clarity).",
+          "linkedCategory": "analytics"
+        },
+        {
+          "title": "Marketing (Meta)",
+          "description": "Wird zur Personalisierung von Anzeigen und zur Messung ihrer Wirksamkeit verwendet (z. B. Meta Pixel).",
+          "linkedCategory": "marketing"
+        }
+      ]
+    }
+  },
+  "platform": {
+    "badge": "Sportigio Link",
+    "title": "Professionelles Vereinsprofil",
+    "title_highlight": "ohne Website",
+    "subtitle": "All‑in‑one‑Tool — sofort nach der Registrierung einsatzbereit. Perfekt für Bio‑Links auf Facebook, Instagram und TikTok.",
+    "cta_primary": "Profil in 2 Minuten erstellen",
+    "cta_secondary": "Demo ansehen",
+    "sections": {
+      "what_is": {
+        "title": "Was ist Sportigio Link?",
+        "body": "Wie Linktree, aber sportlich — mit Vereins‑Features.",
+        "bullets": [
+          "Spielplan und Live‑Ergebnisse",
+          "Tickets, Dauerkarten und Online‑Verkauf",
+          "Traffic‑ und Conversion‑Analytics"
+        ]
+      },
+      "features": {
+        "title": "Alles an einem Ort",
+        "items": [
+          { "title": "Spielplan & Ergebnisse", "description": "Spiele und Ergebnisse automatisch veröffentlichen." },
+          { "title": "Tickets & Dauerkarten", "description": "Tickets und Dauerkarten online verkaufen." },
+          { "title": "Shop & Merch", "description": "Produkte verlinken oder Shop aktivieren." },
+          { "title": "Analytics", "description": "Traffic, Klicks und Verkäufe messen." }
+        ]
+      },
+      "compare": {
+        "before_title": "Typischer Link‑in‑Bio",
+        "after_title": "Sportigio Link",
+        "before_items": [
+          "Nur Links",
+          "Keine Ergebnisse oder Spielplan",
+          "Keine Ticket‑Integration"
+        ],
+        "after_items": [
+          "Integrierte Ergebnisse und Spielplan",
+          "Tickets und Dauerkarten",
+          "Statistiken und Conversions"
+        ]
+      },
+      "cta": {
+        "title": "Jetzt starten",
+        "subtitle": "Dein Profil ist sofort nach der Registrierung bereit",
+        "primary": "Vereinsprofil erstellen",
+        "secondary": "Kurze Demo vereinbaren"
+      }
+    }
   }
-} 
+}

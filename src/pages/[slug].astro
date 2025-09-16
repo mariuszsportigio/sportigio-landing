@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import UnderConstruction from "../components/UnderConstruction.astro";
+import { defaultLanguage, type Language } from "../i18n";
+
+type PageDef = { slug: string; title: string; category?: string };
+
+export const routes: PageDef[] = [
+    // Produkt → Platforma (other items)
+    { slug: "strona", title: "Strona", category: "Platforma" },
+    { slug: "bilety-online", title: "Bilety online", category: "Platforma" },
+    { slug: "sklep", title: "Sklep", category: "Platforma" },
+
+    // Produkt → Możliwości
+    { slug: "zarabianie", title: "Zarabianie", category: "Możliwości" },
+    { slug: "typer-quiz", title: "Typer i Quiz", category: "Możliwości" },
+    {
+        slug: "automatyczne-wyniki",
+        title: "Automatyczne wyniki",
+        category: "Możliwości",
+    },
+    {
+        slug: "reklamy-sponsorzy",
+        title: "Reklamy i sponsorzy",
+        category: "Możliwości",
+    },
+    {
+        slug: "mailing-powiadomienia",
+        title: "Mailing i powiadomienia",
+        category: "Możliwości",
+    },
+    { slug: "baza-fanow", title: "Baza fanów", category: "Możliwości" },
+    { slug: "asystent-ai", title: "Asystent AI", category: "Możliwości" },
+    {
+        slug: "wszystkie-funkcje",
+        title: "Wszystkie funkcje",
+        category: "Możliwości",
+    },
+
+    // Produkt → Jak zacząć?
+    { slug: "zlec-to-nam", title: "Zleć to nam", category: "Jak zacząć?" },
+    { slug: "zrob-to-sam", title: "Zrób to sam", category: "Jak zacząć?" },
+
+    // Rozwiązania → Dla kogo
+    { slug: "zarzad", title: "Zarząd", category: "Dla kogo" },
+    { slug: "marketing", title: "Marketing", category: "Dla kogo" },
+    { slug: "sponsor", title: "Sponsor", category: "Dla kogo" },
+    { slug: "kibic", title: "Kibic", category: "Dla kogo" },
+
+    // Rozwiązania → Dyscyplina
+    { slug: "pilka-nozna", title: "Piłka nożna", category: "Dyscyplina" },
+    { slug: "koszykowka", title: "Koszykówka", category: "Dyscyplina" },
+    { slug: "siatkowka", title: "Siatkówka", category: "Dyscyplina" },
+    { slug: "hokej", title: "Hokej", category: "Dyscyplina" },
+    { slug: "futsal", title: "Futsal", category: "Dyscyplina" },
+    { slug: "inne-sporty", title: "Inne sporty", category: "Dyscyplina" },
+
+    // Rozwiązania → Zastosowania
+    {
+        slug: "bilety-karnety",
+        title: "Sprzedaż biletów i karnetów",
+        category: "Zastosowania",
+    },
+    { slug: "merch", title: "Merch bez kosztów", category: "Zastosowania" },
+    {
+        slug: "pakiety-wsparcia",
+        title: "Pakiety wsparcia",
+        category: "Zastosowania",
+    },
+    {
+        slug: "fan-engagement",
+        title: "Fan Engagement",
+        category: "Zastosowania",
+    },
+    {
+        slug: "historie-klientow",
+        title: "Historie klientów",
+        category: "Zastosowania",
+    },
+
+    // Materiały → Poznaj nas
+    { slug: "o-firmie", title: "O firmie", category: "Poznaj nas" },
+    { slug: "co-nowego", title: "Co nowego", category: "Poznaj nas" },
+    { slug: "demo", title: "Umów Demo", category: "Poznaj nas" },
+
+    // Materiały → Wsparcie
+    { slug: "baza-wiedzy", title: "Baza wiedzy", category: "Wsparcie" },
+    { slug: "webinary", title: "Webinary", category: "Wsparcie" },
+    {
+        slug: "instrukcje-wideo",
+        title: "Instrukcje wideo",
+        category: "Wsparcie",
+    },
+    { slug: "api", title: "API", category: "Wsparcie" },
+    { slug: "kontakt", title: "Kontakt", category: "Wsparcie" },
+
+    // Materiały → Usługi
+    { slug: "wdrozenie", title: "Wdrożenie", category: "Usługi" },
+    { slug: "migracja-danych", title: "Migracja danych", category: "Usługi" },
+    { slug: "szkolenia", title: "Szkolenia", category: "Usługi" },
+    { slug: "outsourcing", title: "Outsourcing", category: "Usługi" },
+
+    // Materiały → Historie klientów
+    { slug: "news", title: "News", category: "Historie klientów" },
+    { slug: "plan-dedykowany", title: "Plan dedykowany" },
+];
+
+export async function getStaticPaths() {
+    return routes.map((p) => ({ params: { slug: p.slug } }));
+}
+
+interface Props {
+    lang?: Language;
+}
+const { lang = defaultLanguage } = Astro.props as Props;
+const { slug } = Astro.params;
+const current = routes.find((p) => p.slug === slug) || {
+    slug,
+    title: slug,
+    category: undefined,
+};
+---
+
+<Layout title={`Sportigio – ${current.title}`}>
+    <Navbar lang={lang} />
+    <div aria-hidden="true" class="h-16"></div>
+    <main class="bg-white min-h-screen">
+        <section class="pt-8 pb-20">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="mb-8">
+                    {
+                        current.category ? (
+                            <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0B2360]">
+                                {current.category}
+                            </span>
+                        ) : null
+                    }
+                    <h1
+                        class="mt-3 font-poppins text-4xl md:text-5xl font-extrabold text-gray-900"
+                    >
+                        {current.title}
+                    </h1>
+                </div>
+
+                <UnderConstruction lang={lang} />
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
