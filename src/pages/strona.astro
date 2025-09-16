@@ -6,6 +6,7 @@ import CTASection from "../components/CTASection.astro";
 import PricingThreeColumn from "../components/PricingThreeColumn.astro";
 import TwoColumnMedia from "../components/TwoColumnMedia.astro";
 import ExamplesSection from "../components/ExamplesSection.astro";
+import FAQDynamic from "../components/FAQDynamic.astro";
 import { defaultLanguage, type Language } from "../i18n";
 
 interface Props {
@@ -227,6 +228,29 @@ const { lang = defaultLanguage } = Astro.props as Props;
                 },
             ]}
             footnote="Ceny netto — podane przy płatności z góry za rok lub co miesiąc przy podpięciu auto-płatności kartą."
+        />
+
+        <FAQDynamic
+            title="FAQ: Strona WWW"
+            subtitle="Najważniejsze pytania iodpowiedzi przy tworzeniu strony ze Sportigio"
+            items={[
+                {
+                    question: "Ile to kosztuje?",
+                    answer: "Start od 599 zł jednorazowo + abonament od 199 zł/mies. Podpowiemy, który wariant będzie najlepszy dla Twojego klubu.",
+                },
+                {
+                    question: "Jak szybko ruszymy?",
+                    answer: "Zwykle w kilka dni. Możesz działać samodzielnie albo zlecić przygotowanie startu nam.",
+                },
+                {
+                    question: "Czy sam ogarnę edycję strony?",
+                    answer: "Tak. Panel jest prosty — dodasz newsy, zdjęcia, sponsorów i menu bez technikaliów.",
+                },
+                {
+                    question: "Czy przeniesiecie treści ze starej strony?",
+                    answer: "Tak - możemy przenieść newsy; gdy nie ma archiwum, dodamy kilka wpisów na start.",
+                },
+            ]}
         />
 
         <CTASection />

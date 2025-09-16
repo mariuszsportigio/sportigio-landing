@@ -1,0 +1,247 @@
+---
+export interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+export interface Props {
+    title?: string;
+    subtitle?: string;
+    items: FAQItem[];
+}
+
+const {
+    title = "Często zadawane pytania",
+    subtitle = "Znajdź odpowiedzi na najczęściej zadawane pytania o Sportigio",
+    items,
+} = Astro.props as Props;
+---
+
+<section id="faq" class="py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2
+                class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins"
+            >
+                {title}
+            </h2>
+            <p class="text-base text-gray-600">{subtitle}</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-4">
+                {
+                    items
+                        .filter((_, i) => i % 2 === 0)
+                        .map((it) => (
+                            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                                <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+                                    <span class="text-sm font-semibold text-gray-900">
+                                        {it.question}
+                                    </span>
+                                    <svg
+                                        class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="faq-answer px-4 pb-4"
+                                    data-state="closed"
+                                >
+                                    <p class="text-sm text-gray-600 leading-relaxed">
+                                        {it.answer}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                }
+            </div>
+            <div class="flex flex-col gap-4">
+                {
+                    items
+                        .filter((_, i) => i % 2 === 1)
+                        .map((it) => (
+                            <div class="faq-item bg-white rounded-lg shadow-sm border border-gray-200">
+                                <button class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg">
+                                    <span class="text-sm font-semibold text-gray-900">
+                                        {it.question}
+                                    </span>
+                                    <svg
+                                        class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </button>
+                                <div
+                                    class="faq-answer px-4 pb-4"
+                                    data-state="closed"
+                                >
+                                    <p class="text-sm text-gray-600 leading-relaxed">
+                                        {it.answer}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // FAQ Accordion: one open at a time with smooth ease-out animation
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqItems: HTMLElement[] = Array.from(
+            document.querySelectorAll<HTMLElement>(".faq-item"),
+        );
+        const faqQuestions =
+            document.querySelectorAll<HTMLButtonElement>(".faq-question");
+
+        const equalizeQuestionHeights = (): void => {
+            let maxHeight = 0;
+            faqQuestions.forEach((btn) => {
+                (btn as HTMLButtonElement).style.minHeight = "";
+            });
+            faqQuestions.forEach((btn) => {
+                const h = (btn as HTMLButtonElement).getBoundingClientRect()
+                    .height;
+                if (h > maxHeight) maxHeight = h;
+            });
+            const target = Math.ceil(maxHeight);
+            faqQuestions.forEach((btn) => {
+                (btn as HTMLButtonElement).style.minHeight = `${target}px`;
+            });
+        };
+
+        function closeItem(item: HTMLElement) {
+            const answer = item.querySelector<HTMLElement>(".faq-answer");
+            const icon = item.querySelector<SVGElement>(".faq-icon");
+            if (!answer) return;
+            const state = answer.getAttribute("data-state");
+            if (state === "closed" || state === "closing") return;
+
+            answer.setAttribute("data-state", "closing");
+            answer.style.height = answer.scrollHeight + "px";
+            void answer.offsetHeight;
+            answer.style.height = "0px";
+            answer.style.opacity = "0";
+            if (icon) (icon as SVGElement).style.transform = "rotate(0deg)";
+
+            const onEnd = (e: TransitionEvent) => {
+                if (e.propertyName !== "height") return;
+                answer.removeEventListener("transitionend", onEnd);
+                answer.setAttribute("data-state", "closed");
+                answer.style.height = "";
+            };
+            answer.addEventListener("transitionend", onEnd);
+        }
+
+        function openItem(item: HTMLElement) {
+            const answer = item.querySelector<HTMLElement>(".faq-answer");
+            const icon = item.querySelector<SVGElement>(".faq-icon");
+            if (!answer) return;
+            const state = answer.getAttribute("data-state");
+            if (state === "open" || state === "opening") return;
+
+            answer.setAttribute("data-state", "opening");
+            answer.style.height = "0px";
+            answer.style.opacity = "1";
+            void answer.offsetHeight;
+            const target = answer.scrollHeight;
+            answer.style.height = target + "px";
+            if (icon) (icon as SVGElement).style.transform = "rotate(180deg)";
+
+            const onEnd = (e: TransitionEvent) => {
+                if (e.propertyName !== "height") return;
+                answer.removeEventListener("transitionend", onEnd);
+                answer.setAttribute("data-state", "open");
+                answer.style.height = "auto";
+            };
+            answer.addEventListener("transitionend", onEnd);
+        }
+
+        faqItems.forEach((item) => {
+            const answer = item.querySelector<HTMLElement>(".faq-answer");
+            if (!answer) return;
+            const state = answer.getAttribute("data-state") || "closed";
+            answer.setAttribute("data-state", state);
+            if (state === "open") {
+                answer.style.height = "auto";
+                answer.style.opacity = "1";
+            } else {
+                answer.style.height = "0px";
+                answer.style.opacity = "0";
+            }
+        });
+
+        faqQuestions.forEach((question) => {
+            question.addEventListener("click", () => {
+                const currentItem = question.closest(
+                    ".faq-item",
+                ) as HTMLElement | null;
+                if (!currentItem) return;
+                const currentAnswer =
+                    currentItem.querySelector<HTMLElement>(".faq-answer");
+                if (!currentAnswer) return;
+                const willOpen =
+                    currentAnswer.getAttribute("data-state") !== "open";
+
+                faqItems.forEach((item) => {
+                    if (item !== currentItem) closeItem(item);
+                });
+
+                if (willOpen) openItem(currentItem);
+                else closeItem(currentItem);
+                equalizeQuestionHeights();
+            });
+        });
+
+        equalizeQuestionHeights();
+        let resizeTimeout: number | undefined;
+        window.addEventListener("resize", () => {
+            if (resizeTimeout) window.clearTimeout(resizeTimeout);
+            resizeTimeout = window.setTimeout(equalizeQuestionHeights, 120);
+        });
+    });
+</script>
+
+<style>
+    .faq-answer {
+        overflow: hidden;
+        height: 0;
+        opacity: 0;
+        transition:
+            height 140ms ease-out,
+            opacity 120ms ease-out,
+            padding-bottom 120ms ease-out;
+    }
+
+    .faq-answer[data-state="open"],
+    .faq-answer[data-state="opening"] {
+        opacity: 1;
+        padding-bottom: 1rem; /* pb-4 */
+    }
+
+    .faq-answer[data-state="closed"],
+    .faq-answer[data-state="closing"] {
+        opacity: 0;
+        padding-bottom: 0; /* collapse vertical spacing when closed */
+    }
+</style>
