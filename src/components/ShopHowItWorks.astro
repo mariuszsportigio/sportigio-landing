@@ -165,7 +165,7 @@ const t = createTranslator(lang);
                             </div>
                         </div>
                         <div
-                            class="flow-note absolute left-1/2 -translate-x-1/2 top-full mt-4"
+                            class="flow-note"
                         >
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
@@ -252,7 +252,7 @@ const t = createTranslator(lang);
                             </div>
                         </div>
                         <div
-                            class="flow-note absolute left-1/2 -translate-x-1/2 top-full mt-4"
+                            class="flow-note"
                         >
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
@@ -498,22 +498,27 @@ const t = createTranslator(lang);
 }
 
 .flow-note {
-    position: relative;
+    position: absolute;
+    top: calc(50% + var(--flow-note-gap, 20px));
+    left: 50%;
+    transform: translate(-50%, 0);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
     color: var(--flow-text-color, #0B2360);
     text-align: center;
+    font-size: 0.625rem;
+    line-height: 1.2;
 }
 .flow-note::before {
     content: "";
     position: absolute;
-    top: -14px;
+    top: calc(-1 * var(--flow-note-gap, 20px));
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 14px;
+    height: var(--flow-note-gap, 20px);
     background: var(--flow-color, #0B2360);
     border-radius: 9999px;
     opacity: 0.55;
