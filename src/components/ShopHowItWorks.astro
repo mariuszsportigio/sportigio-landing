@@ -421,14 +421,18 @@ const t = createTranslator(lang);
     inset: 0;
     pointer-events: none;
     color: var(--flow-color, #0B2360);
+    --line-thickness: 4px;
+    --arrow-size: 14px;
+    --arrow-height: 12px;
+    --line-radius: 9999px;
 }
 .flow-connector::before {
     content: "";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: 4px;
-    border-radius: 9999px;
+    height: var(--line-thickness);
+    border-radius: var(--line-radius);
     background: currentColor;
 }
 .flow-connector::after {
@@ -436,24 +440,26 @@ const t = createTranslator(lang);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
+    width: var(--arrow-size);
+    height: var(--arrow-height);
     background: currentColor;
 }
 .flow-connector[data-direction="ltr"]::before {
     left: var(--from);
     width: calc(var(--to) - var(--from));
+    border-radius: var(--line-radius) 0 0 var(--line-radius);
 }
 .flow-connector[data-direction="ltr"]::after {
-    left: calc(var(--to) - 12px);
+    left: var(--to);
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
 .flow-connector[data-direction="rtl"]::before {
     left: var(--to);
     width: calc(var(--from) - var(--to));
+    border-radius: 0 var(--line-radius) var(--line-radius) 0;
 }
 .flow-connector[data-direction="rtl"]::after {
-    left: var(--to);
+    left: calc(var(--to) - var(--arrow-size));
     clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
 }
 </style>
