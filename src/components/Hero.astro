@@ -4,119 +4,175 @@ import { createTranslator, type Language } from "../i18n";
 
 export interface Props {
   lang?: Language;
+  badge?: string;
+  title?: string;
+  titleHighlight?: string | null;
+  subtitle?: string | null;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageSize?: "default" | "small";
+  showBadge?: boolean;
+  showCTA?: boolean;
+  showSocialProof?: boolean;
+  spacing?: "default" | "compact";
+  heightMode?: "screen" | "short" | "fit";
 }
 
-const { lang = "pl" } = Astro.props;
+const {
+  lang = "pl",
+  badge: badgeOverride,
+  title: titleOverride,
+  titleHighlight: highlightOverride,
+  subtitle: subtitleOverride,
+  imageSrc: imageSrcOverride,
+  imageAlt: imageAltOverride,
+  imageSize = "default",
+  showBadge: showBadgeProp,
+  showCTA: showCTAProp,
+  showSocialProof: showSocialProofProp,
+  spacing = "default",
+  heightMode = "screen",
+} = Astro.props as Props;
+
 const t = createTranslator(lang);
+
+const heroBadge = badgeOverride ?? t("hero.badge");
+const heroTitle = titleOverride ?? t("hero.title");
+const heroTitleHighlight =
+  highlightOverride !== undefined ? highlightOverride ?? "" : t("hero.title_highlight");
+const heroSubtitle =
+  subtitleOverride !== undefined ? subtitleOverride ?? "" : t("hero.subtitle");
+const heroImageSrc = imageSrcOverride ?? "/screens/placeholder_png.png";
+const heroImageAlt = imageAltOverride ?? "Sportigio Analytics Dashboard";
+const showBadge = showBadgeProp ?? true;
+const showCTA = showCTAProp ?? true;
+const showSocialProof = showSocialProofProp ?? true;
+const spacingClasses = spacing === "compact" ? "pt-16 pb-14" : "pt-24 pb-16";
+const heightClasses =
+  heightMode === "fit"
+    ? ""
+    : heightMode === "short"
+    ? "min-h-[82vh] lg:min-h-[78vh]"
+    : "min-h-screen";
 ---
 
 <section
-  class="hero-glassmorphism relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden"
+  class={`hero-glassmorphism relative ${spacingClasses} ${heightClasses} flex items-center overflow-hidden ${imageSize === "small" ? "hero-image-small" : ""}`}
 >
   <div class="max-w-5xl mx-auto px-4 relative z-10 w-full">
     <div class="flex flex-col items-center text-center gap-8">
       <!-- Left Content -->
       <div class="text-center">
         <!-- Badge with glassmorphism -->
-        <div
-          class="inline-flex items-center px-4 py-2 bg-secondary/25 backdrop-blur-sm border border-white/20 text-primary rounded-full text-sm font-medium mb-5"
-        >
-          <svg
-            class="w-4 h-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {showBadge ? (
+          <div
+            class="inline-flex items-center px-4 py-2 bg-secondary/25 backdrop-blur-sm border border-white/20 text-primary rounded-full text-sm font-medium mb-5"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-          {t("hero.badge")}
-        </div>
+            <svg
+              class="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            {heroBadge}
+          </div>
+        ) : null}
 
         <!-- Heading -->
         <h1
           class="text-4xl lg:text-6xl xl:text-6xl font-extrabold text-gray-900 mb-5 leading-snug font-poppins"
         >
-          <span class="block">Komunikacja klubu</span>
-          <span
-            class="block text-transparent bg-clip-text bg-sportigio-purple-navy pb-[0.2em] -mb-[0.2em]"
-          >
-            w 1 prostej aplikacji
-          </span>
+          <span class="block">{heroTitle}</span>
+          {heroTitleHighlight ? (
+            <span
+              class="block text-transparent bg-clip-text bg-sportigio-purple-navy pb-[0.2em] -mb-[0.2em]"
+            >
+              {heroTitleHighlight}
+            </span>
+          ) : null}
         </h1>
 
         <!-- Subheading -->
-        <p
-          class="text-base lg:text-lg text-gray-600 mb-3 max-w-lg leading-relaxed mx-auto"
-        >
-          {t("hero.subtitle")}
-        </p>
+        {heroSubtitle ? (
+          <p
+            class="text-base lg:text-lg text-gray-600 mb-3 max-w-lg leading-relaxed mx-auto"
+          >
+            {heroSubtitle}
+          </p>
+        ) : null}
 
         <!-- CTA Button -->
-        <div class="flex flex-col sm:flex-row gap-3 mb-2 justify-center">
-          <button
-            class="btn-style-1 px-10 py-4 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg text-base"
-            style="--sportigio-gradient: var(--sportigio-gradient-2);"
-          >
-            {t("common.try_free")}
-          </button>
-        </div>
+        {showCTA ? (
+          <div class="flex flex-col sm:flex-row gap-3 mb-2 justify-center">
+            <button
+              class="btn-style-1 px-10 py-4 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg text-base"
+              style="--sportigio-gradient: var(--sportigio-gradient-2);"
+            >
+              {t("common.try_free")}
+            </button>
+          </div>
+        ) : null}
 
         <!-- Social Proof -->
-        <div
-          class="flex items-center gap-5 text-sm text-gray-500 justify-center"
-        >
-          <div class="flex items-center">
-            <div class="flex -space-x-1 mr-2">
-              <img
-                src="/teams/legia.avif"
-                alt="Legia"
-                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                src="/teams/wisla.avif"
-                alt="Wisła"
-                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                src="/teams/trefl.avif"
-                alt="Trefl"
-                class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                loading="lazy"
-                decoding="async"
-              />
+        {showSocialProof ? (
+          <div
+            class="flex items-center gap-5 text-sm text-gray-500 justify-center"
+          >
+            <div class="flex items-center">
+              <div class="flex -space-x-1 mr-2">
+                <img
+                  src="/teams/legia.avif"
+                  alt="Legia"
+                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src="/teams/wisla.avif"
+                  alt="Wisła"
+                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src="/teams/trefl.avif"
+                  alt="Trefl"
+                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <span>{t("hero.social_proof_clubs")}</span>
             </div>
-            <span>{t("hero.social_proof_clubs")}</span>
+            <div class="flex items-center">
+              <svg
+                class="w-4 h-4 text-yellow-400 mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <span>{t("hero.social_proof_rating")}</span>
+            </div>
           </div>
-          <div class="flex items-center">
-            <svg
-              class="w-4 h-4 text-yellow-400 mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-              ></path>
-            </svg>
-            <span>{t("hero.social_proof_rating")}</span>
-          </div>
-        </div>
+        ) : null}
       </div>
 
       <!-- Right Content - Main Image -->
       <div class="relative w-full">
         <!-- Main Image -->
-        <div class="relative z-10 w-full max-w-5xl mx-auto">
+        <div class={`relative z-10 w-full mx-auto hero-image-wrapper ${imageSize === "default" ? "max-w-5xl" : ""}`}>
           <img
-            src="/screens/placeholder_png.png"
-            alt="Sportigio Analytics Dashboard"
+            src={heroImageSrc}
+            alt={heroImageAlt}
             class="w-full h-auto rounded-xl drop-shadow-[0_32px_100px_rgba(11,35,96,0.55)]"
           />
         </div>
