@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "currencySymbols": {
+      "PLN": { "symbol": "zł", "position": "suffix", "separator": " ", "code": "PLN" },
+      "USD": { "symbol": "$", "position": "prefix", "separator": "", "code": "USD" },
+      "EUR": { "symbol": "€", "position": "prefix", "separator": "", "code": "EUR" }
+    }
+  },
+  "PLN": {
+    "starter": {
+      "monthly": 79,
+      "monthlyOriginal": 99,
+      "yearlyPerMonth": 63,
+      "yearlyTotal": 756,
+      "yearlyOriginalTotal": 1188
+    },
+    "pro": {
+      "monthly": 299,
+      "monthlyOriginal": 239,
+      "yearlyPerMonth": 159,
+      "yearlyTotal": 1908,
+      "yearlyOriginalTotal": 2868
+    },
+    "champion": {
+      "monthly": 499,
+      "monthlyOriginal": 599,
+      "yearlyPerMonth": 399,
+      "yearlyTotal": 4788,
+      "yearlyOriginalTotal": 7188
+    }
+  },
+  "USD": {
+    "starter": {
+      "monthly": 20,
+      "monthlyOriginal": 25,
+      "yearlyPerMonth": 16,
+      "yearlyTotal": 189,
+      "yearlyOriginalTotal": 297
+    },
+    "pro": {
+      "monthly": 50,
+      "monthlyOriginal": 60,
+      "yearlyPerMonth": 40,
+      "yearlyTotal": 477,
+      "yearlyOriginalTotal": 717
+    },
+    "champion": {
+      "monthly": 125,
+      "monthlyOriginal": 150,
+      "yearlyPerMonth": 100,
+      "yearlyTotal": 1197,
+      "yearlyOriginalTotal": 1797
+    }
+  },
+  "EUR": {
+    "starter": {
+      "monthly": 18,
+      "monthlyOriginal": 22,
+      "yearlyPerMonth": 14,
+      "yearlyTotal": 168,
+      "yearlyOriginalTotal": 264
+    },
+    "pro": {
+      "monthly": 44,
+      "monthlyOriginal": 53,
+      "yearlyPerMonth": 35,
+      "yearlyTotal": 424,
+      "yearlyOriginalTotal": 637
+    },
+    "champion": {
+      "monthly": 111,
+      "monthlyOriginal": 133,
+      "yearlyPerMonth": 89,
+      "yearlyTotal": 1064,
+      "yearlyOriginalTotal": 1597
+    }
+  }
+}
