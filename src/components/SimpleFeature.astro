@@ -11,6 +11,7 @@ interface Props {
   ctaHref?: string;
   alignment?: "center" | "left";
   size?: "sm" | "md";
+  ctaAlignment?: "left" | "center";
 }
 
 const props = Astro.props as Props;
@@ -26,6 +27,7 @@ const {
   ctaHref = "#",
   alignment = "center",
   size = "md",
+  ctaAlignment = alignment,
 } = props;
 ---
 
@@ -92,7 +94,7 @@ const {
   {
     ctaVariant !== "none" && (
       <div
-        class={`$${""} ${size === "sm" ? "mt-4" : "mt-6"} ${alignment === "center" ? "flex justify-center" : ""}`}
+        class={`${size === "sm" ? "mt-4" : "mt-6"} ${ctaAlignment === "center" ? "flex justify-center" : ""}`}
       >
         {ctaVariant === "link" && (
           <a
