@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
 import StoreExamplesSection from "../components/StoreExamplesSection.astro";
-import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import Hero from "../components/Hero.astro";
 import { defaultLanguage, type Language } from "../i18n";
 
 interface Props {
@@ -18,41 +18,20 @@ const { lang = defaultLanguage } = Astro.props as Props;
     <div aria-hidden="true" class="h-16"></div>
 
     <main class="bg-white min-h-screen">
-        <section class="py-20">
-            <div class="max-w-6xl mx-auto px-4">
-                <h1
-                    class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins"
-                >
-                    Sklep własny
-                </h1>
-                <p class="text-gray-600 mt-4">
-                    Prowadź własny sklep internetowy klubu.
-                </p>
-            </div>
-        </section>
-
-        <TwoColumnMedia
-            title="Pełna kontrola"
+        <Hero
+            lang={lang}
+            title="Prowadź własny sklep internetowy klubu."
+            titleHighlight=""
+            subtitle="Pełna kontrola"
             imageSrc="/screens/store-preview-mobile.avif"
             imageAlt="Podgląd sklepu (mobile)"
-            reverse={false}
-            bullets={[
-                "Implementacja: 6 000 zł netto",
-                "Utrzymanie: 200 zł + 2% od obrotów sklepu / miesiąc",
-            ]}
-        >
-            <p>
-                Gdy Twój klub ma już wyprodukowane gadżety, sam je magazynuje i
-                wysyła — to opcja dla Ciebie. Pełna personalizacja i pro usługa.
-            </p>
-        </TwoColumnMedia>
-
-        <div class="max-w-6xl mx-auto px-4 mt-2">
-            <p class="text-xs text-gray-500 italic">
-                * Podstawowa konfiguracja sklepu i utrzymanie w oparciu o silnik
-                Shopify. Możliwe dodatkowe opłaty przy zaawansowanych funkcjach
-            </p>
-        </div>
+            imageSize="small"
+            showBadge={false}
+            showCTA={false}
+            showSocialProof={false}
+            spacing="compact"
+            heightMode="short"
+        />
 
         <StoreExamplesSection />
 
