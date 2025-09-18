@@ -31,7 +31,7 @@ const t = createTranslator(lang);
                         class="relative w-16 h-16 rounded-full border-2 border-[#0B2360]/20 bg-white overflow-hidden"
                     >
                         <div
-                            class="w-full h-full flex items-center justify-center bg-[#0B2360]/5"
+                            class="w-full h-full flex items-center justify-center bg-white"
                         >
                             <span
                                 class="material-symbols-rounded text-[#0B2360] text-2xl"
@@ -81,7 +81,7 @@ const t = createTranslator(lang);
                         class="relative w-16 h-16 rounded-full border-2 border-[#0B2360]/20 bg-white overflow-hidden"
                     >
                         <div
-                            class="w-full h-full flex items-center justify-center bg-[#0B2360]/5"
+                            class="w-full h-full flex items-center justify-center bg-white"
                         >
                             <span
                                 class="material-symbols-rounded text-[#0B2360] text-2xl"
@@ -489,6 +489,9 @@ const t = createTranslator(lang);
     justify-content: center;
     width: 1.5rem;
     height: 1.5rem;
+    aspect-ratio: 1 / 1; /* ensure perfect circle in all browsers */
+    flex: 0 0 1.5rem; /* prevent flexbox from stretching the badge */
+    line-height: 1; /* avoid text affecting box metrics */
     border-radius: 9999px;
     background: var(--flow-color, #0B2360);
     color: #fff;

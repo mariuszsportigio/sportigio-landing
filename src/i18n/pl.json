@@ -451,7 +451,7 @@
   "shopSportigio": {
     "how": {
       "title": "Jak to działa?",
-      "subtitle": "Sklep Sportigio sprzedaje, Snapwear realizuje, klub zarabia.",
+      "subtitle": "Sklep Sportigio sprzedaje, Snapwear realizuje, Twój Klub zarabia.",
       "actors": {
         "customer": "Klient",
         "seller": "Sprzedawca: Sportigio",
@@ -472,7 +472,7 @@
       "actorShort": {
         "customer": "Klient",
         "seller": "Sportigio",
-        "shopify": "Shopify",
+        "shopify": "Sportigio",
         "producer": "Snapwear",
         "beneficiary": "Klub"
       },
