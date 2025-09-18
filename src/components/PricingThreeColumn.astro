@@ -27,6 +27,7 @@ export interface Props {
     topBadges?: TopBadge[];
     plans: PlanItem[]; // exactly 3 for layout symmetry
     footnote?: string;
+    showCTA?: boolean;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
     topBadges = [],
     plans,
     footnote,
+    showCTA = true,
 } = Astro.props as Props;
 ---
 
@@ -156,25 +158,29 @@ const {
                             </ul>
                         ) : null}
 
-                        <div class="mt-auto pt-6 flex justify-center">
-                            <a
-                                href="/pricing"
-                                class={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold ${plan.highlight ? "bg-white text-[#0B2360] hover:bg-white/90" : "btn-style-1 text-white"}`}
-                                style={
-                                    plan.highlight
-                                        ? undefined
-                                        : {
-                                              "--sportigio-gradient":
-                                                  "var(--sportigio-gradient-2)",
-                                          }
-                                }
-                            >
-                                <span class="material-symbols-rounded text-[18px]">
-                                    shopping_cart
-                                </span>
-                                <span>Wybierz</span>
-                            </a>
-                        </div>
+                        {
+                            showCTA ? (
+                                <div class="mt-auto pt-6 flex justify-center">
+                                    <a
+                                        href="/pricing"
+                                        class={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold ${plan.highlight ? "bg-white text-[#0B2360] hover:bg-white/90" : "btn-style-1 text-white"}`}
+                                        style={
+                                            plan.highlight
+                                                ? undefined
+                                                : {
+                                                      "--sportigio-gradient":
+                                                          "var(--sportigio-gradient-2)",
+                                                  }
+                                        }
+                                    >
+                                        <span class="material-symbols-rounded text-[18px]">
+                                            shopping_cart
+                                        </span>
+                                        <span>Wybierz</span>
+                                    </a>
+                                </div>
+                            ) : null
+                        }
                     </MasterCard>
                 ))
             }
