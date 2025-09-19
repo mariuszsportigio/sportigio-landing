@@ -361,7 +361,8 @@
       "terms": "Regulamin",
       "cookies": "Pliki cookie",
       "rodo": "RODO"
-    }
+    },
+    "copyright": "© {year} Sportigio. Wszystkie prawa zastrzeżone."
   },
   "cookies": {
     "consentModal": {

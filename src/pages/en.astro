@@ -1,14 +1,296 @@
 ---
-import LandingPage from '../components/LandingPage.astro';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import FAQ from "../components/FAQ.astro";
+import SimpleFeature from "../components/SimpleFeature.astro";
+import TrustedClubsSection from "../components/TrustedClubsSection.astro";
+import TestimonialCarousel from "../components/TestimonialCarousel.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import VerticalTabs from "../components/VerticalTabs.astro";
 
-// English version of the landing page
+// English landing page uses the same structure as the Polish version
 const lang = 'en';
 ---
 
-<LandingPage lang={lang} />
+<Layout title="Sportigio - Manage your sports club in one app">
+  <Navbar lang={lang} />
+  <div class="ks-scope">
+    <main class="bg-white">
+      <section id="hero">
+        <Hero lang={lang} />
+      </section>
+
+      <!-- Trusted by clubs slider -->
+      <section id="zaufali-nam">
+        <TrustedClubsSection />
+      </section>
+      <!-- Benefits strip (1 row) -->
+      <section id="benefits" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <!-- Section header + modules row -->
+          <div class="mb-8 text-center">
+            <h2
+              class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins"
+            >
+              Sportigio platform for sports clubs
+            </h2>
+            <p class="text-gray-600 mt-3">
+              Use one module or the full suite.
+              Switch whenever you need.
+            </p>
+          </div>
+
+          <div
+            class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >phone_iphone</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Mobile site</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >storefront</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Online shop</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]"
+              >
+                <span class="material-symbols-rounded text-[20px] leading-none"
+                  >confirmation_number</span
+                >
+              </div>
+              <div class="text-gray-900 font-semibold">Online tickets</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <SimpleFeature
+              title="No technical headaches"
+              description="We handle hosting, code updates, and data security."
+              iconName="dns"
+              ctaVariant="none"
+              alignment="center"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Launch instantly"
+              description="Go live under your own brand without waiting or upfront costs."
+              iconName="verified_user"
+              ctaVariant="none"
+              alignment="center"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Continuous support"
+              description="24/7 monitoring plus human support via email and chat."
+              iconName="headset_mic"
+              ctaVariant="none"
+              alignment="center"
+              size="sm"
+            />
+            <SimpleFeature
+              title="Your brand online"
+              description="We maintain the system so you can create content and promote sponsors."
+              iconName="language"
+              ctaVariant="none"
+              alignment="center"
+              size="sm"
+            />
+          </div>
+        </div>
+      </section>
+      <section id="testimonials">
+        <TestimonialCarousel lang={lang} />
+      </section>
+      <TwoColumnMedia
+        title="Professional club website"
+        imageSrc="/screens/website-preview-mobile.avif"
+        imageAlt="Sportigio - Club website"
+        ctaVariant="button"
+        ctaText="See more"
+        ctaHref="/strona"
+      >
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >rocket_launch</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">
+                Fast launch and reliable performance
+              </p>
+              <p class="text-gray-600">
+                Built on a proven template tailored for sports.
+                We currently maintain more than 100 club sites.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >edit_note</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">
+                Easy self-service editing
+              </p>
+              <p class="text-gray-600">
+                You'll love the admin panel for streamlined schedules, sponsor blocks,
+                banners, and content edits.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >trending_up</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">37% more visibility</p>
+              <p class="text-gray-600">
+                Year over year, Sportigio sites generate
+                around 37% more page views.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </TwoColumnMedia>
+      <TwoColumnMedia
+        title="Sell tickets online"
+        imageSrc="/screens/tickets-preview-mobile.avif"
+        imageAlt="Sportigio - Online tickets"
+        reverse={true}
+        ctaVariant="button"
+        ctaText="See more"
+        ctaHref="/bilety-online"
+      >
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >bolt</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">
+                Simple and elegant = conversion
+              </p>
+              <p class="text-gray-600">
+                Fast, simple checkout without leaving the club site.
+
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >qr_code_scanner</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">
+                Ticket control on any phone
+              </p>
+              <p class="text-gray-600">
+                Anyone with a phone and browser can validate tickets.
+              </p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="material-symbols-rounded text-[#0B2360] mt-0.5"
+              >trending_up</span
+            >
+            <div>
+              <p class="text-gray-900 font-semibold">
+                38% higher loyalty odds
+              </p>
+              <p class="text-gray-600">
+                We build your fan database and boost repeat purchases.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </TwoColumnMedia>
+    </main>
+    <!-- Online shop: dwie opcje -->
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-10 text-center">
+          <h2
+            class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins"
+          >
+            Online shop
+          </h2>
+          <p class="text-gray-600">Choose between two e-commerce options</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <SimpleFeature
+            title="Sell online with Sportigio"
+            description='Let Sportigio handle merch sales with print-on-demand fulfillment'
+            iconImageSrc="/sportigio-sygnet.png"
+            ctaVariant="button"
+            ctaText="Learn more"
+            ctaHref="/sklep-sportigio"
+            ctaAlignment="center"
+            alignment="left"
+          />
+          <SimpleFeature
+            title="Run your own online shop"
+            description="Manage your own store with full control over inventory, payments, and logistics."
+            iconName="storefront"
+            ctaVariant="button"
+            ctaText="Learn more"
+            ctaHref="/sklep-wlasny"
+            ctaAlignment="center"
+            alignment="left"
+          />
+        </div>
+      </div>
+    </section>
+    <!-- Heading above Vertical Tabs -->
+    <section class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 text-center pb-6">
+        <h2 class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins">
+          3 steps to launch - get started today
+        </h2>
+      </div>
+    </section>
+    <!-- Vertical Tabs -->
+    <section>
+      <VerticalTabs />
+    </section>
+    <section id="faq">
+      <FAQ />
+    </section>
+    <section id="cta">
+      <CTASection />
+    </section>
+    <Footer lang={lang} />
+  </div>
+</Layout>
 
 <style>
   main {
     min-height: 100vh;
   }
-</style> 
+</style>
+<style is:global>
+  /* Constrain containers to Hero width (max-w-5xl = 64rem) like /kitchen-sink */
+  .ks-scope .container,
+  .ks-scope .container-default,
+  .ks-scope .container-wide,
+  .ks-scope .max-w-6xl,
+  .ks-scope .max-w-7xl,
+  .ks-scope .xl\:container {
+    max-width: 64rem !important;
+  }
+</style>

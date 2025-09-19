@@ -203,6 +203,23 @@
     "faq_subtitle": "We're here to help your club grow online.",
     "faq_button": "Frequently asked questions"
   },
+  "footer": {
+    "company_blurb": "Next-generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.",
+    "newsletter": {
+      "title": "Stay in the loop",
+      "desc": "Get the latest feature updates, tips, and stories on running a sports club.",
+      "placeholder": "Your email address",
+      "cta": "Subscribe"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookies",
+      "rodo": "GDPR"
+    },
+    "copyright": "© {year} Sportigio. All rights reserved."
+  },
+
   "cookies": {
     "consentModal": {
       "title": "We use cookies",

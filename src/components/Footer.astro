@@ -13,6 +13,15 @@ export interface Props {
 const { lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
 
+const currentYear = String(new Date().getFullYear());
+const rawCopyright = t("footer.copyright");
+const copyright =
+  rawCopyright && rawCopyright !== "footer.copyright"
+    ? rawCopyright.replace("{year}", currentYear)
+    : lang === "pl"
+      ? `© ${currentYear} Sportigio. Wszystkie prawa zastrzeżone.`
+      : `© ${currentYear} Sportigio. All rights reserved.`;
+
 type MegaItem = { label: string; href: string; description?: string };
 type MegaGroup = { title: string; items: MegaItem[] };
 
@@ -287,7 +296,7 @@ const productGroupsV1: MegaGroup[] = productGroups
     <div class="py-8 border-t border-gray-800">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Sportigio. Wszystkie prawa zastrzeżone.
+          {copyright}
         </div>
 
         <div
