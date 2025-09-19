@@ -1,0 +1,295 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import CTASection from "../components/CTASection.astro";
+import FAQ from "../components/FAQ.astro";
+import SimpleFeature from "../components/SimpleFeature.astro";
+import TrustedClubsSection from "../components/TrustedClubsSection.astro";
+import TestimonialCarousel from "../components/TestimonialCarousel.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
+import VerticalTabs from "../components/VerticalTabs.astro";
+import {
+  createTranslator,
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+
+const t = createTranslator(lang);
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
+
+const landing = translations?.landing ?? {};
+const fallbackLanding = fallbackTranslations?.landing ?? {};
+
+const pickString = (...values: Array<string | undefined>): string | undefined =>
+  values.find((value) => typeof value === "string" && value.trim().length > 0);
+
+const pickArray = <T,>(...values: Array<T[] | undefined>): T[] => {
+  for (const value of values) {
+    if (Array.isArray(value) && value.length > 0) {
+      return value as T[];
+    }
+  }
+  return [];
+};
+
+const seoTitle =
+  pickString(landing?.seo?.title, fallbackLanding?.seo?.title) ??
+  (lang === defaultLanguage
+    ? "Sportigio - Zarządzanie klubem sportowym w jednej aplikacji"
+    : "Sportigio - Manage your sports club in one app");
+
+const benefitTitle =
+  pickString(landing?.benefits?.title, fallbackLanding?.benefits?.title) ??
+  (lang === defaultLanguage
+    ? "Platforma Sportigio dla klubu sportowego"
+    : "Sportigio platform for sports clubs");
+
+const benefitSubtitle =
+  pickString(
+    landing?.benefits?.subtitle,
+    fallbackLanding?.benefits?.subtitle,
+  ) ??
+  (lang === defaultLanguage
+    ? "Możesz skorzystać z 1 lub wielu modułów. Decyduj w dowolnym momencie."
+    : "Use one module or the full suite. Switch whenever you need.");
+
+const modules = pickArray(
+  landing?.benefits?.modules,
+  fallbackLanding?.benefits?.modules,
+);
+const features = pickArray(
+  landing?.benefits?.features,
+  fallbackLanding?.benefits?.features,
+);
+const sections = pickArray(landing?.sections, fallbackLanding?.sections);
+
+const shop = landing?.shop ?? fallbackLanding?.shop ?? {};
+const shopOptions = pickArray(shop?.options, fallbackLanding?.shop?.options);
+const shopTitle =
+  pickString(shop?.title, fallbackLanding?.shop?.title) ??
+  (lang === defaultLanguage ? "Sklep internetowy" : "Online shop");
+const shopSubtitle =
+  pickString(shop?.subtitle, fallbackLanding?.shop?.subtitle) ??
+  (lang === defaultLanguage
+    ? "Oferujemy dwie opcje sklepu internetowego"
+    : "Choose between two e-commerce options");
+
+const stepsTitle =
+  pickString(landing?.steps?.title, fallbackLanding?.steps?.title) ??
+  (lang === defaultLanguage
+    ? "3 kroki do startu - zacznij już dziś"
+    : "3 steps to launch - get started today");
+
+const faqTitle = pickString(landing?.faq?.title, fallbackLanding?.faq?.title);
+const faqSubtitle = pickString(
+  landing?.faq?.subtitle,
+  fallbackLanding?.faq?.subtitle,
+);
+const faqItems: any = pickArray<any>(
+  landing?.faq?.items,
+  fallbackLanding?.faq?.items,
+);
+
+const ctaContent = landing?.cta ?? fallbackLanding?.cta ?? {};
+const trustedTagline =
+  pickString(landing?.trusted?.tagline, fallbackLanding?.trusted?.tagline) ??
+  undefined;
+---
+
+<Layout title={seoTitle}>
+  <Navbar lang={lang} />
+  <div class="ks-scope">
+    <main class="bg-white">
+      <section id="hero">
+        <Hero lang={lang} />
+      </section>
+
+      <section id="zaufali-nam">
+        <TrustedClubsSection lang={lang} tagline={trustedTagline} />
+      </section>
+
+      <section id="benefits" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="mb-8 text-center">
+            <h2
+              class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins"
+            >
+              {benefitTitle}
+            </h2>
+            <p class="text-gray-600 mt-3">
+              {benefitSubtitle}
+            </p>
+          </div>
+
+          {
+            modules.length > 0 && (
+              <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 mb-8">
+                {modules.map((module: any, index: number) => (
+                  <div class="flex items-center gap-3" data-module={index}>
+                    <div class="w-9 h-9 rounded-md border border-[#0B2360]/20 flex items-center justify-center text-[#0B2360]">
+                      <span class="material-symbols-rounded text-[20px] leading-none">
+                        {module?.icon ?? "check"}
+                      </span>
+                    </div>
+                    <div class="text-gray-900 font-semibold">
+                      {module?.label ?? ""}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            features.length > 0 && (
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {features.map((feature: any, index: number) => (
+                  <SimpleFeature
+                    title={feature?.title ?? ""}
+                    description={feature?.description ?? ""}
+                    iconName={feature?.icon}
+                    iconImageSrc={feature?.iconImage ?? feature?.iconImageSrc}
+                    ctaVariant="none"
+                    alignment="center"
+                    size="sm"
+                  />
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </section>
+
+      <section id="testimonials">
+        <TestimonialCarousel lang={lang} />
+      </section>
+
+      {
+        sections.map((section: any, index: number) => (
+          <TwoColumnMedia
+            title={section?.title ?? ""}
+            imageSrc={section?.image?.src ?? section?.imageSrc ?? ""}
+            imageAlt={
+              section?.image?.alt ?? section?.imageAlt ?? section?.title ?? ""
+            }
+            reverse={Boolean(section?.reverse)}
+            ctaVariant={section?.cta?.variant ?? "button"}
+            ctaText={
+              section?.cta?.text ??
+              (lang === defaultLanguage ? "Zobacz więcej" : "See more")
+            }
+            ctaHref={section?.cta?.href ?? "#"}
+          >
+            {Array.isArray(section?.bullets) && section.bullets.length > 0 ? (
+              <ul class="space-y-4">
+                {section.bullets.map((bullet: any, bulletIndex: number) => (
+                  <li class="flex items-start gap-3">
+                    <span class="material-symbols-rounded text-[#0B2360] mt-0.5">
+                      {bullet?.icon ?? "check_circle"}
+                    </span>
+                    <div>
+                      <p class="text-gray-900 font-semibold">
+                        {bullet?.title ?? ""}
+                      </p>
+                      {bullet?.description && (
+                        <p class="text-gray-600">{bullet.description}</p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <slot />
+            )}
+          </TwoColumnMedia>
+        ))
+      }
+    </main>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-10 text-center">
+          <h2
+            class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins"
+          >
+            {shopTitle}
+          </h2>
+          <p class="text-gray-600">{shopSubtitle}</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {
+            shopOptions.map((option: any, index: number) => (
+              <SimpleFeature
+                title={option?.title ?? ""}
+                description={option?.description ?? ""}
+                iconName={option?.icon}
+                iconImageSrc={option?.iconImage ?? option?.iconImageSrc}
+                ctaVariant={option?.cta?.variant ?? "button"}
+                ctaText={option?.cta?.text ?? t("common.learn_more")}
+                ctaHref={option?.cta?.href ?? "#"}
+                ctaAlignment="center"
+                alignment="left"
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 text-center pb-6">
+        <h2 class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins">
+          {stepsTitle}
+        </h2>
+      </div>
+    </section>
+
+    <section>
+      <VerticalTabs lang={lang} />
+    </section>
+
+    <section id="faq">
+      <FAQ
+        lang={lang}
+        title={faqTitle}
+        subtitle={faqSubtitle}
+        items={faqItems}
+      />
+    </section>
+
+    <section id="cta">
+      <CTASection lang={lang} content={ctaContent} />
+    </section>
+
+    <Footer lang={lang} />
+  </div>
+</Layout>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+</style>
+<style is:global>
+  .ks-scope .container,
+  .ks-scope .container-default,
+  .ks-scope .container-wide,
+  .ks-scope .max-w-6xl,
+  .ks-scope .max-w-7xl,
+  .ks-scope .xl\:container {
+    max-width: 64rem !important;
+  }
+</style>

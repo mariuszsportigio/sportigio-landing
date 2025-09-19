@@ -1,6 +1,29 @@
 ---
 // TrustedClubsSection.astro
 // Scrolling marquee of trusted club logos
+import {
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+
+interface Props {
+  lang?: Language;
+  tagline?: string;
+}
+
+const { lang = defaultLanguage, tagline: taglineProp } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+const defaultTagline =
+  lang === defaultLanguage
+    ? "Zaufało nam ponad 100 klubów"
+    : fallbackTranslations?.landing?.trusted?.tagline ?? "Trusted by 100+ clubs";
+const tagline =
+  taglineProp ?? translations?.landing?.trusted?.tagline ?? defaultTagline;
+
 const logos = [
   { src: "/teams/legia.avif", alt: "Legia" },
   { src: "/teams/wisla.avif", alt: "Wisła" },
@@ -19,7 +42,7 @@ const logos = [
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="text-center mb-8">
       <p class="text-sm md:text-base text-gray-600">
-        Zaufało nam ponad 100 klubów
+        {tagline}
       </p>
     </div>
 

@@ -1,218 +1,153 @@
 ---
-// FAQ.astro
+import {
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+interface Props {
+  lang?: Language;
+  title?: string;
+  subtitle?: string;
+  items?: FAQItem[] | Record<string, FAQItem>;
+}
+
+const {
+  lang = defaultLanguage,
+  title: titleProp,
+  subtitle: subtitleProp,
+  items: itemsProp,
+} = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const landingFaq = translations?.landing?.faq ?? {};
+const fallbackFaq = fallbackTranslations?.landing?.faq ?? {};
+
+const title =
+  titleProp ??
+  landingFaq?.title ??
+  fallbackFaq?.title ??
+  (lang === defaultLanguage
+    ? "Często zadawane pytania"
+    : "Frequently asked questions");
+
+const subtitle =
+  subtitleProp ??
+  landingFaq?.subtitle ??
+  fallbackFaq?.subtitle ??
+  (lang === defaultLanguage
+    ? "Znajdź odpowiedzi na najczęściej zadawane pytania o Sportigio"
+    : "Find answers to the most common questions about Sportigio");
+
+const normalizeItems = (value: any): FAQItem[] => {
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => ({
+        question: String(item?.question ?? ""),
+        answer: String(item?.answer ?? ""),
+      }))
+      .filter((item) => item.question && item.answer);
+  }
+  if (value && typeof value === "object") {
+    return Object.values(value)
+      .map((item: any) => ({
+        question: String(item?.question ?? ""),
+        answer: String(item?.answer ?? ""),
+      }))
+      .filter((item) => item.question && item.answer);
+  }
+  return [];
+};
+
+const baseItems = itemsProp ?? landingFaq?.items ?? fallbackFaq?.items ?? [];
+
+const items = (() => {
+  const normalized = normalizeItems(baseItems);
+  if (normalized.length > 0) return normalized;
+  const fallbackNormalized = normalizeItems(fallbackFaq?.items ?? []);
+  if (fallbackNormalized.length > 0) return fallbackNormalized;
+  return normalizeItems([
+    {
+      question: "Jak szybko mogę uruchomić Sportigio?",
+      answer:
+        "Wszystko zależy od Ciebie - samodzielne uruchomienie trwa kilka godzin, a jeśli potrzebujesz naszej pomocy, zrobimy to w kilka dni.",
+    },
+    {
+      question: "Czy mogę zrezygnować w dowolnym momencie?",
+      answer:
+        "Tak, nasz model abonamentowy pozwala Ci zakończyć współpracę w dowolnej chwili, bez zobowiązań.",
+    },
+  ]);
+})();
+
+const midpoint = Math.ceil(items.length / 2);
+const columns: FAQItem[][] =
+  items.length <= 3
+    ? [items]
+    : [items.slice(0, midpoint), items.slice(midpoint)];
 ---
 
 <section id="faq" class="py-12 bg-white">
   <div class="max-w-5xl mx-auto px-4">
-    <!-- Section Header -->
     <div class="text-center mb-8">
-      <h2
-        class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins"
-      >
-        Często zadawane pytania
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins">
+        {title}
       </h2>
-      <p class="text-base text-gray-600">
-        Znajdź odpowiedzi na najczęściej zadawane pytania o Sportigio
-      </p>
+      <p class="text-base text-gray-600">{subtitle}</p>
     </div>
 
-    <!-- FAQ Columns: two independent vertical stacks to avoid cross-column row coupling -->
-    <div class="grid lg:grid-cols-2 gap-4">
-      <!-- Left column -->
-      <div class="flex flex-col gap-4">
-        <!-- 1. Jak szybko mogę uruchomić Sportigio? -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Jak szybko mogę uruchomić Sportigio?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Wszystko zależy od Ciebie – samodzielne uruchomienie trwa kilka
-              godzin, a jeśli potrzebujesz naszej pomocy, zrobimy to w kilka
-              dni.
-            </p>
+    <div
+      class="grid gap-4"
+      class:list={{ "lg:grid-cols-2": columns.length > 1 }}
+    >
+      {
+        columns.map((column, columnIndex) => (
+          <div class="flex flex-col gap-4">
+            {
+              column.map((item, itemIndex) => (
+                <div
+                  class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
+                  data-faq-item={`${columnIndex}-${itemIndex}`}
+                >
+                  <button
+                    class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
+                  >
+                    <span class="text-sm font-semibold text-gray-900">
+                      {item.question}
+                    </span>
+                    <svg
+                      class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <div class="faq-answer px-4 pb-4" data-state="closed">
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
           </div>
-        </div>
-
-        <!-- 3. Czy mogę zrezygnować w dowolnym momencie? -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Czy mogę zrezygnować w dowolnym momencie?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Tak, nasz model abonamentowy pozwala Ci zakończyć współpracę w
-              dowolnej chwili, bez zobowiązań.
-            </p>
-          </div>
-        </div>
-
-        <!-- 5. Jak wygląda wsparcie techniczne? -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Jak wygląda wsparcie techniczne?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Każdy abonament obejmuje wsparcie techniczne. Możesz też wykupić
-              dodatkowe usługi, takie jak zarządzanie stroną czy telefoniczny
-              support 24/7.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right column -->
-      <div class="flex flex-col gap-4">
-        <!-- 2. Czy muszę korzystać ze wszystkich funkcji? -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Czy muszę korzystać ze wszystkich funkcji?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Absolutnie nie! Możesz wybrać tylko te narzędzia, które są dla
-              Ciebie kluczowe, i rozwijać platformę w swoim tempie.
-            </p>
-          </div>
-        </div>
-
-        <!-- 4. Czy potrzebuję specjalistycznej wiedzy... -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Czy potrzebuję specjalistycznej wiedzy, aby korzystać z
-              Sportigio?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Nie, narzędzia Sportigio są intuicyjne i proste w obsłudze – jeśli
-              potrafisz prowadzić fanpage na Facebooku, poradzisz sobie bez
-              problemu.
-            </p>
-          </div>
-        </div>
-
-        <!-- 6. Czy mogę przetestować platformę przed zakupem? -->
-        <div
-          class="faq-item bg-white rounded-lg shadow-sm border border-gray-200"
-        >
-          <button
-            class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
-          >
-            <span class="text-sm font-semibold text-gray-900"
-              >Czy mogę przetestować platformę przed zakupem?</span
-            >
-            <svg
-              class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="faq-answer px-4 pb-4" data-state="closed">
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Tak, oferujemy bezpłatny okres próbny, abyś mógł sprawdzić, jak
-              Sportigio działa w Twoim klubie.
-            </p>
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>

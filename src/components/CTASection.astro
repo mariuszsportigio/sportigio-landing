@@ -1,3 +1,151 @@
+---
+import {
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+
+type CTAStat = {
+  value: string;
+  label: string;
+};
+
+type CTAButton = {
+  label: string;
+  href: string;
+};
+
+interface CTAContent {
+  badge?: string;
+  title?: string;
+  highlight?: string;
+  subtitle?: string;
+  primary_button?: CTAButton;
+  secondary_button?: CTAButton;
+  stats?: CTAStat[];
+  trust?: string[];
+}
+
+interface Props {
+  lang?: Language;
+  content?: CTAContent;
+}
+
+const { lang = defaultLanguage, content: contentOverride } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const translationContent = (translations?.landing?.cta ?? {}) as CTAContent;
+const defaultContent = (fallbackTranslations?.landing?.cta ?? {}) as CTAContent;
+const overrideContent = (contentOverride ?? {}) as CTAContent;
+
+const pickString = (
+  ...values: Array<string | undefined>
+): string | undefined => values.find((value) => typeof value === "string" && value.trim().length > 0);
+
+const normalizeStats = (stats: CTAContent["stats"]): CTAStat[] => {
+  if (!Array.isArray(stats)) return [];
+  return stats
+    .map((stat) => ({
+      value: stat?.value ? String(stat.value) : "",
+      label: stat?.label ? String(stat.label) : "",
+    }))
+    .filter((stat) => stat.value && stat.label);
+};
+
+const normalizeTrust = (trust: CTAContent["trust"]): string[] => {
+  if (!Array.isArray(trust)) return [];
+  return trust
+    .map((item) => (typeof item === "string" ? item.trim() : ""))
+    .filter(Boolean);
+};
+
+const normalizeButton = (button?: CTAButton | null): CTAButton | undefined => {
+  if (!button) return undefined;
+  const label = pickString(button.label);
+  const href = pickString(button.href);
+  if (!label || !href) return undefined;
+  return { label, href };
+};
+
+const primaryButton =
+  normalizeButton(overrideContent.primary_button) ??
+  normalizeButton(translationContent.primary_button) ??
+  normalizeButton(defaultContent.primary_button) ?? {
+    label: lang === defaultLanguage ? "Rozpocznij za darmo" : "Start for free",
+    href: "https://sportig.io/join",
+  };
+
+const secondaryButton =
+  normalizeButton(overrideContent.secondary_button) ??
+  normalizeButton(translationContent.secondary_button) ??
+  normalizeButton(defaultContent.secondary_button) ?? {
+    label: lang === defaultLanguage ? "Zobacz demo na żywo" : "See live demo",
+    href: "https://sportig.io/join",
+  };
+
+const statsCandidates = [
+  normalizeStats(overrideContent.stats),
+  normalizeStats(translationContent.stats),
+  normalizeStats(defaultContent.stats),
+];
+
+const fallbackStats = normalizeStats([
+  { value: "100+", label: lang === defaultLanguage ? "Aktywnych klubów" : "Active clubs" },
+  { value: "50k+", label: lang === defaultLanguage ? "Zadowolonych użytkowników" : "Happy users" },
+  { value: "98%", label: lang === defaultLanguage ? "Wskaźnik zadowolenia" : "Satisfaction rate" },
+]);
+
+const stats =
+  statsCandidates.find((list) => list.length > 0) ??
+  fallbackStats;
+
+const trustCandidates = [
+  normalizeTrust(overrideContent.trust),
+  normalizeTrust(translationContent.trust),
+  normalizeTrust(defaultContent.trust),
+];
+
+const fallbackTrust =
+  lang === defaultLanguage
+    ? ["30 dni za darmo", "Anuluj w każdym momencie", "Setup w 5 minut"]
+    : ["30-day free trial", "Cancel anytime", "Setup in 5 minutes"];
+
+const trust = trustCandidates.find((list) => list.length > 0) ?? fallbackTrust;
+
+const badge = pickString(
+  overrideContent.badge,
+  translationContent.badge,
+  defaultContent.badge,
+  lang === defaultLanguage ? "Rozpocznij już dziś" : "Start today",
+);
+
+const title = pickString(
+  overrideContent.title,
+  translationContent.title,
+  defaultContent.title,
+  lang === defaultLanguage ? "Dołącz do nowej ery" : "Join the new era",
+);
+
+const highlight = pickString(
+  overrideContent.highlight,
+  translationContent.highlight,
+  defaultContent.highlight,
+  lang === defaultLanguage ? "klubów sportowych" : "of sports clubs",
+);
+
+const subtitle = pickString(
+  overrideContent.subtitle,
+  translationContent.subtitle,
+  defaultContent.subtitle,
+  lang === defaultLanguage
+    ? "Ponad 100 klubów już korzysta z Sportigio. Dołącz do grona liderów, którzy wybrali nowoczesność, efektywność i wygodę."
+    : "Over 100 clubs already use Sportigio. Join the leaders who chose modern, efficient, and convenient operations.",
+);
+---
+
 <section class="relative py-12 overflow-hidden">
   <!-- Gradient Background -->
   <div class="absolute inset-0 sportigio-gradient-5"></div>
@@ -39,77 +187,70 @@
   </div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-    <!-- Badge -->
-    <div
-      class="inline-flex items-center px-4 py-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white mb-6"
-    >
-      <svg
-        class="w-4 h-4 mr-2"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
+    {badge && (
+      <div
+        class="inline-flex items-center px-4 py-2 bg-white/15 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white mb-6"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-      </svg>
-      Rozpocznij już dziś
-    </div>
+        <svg
+          class="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          ></path>
+        </svg>
+        {badge}
+      </div>
+    )}
 
-    <!-- Main Heading -->
     <h2
       class="text-3xl lg:text-5xl font-extrabold text-white mb-6 leading-tight font-poppins"
     >
-      Dołącz do nowej ery
-      <span
-        class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary via-cyan-200 to-white"
-      >
-        klubów sportowych
-      </span>
+      {title}
+      {highlight && (
+        <span
+          class="block text-transparent bg-clip-text bg-gradient-to-r from-secondary via-cyan-200 to-white"
+        >
+          {highlight}
+        </span>
+      )}
     </h2>
 
-    <!-- Subheading -->
-    <p
-      class="text-base lg:text-lg text-gray-200 mb-6 max-w-3xl mx-auto leading-relaxed"
-    >
-      Ponad 100 klubów już korzysta z Sportigio. Dołącz do grona liderów, którzy
-      wybrali nowoczesność, efektywność i wygodę.
-    </p>
+    {subtitle && (
+      <p
+        class="text-base lg:text-lg text-gray-200 mb-6 max-w-3xl mx-auto leading-relaxed"
+      >
+        {subtitle}
+      </p>
+    )}
 
-    <!-- Stats Row -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="text-center">
-        <div class="text-3xl lg:text-4xl font-extrabold text-white mb-2">
-          100+
-        </div>
-        <div class="text-gray-300 text-sm">Aktywnych klubów</div>
+    {stats.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl lg:text-4xl font-extrabold text-white mb-2">
+              {stat.value}
+            </div>
+            <div class="text-gray-300 text-sm">{stat.label}</div>
+          </div>
+        ))}
       </div>
-      <div class="text-center">
-        <div class="text-3xl lg:text-4xl font-extrabold text-white mb-2">
-          50k+
-        </div>
-        <div class="text-gray-300 text-sm">Zadowolonych użytkowników</div>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl lg:text-4xl font-extrabold text-white mb-2">
-          98%
-        </div>
-        <div class="text-gray-300 text-sm">Wskaźnik zadowolenia</div>
-      </div>
-    </div>
+    )}
 
-    <!-- CTA Buttons -->
     <div
       class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
     >
       <a
-        href="https://sportig.io/join"
+        href={primaryButton.href}
         class="bg-secondary text-primary group px-6 py-3 font-semibold text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl"
       >
         <span class="flex items-center">
-          Rozpocznij za darmo
+          {primaryButton.label}
           <svg
             class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
             fill="none"
@@ -120,69 +261,44 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            ></path>
           </svg>
         </span>
       </a>
 
       <a
-        href="https://sportig.io/join"
+        href={secondaryButton.href}
         class="px-6 py-3 border-2 border-white/25 text-white font-semibold text-sm rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
       >
-        Zobacz demo na żywo
+        {secondaryButton.label}
       </a>
     </div>
 
-    <!-- Trust Elements -->
-    <div
-      class="flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-300 text-sm"
-    >
-      <div class="flex items-center">
-        <svg
-          class="w-4 h-4 mr-2 text-secondary"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"></path>
-        </svg>
-        30 dni za darmo
+    {trust.length > 0 && (
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-300 text-sm"
+      >
+        {trust.map((item) => (
+          <div class="flex items-center">
+            <svg
+              class="w-4 h-4 mr-2 text-secondary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            {item}
+          </div>
+        ))}
       </div>
-      <div class="flex items-center">
-        <svg
-          class="w-4 h-4 mr-2 text-secondary"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"></path>
-        </svg>
-        Anuluj w każdym momencie
-      </div>
-      <div class="flex items-center">
-        <svg
-          class="w-4 h-4 mr-2 text-secondary"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5 13l4 4L19 7"></path>
-        </svg>
-        Setup w 5 minut
-      </div>
-    </div>
+    )}
   </div>
 </section>
 

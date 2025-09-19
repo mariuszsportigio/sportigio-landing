@@ -1,22 +1,102 @@
 ---
-// TestimonialCarousel.astro
-import { createTranslator, type Language } from "../i18n";
+import {
+  createTranslator,
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
 
-// Props interface
+interface Review {
+  text: string;
+  author: string;
+  role?: string;
+  avatar?: string;
+  avatarAlt?: string;
+}
+
 export interface Props {
   id?: string;
   lang?: Language;
 }
 
-const { id = "testimonials", lang = "pl" } = Astro.props;
+const { id = "testimonials", lang = defaultLanguage } = Astro.props as Props;
 
-// Create translator function for this component
 const t = createTranslator(lang);
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const normalizeReviews = (value: any): Review[] => {
+  const source = Array.isArray(value)
+    ? value
+    : value && typeof value === "object"
+      ? Object.values(value)
+      : [];
+
+  return source
+    .map((item: any) => {
+      const text = item?.text ? String(item.text) : "";
+      const author = item?.author ? String(item.author) : "";
+      if (!text || !author) return null;
+      const role = item?.role ? String(item.role) : undefined;
+      const avatar = item?.avatar ? String(item.avatar) : undefined;
+      const avatarAlt = item?.avatarAlt ? String(item.avatarAlt) : author;
+      return { text, author, role, avatar, avatarAlt } satisfies Review;
+    })
+    .filter(Boolean) as Review[];
+};
+
+const reviewCandidates = [
+  normalizeReviews(translations?.testimonials?.reviews),
+  normalizeReviews(fallbackTranslations?.testimonials?.reviews),
+];
+
+const fallbackReviews: Review[] = [
+  {
+    text:
+      lang === defaultLanguage
+        ? "Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak prowadzenie Facebooka. Panel admina jest bardzo intuicyjny"
+        : "I never thought updating the club website could be as easy as running Facebook. The admin panel is incredibly intuitive.",
+    author: "Barbara Lewandowska-Paluch",
+    role: "Trefl Sopot",
+    avatar: "/teams/trefl.avif",
+    avatarAlt: "Trefl Sopot",
+  },
+  {
+    text:
+      lang === defaultLanguage
+        ? "Zaczęliśmy od odświeżenia klubowej strony www. I tu pierwsze WOW wśród odbiorców. Okazało się, że dla wielu MTS Żory stał się marką PREMIUM, tylko dlatego że został ładnie opakowany."
+        : "We started by refreshing the club website and instantly got a WOW from supporters. For many people MTS Żory suddenly felt like a PREMIUM brand just because of the new presentation.",
+    author: "Daniel Asztemborski",
+    role: "MTS Żory",
+    avatar: "/teams/mts-zory.avif",
+    avatarAlt: "MTS Żory",
+  },
+  {
+    text:
+      lang === defaultLanguage
+        ? "Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie."
+        : "We didn’t have a website before because we assumed it would be expensive and time-consuming. Now we have a fully professional tool.",
+    author: "Mariusz Ratajczak",
+    role: "KKS Astra Krotoszyn",
+    avatar: "/teams/astra-krotoszyn.avif",
+    avatarAlt: "KKS Astra Krotoszyn",
+  },
+];
+
+const reviews =
+  reviewCandidates.find((list) => list.length > 0) ?? fallbackReviews;
+
+const ctaText =
+  t("testimonials.cta_text") !== "testimonials.cta_text"
+    ? t("testimonials.cta_text")
+    : lang === defaultLanguage
+      ? "Dołącz do ponad 100+ klubów"
+      : "Join over 100+ satisfied clubs";
 ---
 
 <section {id} class="py-16 bg-white overflow-hidden">
   <div class="container mx-auto px-4">
-    <!-- Header -->
     <div class="text-center mb-12">
       <h2
         class="text-2xl lg:text-3xl font-black font-poppins text-gray-900 mb-4"
@@ -26,94 +106,39 @@ const t = createTranslator(lang);
       <p class="text-lg text-gray-600 mb-8">{t("testimonials.subtitle")}</p>
     </div>
 
-    <!-- Testimonials Grid (AI card disabled) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- AI Analysis Card (disabled)
-      <div
-        class="ai-analysis-card bg-gradient-to-br from-[#0B2360]/5 via-[#01DFEC]/5 to-[#EA36E1]/5 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gradient relative overflow-hidden"
-      >
-        ... (disabled)
-      </div>
-      -->
-
-      <!-- Testimonial 1 (updated) -->
-      <div
-        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
-      >
-        <p
-          class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed font-semibold text-center"
+      {reviews.map((review) => (
+        <div
+          class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
         >
-          Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak
-          prowadzenie Facebooka. Panel admina jest bardzo intuicyjny
-        </p>
-        <div class="mt-auto flex items-center">
-          <img
-            src="/teams/trefl.avif"
-            alt="Trefl Sopot"
-            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
-          />
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">
-              Barbara Lewandowska-Paluch
-            </p>
-            <p class="text-gray-500 text-xs">Trefl Sopot</p>
+          <p
+            class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed font-semibold text-center"
+          >
+            {review.text}
+          </p>
+          <div class="mt-auto flex items-center">
+            {review.avatar && (
+              <img
+                src={review.avatar}
+                alt={review.avatarAlt ?? review.role ?? review.author}
+                class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+              />
+            )}
+            <div>
+              <p class="text-gray-900 font-semibold text-sm">
+                {review.author}
+              </p>
+              {review.role && (
+                <p class="text-gray-500 text-xs">{review.role}</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Testimonial 2 (updated) -->
-      <div
-        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
-      >
-        <p
-          class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed font-semibold text-center"
-        >
-          Zaczęliśmy od odświeżenia klubowej strony www. I tu pierwsze WOW wśród
-          odbiorców. Okazało się, że dla wielu MTS Żory stał się marką PREMIUM,
-          tylko dlatego że został ładnie opakowany.
-        </p>
-        <div class="mt-auto flex items-center">
-          <img
-            src="/teams/mts-zory.avif"
-            alt="MTS Żory"
-            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
-          />
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">
-              Daniel Asztemborski
-            </p>
-            <p class="text-gray-500 text-xs">MTS Żory</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonial 3 (updated) -->
-      <div
-        class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
-      >
-        <p
-          class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed font-semibold text-center"
-        >
-          Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga
-          i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.
-        </p>
-        <div class="mt-auto flex items-center">
-          <img
-            src="/teams/astra-krotoszyn.avif"
-            alt="KKS Astra Krotoszyn"
-            class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
-          />
-          <div>
-            <p class="text-gray-900 font-semibold text-sm">Mariusz Ratajczak</p>
-            <p class="text-gray-500 text-xs">KKS Astra Krotoszyn</p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
 
-    <!-- CTA Section -->
     <div class="text-center mt-12">
-      <p class="text-gray-600 mb-6">{t("testimonials.cta_text")}</p>
+      <p class="text-gray-600 mb-6">{ctaText}</p>
       <a
         href="https://sportig.io/join"
         class="btn-style-1 px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg"
@@ -125,393 +150,7 @@ const t = createTranslator(lang);
 </section>
 
 <style>
-  /* AI Analysis Card special effects */
-  .ai-analysis-card {
-    position: relative;
-    border: 1px solid transparent;
-    background-clip: padding-box;
-  }
-
-  .ai-analysis-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(11, 35, 96, 0.2),
-      rgba(1, 223, 236, 0.2),
-      rgba(234, 54, 225, 0.2)
-    );
-    border-radius: inherit;
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
-  }
-
-  .ai-analysis-card::after {
-    content: "";
-    position: absolute;
-    top: -30px;
-    left: -30px;
-    right: -30px;
-    bottom: -30px;
-    background: radial-gradient(
-        circle at 30% 40%,
-        rgba(11, 35, 96, 0.08) 0%,
-        transparent 60%
-      ),
-      radial-gradient(
-        circle at 70% 60%,
-        rgba(1, 223, 236, 0.06) 0%,
-        transparent 60%
-      ),
-      radial-gradient(
-        circle at 50% 80%,
-        rgba(234, 54, 225, 0.04) 0%,
-        transparent 60%
-      );
-    filter: blur(30px);
-    z-index: -1;
-    opacity: 0.7;
-  }
-
-  .ai-analysis-card:hover::after {
-    opacity: 1;
-    filter: blur(20px);
-  }
-
-  /* Hover effects for cards */
-  .testimonial-card:hover,
-  .ai-analysis-card:hover {
+  .testimonial-card:hover {
     transform: translateY(-8px) scale(1.02);
   }
-
-  /* Pulsing effect for AI card */
-  .ai-analysis-card {
-    animation:
-      fadeInUp 0.6s ease-out forwards,
-      aiPulse 4s ease-in-out infinite;
-  }
-
-  @keyframes aiPulse {
-    0%,
-    100% {
-      box-shadow:
-        0 10px 25px -5px rgba(11, 35, 96, 0.1),
-        0 4px 6px -2px rgba(11, 35, 96, 0.05);
-    }
-    50% {
-      box-shadow:
-        0 20px 40px -5px rgba(1, 223, 236, 0.15),
-        0 8px 12px -2px rgba(1, 223, 236, 0.08);
-    }
-  }
-
-  /* Smooth animations */
-  .grid > div:not(.ai-analysis-card) {
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  .grid > div:nth-child(1) {
-    animation-delay: 0s;
-  } /* AI card appears first */
-  .grid > div:nth-child(2) {
-    animation-delay: 0.15s;
-  }
-  .grid > div:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .grid > div:nth-child(4) {
-    animation-delay: 0.45s;
-  }
-  .grid > div:nth-child(5) {
-    animation-delay: 0.6s;
-  }
-  .grid > div:nth-child(6) {
-    animation-delay: 0.75s;
-  }
-  .grid > div:nth-child(7) {
-    animation-delay: 0.9s;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Special gradient borders */
-  .border-gradient {
-    border: 1px solid;
-    border-image: linear-gradient(
-        135deg,
-        rgba(11, 35, 96, 0.3),
-        rgba(1, 223, 236, 0.3),
-        rgba(234, 54, 225, 0.3)
-      )
-      1;
-  }
-
-  /* AI Typewriter Effect */
-  .ai-typewriter {
-    position: relative;
-    min-height: 3.5rem;
-  }
-
-  .typewriter-placeholder {
-    color: #9ca3af;
-    font-style: italic;
-    display: inline;
-  }
-
-  .typewriter-text {
-    display: none;
-  }
-
-  .typewriter-cursor {
-    display: inline-block;
-    background-color: #01dfec;
-    width: 2px;
-    height: 1.2em;
-    margin-left: 2px;
-    animation: blink 1s infinite;
-    opacity: 0;
-  }
-
-  /* Animation states */
-  .ai-analysis-card.ai-animate .typewriter-placeholder {
-    display: none;
-  }
-
-  .ai-analysis-card.ai-animate .typewriter-text {
-    display: inline;
-  }
-
-  .ai-analysis-card.ai-animate .typewriter-cursor {
-    opacity: 1;
-    animation:
-      cursor-thinking 0.8s ease-in-out,
-      blink 1s 0.8s infinite;
-  }
-
-  @keyframes cursor-thinking {
-    0%,
-    100% {
-      background-color: #01dfec;
-      transform: scaleY(1);
-    }
-    25% {
-      background-color: #ea36e1;
-      transform: scaleY(1.2);
-    }
-    50% {
-      background-color: #0b2360;
-      transform: scaleY(0.8);
-    }
-    75% {
-      background-color: #01dfec;
-      transform: scaleY(1.1);
-    }
-  }
-
-  @keyframes blink {
-    0%,
-    50% {
-      opacity: 1;
-    }
-    51%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  /* AI Insights animation */
-  .ai-insights {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  .ai-insights span {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  .ai-analysis-card.ai-animate .ai-insights {
-    animation: fadeInInsights 0.6s 4.5s ease-out forwards;
-  }
-
-  .ai-analysis-card.ai-animate .ai-insights span:nth-child(1) {
-    animation: popIn 0.4s 4.6s ease-out forwards;
-  }
-
-  .ai-analysis-card.ai-animate .ai-insights span:nth-child(2) {
-    animation: popIn 0.4s 4.8s ease-out forwards;
-  }
-
-  .ai-analysis-card.ai-animate .ai-insights span:nth-child(3) {
-    animation: popIn 0.4s 5s ease-out forwards;
-  }
-
-  .ai-analysis-card.ai-animate .ai-insights span:nth-child(4) {
-    animation: popIn 0.4s 5.2s ease-out forwards;
-  }
-
-  @keyframes fadeInInsights {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes popIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    70% {
-      transform: scale(1.05);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  /* Additional loading effect */
-  .ai-analysis-card.ai-animate::before {
-    animation: aiGlow 3s ease-in-out;
-  }
-
-  @keyframes aiGlow {
-    0% {
-      box-shadow: 0 0 0 rgba(1, 223, 236, 0);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(1, 223, 236, 0.3);
-    }
-    100% {
-      box-shadow: 0 0 0 rgba(1, 223, 236, 0);
-    }
-  }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const aiCard = document.querySelector<HTMLElement>(".ai-analysis-card");
-    const typewriterText =
-      document.querySelector<HTMLElement>(".typewriter-text");
-    const typewriterContainer =
-      document.querySelector<HTMLElement>(".ai-typewriter");
-
-    if (!aiCard || !typewriterText || !typewriterContainer) return;
-
-    const aiCardEl: HTMLElement = aiCard;
-    const typewriterTextEl: HTMLElement = typewriterText;
-    const typewriterContainerEl: HTMLElement = typewriterContainer;
-
-    // Intersection Observer for scroll trigger
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (
-            entry.isIntersecting &&
-            !aiCardEl.classList.contains("ai-animate")
-          ) {
-            startAIAnimation();
-          }
-        });
-      },
-      {
-        threshold: 0.5, // Trigger when 50% of the card is visible
-      },
-    );
-
-    observer.observe(aiCardEl);
-
-    function startAIAnimation() {
-      aiCardEl.classList.add("ai-animate");
-
-      // Get text from data attribute
-      const fullText = typewriterTextEl.getAttribute("data-text");
-      if (!fullText) return;
-
-      // Reserve space to prevent layout shift while typing
-      reserveTypewriterHeight(fullText);
-
-      // Clear any existing content
-      typewriterTextEl.textContent = "";
-
-      // Start typewriter effect after AI thinking period (800ms)
-      setTimeout(() => {
-        typewriterEffect(typewriterTextEl, fullText, 30); // 30ms per character
-      }, 800);
-    }
-
-    function reserveTypewriterHeight(text: string) {
-      // Create a hidden measuring element with same typography and width
-      const measure = document.createElement("span");
-      measure.textContent = text;
-      measure.style.position = "absolute";
-      measure.style.visibility = "hidden";
-      measure.style.pointerEvents = "none";
-      measure.style.left = "0";
-      measure.style.right = "0";
-      measure.style.whiteSpace = "normal";
-      // Ensure it inherits typography from container
-      measure.className = "text-gray-600 text-sm leading-relaxed";
-      typewriterContainerEl.appendChild(measure);
-      const height = measure.offsetHeight;
-      typewriterContainerEl.style.minHeight = height + "px";
-      measure.remove();
-
-      // Recalculate on resize if the container width changes
-      let lastWidth = typewriterContainerEl.offsetWidth;
-      const onResize = () => {
-        const w = typewriterContainerEl.offsetWidth;
-        if (w !== lastWidth) {
-          lastWidth = w;
-          const m = document.createElement("span");
-          m.textContent = text;
-          m.style.position = "absolute";
-          m.style.visibility = "hidden";
-          m.style.pointerEvents = "none";
-          m.style.left = "0";
-          m.style.right = "0";
-          m.style.whiteSpace = "normal";
-          m.className = "text-gray-600 text-sm leading-relaxed";
-          typewriterContainerEl.appendChild(m);
-          const h = m.offsetHeight;
-          m.remove();
-          typewriterContainerEl.style.minHeight = h + "px";
-        }
-      };
-      window.addEventListener("resize", onResize, { passive: true });
-    }
-
-    function typewriterEffect(
-      element: HTMLElement,
-      text: string,
-      speed: number,
-    ) {
-      let i = 0;
-
-      function typeCharacter() {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeCharacter, speed);
-        }
-      }
-
-      typeCharacter();
-    }
-  });
-</script>

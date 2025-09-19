@@ -1,213 +1,277 @@
 ---
-// VerticalTabs.astro
-// Props: optional items override; otherwise default PL copy
+import {
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+
 export interface TabItem {
-    id: string;
-    label: string;
-    description?: string;
-    bullets?: { title: string; desc?: string }[];
-    imageSrc?: string;
-    imageAlt?: string;
-    icon?: string;
-    paragraphs?: string[];
+  id: string;
+  label: string;
+  description?: string;
+  bullets?: { title: string; desc?: string }[];
+  imageSrc?: string;
+  imageAlt?: string;
+  icon?: string;
+  paragraphs?: string[];
 }
 
-const {
-    items = [
-        {
-            id: "chat",
-            label: "Wybierz produkty i funkcje",
-            description: "Wybierz od czego chcesz zacząć wg ogólnej oferty:",
-            bullets: [
-                { title: "Strona www" },
-                { title: "Sklep online" },
-                { title: "Bilety" },
-            ],
-            paragraphs: [
-                "Podaj nam swoje potrzeby i preferencje. Dostosowujemy ofertę i wyślemy plan na Twoje wdrożenie.",
-            ],
-            icon: "format_list_bulleted",
-            imageSrc: "/screens/website-preview-mobile.avif",
-            imageAlt: "Podgląd modułu czatu",
-        },
-        {
-            id: "posts",
-            label: "Dopasowana oferta i demo",
-            description:
-                "Otrzymasz mailem link do swojego demo i ofertę, dostosowaną do Ciebie.",
-            paragraphs: [
-                "Widzisz swój produkt i na tym etapie ustalamy szczegóły i harmonogram.",
-                "Po akceptacji warunków przechodzimy dalej.",
-            ],
-            icon: "smart_display",
-            imageSrc: "/screens/fanapp-preview-mobile.avif",
-            imageAlt: "Podgląd postów",
-        },
-        {
-            id: "views",
-            label: "Onboarding i wdrożenie",
-            description:
-                "Konfigurujemy produkt, zgodnie z wybranym pakietem i uzupełniamy dane.",
-            paragraphs: [
-                "To czas na ostatnie zmiany w zakresie prac, podpisanie umowy i wystawienie FV.",
-                "Otrzymasz szkolenie z obsługi i materiały do wdrożenia.",
-            ],
-            icon: "rocket_launch",
-            imageSrc: "/screens/analytics_01.png",
-            imageAlt: "Analityka Sportigio",
-        },
-    ],
-} = Astro.props as { items?: TabItem[] };
+interface Props {
+  lang?: Language;
+  items?: TabItem[] | Record<string, TabItem>;
+}
+
+const { lang = defaultLanguage, items: itemsProp } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const translationTabs = translations?.landing?.steps?.tabs;
+const fallbackTabs = fallbackTranslations?.landing?.steps?.tabs;
+
+type NormalizedTabItem = {
+  id: string;
+  label: string;
+  description?: string;
+  bullets: { title: string; desc?: string }[];
+  paragraphs: string[];
+  icon?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
+const normalizeTabItems = (value: any): NormalizedTabItem[] => {
+  const source = Array.isArray(value)
+    ? value
+    : value && typeof value === "object"
+      ? Object.values(value)
+      : [];
+
+  return source
+    .map((item: any) => {
+      const id = item?.id ?? item?.label;
+      const label = item?.label ?? item?.id;
+      if (!id || !label) return null;
+
+      const icon = item?.icon ? String(item.icon) : undefined;
+      const description = item?.description ? String(item.description) : undefined;
+
+      const bullets = Array.isArray(item?.bullets)
+        ? item.bullets
+            .map((bullet: any) => ({
+              title: bullet?.title ? String(bullet.title) : "",
+              desc: bullet?.desc ? String(bullet.desc) : undefined,
+            }))
+            .filter((bullet) => bullet.title)
+        : [];
+
+      const paragraphs = Array.isArray(item?.paragraphs)
+        ? item.paragraphs
+            .map((paragraph: any) => (paragraph ? String(paragraph) : ""))
+            .filter(Boolean)
+        : [];
+
+      const imageSrc = item?.imageSrc ?? item?.image?.src;
+      const imageAlt = item?.imageAlt ?? item?.image?.alt ?? label;
+
+      return {
+        id: String(id),
+        label: String(label),
+        description,
+        bullets,
+        paragraphs,
+        icon,
+        imageSrc: imageSrc ? String(imageSrc) : undefined,
+        imageAlt: imageSrc ? String(imageAlt) : undefined,
+      } satisfies NormalizedTabItem;
+    })
+    .filter(Boolean) as NormalizedTabItem[];
+};
+
+const candidates: NormalizedTabItem[][] = [
+  normalizeTabItems(itemsProp),
+  normalizeTabItems(translationTabs),
+  normalizeTabItems(fallbackTabs),
+];
+
+const normalizedItems =
+  candidates.find((list) => list.length > 0) ?? normalizeTabItems([]);
+
+const items = normalizedItems.length > 0
+  ? normalizedItems
+  : normalizeTabItems([
+      {
+        id: "chat",
+        label: lang === defaultLanguage
+          ? "Wybierz produkty i funkcje"
+          : "Pick your products and features",
+        description: lang === defaultLanguage
+          ? "Wybierz od czego chcesz zacząć wg ogólnej oferty:"
+          : "Tell us where you want to start from the overall offering:",
+        bullets: [
+          { title: lang === defaultLanguage ? "Strona www" : "Website" },
+          { title: lang === defaultLanguage ? "Sklep online" : "Online shop" },
+          { title: lang === defaultLanguage ? "Bilety" : "Tickets" },
+        ],
+        paragraphs: [
+          lang === defaultLanguage
+            ? "Podaj nam swoje potrzeby i preferencje. Dostosowujemy ofertę i wyślemy plan na Twoje wdrożenie."
+            : "Share your needs and preferences. We tailor the offer and send an onboarding plan.",
+        ],
+        icon: "format_list_bulleted",
+        imageSrc: "/screens/website-preview-mobile.avif",
+        imageAlt: lang === defaultLanguage ? "Podgląd modułu czatu" : "Chat module preview",
+      },
+    ]);
 ---
 
 <section class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
-            <!-- Left: vertical tabs -->
-            <nav class="md:border-r md:pr-6 space-y-2">
-                {
-                    items.map((item, idx) => (
-                        <button
-                            class="vtabs-btn w-full text-left px-4 py-3 rounded-lg transition flex items-center gap-3"
-                            data-tab={item.id}
-                            class:list={[idx === 0 ? "is-active" : ""]}
-                        >
-                            <span class="material-symbols-rounded vtabs-icon text-[#0B2360]">
-                                {item.icon || "bookmark"}
-                            </span>
-                            <span class="vtabs-label font-semibold text-gray-900">
-                                {item.label}
-                            </span>
-                        </button>
-                    ))
-                }
-            </nav>
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
+      <!-- Left: vertical tabs -->
+      <nav class="md:border-r md:pr-6 space-y-2">
+        {
+          items.map((item, idx) => (
+            <button
+              class="vtabs-btn w-full text-left px-4 py-3 rounded-lg transition flex items-center gap-3"
+              data-tab={item.id}
+              class:list={[idx === 0 ? "is-active" : ""]}
+            >
+              <span class="material-symbols-rounded vtabs-icon text-[#0B2360]">
+                {item.icon || "bookmark"}
+              </span>
+              <span class="vtabs-label font-semibold text-gray-900">
+                {item.label}
+              </span>
+            </button>
+          ))
+        }
+      </nav>
 
-            <!-- Right: content -->
-            <div>
-                {
-                    items.map((item, idx) => (
-                        <div
-                            class="vtabs-panel"
-                            data-panel={item.id}
-                            class:list={[idx === 0 ? "is-active" : "hidden"]}
-                        >
-                            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                                <div>
-                                    {item.description && (
-                                        <p class="text-gray-700 mb-6">
-                                            {item.description}
-                                        </p>
-                                    )}
+      <!-- Right: content -->
+      <div>
+        {
+          items.map((item, idx) => (
+            <div
+              class="vtabs-panel"
+              data-panel={item.id}
+              class:list={[idx === 0 ? "is-active" : "hidden"]}
+            >
+              <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  {item.description && (
+                    <p class="text-gray-700 mb-6">
+                      {item.description}
+                    </p>
+                  )}
 
-                                    {item.bullets &&
-                                        item.bullets.length > 0 && (
-                                            <ul class="space-y-4">
-                                                {item.bullets.map((b) => (
-                                                    <li class="flex items-start gap-3">
-                                                        <span class="material-symbols-rounded text-[#0B2360] mt-0.5">
-                                                            check_circle
-                                                        </span>
-                                                        <div>
-                                                            <p class="text-gray-900 font-semibold">
-                                                                {b.title}
-                                                            </p>
-                                                            {b.desc && (
-                                                                <p class="text-gray-600">
-                                                                    {b.desc}
-                                                                </p>
-                                                            )}
-                                                        </div>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
+                  {item.bullets.length > 0 && (
+                    <ul class="space-y-4">
+                      {item.bullets.map((bullet) => (
+                        <li class="flex items-start gap-3">
+                          <span class="material-symbols-rounded text-[#0B2360] mt-0.5">
+                            check_circle
+                          </span>
+                          <div>
+                            <p class="text-gray-900 font-semibold">
+                              {bullet.title}
+                            </p>
+                            {bullet.desc && (
+                              <p class="text-gray-600">
+                                {bullet.desc}
+                              </p>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
-                                    {item.paragraphs &&
-                                        item.paragraphs.length > 0 && (
-                                            <div class="space-y-4 mt-6">
-                                                {item.paragraphs.map((p) => (
-                                                    <p class="text-gray-700">
-                                                        {p}
-                                                    </p>
-                                                ))}
-                                            </div>
-                                        )}
-                                </div>
-                                {item.imageSrc && (
-                                    <div class="relative">
-                                        <img
-                                            src={item.imageSrc}
-                                            alt={item.imageAlt || item.label}
-                                            class="w-full h-auto rounded-2xl"
-                                            loading="lazy"
-                                            decoding="async"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))
-                }
+                  {item.paragraphs.length > 0 && (
+                    <div class="space-y-4 mt-6">
+                      {item.paragraphs.map((paragraph) => (
+                        <p class="text-gray-700">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {item.imageSrc && (
+                  <div class="relative">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.imageAlt || item.label}
+                      class="w-full h-auto rounded-2xl"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-        </div>
+          ))
+        }
+      </div>
     </div>
+  </div>
 
-    <style>
-        .vtabs-btn {
-            @apply text-gray-600 bg-white;
-        }
-        .vtabs-btn:hover {
-            @apply bg-slate-50;
-        }
-        .vtabs-btn.is-active {
-            @apply text-white shadow;
-            background: linear-gradient(
-                55deg,
-                #b31fd1 0%,
-                #0b2360 36%,
-                #00052e 72%,
-                #01dfec 100%
-            );
-        }
-        .vtabs-btn.is-active .vtabs-label {
-            @apply text-white;
-        }
-        .vtabs-btn.is-active .vtabs-icon {
-            @apply text-white;
-        }
-        .vtabs-panel {
-            @apply hidden;
-        }
-        .vtabs-panel.is-active {
-            @apply block;
-        }
-    </style>
+  <style>
+    .vtabs-btn {
+      @apply text-gray-600 bg-white;
+    }
+    .vtabs-btn:hover {
+      @apply bg-slate-50;
+    }
+    .vtabs-btn.is-active {
+      @apply text-white shadow;
+      background: linear-gradient(
+        55deg,
+        #b31fd1 0%,
+        #0b2360 36%,
+        #00052e 72%,
+        #01dfec 100%
+      );
+    }
+    .vtabs-btn.is-active .vtabs-label {
+      @apply text-white;
+    }
+    .vtabs-btn.is-active .vtabs-icon {
+      @apply text-white;
+    }
+    .vtabs-panel {
+      @apply hidden;
+    }
+    .vtabs-panel.is-active {
+      @apply block;
+    }
+  </style>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const buttons =
-                document.querySelectorAll<HTMLButtonElement>(".vtabs-btn");
-            const panels =
-                document.querySelectorAll<HTMLDivElement>(".vtabs-panel");
-            buttons.forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const id = btn.getAttribute("data-tab");
-                    buttons.forEach((b) => b.classList.remove("is-active"));
-                    panels.forEach((p) => {
-                        p.classList.remove("is-active");
-                        p.classList.add("hidden");
-                    });
-                    btn.classList.add("is-active");
-                    const target = document.querySelector<HTMLDivElement>(
-                        `[data-panel="${id}"]`,
-                    );
-                    if (target) {
-                        target.classList.add("is-active");
-                        target.classList.remove("hidden");
-                    }
-                });
-            });
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons =
+        document.querySelectorAll<HTMLButtonElement>(".vtabs-btn");
+      const panels =
+        document.querySelectorAll<HTMLDivElement>(".vtabs-panel");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-tab");
+          buttons.forEach((b) => b.classList.remove("is-active"));
+          panels.forEach((p) => {
+            p.classList.remove("is-active");
+            p.classList.add("hidden");
+          });
+          btn.classList.add("is-active");
+          const target = document.querySelector<HTMLDivElement>(
+            `[data-panel="${id}"]`,
+          );
+          if (target) {
+            target.classList.add("is-active");
+            target.classList.remove("hidden");
+          }
         });
-    </script>
+      });
+    });
+  </script>
 </section>
