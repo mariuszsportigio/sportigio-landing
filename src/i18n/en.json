@@ -875,6 +875,10 @@
         }
       },
       "pricing": {
+        "explanation": {
+          "title": "Website Pricing",
+          "subtitle": "The cost of your website consists of two parts: a one-time setup fee and a monthly subscription for maintenance."
+        },
         "setup": {
           "badge": "Pricing (1/2)",
           "title": "Website launch",

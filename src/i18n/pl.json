@@ -1027,6 +1027,10 @@
         }
       },
       "pricing": {
+        "explanation": {
+          "title": "Cennik strony WWW",
+          "subtitle": "Koszt strony WWW składa się z dwóch części: jednorazowej opłaty za uruchomienie oraz miesięcznego abonamentu za utrzymanie."
+        },
         "setup": {
           "badge": "Cennik (1/2)",
           "title": "Uruchomienie strony WWW",

@@ -31,6 +31,7 @@ const metaTitle =
 
 const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
 const pricingCopy = pageCopy.pricing ?? fallbackPageCopy.pricing ?? {};
+const explanationCopy = pricingCopy.explanation ?? fallbackPageCopy.pricing?.explanation ?? {};
 const setupPricing = pricingCopy.setup ?? fallbackPageCopy.pricing?.setup ?? {};
 const subscriptionPricing =
     pricingCopy.subscription ?? fallbackPageCopy.pricing?.subscription ?? {};
@@ -59,6 +60,20 @@ const faqCopy = pageCopy.faq ?? fallbackPageCopy.faq ?? {};
         />
 
         <ExamplesSection lang={lang} />
+
+        <!-- Pricing explanation section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold font-poppins text-[#0B2360] mb-4">
+                        {explanationCopy.title ?? "Cennik strony WWW"}
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        {explanationCopy.subtitle ?? "Koszt strony WWW składa się z dwóch części: jednorazowej opłaty za uruchomienie oraz miesięcznego abonamentu za utrzymanie."}
+                    </p>
+                </div>
+            </div>
+        </section>
 
         <PricingThreeColumn
             id="setup-pricing"
