@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
+import TwoColumnMedia from "../components/TwoColumnMedia.astro";
 import { defaultLanguage, getTranslations, type Language } from "../i18n";
 import ShopHowItWorks from "../components/ShopHowItWorks.astro";
 
@@ -13,17 +14,27 @@ const { lang = defaultLanguage } = Astro.props as Props;
 
 const translations = getTranslations(lang) as any;
 const fallbackTranslations =
-  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
 
 const pageCopy = (translations?.pages?.shopSportigio ?? {}) as any;
-const fallbackPageCopy = (fallbackTranslations?.pages?.shopSportigio ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.shopSportigio ??
+  {}) as any;
+
+const sectionsCopy = (pageCopy?.sections ?? {}) as any;
+const fallbackSectionsCopy = (fallbackPageCopy?.sections ?? {}) as any;
+
+const intro = sectionsCopy?.intro ?? fallbackSectionsCopy?.intro ?? {};
+const benefits = sectionsCopy?.benefits ?? fallbackSectionsCopy?.benefits ?? {};
 
 const metaTitle =
   pageCopy.meta?.title ??
   fallbackPageCopy.meta?.title ??
   "Sportigio - Sklep Sportigio";
 
-const heading = pageCopy.heading ?? fallbackPageCopy.heading ?? "Sklep Sportigio";
+const heading =
+  pageCopy.heading ?? fallbackPageCopy.heading ?? "Sklep Sportigio";
 ---
 
 <Layout title={metaTitle}>
@@ -33,11 +44,46 @@ const heading = pageCopy.heading ?? fallbackPageCopy.heading ?? "Sklep Sportigio
   <main class="bg-white min-h-screen">
     <section class="py-20">
       <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins">
+        <h1
+          class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins"
+        >
           {heading}
         </h1>
       </div>
-      <ShopHowItWorks lang={lang} />
+      <TwoColumnMedia
+        title={intro?.title ?? ""}
+        imageSrc="/screens/print-on-demand-mobile.webp"
+        imageAlt={intro?.imageAlt ?? ""}
+        imageContainerClassName="max-w-[320px] mx-auto md:mx-0"
+        ctaVariant="button"
+        ctaText={translations?.shopSportigio?.how?.cta ?? ""}
+        ctaHref="https://sportig.io/join"
+      >
+        {
+          Array.isArray(intro?.body)
+            ? intro.body.map((p: string) => <p class="mb-3">{p}</p>)
+            : null
+        }
+      </TwoColumnMedia>
+
+      <TwoColumnMedia
+        title={benefits?.title ?? ""}
+        imageSrc="/screens/store-preview-mobile.avif"
+        imageAlt={benefits?.imageAlt ?? ""}
+        reverse={true}
+        bullets={Array.isArray(benefits?.bullets) ? benefits.bullets : []}
+        ctaVariant="button"
+        ctaText={translations?.common?.learn_more ?? ""}
+        ctaHref="#how"
+      >
+        {
+          Array.isArray(benefits?.body)
+            ? benefits.body.map((p: string) => <p class="mb-3">{p}</p>)
+            : null
+        }
+      </TwoColumnMedia>
+
+      <ShopHowItWorks id="how" lang={lang} ctaHref="https://sportig.io/join" />
     </section>
 
     <CTASection lang={lang} />

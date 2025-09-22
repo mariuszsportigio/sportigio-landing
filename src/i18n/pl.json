@@ -1270,7 +1270,31 @@
       "meta": {
         "title": "Sportigio - Sklep Sportigio"
       },
-      "heading": "Sklep Sportigio"
+      "heading": "Sklep Sportigio",
+      "sections": {
+        "intro": {
+          "title": "Sklep bez magazynu i etatów",
+          "imageAlt": "Druk na żądanie – realizacja zamówienia",
+          "body": [
+            "Chcesz rozwijać wizerunek i sprzedaż, ale blokują Cię koszty i brak rąk do pracy? Sklep w formule druku na żądanie rozwiązuje temat.",
+            "Tworzysz schludny asortyment w prostym generatorze, a produkcję i wysyłkę bierze na siebie Snapwear. Ty skupiasz się na promocji i komunikacji z kibicami."
+          ]
+        },
+        "benefits": {
+          "title": "Dlaczego to działa",
+          "imageAlt": "Sportigio – podgląd sklepu na telefonie",
+          "body": [
+            "Nowoczesny panel sklepu jest zoptymalizowany pod urządzenia mobilne i szybkość działania. Budowa podobnego rozwiązania od zera kosztowałaby tysiące złotych – tutaj masz to w ramach bezkosztowej współpracy.",
+            "Rozliczenie jest proste i przejrzyste: wystawiasz fakturę od wygenerowanego zysku."
+          ],
+          "bullets": [
+            "Przejrzysty i intuicyjny",
+            "Szybki w działaniu",
+            "Doskonały na telefonach",
+            "Nowoczesny, atrakcyjny wizualnie"
+          ]
+        }
+      }
     },
     "shopOwn": {
       "meta": {

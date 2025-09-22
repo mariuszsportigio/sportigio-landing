@@ -7,9 +7,15 @@ export interface Props {
     id?: string;
     className?: string;
     lang?: Language;
+    ctaHref?: string;
 }
 
-const { id, className = "", lang = defaultLanguage } = Astro.props as Props;
+const {
+    id,
+    className = "",
+    lang = defaultLanguage,
+    ctaHref = "/kontakt",
+} = Astro.props as Props;
 const t = createTranslator(lang);
 ---
 
@@ -104,18 +110,23 @@ const t = createTranslator(lang);
                 </div>
                 <div class="mt-3 grid grid-cols-12 gap-y-10">
                     {/* Klient → Sportigio */}
-                    <div class="relative col-start-1 col-end-7 h-8 flow-step flow-step--order-1" style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);">
+                    <div
+                        class="relative col-start-1 col-end-7 h-8 flow-step flow-step--order-1"
+                        style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="ltr"
                             style="--from:25%; --to:75%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="1"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="1"
                             >
                                 {t("shopSportigio.how.actorShort.customer")} → {
                                     t("shopSportigio.how.actorShort.seller")
@@ -125,18 +136,23 @@ const t = createTranslator(lang);
                     </div>
 
                     {/* Shopify → Snapwear */}
-                    <div class="relative col-start-4 col-end-10 h-10 flow-step flow-step--order-2" style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);">
+                    <div
+                        class="relative col-start-4 col-end-10 h-10 flow-step flow-step--order-2"
+                        style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="ltr"
                             style="--from:25%; --to:75%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="2"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="2"
                             >
                                 {t("shopSportigio.how.actorShort.shopify")} → {
                                     t("shopSportigio.how.actorShort.producer")
@@ -146,27 +162,30 @@ const t = createTranslator(lang);
                     </div>
 
                     {/* Snapwear → Klient (right to left) */}
-                    <div class="relative col-start-1 col-end-10 h-8 flow-step flow-step--order-3" style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);">
+                    <div
+                        class="relative col-start-1 col-end-10 h-8 flow-step flow-step--order-3"
+                        style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="rtl"
                             style="--from:83.3333%; --to:16.6667%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="3"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="3"
                             >
                                 {t("shopSportigio.how.actorShort.producer")} → {
                                     t("shopSportigio.how.actorShort.customer")
                                 }: {t("shopSportigio.how.orderFlow.c_to_a")}
                             </div>
                         </div>
-                        <div
-                            class="flow-note"
-                        >
+                        <div class="flow-note">
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
                             >
@@ -186,18 +205,23 @@ const t = createTranslator(lang);
                 </div>
                 <div class="mt-3 grid grid-cols-12 gap-y-10">
                     {/* Sportigio → Klub */}
-                    <div class="relative col-start-4 col-end-13 h-10 flow-step flow-step--finance-1" style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);">
+                    <div
+                        class="relative col-start-4 col-end-13 h-10 flow-step flow-step--finance-1"
+                        style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="ltr"
                             style="--from:16.6667%; --to:83.3333%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="4"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="4"
                             >
                                 {t("shopSportigio.how.actorShort.seller")} → {
                                     t(
@@ -209,18 +233,23 @@ const t = createTranslator(lang);
                     </div>
 
                     {/* Klub → Sportigio (right to left) */}
-                    <div class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-2" style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);">
+                    <div
+                        class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-2"
+                        style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="rtl"
                             style="--from:83.3333%; --to:16.6667%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="5"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="5"
                             >
                                 {t("shopSportigio.how.actorShort.beneficiary")} →
                                 {t("shopSportigio.how.actorShort.seller")}: {
@@ -231,18 +260,23 @@ const t = createTranslator(lang);
                     </div>
 
                     {/* Sportigio → Klub */}
-                    <div class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-3" style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);">
+                    <div
+                        class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-3"
+                        style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);"
+                    >
                         <div
                             class="flow-connector"
                             data-direction="ltr"
                             style="--from:16.6667%; --to:83.3333%;"
                             aria-hidden="true"
-                        ></div>
+                        >
+                        </div>
                         <div
                             class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
                         >
                             <div
-                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold" data-flow-step="6"
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="6"
                             >
                                 {t("shopSportigio.how.actorShort.seller")} → {
                                     t(
@@ -251,9 +285,7 @@ const t = createTranslator(lang);
                                 }: {t("shopSportigio.how.financeFlow.step6")}
                             </div>
                         </div>
-                        <div
-                            class="flow-note"
-                        >
+                        <div class="flow-note">
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
                             >
@@ -268,7 +300,7 @@ const t = createTranslator(lang);
                 <MasterButton
                     variant="gradient"
                     size="lg"
-                    href="/kontakt"
+                    href={ctaHref}
                     magnetic={false}
                     glow={false}
                     className="btn-gradient-primary !transition-none hover:!transform-none"
@@ -392,7 +424,7 @@ const t = createTranslator(lang);
                     <MasterButton
                         variant="gradient"
                         size="lg"
-                        href="/kontakt"
+                        href={ctaHref}
                         magnetic={true}
                         glow={true}
                     >
@@ -405,126 +437,125 @@ const t = createTranslator(lang);
 </section>
 
 <style>
-/* Aligns desktop connectors to avatar centers */
-.flow-connector {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    color: var(--flow-color, #0B2360);
-    --line-thickness: 4px;
-    --arrow-size: 14px;
-    --arrow-height: 12px;
-    --line-radius: 9999px;
-}
-.flow-connector::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: var(--line-thickness);
-    border-radius: var(--line-radius);
-    background: var(--flow-color, #0B2360);
-}
-.flow-connector::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: var(--arrow-size);
-    height: var(--arrow-height);
-    background: var(--flow-color, #0B2360);
-}
-.flow-connector[data-direction="ltr"]::before {
-    left: var(--from);
-    width: calc(var(--to) - var(--from));
-    border-radius: var(--line-radius) 0 0 var(--line-radius);
-}
-.flow-connector[data-direction="ltr"]::after {
-    left: var(--to);
-    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
-}
-.flow-connector[data-direction="rtl"]::before {
-    left: var(--to);
-    width: calc(var(--from) - var(--to));
-    border-radius: 0 var(--line-radius) var(--line-radius) 0;
-}
-.flow-connector[data-direction="rtl"]::after {
-    left: calc(var(--to) - var(--arrow-size));
-    clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
-}
+    /* Aligns desktop connectors to avatar centers */
+    .flow-connector {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        color: var(--flow-color, #0b2360);
+        --line-thickness: 4px;
+        --arrow-size: 14px;
+        --arrow-height: 12px;
+        --line-radius: 9999px;
+    }
+    .flow-connector::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: var(--line-thickness);
+        border-radius: var(--line-radius);
+        background: var(--flow-color, #0b2360);
+    }
+    .flow-connector::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--arrow-size);
+        height: var(--arrow-height);
+        background: var(--flow-color, #0b2360);
+    }
+    .flow-connector[data-direction="ltr"]::before {
+        left: var(--from);
+        width: calc(var(--to) - var(--from));
+        border-radius: var(--line-radius) 0 0 var(--line-radius);
+    }
+    .flow-connector[data-direction="ltr"]::after {
+        left: var(--to);
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    }
+    .flow-connector[data-direction="rtl"]::before {
+        left: var(--to);
+        width: calc(var(--from) - var(--to));
+        border-radius: 0 var(--line-radius) var(--line-radius) 0;
+    }
+    .flow-connector[data-direction="rtl"]::after {
+        left: calc(var(--to) - var(--arrow-size));
+        clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    }
 
-.flow-step {
-    --flow-color: #0B2360;
-    --flow-border-color: rgba(11, 35, 96, 0.18);
-    --flow-text-color: #0B2360;
-}
-.flow-step .flow-connector {
-    color: var(--flow-color, #0B2360);
-}
-.flow-label {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--flow-text-color, #0B2360);
-    border-color: var(--flow-border-color, rgba(11, 35, 96, 0.18));
-    box-shadow: 0 12px 30px -18px var(--flow-shadow, rgba(11, 35, 96, 0.35));
-}
-.flow-label::after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 12px;
-    background: var(--flow-color, #0B2360);
-    border-radius: 9999px;
-    opacity: 0.65;
-}
-.flow-label[data-flow-step]::before {
-    content: attr(data-flow-step);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    aspect-ratio: 1 / 1; /* ensure perfect circle in all browsers */
-    flex: 0 0 1.5rem; /* prevent flexbox from stretching the badge */
-    line-height: 1; /* avoid text affecting box metrics */
-    border-radius: 9999px;
-    background: var(--flow-color, #0B2360);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    box-shadow: 0 8px 16px -10px var(--flow-shadow, rgba(17, 24, 39, 0.45));
-}
+    .flow-step {
+        --flow-color: #0b2360;
+        --flow-border-color: rgba(11, 35, 96, 0.18);
+        --flow-text-color: #0b2360;
+    }
+    .flow-step .flow-connector {
+        color: var(--flow-color, #0b2360);
+    }
+    .flow-label {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--flow-text-color, #0b2360);
+        border-color: var(--flow-border-color, rgba(11, 35, 96, 0.18));
+        box-shadow: 0 12px 30px -18px var(--flow-shadow, rgba(11, 35, 96, 0.35));
+    }
+    .flow-label::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 12px;
+        background: var(--flow-color, #0b2360);
+        border-radius: 9999px;
+        opacity: 0.65;
+    }
+    .flow-label[data-flow-step]::before {
+        content: attr(data-flow-step);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        aspect-ratio: 1 / 1; /* ensure perfect circle in all browsers */
+        flex: 0 0 1.5rem; /* prevent flexbox from stretching the badge */
+        line-height: 1; /* avoid text affecting box metrics */
+        border-radius: 9999px;
+        background: var(--flow-color, #0b2360);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 8px 16px -10px var(--flow-shadow, rgba(17, 24, 39, 0.45));
+    }
 
-.flow-note {
-    position: absolute;
-    top: calc(50% + var(--flow-note-gap, 20px));
-    left: 50%;
-    transform: translate(-50%, 0);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    color: var(--flow-text-color, #0B2360);
-    text-align: center;
-    font-size: 0.625rem;
-    line-height: 1.2;
-}
-.flow-note::before {
-    content: "";
-    position: absolute;
-    top: calc(-1 * var(--flow-note-gap, 20px));
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: var(--flow-note-gap, 20px);
-    background: var(--flow-color, #0B2360);
-    border-radius: 9999px;
-    opacity: 0.55;
-}
+    .flow-note {
+        position: absolute;
+        top: calc(50% + var(--flow-note-gap, 20px));
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        color: var(--flow-text-color, #0b2360);
+        text-align: center;
+        font-size: 0.625rem;
+        line-height: 1.2;
+    }
+    .flow-note::before {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--flow-note-gap, 20px));
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: var(--flow-note-gap, 20px);
+        background: var(--flow-color, #0b2360);
+        border-radius: 9999px;
+        opacity: 0.55;
+    }
 </style>
-

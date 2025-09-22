@@ -1118,7 +1118,31 @@
       "meta": {
         "title": "Sportigio - Sportigio Store"
       },
-      "heading": "Sportigio Store"
+      "heading": "Sportigio Store",
+      "sections": {
+        "intro": {
+          "title": "Store without stock or extra hires",
+          "imageAlt": "Print-on-demand – order fulfillment",
+          "body": [
+            "Ambitious plans for club growth and brand, but limited by budget or staff? Print-on-demand fixes that.",
+            "You assemble a clean merch lineup in a simple generator, while Snapwear handles production and shipping. You focus on promotion and fan communication."
+          ]
+        },
+        "benefits": {
+          "title": "Why it works",
+          "imageAlt": "Sportigio – shop preview on mobile",
+          "body": [
+            "A modern, mobile‑first shop panel, optimized for speed. Building a comparable solution from scratch would cost thousands — here you get it within a zero‑upfront collaboration.",
+            "Settlements are simple and transparent: you invoice the generated profit."
+          ],
+          "bullets": [
+            "Clear and intuitive",
+            "Fast in use",
+            "Excellent on phones",
+            "Modern, visually appealing"
+          ]
+        }
+      }
     },
     "shopOwn": {
       "meta": {
