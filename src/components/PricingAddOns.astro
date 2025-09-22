@@ -1,0 +1,91 @@
+---
+interface AddOnCard {
+  title: string;
+  description: string;
+  features?: string[];
+  href?: string;
+  cta?: string;
+}
+
+const addons: AddOnCard[] = [
+  {
+    title: "Strona WWW",
+    description:
+      "Profesjonalna witryna klubowa dopasowana do identyfikacji Twojego klubu.",
+    features: [
+      "Indywidualny projekt i konfiguracja",
+      "Integracja z CMS Sportigio",
+      "Hosting, bezpieczeństwo i wsparcie",
+    ],
+    href: "/strona#setup-pricing",
+    cta: "Przejdź do cennika",
+  },
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="inline-flex items-center px-3 py-1 text-xs font-semibold tracking-wider uppercase text-[#01DFEC] bg-[#01DFEC]/10 rounded-full">Dodatek</span>
+      <h2 class="mt-4 text-3xl font-bold text-[#0B2360]">Rozszerz możliwości Sportigio</h2>
+      <p class="mt-3 text-base text-gray-600">
+        Dodaj wyspecjalizowane moduły, aby przygotować idealne rozwiązanie dla Twojego klubu.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+      {addons.map((addon) => (
+        <a
+          href={addon.href}
+          class="group relative flex flex-col h-full w-full max-w-md justify-self-center md:col-span-2 lg:col-span-3 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:border-[#0B2360]/60 transition-all duration-300"
+        >
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#01DFEC] bg-[#01DFEC]/15 px-3 py-1 rounded-full">
+              Dodatek
+            </span>
+            <span class="text-sm font-medium text-[#0B2360]/70 group-hover:text-[#0B2360] transition-colors">
+              Szczegóły
+            </span>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-2xl font-bold text-[#0B2360] group-hover:text-[#0B2360] transition-colors">
+              {addon.title}
+            </h3>
+            <p class="mt-3 text-sm text-gray-600">
+              {addon.description}
+            </p>
+          </div>
+
+          {addon.features && (
+            <ul class="mt-6 space-y-3 text-sm text-gray-600">
+              {addon.features.map((feature) => (
+                <li class="flex items-start" key={feature}>
+                  <svg class="w-4 h-4 text-[#01DFEC] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div class="mt-auto pt-6">
+            <span class="inline-flex items-center text-sm font-semibold text-[#0B2360] group-hover:text-[#01DFEC] transition-colors">
+              {addon.cta}
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+

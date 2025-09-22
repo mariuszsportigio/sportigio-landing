@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import PricingTable from "../components/PricingTable.astro";
+import PricingAddOns from "../components/PricingAddOns.astro";
 import Footer from "../components/Footer.astro";
 import pricingCopy from "../data/pricing-copy.json";
 import pricingAmounts from "../data/pricing-amounts.json";
@@ -1044,6 +1045,9 @@ import pricingAmounts from "../data/pricing-amounts.json";
       </div>
     </section>
 
+    <!-- Add-on Section -->
+    <PricingAddOns />
+
     <!-- Premium Package Details -->
     <section class="py-16 bg-white">
       <div class="max-w-6xl mx-auto px-4">
@@ -1375,3 +1379,4 @@ import pricingAmounts from "../data/pricing-amounts.json";
     currencySelect?.addEventListener("change", applyPrices);
   });
 </script>
+
