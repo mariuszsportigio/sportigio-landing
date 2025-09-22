@@ -115,7 +115,7 @@
 
 /* Button gradients */
 .btn-gradient-primary {
-  background: var(--sportigio-gradient);
+  background: var(--sportigio-gradient-2);
   color: white;
   border: none;
   transition: all 0.3s ease;
@@ -123,7 +123,6 @@
 
 .btn-gradient-primary:hover {
   background: var(--sportigio-gradient-2);
-  transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(169, 29, 200, 0.3);
 }
 
