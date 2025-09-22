@@ -7,27 +7,50 @@ import CTASection from "../components/CTASection.astro";
 import PricingThreeColumn from "../components/PricingThreeColumn.astro";
 import ExamplesSection from "../components/ExamplesSection.astro";
 import FAQDynamic from "../components/FAQDynamic.astro";
-import { defaultLanguage, type Language } from "../i18n";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 interface Props {
     lang?: Language;
 }
+
 const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+    lang === defaultLanguage
+        ? translations
+        : (getTranslations(defaultLanguage) as any);
+
+const pageCopy = (translations?.pages?.website ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.website ?? {}) as any;
+
+const metaTitle =
+    pageCopy.meta?.title ??
+    fallbackPageCopy.meta?.title ??
+    "Sportigio - Strona";
+
+const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
+const pricingCopy = pageCopy.pricing ?? fallbackPageCopy.pricing ?? {};
+const setupPricing = pricingCopy.setup ?? fallbackPageCopy.pricing?.setup ?? {};
+const subscriptionPricing =
+    pricingCopy.subscription ?? fallbackPageCopy.pricing?.subscription ?? {};
+const faqCopy = pageCopy.faq ?? fallbackPageCopy.faq ?? {};
 ---
 
-<Layout title="Sportigio – Strona">
+<Layout title={metaTitle}>
     <Navbar lang={lang} activePage="strona" />
     <div aria-hidden="true" class="h-16"></div>
 
     <main class="bg-white min-h-screen">
         <Hero
             lang={lang}
-            title="Profesjonalna strona internetowa klubu"
-            titleHighlight=""
+            title={heroCopy.title ?? "Profesjonalna strona internetowa klubu"}
+            titleHighlight={heroCopy.highlight ?? ""}
+            subtitle={heroCopy.subtitle ?? ""}
             imageSrc="/screens/website-preview-mobile.avif"
-            imageAlt="Sportigio - Strona internetowa klubu"
+            imageAlt={heroCopy.imageAlt ??
+                "Sportigio - Strona internetowa klubu"}
             imageSize="small"
-            subtitle=""
             showBadge={false}
             showCTA={false}
             showSocialProof={false}
@@ -35,178 +58,40 @@ const { lang = defaultLanguage } = Astro.props as Props;
             heightMode="short"
         />
 
-        <ExamplesSection />
+        <ExamplesSection lang={lang} />
 
-        <!-- Pricing: uruchomienie strony (jednorazowo) -->
         <PricingThreeColumn
             id="setup-pricing"
-            badge="Cennik (1/2)"
-            title="Uruchomienie strony WWW"
-            subtitle="Jednorazowa opłata za start — trzy opcje dopasowane do Twoich potrzeb"
-            topBadges={[
-                { icon: "dns", label: "Utrzymanie hostingu" },
-                { icon: "verified_user", label: "Certyfikat SSL" },
-                { icon: "support_agent", label: "Wsparcie techniczne" },
-            ]}
-            plans={[
-                {
-                    name: "Standardowe",
-                    price: "599 zł",
-                    priceNote: "netto",
-                    description:
-                        "Podstawowa konfiguracja i wsparcie dla klubu, który chce ruszyć samodzielnie",
-                    features: [
-                        "1h szkolenia z obsługi lub konsultacji",
-                        "Migracja artykułów ze starej strony*",
-                        "Wsparcie mailowe i przez czat",
-                        "Pomoc w podpięciu domeny i starcie",
-                    ],
-                    extras: [
-                        "Działasz samodzielnie na swoim demo",
-                        "Konsultujemy przebieg prac i wspieramy Cię technicznie",
-                    ],
-                },
-                {
-                    name: "Komfortowe",
-                    price: "2 100 zł",
-                    priceNote: "netto",
-                    description:
-                        "Dla klubów, które chcą mieć wszystko przygotowane i ruszyć bez stresu",
-                    highlight: true,
-                    badge: "Najczęściej wybierane",
-                    features: [
-                        "2h szkolenia z obsługi lub konsultacji",
-                        "Migracja artykułów ze starej strony",
-                        "Wsparcie przez WhatsApp (7 dni)",
-                        "3h prac nad uzupełnieniem treści",
-                    ],
-                    extras: [
-                        "Przesyłasz nam materiały lub linki",
-                        "Otrzymujesz stronę gotową do startu",
-                    ],
-                },
-                {
-                    name: "Dedykowane",
-                    price: "Indywidualnie",
-                    description:
-                        "Dla większych projektów, wymagających więcej pracy lub migracji dużej ilości treści",
-                    featuresTitle: "Wszystko co w Komfortowym oraz:",
-                    features: [
-                        "Migracja galerii zdjęć lub plików",
-                        "Dodatkowe dostosowanie szablonu",
-                        "Uzupełnianie treści ponad 3h pracy",
-                        "Dedykowane szkolenia i instrukcje",
-                        "Integracje z innymi narzędziami",
-                    ],
-                    extras: [
-                        "Wycena tych działań to zazwyczaj 5–7 tys. zł, maks. ~20 tys. zł przy dużym projekcie",
-                    ],
-                },
-            ]}
-            footnote="* Przenosimy newsy z WordPress lub podobnego systemu. W przypadku braku archiwum dodajemy 6 artykułów na start z dowolnego źródła."
+            badge={setupPricing.badge}
+            title={setupPricing.title}
+            subtitle={setupPricing.subtitle}
+            topBadges={setupPricing.topBadges ?? []}
+            plans={setupPricing.plans ?? []}
+            footnote={setupPricing.footnote}
             showCTA={false}
+            lang={lang}
         />
 
-        <!-- Pricing: abonament za utrzymanie (miesięcznie) -->
         <PricingThreeColumn
             id="subscription-pricing"
-            badge="Cennik (2/2)"
-            title="Abonament za utrzymanie"
-            subtitle="Miesięczne plany — zawsze zawiera: hosting, SSL, wsparcie i aktualizacje"
-            topBadges={[
-                { icon: "dns", label: "Utrzymanie hostingu" },
-                { icon: "verified_user", label: "Certyfikat SSL" },
-                { icon: "support_agent", label: "Wsparcie techniczne" },
-                { icon: "cloud_download", label: "Dostęp do aktualizacji" },
-            ]}
-            plans={[
-                {
-                    name: "PRO",
-                    price: "199 zł",
-                    priceNote: "(2388 zł za rok)",
-                    description:
-                        "W sam raz, by mieć pełnoprawną, funkcjonalną stronę klubową",
-                    features: [
-                        "Własna domena i brak reklam",
-                        "Zarządzanie drabinką sponsorską",
-                        "Edytor strony głównej (blokowy)",
-                        "Zarządzanie menu w panelu",
-                    ],
-                    extras: [
-                        "100 zdjęć w 1 galerii zdjęć",
-                        "1 GB przestrzeni na pliki",
-                        "20 podstron",
-                        "180 dni analityki strony",
-                    ],
-                },
-                {
-                    name: "PRO+",
-                    price: "290 zł",
-                    priceNote: "(3488 zł za rok)",
-                    description:
-                        "Większa personalizacja i limity dla profesjonalnej i komfortowej strony",
-                    highlight: true,
-                    badge: "Rekomendowane",
-                    featuresTitle: "Wszystko co w PRO oraz:",
-                    features: [
-                        "Większa personalizacja, dzięki własnej wersji CSS i JS (do 5 elementów)",
-                        "1h dedykowanego wsparcia na start",
-                    ],
-                    extras: [
-                        "120 zdjęć w 1 galerii zdjęć",
-                        "3 GB przestrzeni na pliki",
-                        "30 podstron",
-                        "365 dni analityki strony",
-                    ],
-                },
-                {
-                    name: "CHAMPION",
-                    price: "499 zł",
-                    priceNote: "(5988 zł za rok)",
-                    description:
-                        "Jeśli Twoja strona to centrum komunikacji klubu – pakiet idealny",
-                    featuresTitle: "Wszystko co w PRO+ oraz:",
-                    features: [
-                        "Pełna personalizacja (CSS + JS)",
-                        "Zarabianie na SEO (artykuły sponsorów)",
-                        "Wsparcie przez WhatsApp",
-                    ],
-                    extras: [
-                        "150 zdjęć w 1 galerii zdjęć",
-                        "5 GB przestrzeni na pliki",
-                        "50 podstron",
-                        "2 lata analityki strony",
-                    ],
-                },
-            ]}
-            footnote="Ceny netto — podane przy płatności z góry za rok lub co miesiąc przy podpięciu auto-płatności kartą."
+            badge={subscriptionPricing.badge}
+            title={subscriptionPricing.title}
+            subtitle={subscriptionPricing.subtitle}
+            topBadges={subscriptionPricing.topBadges ?? []}
+            plans={subscriptionPricing.plans ?? []}
+            footnote={subscriptionPricing.footnote}
             showCTA={false}
+            lang={lang}
         />
 
         <FAQDynamic
-            title="FAQ: Strona WWW"
-            subtitle="Najważniejsze pytania iodpowiedzi przy tworzeniu strony ze Sportigio"
-            items={[
-                {
-                    question: "Ile to kosztuje?",
-                    answer: "Start od 599 zł jednorazowo + abonament od 199 zł/mies. Podpowiemy, który wariant będzie najlepszy dla Twojego klubu.",
-                },
-                {
-                    question: "Jak szybko ruszymy?",
-                    answer: "Zwykle w kilka dni. Możesz działać samodzielnie albo zlecić przygotowanie startu nam.",
-                },
-                {
-                    question: "Czy sam ogarnę edycję strony?",
-                    answer: "Tak. Panel jest prosty — dodasz newsy, zdjęcia, sponsorów i menu bez technikaliów.",
-                },
-                {
-                    question: "Czy przeniesiecie treści ze starej strony?",
-                    answer: "Tak - możemy przenieść newsy; gdy nie ma archiwum, dodamy kilka wpisów na start.",
-                },
-            ]}
+            title={faqCopy.title ?? "FAQ: Strona WWW"}
+            subtitle={faqCopy.subtitle ??
+                "Najważniejsze pytania i odpowiedzi przy tworzeniu strony ze Sportigio"}
+            items={faqCopy.items ?? []}
         />
 
-        <CTASection />
+        <CTASection lang={lang} />
     </main>
 
     <Footer lang={lang} />

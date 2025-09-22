@@ -5,26 +5,40 @@ import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
 import StoreExamplesSection from "../components/StoreExamplesSection.astro";
 import Hero from "../components/Hero.astro";
-import { defaultLanguage, type Language } from "../i18n";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 interface Props {
     lang?: Language;
 }
 const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+    lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const pageCopy = (translations?.pages?.shopOwn ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.shopOwn ?? {}) as any;
+
+const metaTitle =
+    pageCopy.meta?.title ??
+    fallbackPageCopy.meta?.title ??
+    "Sportigio - Sklep własny";
+
+const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
 ---
 
-<Layout title="Sportigio – Sklep własny">
+<Layout title={metaTitle}>
     <Navbar lang={lang} activePage="sklep-wlasny" />
     <div aria-hidden="true" class="h-16"></div>
 
     <main class="bg-white min-h-screen">
         <Hero
             lang={lang}
-            title="Prowadź własny sklep internetowy klubu."
-            titleHighlight=""
-            subtitle="Pełna kontrola"
+            title={heroCopy.title ?? "Prowadź własny sklep internetowy klubu."}
+            titleHighlight={heroCopy.highlight ?? ""}
+            subtitle={heroCopy.subtitle ?? "Pełna kontrola"}
             imageSrc="/screens/store-preview-mobile.avif"
-            imageAlt="Podgląd sklepu (mobile)"
+            imageAlt={heroCopy.imageAlt ?? "Podgląd sklepu (mobile)"}
             imageSize="small"
             showBadge={false}
             showCTA={false}
@@ -33,9 +47,9 @@ const { lang = defaultLanguage } = Astro.props as Props;
             heightMode="short"
         />
 
-        <StoreExamplesSection />
+        <StoreExamplesSection lang={lang} />
 
-        <CTASection />
+        <CTASection lang={lang} />
     </main>
 
     <Footer lang={lang} />

@@ -1,7 +1,7 @@
 ---
 // BlogSection.astro - Homepage blog section
 import { fetchArticles, formatDate, type BlogPost } from '../utils/api';
-import { createTranslator, type Language } from '../i18n';
+import { createTranslator, localizeHref, type Language } from '../i18n';
 
 // Props interface
 export interface Props {
@@ -29,7 +29,7 @@ try {
     <!-- Header -->
     <div class="text-center mb-12">
       <h2 class="text-2xl lg:text-3xl font-black font-poppins text-gray-900 mb-4">
-        <a href="/blog" class="hover:text-[#0B2360] transition-colors hover:underline">{t('blog.title')}</a>
+        <a href={localizeHref('/blog', lang)} class="hover:text-[#0B2360] transition-colors hover:underline">{t('blog.title')}</a>
       </h2>
       <p class="text-lg text-gray-600 mb-8">{t('blog.subtitle')}</p>
     </div>
@@ -101,7 +101,7 @@ try {
     {articles.length > 0 && (
       <div class="text-center">
         <a 
-          href="/blog"
+          href={localizeHref('/blog', lang)}
           class="bg-primary px-8 py-3 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-200 shadow-lg inline-flex items-center"
         >
           {t('blog.view_all')}

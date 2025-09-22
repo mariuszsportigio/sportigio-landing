@@ -5,27 +5,41 @@ import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
 import Hero from "../components/Hero.astro";
 import TicketsHowItWorks from "../components/TicketsHowItWorks.astro";
-import { defaultLanguage, type Language } from "../i18n";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 interface Props {
   lang?: Language;
 }
 const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const pageCopy = (translations?.pages?.tickets ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.tickets ?? {}) as any;
+
+const metaTitle =
+  pageCopy.meta?.title ??
+  fallbackPageCopy.meta?.title ??
+  "Sportigio - Bilety online";
+
+const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
 ---
 
-<Layout title="Sportigio – Bilety online">
+<Layout title={metaTitle}>
   <Navbar lang={lang} activePage="bilety-online" />
   <div aria-hidden="true" class="h-16"></div>
 
   <main class="bg-white min-h-screen">
     <Hero
       lang={lang}
-      title="Sprzedawaj bilety online"
-      titleHighlight=""
+      title={heroCopy.title ?? "Sprzedawaj bilety online"}
+      titleHighlight={heroCopy.highlight ?? ""}
+      subtitle={heroCopy.subtitle ?? ""}
       imageSrc="/screens/tickets-preview-mobile.avif"
-      imageAlt="Sportigio - Bilety online"
+      imageAlt={heroCopy.imageAlt ?? "Sportigio - Bilety online"}
       imageSize="small"
-      subtitle=""
       showBadge={false}
       showCTA={false}
       showSocialProof={false}
@@ -33,9 +47,9 @@ const { lang = defaultLanguage } = Astro.props as Props;
       heightMode="short"
     />
 
-    <TicketsHowItWorks />
+    <TicketsHowItWorks lang={lang} />
 
-    <CTASection />
+    <CTASection lang={lang} />
   </main>
 
   <Footer lang={lang} />

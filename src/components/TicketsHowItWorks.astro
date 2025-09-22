@@ -1,219 +1,198 @@
 ---
 import SectionHeader from "./SectionHeader.astro";
 import MasterCard from "./MasterCard.astro";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
+
+type StepCopy = {
+    step?: string;
+    title?: string;
+    price?: string;
+    descriptions?: string[];
+    listItems?: string[];
+    formalitiesTitle?: string;
+    formalities?: string[];
+};
 
 export interface Props {
     id?: string;
     className?: string;
+    lang?: Language;
 }
 
-const { id, className = "" } = Astro.props as Props;
+const { id, className = "", lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+    lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const sectionCopy = (translations?.pages?.tickets?.how ?? {}) as { title?: string; steps?: StepCopy[] };
+const fallbackSectionCopy = (fallbackTranslations?.pages?.tickets?.how ?? {}) as {
+    title?: string;
+    steps?: StepCopy[];
+};
+
+const defaultSteps: StepCopy[] = fallbackSectionCopy.steps ?? [
+    {
+        step: "I",
+        title: "Wdrożenie systemu biletów",
+        price: "0 zł",
+        descriptions: [
+            "Wdrożenie systemu sprzedaży online w barwach i logo klubu.",
+            "Możliwość wyceny personalizacji w razie zapotrzebowania na niestandardową sprzedaż.",
+        ],
+        formalitiesTitle: "Formalności:",
+        formalities: [
+            "Podpisujemy przez potwierdzenie mailowe prostą umowę na powierzenie sprzedaży biletów.",
+        ],
+    },
+    {
+        step: "II",
+        title: "Pierwsza sprzedaż",
+        descriptions: [
+            "Konfiguracja i opublikowanie sprzedaży zajmuje max. 1h.",
+            "Bilety są sprzedawane w cenach brutto, z wliczonym 8% podatkiem VAT, zgodnie z polskim prawem.",
+        ],
+        formalitiesTitle: "Formalności:",
+        formalities: ["Sportigio obsługuje sprzedaż oraz obsługę klienta jako sprzedawca."],
+    },
+    {
+        step: "III",
+        title: "Rozliczenia i płatności",
+        price: "7% prowizji od sprzedaży",
+        descriptions: ["Na koniec miesiąca wysyłamy rozliczenie:"],
+        listItems: [
+            "Suma ze sprzedanych biletów",
+            "Prowizja ze sprzedaży",
+            "Inne koszty jeżeli wystąpią",
+        ],
+        formalitiesTitle: "Formalności:",
+        formalities: [
+            "Klub wystawia FAKTURĘ VAT za sprzedaż biletów online (8% VAT) i otrzymuje płatność w ciągu 72h.",
+        ],
+    },
+];
+
+const resolvedTitle =
+    sectionCopy.title ?? fallbackSectionCopy.title ?? "BILETY ONLINE - jak to działa i ile kosztuje?";
+
+const rawSteps = Array.isArray(sectionCopy.steps) && sectionCopy.steps.length > 0
+    ? sectionCopy.steps
+    : defaultSteps;
+
+const fallbackSteps = Array.isArray(fallbackSectionCopy.steps)
+    ? fallbackSectionCopy.steps
+    : defaultSteps;
+
+const normalizedSteps = rawSteps.map((step, index) => {
+    const fallbackStep = fallbackSteps[index] ?? {};
+    return {
+        step: step.step ?? fallbackStep.step ?? String(index + 1),
+        title: step.title ?? fallbackStep.title ?? "",
+        price: step.price ?? fallbackStep.price,
+        descriptions: Array.isArray(step.descriptions) && step.descriptions.length > 0
+            ? step.descriptions
+            : fallbackStep.descriptions ?? [],
+        listItems: Array.isArray(step.listItems) && step.listItems.length > 0
+            ? step.listItems
+            : fallbackStep.listItems ?? [],
+        formalitiesTitle: step.formalitiesTitle ?? fallbackStep.formalitiesTitle,
+        formalities: Array.isArray(step.formalities) && step.formalities.length > 0
+            ? step.formalities
+            : fallbackStep.formalities ?? [],
+    };
+});
+
+const stepLabels = ["I", "II", "III", "IV", "V"];
 ---
 
 <section id={id} class={`py-12 bg-white ${className}`}>
     <div class="max-w-6xl mx-auto px-4">
-        <SectionHeader
-            title="BILETY ONLINE — jak to działa i ile kosztuje?"
-            centered={true}
-        />
+        <SectionHeader title={resolvedTitle} centered={true} />
 
         <div class="mt-6 flex flex-col items-center">
-            <MasterCard
-                variant="feature"
-                border="gradient"
-                padding="md"
-                shadow="lg"
-                hover="lift"
-                animation="slideUp"
-                size="xl"
-                className="w-full sm:max-w-2xl lg:max-w-3xl"
-            >
-                <div class="flex items-start gap-4">
-                    <div
-                        class="flex-shrink-0 h-10 w-10 rounded-full bg-[#0B2360]/10 text-[#0B2360] font-bold flex items-center justify-center"
+            {normalizedSteps.map((step, index) => (
+                <div class="w-full flex flex-col items-center">
+                    <MasterCard
+                        variant="feature"
+                        border="gradient"
+                        padding="md"
+                        shadow="lg"
+                        hover="lift"
+                        animation="slideUp"
+                        size="xl"
+                        className="w-full sm:max-w-2xl lg:max-w-3xl"
                     >
-                        I
-                    </div>
-                    <div class="flex-1">
-                        <div
-                            class="flex items-center justify-between gap-4 flex-wrap"
-                        >
-                            <h3 class="text-xl font-extrabold text-gray-900">
-                                Wdrożenie systemu biletów
-                            </h3>
-                            <div class="text-2xl font-black text-[#0B2360]">
-                                0 zł
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="flex-shrink-0 h-10 w-10 rounded-full bg-[#0B2360]/10 text-[#0B2360] font-bold flex items-center justify-center"
+                            >
+                                {step.step ?? stepLabels[index] ?? String(index + 1)}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between gap-4 flex-wrap">
+                                    <h3 class="text-xl font-extrabold text-gray-900">
+                                        {step.title}
+                                    </h3>
+                                    {step.price && (
+                                        <div class="text-2xl font-black text-[#0B2360]">
+                                            {step.price}
+                                        </div>
+                                    )}
+                                </div>
+                                {step.descriptions?.map((paragraph) => (
+                                    <p class="mt-1 text-gray-700">{paragraph}</p>
+                                ))}
+
+                                {step.listItems?.length ? (
+                                    <ul class="mt-2 space-y-1">
+                                        {step.listItems.map((item) => (
+                                            <li class="flex items-start gap-2 text-gray-700">
+                                                <span class="material-symbols-rounded text-emerald-600 text-base mt-0.5">add</span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : null}
+
+                                {step.formalitiesTitle && (
+                                    <p class="mt-3 text-gray-900 font-semibold">
+                                        {step.formalitiesTitle}
+                                    </p>
+                                )}
+                                {step.formalities?.map((formal) => (
+                                    <p class="mt-1 text-gray-700">{formal}</p>
+                                ))}
                             </div>
                         </div>
-                        <p class="mt-1 text-gray-700">
-                            Wdrożenie systemu sprzedaży online w barwach i logo
-                            klubu.
-                        </p>
-                        <p class="mt-1 text-gray-700">
-                            Możliwość wyceny personalizacji w razie
-                            zapotrzebowania na niestandardową sprzedaż.
-                        </p>
+                    </MasterCard>
 
-                        <p class="mt-3 text-gray-900 font-semibold">
-                            Formalności:
-                        </p>
-                        <p class="mt-1 text-gray-700">
-                            Podpisujemy przez potwierdzenie mailowe prostą umowę
-                            na powierzenie sprzedaży biletów.
-                        </p>
-                    </div>
-                </div>
-            </MasterCard>
-
-            <div class="relative h-20 my-3 flex items-center justify-center">
-                <svg
-                    class="h-full w-4 text-[#0B2360]"
-                    viewBox="0 0 16 80"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M8 0 L8 64"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"></path>
-                    <path
-                        d="M3 59 L8 64 L13 59"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        fill="none"></path>
-                </svg>
-            </div>
-
-            <MasterCard
-                variant="feature"
-                border="gradient"
-                padding="md"
-                shadow="lg"
-                hover="lift"
-                animation="slideUp"
-                size="xl"
-                className="w-full sm:max-w-2xl lg:max-w-3xl"
-            >
-                <div class="flex items-start gap-4">
-                    <div
-                        class="flex-shrink-0 h-10 w-10 rounded-full bg-[#0B2360]/10 text-[#0B2360] font-bold flex items-center justify-center"
-                    >
-                        II
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-extrabold text-gray-900">
-                            Pierwsza sprzedaż
-                        </h3>
-                        <p class="mt-1 text-gray-700">
-                            Konfiguracja i opublikowanie sprzedaży zajmuje max.
-                            1h.
-                        </p>
-                        <p class="mt-1 text-gray-700">
-                            Bilety są sprzedawane w cenach brutto, z wliczonym
-                            8% podatkiem VAT, zgodnie z polskim prawem.
-                        </p>
-
-                        <p class="mt-3 text-gray-900 font-semibold">
-                            Formalności:
-                        </p>
-                        <p class="mt-1 text-gray-700">
-                            Sportigio obsługuje sprzedaż oraz obsługę klienta
-                            jako sprzedawca.
-                        </p>
-                    </div>
-                </div>
-            </MasterCard>
-
-            <div class="relative h-20 my-3 flex items-center justify-center">
-                <svg
-                    class="h-full w-4 text-[#0B2360]"
-                    viewBox="0 0 16 80"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M8 0 L8 64"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"></path>
-                    <path
-                        d="M3 59 L8 64 L13 59"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        fill="none"></path>
-                </svg>
-            </div>
-
-            <MasterCard
-                variant="feature"
-                border="gradient"
-                padding="md"
-                shadow="lg"
-                hover="lift"
-                animation="slideUp"
-                size="xl"
-                className="w-full sm:max-w-2xl lg:max-w-3xl"
-            >
-                <div class="flex items-start gap-4">
-                    <div
-                        class="flex-shrink-0 h-10 w-10 rounded-full bg-[#0B2360]/10 text-[#0B2360] font-bold flex items-center justify-center"
-                    >
-                        III
-                    </div>
-                    <div class="flex-1">
-                        <div
-                            class="flex items-center justify-between gap-4 flex-wrap"
-                        >
-                            <h3 class="text-xl font-extrabold text-gray-900">
-                                Rozliczenia i płatności
-                            </h3>
-                            <div class="text-xl font-black text-[#0B2360]">
-                                7% prowizji od sprzedaży
-                            </div>
+                    {index < normalizedSteps.length - 1 && (
+                        <div class="relative h-20 my-3 flex items-center justify-center">
+                            <svg
+                                class="h-full w-4 text-[#0B2360]"
+                                viewBox="0 0 16 80"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8 0 L8 64"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                ></path>
+                                <path
+                                    d="M3 59 L8 64 L13 59"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    fill="none"
+                                ></path>
+                            </svg>
                         </div>
-
-                        <p class="mt-1 text-gray-700">
-                            Na koniec miesiąca wysyłamy rozliczenie:
-                        </p>
-                        <ul class="mt-2 space-y-1">
-                            <li class="flex items-start gap-2 text-gray-700">
-                                <span
-                                    class="material-symbols-rounded text-emerald-600 text-base mt-0.5"
-                                    >add</span
-                                >
-                                <span>Suma ze sprzedanych biletów</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-gray-700">
-                                <span
-                                    class="material-symbols-rounded text-rose-600 text-base mt-0.5"
-                                    >remove</span
-                                >
-                                <span>Prowizja ze sprzedaży</span>
-                            </li>
-                            <li class="flex items-start gap-2 text-gray-700">
-                                <span
-                                    class="material-symbols-rounded text-rose-600 text-base mt-0.5"
-                                    >remove</span
-                                >
-                                <span>Inne koszty jeśli wystąpią</span>
-                            </li>
-                        </ul>
-
-                        <p class="mt-3 text-gray-900 font-semibold">
-                            Formalności:
-                        </p>
-                        <p class="mt-1 text-gray-700">
-                            Klub wystawia FAKTURĘ VAT za sprzedaż biletów online
-                            (8% VAT) i otrzymuje płatność w ciągu 72h.
-                        </p>
-                    </div>
+                    )}
                 </div>
-            </MasterCard>
+            ))}
         </div>
     </div>
 </section>

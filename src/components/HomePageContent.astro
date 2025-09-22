@@ -14,6 +14,7 @@ import {
   createTranslator,
   defaultLanguage,
   getTranslations,
+  localizeHref,
   type Language,
 } from "../i18n";
 
@@ -191,7 +192,7 @@ const trustedTagline =
               section?.cta?.text ??
               (lang === defaultLanguage ? "Zobacz więcej" : "See more")
             }
-            ctaHref={section?.cta?.href ?? "#"}
+            ctaHref={localizeHref(section?.cta?.href ?? "#", lang)}
           >
             {Array.isArray(section?.bullets) && section.bullets.length > 0 ? (
               <ul class="space-y-4">
@@ -239,7 +240,7 @@ const trustedTagline =
                 iconImageSrc={option?.iconImage ?? option?.iconImageSrc}
                 ctaVariant={option?.cta?.variant ?? "button"}
                 ctaText={option?.cta?.text ?? t("common.learn_more")}
-                ctaHref={option?.cta?.href ?? "#"}
+                ctaHref={localizeHref(option?.cta?.href ?? "#", lang)}
                 ctaAlignment="center"
                 alignment="left"
               />

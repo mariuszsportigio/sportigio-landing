@@ -409,7 +409,14 @@
     "back_to_blog": "Powrót do bloga",
     "related_articles": "Powiązane artykuły",
     "published_on": "Opublikowano",
-    "share_article": "Udostępnij artykuł"
+    "share_article": "Udostępnij artykuł",
+    "error_title": "Błąd ładowania",
+    "error_description": "Nie udało się pobrać artykułów",
+    "error_retry": "Spróbuj ponownie",
+    "empty_title": "Brak artykułów",
+    "empty_cta": "Powrót do strony głównej",
+    "pagination_prev": "Poprzednia",
+    "pagination_next": "Następna"
   },
   "pricing": {
     "title": "Wybierz idealny pakiet dla swojego klubu",
@@ -987,6 +994,373 @@
         "Anuluj w każdym momencie",
         "Setup w 5 minut"
       ]
+    }
+  },
+  "pages": {
+    "website": {
+      "meta": {
+        "title": "Sportigio - Strona"
+      },
+      "hero": {
+        "title": "Profesjonalna strona internetowa klubu",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Strona internetowa klubu"
+      },
+      "examples": {
+        "title": "Przykłady realizacji",
+        "subtitle": "Wybrane wdrożenia w klubach sportowych",
+        "button": "Odwiedź stronę",
+        "items": {
+          "wisla": {
+            "imageAlt": "Wisła Kraków - podgląd strony mobilnej"
+          },
+          "legia": {
+            "imageAlt": "Legia - podgląd strony mobilnej"
+          },
+          "mks": {
+            "imageAlt": "MKS Będzin - podgląd strony mobilnej"
+          },
+          "panthers": {
+            "imageAlt": "Panthers Wrocław - podgląd strony mobilnej"
+          }
+        }
+      },
+      "pricing": {
+        "setup": {
+          "badge": "Cennik (1/2)",
+          "title": "Uruchomienie strony WWW",
+          "subtitle": "Jednorazowa opłata za start - trzy opcje dopasowane do Twoich potrzeb",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Utrzymanie hostingu"
+            },
+            {
+              "icon": "verified_user",
+              "label": "Certyfikat SSL"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Wsparcie techniczne"
+            }
+          ],
+          "plans": [
+            {
+              "name": "Standardowe",
+              "price": "599 zł",
+              "priceNote": "netto",
+              "description": "Podstawowa konfiguracja i wsparcie dla klubu, który chce ruszyć samodzielnie",
+              "features": [
+                "1h szkolenia z obsługi lub konsultacji",
+                "Migracja artykułów ze starej strony*",
+                "Wsparcie mailowe i przez czat",
+                "Pomoc w podpięciu domeny i starcie"
+              ],
+              "extras": [
+                "Działasz samodzielnie na swoim demo",
+                "Konsultujemy przebieg prac i wspieramy Cię technicznie"
+              ]
+            },
+            {
+              "name": "Komfortowe",
+              "price": "2 100 zł",
+              "priceNote": "netto",
+              "description": "Dla klubów, które chcą mieć wszystko przygotowane i ruszyć bez stresu",
+              "highlight": true,
+              "badge": "Najczęściej wybierane",
+              "features": [
+                "2h szkolenia z obsługi lub konsultacji",
+                "Migracja artykułów ze starej strony",
+                "Wsparcie przez WhatsApp (7 dni)",
+                "3h prac nad uzupełnieniem treści"
+              ],
+              "extras": [
+                "Przesyłasz nam materiały lub linki",
+                "Otrzymujesz stronę gotową do startu"
+              ]
+            },
+            {
+              "name": "Dedykowane",
+              "price": "Indywidualnie",
+              "description": "Dla większych projektów, wymagających więcej pracy lub migracji dużej ilości treści",
+              "featuresTitle": "Wszystko co w Komfortowym oraz:",
+              "features": [
+                "Migracja galerii zdjęć lub plików",
+                "Dodatkowe dostosowanie szablonu",
+                "Uzupełnianie treści ponad 3h pracy",
+                "Dedykowane szkolenia i instrukcje",
+                "Integracje z innymi narzędziami"
+              ],
+              "extras": [
+                "Wycena tych działań to zazwyczaj 5-7 tys. zł, maks. ~20 tys. zł przy dużym projekcie"
+              ]
+            }
+          ],
+          "footnote": "* Przenosimy newsy z WordPress lub podobnego systemu. W przypadku braku archiwum dodajemy 6 artykułów na start z dowolnego źródła."
+        },
+        "subscription": {
+          "badge": "Cennik (2/2)",
+          "title": "Abonament za utrzymanie",
+          "subtitle": "Miesięczne plany - zawsze zawiera: hosting, SSL, wsparcie i aktualizacje",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Utrzymanie hostingu"
+            },
+            {
+              "icon": "verified_user",
+              "label": "Certyfikat SSL"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Wsparcie techniczne"
+            },
+            {
+              "icon": "cloud_download",
+              "label": "Dostęp do aktualizacji"
+            }
+          ],
+          "plans": [
+            {
+              "name": "PRO",
+              "price": "199 zł",
+              "priceNote": "(2388 zł za rok)",
+              "description": "W sam raz, by mieć pełnoprawną, funkcjonalną stronę klubową",
+              "features": [
+                "Własna domena i brak reklam",
+                "Zarządzanie drabinką sponsorską",
+                "Edytor strony głównej (blokowy)",
+                "Zarządzanie menu w panelu"
+              ],
+              "extras": [
+                "100 zdjęć w 1 galerii zdjęć",
+                "1 GB przestrzeni na pliki",
+                "20 podstron",
+                "180 dni analityki strony"
+              ]
+            },
+            {
+              "name": "PRO+",
+              "price": "290 zł",
+              "priceNote": "(3488 zł za rok)",
+              "description": "Większa personalizacja i limity dla profesjonalnej i komfortowej strony",
+              "highlight": true,
+              "badge": "Rekomendowane",
+              "featuresTitle": "Wszystko co w PRO oraz:",
+              "features": [
+                "Większa personalizacja, dzięki własnej wersji CSS i JS (do 5 elementów)",
+                "1h dedykowanego wsparcia na start"
+              ],
+              "extras": [
+                "120 zdjęć w 1 galerii zdjęć",
+                "3 GB przestrzeni na pliki",
+                "30 podstron",
+                "365 dni analityki strony"
+              ]
+            },
+            {
+              "name": "CHAMPION",
+              "price": "499 zł",
+              "priceNote": "(5988 zł za rok)",
+              "description": "Jeśli Twoja strona to centrum komunikacji klubu - pakiet idealny",
+              "featuresTitle": "Wszystko co w PRO+ oraz:",
+              "features": [
+                "Pełna personalizacja (CSS + JS)",
+                "Zarabianie na SEO (artykuły sponsorów)",
+                "Wsparcie przez WhatsApp"
+              ],
+              "extras": [
+                "150 zdjęć w 1 galerii zdjęć",
+                "5 GB przestrzeni na pliki",
+                "50 podstron",
+                "2 lata analityki strony"
+              ]
+            }
+          ],
+          "footnote": "Ceny netto - podane przy płatności z góry za rok lub co miesiąc przy podpięciu auto-płatności kartą."
+        }
+      },
+      "faq": {
+        "title": "FAQ: Strona WWW",
+        "subtitle": "Najważniejsze pytania i odpowiedzi przy tworzeniu strony ze Sportigio",
+        "items": [
+          {
+            "question": "Ile to kosztuje?",
+            "answer": "Start od 599 zł jednorazowo + abonament od 199 zł/mies. Podpowiemy, który wariant będzie najlepszy dla Twojego klubu."
+          },
+          {
+            "question": "Jak szybko ruszymy?",
+            "answer": "Zwykle w kilka dni. Możesz działać samodzielnie albo zlecić przygotowanie startu nam."
+          },
+          {
+            "question": "Czy sam ogarnę edycję strony?",
+            "answer": "Tak. Panel jest prosty - dodasz newsy, zdjęcia, sponsorów i menu bez technikaliów."
+          },
+          {
+            "question": "Czy przeniesiecie treści ze starej strony?",
+            "answer": "Tak - możemy przenieść newsy; gdy nie ma archiwum, dodamy kilka wpisów na start."
+          }
+        ]
+      }
+    },
+    "tickets": {
+      "meta": {
+        "title": "Sportigio - Bilety online"
+      },
+      "hero": {
+        "title": "Sprzedawaj bilety online",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Bilety online"
+      },
+      "how": {
+        "title": "BILETY ONLINE - jak to działa i ile kosztuje?",
+        "steps": [
+          {
+            "step": "I",
+            "title": "Wdrożenie systemu biletów",
+            "price": "0 zł",
+            "descriptions": [
+              "Wdrożenie systemu sprzedaży online w barwach i logo klubu.",
+              "Możliwość wyceny personalizacji w razie zapotrzebowania na niestandardową sprzedaż."
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Podpisujemy przez potwierdzenie mailowe prostą umowę na powierzenie sprzedaży biletów."
+            ]
+          },
+          {
+            "step": "II",
+            "title": "Pierwsza sprzedaż",
+            "descriptions": [
+              "Konfiguracja i opublikowanie sprzedaży zajmuje max. 1h.",
+              "Bilety są sprzedawane w cenach brutto, z wliczonym 8% podatkiem VAT, zgodnie z polskim prawem."
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Sportigio obsługuje sprzedaż oraz obsługę klienta jako sprzedawca."
+            ]
+          },
+          {
+            "step": "III",
+            "title": "Rozliczenia i płatności",
+            "price": "7% prowizji od sprzedaży",
+            "descriptions": [
+              "Na koniec miesiąca wysyłamy rozliczenie:"
+            ],
+            "listItems": [
+              "Suma ze sprzedanych biletów",
+              "Prowizja ze sprzedaży",
+              "Inne koszty jeżeli wystąpią"
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Klub wystawia FAKTURĘ VAT za sprzedaż biletów online (8% VAT) i otrzymuje płatność w ciągu 72h."
+            ]
+          }
+        ]
+      }
+    },
+    "shopSportigio": {
+      "meta": {
+        "title": "Sportigio - Sklep Sportigio"
+      },
+      "heading": "Sklep Sportigio"
+    },
+    "shopOwn": {
+      "meta": {
+        "title": "Sportigio - Sklep własny"
+      },
+      "hero": {
+        "title": "Prowadź własny sklep internetowy klubu.",
+        "subtitle": "Pełna kontrola",
+        "imageAlt": "Podgląd sklepu (mobile)"
+      },
+      "examples": {
+        "title": "Przykładowe sklepy klubowe",
+        "subtitle": "Wybrane wdrożenia sklepów internetowych",
+        "button": "Otwórz sklep",
+        "items": {
+          "legia": {
+            "imageAlt": "Legia Koszykówka - podgląd sklepu (mobile)"
+          },
+          "trefl": {
+            "imageAlt": "Trefl Sopot - podgląd sklepu (mobile)"
+          }
+        }
+      }
+    },
+    "pricing": {
+      "meta": {
+        "title": "Cennik - Sportigio | Wybierz idealny pakiet dla swojego klubu"
+      },
+      "hero": {
+        "title": "Wybierz idealny pakiet dla swojego klubu",
+        "subtitle": "Proste, przejrzyste ceny. Bez ukrytych kosztów. Zmień pakiet w każdej chwili.",
+        "currencyLabel": "Waluta:",
+        "monthlyLabel": "Miesięcznie",
+        "yearlyLabel": "Rocznie",
+        "saveBadge": "Oszczędź do 20%"
+      },
+      "addons": {
+        "badge": "Dodatek",
+        "title": "Rozszerz możliwości Sportigio",
+        "subtitle": "Dodaj wyspecjalizowane moduły, aby przygotować idealne rozwiązanie dla Twojego klubu.",
+        "cardBadge": "Dodatek",
+        "cardDetails": "Szczegóły",
+        "cards": [
+          {
+            "id": "website",
+            "title": "Strona WWW",
+            "description": "Profesjonalna witryna klubowa dopasowana do identyfikacji Twojego klubu.",
+            "features": [
+              "Indywidualny projekt i konfiguracja",
+              "Integracja z CMS Sportigio",
+              "Hosting, bezpieczeństwo i wsparcie"
+            ],
+            "cta": "Przejdź do cennika",
+            "href": "/strona#setup-pricing"
+          }
+        ],
+        "defaultCta": "Przejdź do cennika"
+      },
+      "premium": {
+        "title": "Pakiet Dedykowany Premium",
+        "subtitle": "Rozwiązanie szyte na miarę",
+        "description": "Idealne rozwiązanie dla profesjonalnych klubów i organizacji sportowych, potrzebujących dedykowanego wsparcia, integracji oraz pełnej personalizacji platformy Sportigio.",
+        "highlights": [
+          "Nieograniczone wszystko",
+          "Dedykowane serwery",
+          "Pełna personalizacja",
+          "24/7 wsparcie techniczne",
+          "Integracje na zamówienie",
+          "Wdrożenie on-premise",
+          "Szkolenia zespołu",
+          "Gwarancja SLA"
+        ],
+        "buttons": {
+          "quote": "Skontaktuj się po indywidualną wycenę",
+          "demo": "Umów prezentację"
+        },
+        "priceLabel": "Indywidualna",
+        "priceSubLabel": "Wycena",
+        "receiveTitle": "Co otrzymasz:",
+        "receiveItems": [
+          "Rabaty za większe wolumeny",
+          "Elastyczne warunki płatności",
+          "Dedykowany opiekun klienta",
+          "Priorytetowe wsparcie"
+        ]
+      },
+      "faq": {
+        "title": "Masz pytania?",
+        "subtitle": "Jesteśmy tutaj, aby pomóc Twojemu klubowi rozwijać się online.",
+        "buttons": {
+          "questions": "Często zadawane pytania",
+          "contact": "Skontaktuj się z nami"
+        }
+      }
     }
   }
 }

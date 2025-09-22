@@ -4,13 +4,17 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { fetchArticle, fetchArticles, formatDate, type BlogPost } from '../../utils/api';
-import { createTranslator, type Language } from '../../i18n';
+import { createTranslator, defaultLanguage, type Language, localizeHref } from '../../i18n';
 
 // Get the article ID from the URL
 const { id } = Astro.params;
 
-// Get language from URL params (default to Polish)
-const lang: Language = 'pl';
+interface Props {
+  lang?: Language;
+}
+
+// Get language from props (default to Polish)
+const { lang = defaultLanguage } = Astro.props as Props;
 
 // Create translator function
 const t = createTranslator(lang);
@@ -65,7 +69,7 @@ export async function getStaticPaths() {
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <Navbar activePage="blog" />
+  <Navbar lang={lang} activePage="blog" />
   
   <main>
     {error || !article ? (
@@ -84,13 +88,13 @@ export async function getStaticPaths() {
             <p class="text-gray-600 mb-6">{error}</p>
             <div class="space-y-3">
               <a 
-                href="/blog"
+                href={localizeHref('/blog', lang)}
                 class="block w-full px-6 py-3 bg-[#0B2360] text-white rounded-lg hover:bg-[#0a1f56] transition-colors"
               >
                 {t('blog.back_to_blog')}
               </a>
               <a 
-                href="/"
+                href={localizeHref('/', lang)}
                 class="block w-full px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 Strona główna
@@ -120,11 +124,11 @@ export async function getStaticPaths() {
               <nav class="mb-8">
                 <ol class="flex items-center space-x-2 text-sm">
                   <li>
-                    <a href="/" class="text-gray-500 hover:text-[#0B2360] transition-colors">Sportigio</a>
+                    <a href={localizeHref('/', lang)} class="text-gray-500 hover:text-[#0B2360] transition-colors">Sportigio</a>
                   </li>
                   <li class="text-gray-400">/</li>
                   <li>
-                    <a href="/blog" class="text-gray-500 hover:text-[#0B2360] transition-colors">{t('blog.title')}</a>
+                    <a href={localizeHref('/blog', lang)} class="text-gray-500 hover:text-[#0B2360] transition-colors">{t('blog.title')}</a>
                   </li>
                   <li class="text-gray-400">/</li>
                   <li class="text-gray-700 font-medium">Artykuł</li>
@@ -220,7 +224,7 @@ export async function getStaticPaths() {
               <!-- Back to Blog -->
               <div class="mt-8">
                 <a 
-                  href="/blog"
+                  href={localizeHref('/blog', lang)}
                   class="inline-flex items-center text-[#0B2360] hover:text-[#0a1f56] font-medium transition-colors group"
                 >
                   <svg class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

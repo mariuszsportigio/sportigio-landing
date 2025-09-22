@@ -409,7 +409,14 @@
     "back_to_blog": "Back to blog",
     "related_articles": "Related articles",
     "published_on": "Published on",
-    "share_article": "Share article"
+    "share_article": "Share article",
+    "error_title": "Loading error",
+    "error_description": "We couldn't load the articles.",
+    "error_retry": "Try again",
+    "empty_title": "No articles",
+    "empty_cta": "Back to homepage",
+    "pagination_prev": "Previous",
+    "pagination_next": "Next"
   },
   "pricing": {
     "title": "Choose the perfect package for your club",
@@ -420,7 +427,15 @@
     "save_badge": "Save up to 20%",
     "faq_title": "Have questions?",
     "faq_subtitle": "We're here to help your club grow online.",
-    "faq_button": "Frequently asked questions"
+    "faq_button": "Frequently asked questions",
+    "need_more": "Need more?",
+    "premium_package": "Premium Dedicated Package",
+    "premium_description": "the perfect solution for professional clubs that need full personalisation, dedicated support and advanced integrations.",
+    "custom_pricing": "Custom",
+    "custom_pricing_sub": "Pricing",
+    "contact_for_quote": "Contact us for a quote",
+    "see_details": "See details below",
+    "detailed_comparison": "Detailed feature comparison"
   },
   "footer": {
     "company_blurb": "Next-generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.",
@@ -827,6 +842,373 @@
         "Cancel anytime",
         "Setup in 5 minutes"
       ]
+    }
+  },
+  "pages": {
+    "website": {
+      "meta": {
+        "title": "Sportigio - Club Website"
+      },
+      "hero": {
+        "title": "Professional club website",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Club website preview"
+      },
+      "examples": {
+        "title": "Implementation examples",
+        "subtitle": "Selected launches in sports clubs",
+        "button": "Visit website",
+        "items": {
+          "wisla": {
+            "imageAlt": "Wisła Kraków - mobile website preview"
+          },
+          "legia": {
+            "imageAlt": "Legia Basketball - mobile website preview"
+          },
+          "mks": {
+            "imageAlt": "MKS Będzin - mobile website preview"
+          },
+          "panthers": {
+            "imageAlt": "Panthers Wrocław - mobile website preview"
+          }
+        }
+      },
+      "pricing": {
+        "setup": {
+          "badge": "Pricing (1/2)",
+          "title": "Website launch",
+          "subtitle": "One-time setup fee – three options tailored to your needs",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Hosting management"
+            },
+            {
+              "icon": "verified_user",
+              "label": "SSL certificate"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Technical support"
+            }
+          ],
+          "plans": [
+            {
+              "name": "Standard",
+              "price": "PLN 599",
+              "priceNote": "net",
+              "description": "Basic configuration and support for clubs that want to launch on their own",
+              "features": [
+                "1h training or consultation",
+                "Migration of articles from the old website*",
+                "Email and chat support",
+                "Help connecting the domain and launching"
+              ],
+              "extras": [
+                "You work independently on your demo site",
+                "We consult on progress and support you technically"
+              ]
+            },
+            {
+              "name": "Comfort",
+              "price": "PLN 2 100",
+              "priceNote": "net",
+              "description": "For clubs that want everything prepared and to launch without stress",
+              "highlight": true,
+              "badge": "Most chosen",
+              "features": [
+                "2h training or consultations",
+                "Migration of articles from the old website",
+                "WhatsApp support (7 days)",
+                "3h of content population work"
+              ],
+              "extras": [
+                "You send us materials or links",
+                "You receive a launch-ready website"
+              ]
+            },
+            {
+              "name": "Custom",
+              "price": "Custom",
+              "description": "For larger projects that require more work or migrating a lot of content",
+              "featuresTitle": "Everything in Comfort plus:",
+              "features": [
+                "Migration of galleries or files",
+                "Additional template customisations",
+                "Content population beyond 3h",
+                "Dedicated training and documentation",
+                "Integrations with other tools"
+              ],
+              "extras": [
+                "Typically priced at PLN 5-7k, up to ~PLN 20k for large projects"
+              ]
+            }
+          ],
+          "footnote": "* We migrate news from WordPress or similar systems. If you don't have an archive, we add 6 starter articles from any source."
+        },
+        "subscription": {
+          "badge": "Pricing (2/2)",
+          "title": "Maintenance subscription",
+          "subtitle": "Monthly plans – always includes: hosting, SSL, support and updates",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Hosting management"
+            },
+            {
+              "icon": "verified_user",
+              "label": "SSL certificate"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Technical support"
+            },
+            {
+              "icon": "cloud_download",
+              "label": "Access to updates"
+            }
+          ],
+          "plans": [
+            {
+              "name": "PRO",
+              "price": "PLN 199",
+              "priceNote": "(PLN 2 388 per year)",
+              "description": "Perfect for a fully functional club website",
+              "features": [
+                "Own domain and no ads",
+                "Sponsor ladder management",
+                "Block-based homepage editor",
+                "Manage navigation in the admin panel"
+              ],
+              "extras": [
+                "100 photos in 1 gallery",
+                "1 GB file storage",
+                "20 subpages",
+                "180 days of website analytics"
+              ]
+            },
+            {
+              "name": "PRO+",
+              "price": "PLN 290",
+              "priceNote": "(PLN 3 488 per year)",
+              "description": "More personalisation and limits for a professional, comfortable website",
+              "highlight": true,
+              "badge": "Recommended",
+              "featuresTitle": "Everything in PRO plus:",
+              "features": [
+                "More customisation with custom CSS & JS (up to 5 elements)",
+                "1h dedicated onboarding support"
+              ],
+              "extras": [
+                "120 photos in 1 gallery",
+                "3 GB file storage",
+                "30 subpages",
+                "365 days of website analytics"
+              ]
+            },
+            {
+              "name": "CHAMPION",
+              "price": "PLN 499",
+              "priceNote": "(PLN 5 988 per year)",
+              "description": "Ideal if your site is the communication hub of the club",
+              "featuresTitle": "Everything in PRO+ plus:",
+              "features": [
+                "Full customisation (CSS + JS)",
+                "Monetise SEO (sponsor articles)",
+                "Support via WhatsApp"
+              ],
+              "extras": [
+                "150 photos in 1 gallery",
+                "5 GB file storage",
+                "50 subpages",
+                "2 years of website analytics"
+              ]
+            }
+          ],
+          "footnote": "Net prices – available when paying yearly upfront or monthly with card autopay."
+        }
+      },
+      "faq": {
+        "title": "FAQ: Website",
+        "subtitle": "Key questions and answers when launching a website with Sportigio",
+        "items": [
+          {
+            "question": "How much does it cost?",
+            "answer": "From PLN 599 one-off + subscription from PLN 199/month. We'll advise which option fits your club best."
+          },
+          {
+            "question": "How fast can we launch?",
+            "answer": "Usually within a few days. You can do it yourself or have us prepare everything."
+          },
+          {
+            "question": "Will I manage editing on my own?",
+            "answer": "Yes. The admin panel is simple – publish news, photos, sponsors and menus without technical hassle."
+          },
+          {
+            "question": "Will you migrate content from the old site?",
+            "answer": "Yes – we can migrate news; if there's no archive we add a few starter posts."
+          }
+        ]
+      }
+    },
+    "tickets": {
+      "meta": {
+        "title": "Sportigio - Online Tickets"
+      },
+      "hero": {
+        "title": "Sell tickets online",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Online tickets"
+      },
+      "how": {
+        "title": "ONLINE TICKETS – how it works and how much it costs?",
+        "steps": [
+          {
+            "step": "I",
+            "title": "Ticketing system implementation",
+            "price": "PLN 0",
+            "descriptions": [
+              "We launch the online ticketing system in your club's colours and logo.",
+              "Custom flows or advanced sales can be priced individually."
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "We sign a simple ticketing agreement confirmed via email."
+            ]
+          },
+          {
+            "step": "II",
+            "title": "First sale",
+            "descriptions": [
+              "Configuring and publishing the first sale takes up to 1 hour.",
+              "Tickets are sold at gross prices with 8% VAT included, compliant with Polish law."
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "Sportigio handles sales and customer support as the merchant."
+            ]
+          },
+          {
+            "step": "III",
+            "title": "Settlements and payouts",
+            "price": "7% commission on sales",
+            "descriptions": [
+              "At the end of the month we send a settlement:"
+            ],
+            "listItems": [
+              "Total revenue from tickets sold",
+              "Commission on sales",
+              "Other costs if any"
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "The club issues a VAT invoice for online ticket sales (8% VAT) and receives payment within 72 hours."
+            ]
+          }
+        ]
+      }
+    },
+    "shopSportigio": {
+      "meta": {
+        "title": "Sportigio - Sportigio Store"
+      },
+      "heading": "Sportigio Store"
+    },
+    "shopOwn": {
+      "meta": {
+        "title": "Sportigio - Own Store"
+      },
+      "hero": {
+        "title": "Run your club's own online store.",
+        "subtitle": "Full control",
+        "imageAlt": "Store preview (mobile)"
+      },
+      "examples": {
+        "title": "Club store examples",
+        "subtitle": "Selected online store launches",
+        "button": "Open store",
+        "items": {
+          "legia": {
+            "imageAlt": "Legia Basketball - store mobile preview"
+          },
+          "trefl": {
+            "imageAlt": "Trefl Sopot - store mobile preview"
+          }
+        }
+      }
+    },
+    "pricing": {
+      "meta": {
+        "title": "Pricing - Sportigio | Choose the perfect package for your club"
+      },
+      "hero": {
+        "title": "Choose the perfect package for your club",
+        "subtitle": "Simple, transparent pricing. No hidden costs. Change package anytime.",
+        "currencyLabel": "Currency:",
+        "monthlyLabel": "Monthly",
+        "yearlyLabel": "Yearly",
+        "saveBadge": "Save up to 20%"
+      },
+      "addons": {
+        "badge": "Add-on",
+        "title": "Extend Sportigio's capabilities",
+        "subtitle": "Add specialised modules to build the perfect solution for your club.",
+        "cardBadge": "Add-on",
+        "cardDetails": "Details",
+        "cards": [
+          {
+            "id": "website",
+            "title": "Website",
+            "description": "Professional club website tailored to your branding.",
+            "features": [
+              "Custom design and configuration",
+              "Integration with Sportigio CMS",
+              "Hosting, security and support"
+            ],
+            "cta": "Go to pricing",
+            "href": "/strona#setup-pricing"
+          }
+        ],
+        "defaultCta": "Go to pricing"
+      },
+      "premium": {
+        "title": "Premium Dedicated Package",
+        "subtitle": "Tailor-made solution",
+        "description": "Perfect for professional clubs and sports organisations that need dedicated support, integrations and full customisation of the Sportigio platform.",
+        "highlights": [
+          "Unlimited everything",
+          "Dedicated servers",
+          "Full customisation",
+          "24/7 technical support",
+          "Custom integrations",
+          "On-premise deployment",
+          "Team training",
+          "SLA guarantee"
+        ],
+        "buttons": {
+          "quote": "Contact us for a custom quote",
+          "demo": "Book a demo"
+        },
+        "priceLabel": "Custom",
+        "priceSubLabel": "Pricing",
+        "receiveTitle": "What you get:",
+        "receiveItems": [
+          "Volume discounts",
+          "Flexible payment terms",
+          "Dedicated customer success manager",
+          "Priority support"
+        ]
+      },
+      "faq": {
+        "title": "Have questions?",
+        "subtitle": "We're here to help your club grow online.",
+        "buttons": {
+          "questions": "Frequently asked questions",
+          "contact": "Contact us"
+        }
+      }
     }
   }
 }
