@@ -1,0 +1,561 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import MasterButton from "./MasterButton.astro";
+import { createTranslator, defaultLanguage, type Language } from "../i18n";
+
+export interface Props {
+    id?: string;
+    className?: string;
+    lang?: Language;
+    ctaHref?: string;
+}
+
+const {
+    id,
+    className = "",
+    lang = defaultLanguage,
+    ctaHref = "/kontakt",
+} = Astro.props as Props;
+const t = createTranslator(lang);
+---
+
+<section id={id} class={`py-16 bg-white ${className}`}>
+    <div class="max-w-6xl mx-auto px-4">
+        <SectionHeader
+            title={t("shopSportigio.how.title")}
+            subtitle={t("shopSportigio.how.subtitle")}
+            centered={true}
+        />
+
+        {/* Desktop diagram */}
+        <div class="hidden md:block">
+            {/* Actors */}
+            <div class="grid grid-cols-12 gap-6 items-start">
+                {/* Klient - icon avatar */}
+                <div class="flex flex-col items-center text-center col-span-3">
+                    <div
+                        class="relative w-16 h-16 rounded-full border-2 border-[#0B2360]/20 bg-white overflow-hidden"
+                    >
+                        <div
+                            class="w-full h-full flex items-center justify-center bg-white"
+                        >
+                            <span
+                                class="material-symbols-rounded text-[#0B2360] text-2xl"
+                                >person</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-3 text-sm font-semibold text-gray-800">
+                        {t("shopSportigio.how.actors.customer")}
+                    </div>
+                </div>
+                {/* Sprzedawca - Sportigio logo */}
+                <div class="flex flex-col items-center text-center col-span-3">
+                    <div
+                        class="relative w-16 h-16 rounded-full border-2 border-[#0B2360] bg-white overflow-hidden p-1"
+                    >
+                        <img
+                            src="/sportigio-sygnet.png"
+                            alt="Sportigio"
+                            class="w-full h-full object-contain"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="mt-3 text-sm font-semibold text-gray-800">
+                        {t("shopSportigio.how.actors.seller")}
+                    </div>
+                </div>
+                {/* Producent - Snapwear logo */}
+                <div class="flex flex-col items-center text-center col-span-3">
+                    <div
+                        class="relative w-16 h-16 rounded-full border-2 border-[#0B2360]/20 bg-white overflow-hidden p-1"
+                    >
+                        <img
+                            src="/Snapwear.png"
+                            alt={t("shopSportigio.how.actors.producer")}
+                            class="w-full h-full object-contain"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="mt-3 text-sm font-semibold text-gray-800">
+                        {t("shopSportigio.how.actors.producer")}
+                    </div>
+                </div>
+                {/* Beneficjent - club icon avatar */}
+                <div class="flex flex-col items-center text-center col-span-3">
+                    <div
+                        class="relative w-16 h-16 rounded-full border-2 border-[#0B2360]/20 bg-white overflow-hidden"
+                    >
+                        <div
+                            class="w-full h-full flex items-center justify-center bg-white"
+                        >
+                            <span
+                                class="material-symbols-rounded text-[#0B2360] text-2xl"
+                                >stadium</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-3 text-sm font-semibold text-gray-800">
+                        {t("shopSportigio.how.actors.beneficiary")}
+                    </div>
+                </div>
+            </div>
+
+            {/* Order flow */}
+            <div class="mt-8">
+                <div
+                    class="text-xs font-bold uppercase tracking-wide text-gray-500"
+                >
+                    {t("shopSportigio.how.headings.order")}
+                </div>
+                <div class="mt-3 grid grid-cols-12 gap-y-10">
+                    {/* Klient → Sportigio */}
+                    <div
+                        class="relative col-start-1 col-end-7 h-8 flow-step flow-step--order-1"
+                        style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="ltr"
+                            style="--from:25%; --to:75%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="1"
+                            >
+                                {t("shopSportigio.how.actorShort.customer")} → {
+                                    t("shopSportigio.how.actorShort.seller")
+                                }: {t("shopSportigio.how.orderFlow.a_to_b")}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Shopify → Snapwear */}
+                    <div
+                        class="relative col-start-4 col-end-10 h-10 flow-step flow-step--order-2"
+                        style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="ltr"
+                            style="--from:25%; --to:75%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="2"
+                            >
+                                {t("shopSportigio.how.actorShort.shopify")} → {
+                                    t("shopSportigio.how.actorShort.producer")
+                                }: {t("shopSportigio.how.orderFlow.b_to_c")}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Snapwear → Klient (right to left) */}
+                    <div
+                        class="relative col-start-1 col-end-10 h-8 flow-step flow-step--order-3"
+                        style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="rtl"
+                            style="--from:83.3333%; --to:16.6667%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="3"
+                            >
+                                {t("shopSportigio.how.actorShort.producer")} → {
+                                    t("shopSportigio.how.actorShort.customer")
+                                }: {t("shopSportigio.how.orderFlow.c_to_a")}
+                            </div>
+                        </div>
+                        <div class="flow-note">
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            >
+                                {t("shopSportigio.how.orderFlow.c_to_a_chip")}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Finance flow */}
+            <div class="mt-8">
+                <div
+                    class="text-xs font-bold uppercase tracking-wide text-gray-500"
+                >
+                    {t("shopSportigio.how.headings.finance")}
+                </div>
+                <div class="mt-3 grid grid-cols-12 gap-y-10">
+                    {/* Sportigio → Klub */}
+                    <div
+                        class="relative col-start-4 col-end-13 h-10 flow-step flow-step--finance-1"
+                        style="--flow-color: #0B2360; --flow-border-color: rgba(11,35,96,0.18); --flow-shadow: rgba(11,35,96,0.28);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="ltr"
+                            style="--from:16.6667%; --to:83.3333%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="4"
+                            >
+                                {t("shopSportigio.how.actorShort.seller")} → {
+                                    t(
+                                        "shopSportigio.how.actorShort.beneficiary",
+                                    )
+                                }: {t("shopSportigio.how.financeFlow.step4")}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Klub → Sportigio (right to left) */}
+                    <div
+                        class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-2"
+                        style="--flow-color: #01DFEC; --flow-border-color: rgba(1,223,236,0.25); --flow-shadow: rgba(1,223,236,0.35);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="rtl"
+                            style="--from:83.3333%; --to:16.6667%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="5"
+                            >
+                                {t("shopSportigio.how.actorShort.beneficiary")} →
+                                {t("shopSportigio.how.actorShort.seller")}: {
+                                    t("shopSportigio.how.financeFlow.step5")
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Sportigio → Klub */}
+                    <div
+                        class="relative col-start-4 col-end-13 h-8 flow-step flow-step--finance-3"
+                        style="--flow-color: #EA36E1; --flow-border-color: rgba(234,54,225,0.25); --flow-shadow: rgba(234,54,225,0.35);"
+                    >
+                        <div
+                            class="flow-connector"
+                            data-direction="ltr"
+                            style="--from:16.6667%; --to:83.3333%;"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <div
+                            class="absolute left-1/2 -translate-x-1/2 -top-7 z-10"
+                        >
+                            <div
+                                class="flow-label bg-white border shadow-sm px-3 py-1 rounded-full text-[11px] font-semibold"
+                                data-flow-step="6"
+                            >
+                                {t("shopSportigio.how.actorShort.seller")} → {
+                                    t(
+                                        "shopSportigio.how.actorShort.beneficiary",
+                                    )
+                                }: {t("shopSportigio.how.financeFlow.step6")}
+                            </div>
+                        </div>
+                        <div class="flow-note">
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
+                            >
+                                {t("shopSportigio.how.financeFlow.step6_chip")}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <MasterButton
+                    variant="gradient"
+                    size="lg"
+                    href={ctaHref}
+                    magnetic={false}
+                    glow={false}
+                    className="btn-gradient-primary !transition-none hover:!transform-none"
+                >
+                    {t("shopSportigio.how.cta")}
+                </MasterButton>
+            </div>
+        </div>
+
+        {/* Mobile timeline */}
+        <div class="md:hidden">
+            <div class="relative">
+                <ol class="relative border-l-2 border-[#0B2360]/15 ml-3">
+                    <li class="mb-6 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            {t("shopSportigio.how.actors.customer")} → {
+                                t("shopSportigio.how.actors.seller")
+                            }
+                        </h3>
+                        <p class="text-sm text-gray-700 mt-1">
+                            {t("shopSportigio.how.orderFlow.a_to_b")}
+                        </p>
+                    </li>
+                    <li class="mb-6 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            Shopify → {t("shopSportigio.how.actors.producer")}
+                        </h3>
+                        <p class="text-sm text-gray-700 mt-1">
+                            {t("shopSportigio.how.orderFlow.b_to_c")}
+                        </p>
+                        <p class="text-xs text-gray-500">
+                            {t("shopSportigio.how.orderFlow.b_to_c_note")}
+                        </p>
+                    </li>
+                    <li class="mb-6 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            {t("shopSportigio.how.actors.producer")} → {
+                                t("shopSportigio.how.actors.customer")
+                            }
+                        </h3>
+                        <p
+                            class="text-sm text-gray-700 mt-1 flex items-center gap-2"
+                        >
+                            <span
+                                >{t("shopSportigio.how.orderFlow.c_to_a")}</span
+                            >
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                >{
+                                    t("shopSportigio.how.orderFlow.c_to_a_chip")
+                                }</span
+                            >
+                        </p>
+                    </li>
+                    <li class="mb-6 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            Sportigio → {
+                                t("shopSportigio.how.actors.beneficiary")
+                            }
+                        </h3>
+                        <p class="text-sm text-gray-700 mt-1">
+                            {t("shopSportigio.how.financeFlow.step4")}
+                        </p>
+                        <p class="text-xs text-gray-500">
+                            {t("shopSportigio.how.financeFlow.step4_note")}
+                        </p>
+                    </li>
+                    <li class="mb-6 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            {t("shopSportigio.how.actors.beneficiary")} → Sportigio
+                        </h3>
+                        <p class="text-sm text-gray-700 mt-1">
+                            {t("shopSportigio.how.financeFlow.step5")}
+                        </p>
+                    </li>
+                    <li class="mb-2 ml-4">
+                        <span
+                            class="absolute -left-1.5 mt-1.5 w-3 h-3 bg-[#0B2360] rounded-full border border-white"
+                        ></span>
+                        <h3 class="text-sm font-bold text-gray-900">
+                            Sportigio → {
+                                t("shopSportigio.how.actors.beneficiary")
+                            }
+                        </h3>
+                        <p
+                            class="text-sm text-gray-700 mt-1 flex items-center gap-2"
+                        >
+                            <span
+                                >{
+                                    t("shopSportigio.how.financeFlow.step6")
+                                }</span
+                            >
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                >{
+                                    t(
+                                        "shopSportigio.how.financeFlow.step6_chip",
+                                    )
+                                }</span
+                            >
+                        </p>
+                    </li>
+                </ol>
+
+                <div class="mt-8 text-center">
+                    <MasterButton
+                        variant="gradient"
+                        size="lg"
+                        href={ctaHref}
+                        magnetic={true}
+                        glow={true}
+                    >
+                        {t("shopSportigio.how.cta")}
+                    </MasterButton>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Aligns desktop connectors to avatar centers */
+    .flow-connector {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        color: var(--flow-color, #0b2360);
+        --line-thickness: 4px;
+        --arrow-size: 14px;
+        --arrow-height: 12px;
+        --line-radius: 9999px;
+    }
+    .flow-connector::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: var(--line-thickness);
+        border-radius: var(--line-radius);
+        background: var(--flow-color, #0b2360);
+    }
+    .flow-connector::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--arrow-size);
+        height: var(--arrow-height);
+        background: var(--flow-color, #0b2360);
+    }
+    .flow-connector[data-direction="ltr"]::before {
+        left: var(--from);
+        width: calc(var(--to) - var(--from));
+        border-radius: var(--line-radius) 0 0 var(--line-radius);
+    }
+    .flow-connector[data-direction="ltr"]::after {
+        left: var(--to);
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    }
+    .flow-connector[data-direction="rtl"]::before {
+        left: var(--to);
+        width: calc(var(--from) - var(--to));
+        border-radius: 0 var(--line-radius) var(--line-radius) 0;
+    }
+    .flow-connector[data-direction="rtl"]::after {
+        left: calc(var(--to) - var(--arrow-size));
+        clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    }
+
+    .flow-step {
+        --flow-color: #0b2360;
+        --flow-border-color: rgba(11, 35, 96, 0.18);
+        --flow-text-color: #0b2360;
+    }
+    .flow-step .flow-connector {
+        color: var(--flow-color, #0b2360);
+    }
+    .flow-label {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--flow-text-color, #0b2360);
+        border-color: var(--flow-border-color, rgba(11, 35, 96, 0.18));
+        box-shadow: 0 12px 30px -18px var(--flow-shadow, rgba(11, 35, 96, 0.35));
+    }
+    .flow-label::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 12px;
+        background: var(--flow-color, #0b2360);
+        border-radius: 9999px;
+        opacity: 0.65;
+    }
+    .flow-label[data-flow-step]::before {
+        content: attr(data-flow-step);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        aspect-ratio: 1 / 1; /* ensure perfect circle in all browsers */
+        flex: 0 0 1.5rem; /* prevent flexbox from stretching the badge */
+        line-height: 1; /* avoid text affecting box metrics */
+        border-radius: 9999px;
+        background: var(--flow-color, #0b2360);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        box-shadow: 0 8px 16px -10px var(--flow-shadow, rgba(17, 24, 39, 0.45));
+    }
+
+    .flow-note {
+        position: absolute;
+        top: calc(50% + var(--flow-note-gap, 20px));
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        color: var(--flow-text-color, #0b2360);
+        text-align: center;
+        font-size: 0.625rem;
+        line-height: 1.2;
+    }
+    .flow-note::before {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--flow-note-gap, 20px));
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: var(--flow-note-gap, 20px);
+        background: var(--flow-color, #0b2360);
+        border-radius: 9999px;
+        opacity: 0.55;
+    }
+</style>

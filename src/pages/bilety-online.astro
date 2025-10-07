@@ -3,30 +3,54 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
-import { defaultLanguage, type Language } from "../i18n";
+import Hero from "../components/Hero.astro";
+import TicketsHowItWorks from "../components/TicketsHowItWorks.astro";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 interface Props {
   lang?: Language;
 }
 const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const pageCopy = (translations?.pages?.tickets ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.tickets ?? {}) as any;
+
+const metaTitle =
+  pageCopy.meta?.title ??
+  fallbackPageCopy.meta?.title ??
+  "Sportigio - Bilety online";
+
+const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
 ---
 
-<Layout title="Sportigio – Bilety online">
+<Layout title={metaTitle}>
   <Navbar lang={lang} activePage="bilety-online" />
   <div aria-hidden="true" class="h-16"></div>
 
   <main class="bg-white min-h-screen">
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins">Bilety online</h1>
-        <p class="text-gray-600 mt-4">Treść w przygotowaniu.</p>
-      </div>
-    </section>
+    <Hero
+      lang={lang}
+      title={heroCopy.title ?? "Sprzedawaj bilety online"}
+      titleHighlight={heroCopy.highlight ?? ""}
+      subtitle={heroCopy.subtitle ?? ""}
+      imageSrc="/screens/tickets-preview-mobile.avif"
+      imageAlt={heroCopy.imageAlt ?? "Sportigio - Bilety online"}
+      imageSize="small"
+      showBadge={false}
+      showCTA={false}
+      showSocialProof={false}
+      spacing="compact"
+      heightMode="short"
+    />
 
-    <CTASection />
+    <TicketsHowItWorks lang={lang} />
+
+    <CTASection lang={lang} />
   </main>
 
   <Footer lang={lang} />
 </Layout>
-
-

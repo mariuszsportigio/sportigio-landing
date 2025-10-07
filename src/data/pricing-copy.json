@@ -1,0 +1,256 @@
+{
+  "pl": {
+    "labels": {
+      "per_month": "/miesiąc",
+      "per_year": "za rok",
+      "save": "Oszczędź {percent}%",
+      "pay_year": "Płatne {total} za rok",
+      "most_popular": "Najpopularniejszy"
+    },
+    "free": {
+      "name": "Free",
+      "tagline": "Idealne na start",
+      "button": "Zacznij za darmo",
+      "features": [
+        "Podstawowe funkcje",
+        "Do 5 podstron",
+        "20 zdjęć w galerii",
+        "100 MB miejsca"
+      ],
+      "priceLabel": "Darmowy"
+    },
+    "starter": {
+      "name": "Starter",
+      "tagline": "Dla małych klubów",
+      "button": "Wybierz Starter",
+      "features": [
+        "Wiele drużyn",
+        "Własna domena",
+        "50 zdjęć w galerii",
+        "500 MB miejsca",
+        "2000 maili/miesiąc"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "tagline": "Najpopularniejszy wybór",
+      "button": "Wybierz Pro",
+      "badge": "Najpopularniejszy",
+      "features": [
+        "Brak reklam Sportigio",
+        "100 zdjęć w galerii",
+        "1 GB miejsca",
+        "8000 maili/miesiąc",
+        "Segmentacja odbiorców"
+      ]
+    },
+    "champion": {
+      "name": "Champion",
+      "tagline": "Dla profesjonalnych klubów",
+      "button": "Skontaktuj się z nami",
+      "features": [
+        "Wszystko z Pro",
+        "Bez limitu zdjęć",
+        "5 GB miejsca",
+        "20000 maili/miesiąc",
+        "Własny CSS/JS",
+        "Sesja onboardingu"
+      ]
+    },
+    "additional": {
+      "line1": "🔒 30-dniowa gwarancja zwrotu pieniędzy • ⚡ Aktywacja w 24h • 🚀 Bez ukrytych kosztów",
+      "line2": "Wszystkie plany zawierają podstawowy support i regularne aktualizacje. Zmień plan w każdej chwili."
+    }
+  },
+  "en": {
+    "labels": {
+      "per_month": "/month",
+      "per_year": "per year",
+      "save": "Save {percent}%",
+      "pay_year": "Pay {total} per year",
+      "most_popular": "Most popular"
+    },
+    "free": {
+      "name": "Free",
+      "tagline": "Ideal for getting started",
+      "button": "Start for free",
+      "features": [
+        "Basic features",
+        "Up to 5 subpages",
+        "20 gallery photos",
+        "100 MB storage"
+      ],
+      "priceLabel": "Free"
+    },
+    "starter": {
+      "name": "Starter",
+      "tagline": "For small clubs",
+      "button": "Choose Starter",
+      "features": [
+        "Multiple teams",
+        "Custom domain",
+        "50 gallery photos",
+        "500 MB storage",
+        "2000 emails/month"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "tagline": "Most popular choice",
+      "button": "Choose Pro",
+      "badge": "Most popular",
+      "features": [
+        "No Sportigio ads",
+        "100 gallery photos",
+        "1 GB storage",
+        "8000 emails/month",
+        "Audience segmentation"
+      ]
+    },
+    "champion": {
+      "name": "Champion",
+      "tagline": "For professional clubs",
+      "button": "Contact us",
+      "features": [
+        "Everything in Pro",
+        "Unlimited photos",
+        "5 GB storage",
+        "20000 emails/month",
+        "Custom CSS/JS",
+        "Onboarding session"
+      ]
+    },
+    "additional": {
+      "line1": "🔒 30‑day money‑back guarantee • ⚡ 24h activation • 🚀 No hidden fees",
+      "line2": "All plans include basic support and regular updates. Change plans anytime."
+    }
+  },
+  "es": {
+    "labels": {
+      "per_month": "/mes",
+      "per_year": "al año",
+      "save": "Ahorra {percent}%",
+      "pay_year": "Paga {total} al año",
+      "most_popular": "Más popular"
+    },
+    "free": {
+      "name": "Free",
+      "tagline": "Ideal para empezar",
+      "button": "Empieza gratis",
+      "features": [
+        "Funciones básicas",
+        "Hasta 5 subpáginas",
+        "20 fotos en la galería",
+        "100 MB de espacio"
+      ],
+      "priceLabel": "Gratis"
+    },
+    "starter": {
+      "name": "Starter",
+      "tagline": "Para clubes pequeños",
+      "button": "Elegir Starter",
+      "features": [
+        "Varios equipos",
+        "Dominio propio",
+        "50 fotos en la galería",
+        "500 MB de espacio",
+        "2000 emails/mes"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "tagline": "La opción más popular",
+      "button": "Elegir Pro",
+      "badge": "Más popular",
+      "features": [
+        "Sin anuncios de Sportigio",
+        "100 fotos en la galería",
+        "1 GB de espacio",
+        "8000 emails/mes",
+        "Segmentación de audiencia"
+      ]
+    },
+    "champion": {
+      "name": "Champion",
+      "tagline": "Para clubes profesionales",
+      "button": "Contáctanos",
+      "features": [
+        "Todo lo de Pro",
+        "Fotos ilimitadas",
+        "5 GB de espacio",
+        "20000 emails/mes",
+        "CSS/JS propio",
+        "Sesión de onboarding"
+      ]
+    },
+    "additional": {
+      "line1": "🔒 Garantía de devolución de 30 días • ⚡ Activación en 24h • 🚀 Sin costes ocultos",
+      "line2": "Todos los planes incluyen soporte básico y actualizaciones regulares. Cambia de plan cuando quieras."
+    }
+  },
+  "de": {
+    "labels": {
+      "per_month": "/Monat",
+      "per_year": "pro Jahr",
+      "save": "Spare {percent}%",
+      "pay_year": "Zahle {total} pro Jahr",
+      "most_popular": "Am beliebtesten"
+    },
+    "free": {
+      "name": "Free",
+      "tagline": "Ideal für den Einstieg",
+      "button": "Kostenlos starten",
+      "features": [
+        "Grundfunktionen",
+        "Bis zu 5 Unterseiten",
+        "20 Bilder in der Galerie",
+        "100 MB Speicher"
+      ],
+      "priceLabel": "Kostenlos"
+    },
+    "starter": {
+      "name": "Starter",
+      "tagline": "Für kleine Clubs",
+      "button": "Starter wählen",
+      "features": [
+        "Mehrere Teams",
+        "Eigene Domain",
+        "50 Bilder in der Galerie",
+        "500 MB Speicher",
+        "2000 E-Mails/Monat"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "tagline": "Beliebteste Wahl",
+      "button": "Pro wählen",
+      "badge": "Am beliebtesten",
+      "features": [
+        "Keine Sportigio-Werbung",
+        "100 Bilder in der Galerie",
+        "1 GB Speicher",
+        "8000 E-Mails/Monat",
+        "Zielgruppensegmentierung"
+      ]
+    },
+    "champion": {
+      "name": "Champion",
+      "tagline": "Für professionelle Clubs",
+      "button": "Kontaktiere uns",
+      "features": [
+        "Alles aus Pro",
+        "Unbegrenzte Fotos",
+        "5 GB Speicher",
+        "20000 E-Mails/Monat",
+        "Eigenes CSS/JS",
+        "Onboarding-Session"
+      ]
+    },
+    "additional": {
+      "line1": "🔒 30-Tage-Geld-zurück-Garantie • ⚡ Aktivierung in 24h • 🚀 Keine versteckten Kosten",
+      "line2": "Alle Pläne beinhalten Basissupport und regelmäßige Updates. Plan jederzeit wechseln."
+    }
+  }
+}
+
+

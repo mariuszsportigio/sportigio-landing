@@ -3,7 +3,7 @@ export type Language = 'pl' | 'en' | 'es' | 'de';
 
 export const languages: Record<Language, string> = {
   pl: 'Polski',
-  en: 'English', 
+  en: 'English',
   es: 'Español',
   de: 'Deutsch'
 };
@@ -32,11 +32,11 @@ export function getTranslations(lang: Language = defaultLanguage) {
 export function getNestedValue(obj: any, path: string): string {
   const keys = path.split('.');
   let result = obj;
-  
+
   for (const key of keys) {
     result = result?.[key];
   }
-  
+
   return result || path;
 }
 
@@ -49,7 +49,47 @@ export function t(key: string, lang: Language = defaultLanguage): string {
 // Create translator function for components
 export function createTranslator(lang: Language = defaultLanguage) {
   const translationObj = getTranslations(lang);
-  return function(key: string): string {
+  return function (key: string): string {
     return getNestedValue(translationObj, key);
   };
-} 
+}
+
+// URL helpers to preserve current language across internal navigation
+export function normalizePath(path: string): string {
+  if (!path) return '/';
+  const trimmed = path.replace(/\/+$/, '');
+  return trimmed === '' ? '/' : trimmed;
+}
+
+export function stripLanguagePrefix(path: string): string {
+  const secondary: Language[] = ['en', 'es', 'de'];
+  for (const code of secondary) {
+    const prefix = `/${code}`;
+    if (path === prefix) return '/';
+    if (path.startsWith(`${prefix}/`)) {
+      const remainder = path.slice(prefix.length);
+      return remainder ? remainder : '/';
+    }
+  }
+  return path;
+}
+
+export function isExternalHref(href: string): boolean {
+  return (
+    /^https?:\/\//.test(href) || href.startsWith('mailto:') || href.startsWith('tel:')
+  );
+}
+
+export function localizeHref(href: string, lang: Language = defaultLanguage): string {
+  if (!href) return href;
+  if (isExternalHref(href)) return href;
+  // Preserve hash fragments
+  const [pathPart, hashPart] = href.split('#', 2);
+  if (pathPart === '' && hashPart) return `#${hashPart}`; // pure hash
+  const normalized = normalizePath(pathPart || '/');
+  const unprefixed = stripLanguagePrefix(normalized);
+  const localized = lang === defaultLanguage
+    ? (unprefixed === '/' ? '/' : unprefixed)
+    : (unprefixed === '/' ? `/${lang}` : `/${lang}${unprefixed}`);
+  return hashPart ? `${localized}#${hashPart}` : localized;
+}

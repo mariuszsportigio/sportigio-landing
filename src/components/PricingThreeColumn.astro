@@ -1,0 +1,204 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import MasterCard from "./MasterCard.astro";
+import { localizeHref, type Language } from "../i18n";
+
+export interface PlanItem {
+    name: string;
+    price: string; // e.g. "599 zł" or "Indywidualnie" or "199 zł"
+    priceNote?: string; // e.g. "netto" or "(2388 zł za rok)"
+    description?: string;
+    highlight?: boolean; // middle plan highlight
+    badge?: string; // small ribbon/badge text
+    featuresTitle?: string; // e.g. "Wszystko co w PRO oraz:"
+    features: string[]; // bullet list
+    extras?: string[]; // extra list items (limits etc.)
+}
+
+export interface TopBadge {
+    icon: string; // material symbol name
+    label: string;
+}
+
+export interface Props {
+    id?: string;
+    badge?: string;
+    title: string;
+    subtitle?: string;
+    topBadges?: TopBadge[];
+    plans: PlanItem[]; // exactly 3 for layout symmetry
+    footnote?: string;
+    showCTA?: boolean;
+    lang?: Language;
+}
+
+const {
+    id,
+    badge,
+    title,
+    subtitle,
+    topBadges = [],
+    plans,
+    footnote,
+    showCTA = true,
+    lang = "pl",
+} = Astro.props as Props;
+---
+
+<section id={id} class="py-14 lg:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <SectionHeader
+            badge={badge}
+            title={title}
+            subtitle={subtitle}
+            centered={true}
+        />
+
+        {
+            topBadges && topBadges.length > 0 ? (
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+                    {topBadges.map((b) => (
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-800 text-sm">
+                            <span class="material-symbols-rounded text-[#0B2360] text-[18px]">
+                                {b.icon}
+                            </span>
+                            <span class="font-medium">{b.label}</span>
+                        </div>
+                    ))}
+                </div>
+            ) : null
+        }
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {
+                plans.map((plan) => (
+                    <MasterCard
+                        variant="pricing"
+                        size="lg"
+                        padding="lg"
+                        shadow={plan.highlight ? "xl" : "lg"}
+                        border={plan.highlight ? "gradient" : "light"}
+                        animation="none"
+                        className={`relative ${plan.highlight ? "bg-sportigio-gradient-2 text-white" : ""} flex flex-col h-full`}
+                    >
+                        {plan.badge ? (
+                            <div
+                                class={`absolute -top-3 left-1/2 -translate-x-1/2 ${plan.highlight ? "bg-white text-[#0B2360]" : "bg-[#01DFEC] text-[#0B2360]"} px-3 py-1 rounded-full text-xs font-bold`}
+                            >
+                                {plan.badge}
+                            </div>
+                        ) : null}
+
+                        <div class="mb-5">
+                            <h3
+                                class={`text-xl font-extrabold ${plan.highlight ? "text-white" : "text-[#0B2360]"}`}
+                            >
+                                {plan.name}
+                            </h3>
+                            {plan.description ? (
+                                <p
+                                    class={`mt-2 text-sm ${plan.highlight ? "text-white/90" : "text-gray-600"}`}
+                                >
+                                    {plan.description}
+                                </p>
+                            ) : null}
+                        </div>
+
+                        <div class="mb-6">
+                            <div
+                                class={`text-3xl lg:text-4xl font-black ${plan.highlight ? "text-white" : "text-[#0B2360]"}`}
+                            >
+                                {plan.price}
+                            </div>
+                            {plan.priceNote ? (
+                                <div
+                                    class={`text-sm ${plan.highlight ? "text-white/80" : "text-gray-500"}`}
+                                >
+                                    {plan.priceNote}
+                                </div>
+                            ) : null}
+                        </div>
+
+                        {plan.featuresTitle ? (
+                            <div
+                                class={`text-sm font-semibold mb-3 ${plan.highlight ? "text-white" : "text-[#0B2360]"}`}
+                            >
+                                {plan.featuresTitle}
+                            </div>
+                        ) : null}
+
+                        <ul class="space-y-3 mb-6">
+                            {plan.features.map((feat) => (
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class={`material-symbols-rounded mt-0.5 ${plan.highlight ? "text-white" : "text-[#01DFEC]"}`}
+                                    >
+                                        check
+                                    </span>
+                                    <span
+                                        class={`${plan.highlight ? "text-white/95" : "text-gray-800"}`}
+                                    >
+                                        {feat}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {plan.extras && plan.extras.length > 0 ? (
+                            <ul
+                                class={`space-y-2 text-sm ${plan.highlight ? "text-white/90" : "text-gray-700"}`}
+                            >
+                                {plan.extras.map((e) => (
+                                    <li class="flex items-start gap-2">
+                                        <span
+                                            class={`material-symbols-rounded text-[18px] ${plan.highlight ? "text-white" : "text-[#0B2360]"}`}
+                                        >
+                                            radio_button_checked
+                                        </span>
+                                        <span>{e}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : null}
+
+                        {showCTA ? (
+                            <div class="mt-auto pt-6 flex justify-center">
+                                <a
+                                    href={localizeHref("/pricing", lang)}
+                                    class={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold ${plan.highlight ? "bg-white text-[#0B2360] hover:bg-white/90" : "btn-style-1 text-white"}`}
+                                    style={
+                                        plan.highlight
+                                            ? undefined
+                                            : {
+                                                  "--sportigio-gradient":
+                                                      "var(--sportigio-gradient-2)",
+                                              }
+                                    }
+                                >
+                                    <span class="material-symbols-rounded text-[18px]">
+                                        shopping_cart
+                                    </span>
+                                    <span>Wybierz</span>
+                                </a>
+                            </div>
+                        ) : null}
+                    </MasterCard>
+                ))
+            }
+        </div>
+
+        {
+            footnote ? (
+                <p class="text-xs text-gray-500 mt-8 max-w-4xl mx-auto text-center">
+                    {footnote}
+                </p>
+            ) : null
+        }
+    </div>
+</section>
+
+<style>
+    .bg-sportigio-gradient-2 {
+        background: var(--sportigio-gradient-2);
+    }
+</style>

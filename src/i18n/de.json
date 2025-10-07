@@ -152,8 +152,8 @@
   },
   "hero": {
     "badge": "Neue Generation der Vereinsverwaltung",
-    "title": "Vereinskommunikation in 1 einfachen",
-    "title_highlight": "Anwendung",
+    "title": "Vereinskommunikation",
+    "title_highlight": "in einer einfachen Anwendung",
     "subtitle": "Revolutionieren Sie die Art, wie Sie Ihren Sportverein verwalten. Kommunikation, Zeitpläne, Zahlungen und Analysen - alles an einem Ort.",
     "social_proof_clubs": "100+ zufriedene Vereine",
     "social_proof_rating": "4.8/5 Bewertung"
@@ -251,6 +251,45 @@
         "primary": "Vereinsprofil erstellen",
         "secondary": "Kurze Demo vereinbaren"
       }
+    }
+  }
+  ,
+  "shopSportigio": {
+    "how": {
+      "title": "So funktioniert es",
+      "subtitle": "Sportigio Shop verkauft, Snapwear erfüllt, der Verein verdient.",
+      "actors": {
+        "customer": "Kunde",
+        "seller": "Verkäufer: Sportigio (Shopify‑Shop)",
+        "producer": "Produzent: Snapwear (Print‑on‑Demand + Fulfillment)",
+        "beneficiary": "Begünstigter: Verein"
+      },
+      "orderFlow": {
+        "a_to_b": "Bestellung aufgegeben",
+        "b_to_c": "Automatische Übergabe an die Produktion",
+        "b_to_c_note": "keine manuelle Aktion von Sportigio",
+        "c_to_a": "Bestellung versandt",
+        "c_to_a_chip": "~48 Std."
+      },
+      "headings": {
+        "order": "Bestellfluss",
+        "finance": "Finanzfluss"
+      },
+      "actorShort": {
+        "customer": "Kunde",
+        "seller": "Sportigio",
+        "shopify": "Sportigio",
+        "producer": "Snapwear",
+        "beneficiary": "Verein"
+      },
+      "financeFlow": {
+        "step4": "Monatliche Verkaufsabrechnung",
+        "step4_note": "Bericht über Stückzahl und Wert",
+        "step5": "Vereinsrechnung für Logo‑Nutzung",
+        "step6": "Auszahlung auf Vereinskonto",
+        "step6_chip": "innerhalb von 48 Std. nach Rechnung"
+      },
+      "cta": "Ich möchte den Vereins‑Shop starten"
     }
   }
 }

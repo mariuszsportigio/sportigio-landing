@@ -1,45 +1,59 @@
 ---
-// blog.astro - Main blog page showing all articles
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import { fetchArticles, formatDate, type BlogPost } from '../utils/api';
-import { createTranslator, type Language } from '../i18n';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { fetchArticles, formatDate, type BlogPost } from "../utils/api";
+import {
+  createTranslator,
+  getTranslations,
+  defaultLanguage,
+  type Language,
+  localizeHref,
+} from "../i18n";
 
-// Get language from URL params (default to Polish)
-const lang: Language = 'pl';
+interface Props {
+  lang?: Language;
+}
 
-// Create translator function
+const { lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+const blogCopy = translations?.blog ?? fallbackTranslations?.blog ?? {};
 
-// Fetch all articles
 let articles: BlogPost[] = [];
 let error: string | null = null;
 
 try {
   articles = await fetchArticles();
 } catch (e) {
-  console.error('Error fetching articles:', e);
-  error = 'Nie udało się pobrać artykułów';
+  console.error("Error fetching articles:", e);
+  error = blogCopy.error_description ?? "Nie udało się pobrać artykułów";
 }
 
-// Page metadata
-const pageTitle = `${t('blog.title')} - Sportigio`;
-const pageDescription = t('blog.subtitle');
+const pageTitle = `${t("blog.title")} - Sportigio`;
+const pageDescription = t("blog.subtitle");
+const errorTitle = blogCopy.error_title ?? "Błąd ładowania";
+const errorRetry = blogCopy.error_retry ?? "Spróbuj ponownie";
+const emptyTitle = blogCopy.empty_title ?? "Brak artykułów";
+const emptyCta = blogCopy.empty_cta ?? "Powrót do strony głównej";
+const paginationPrev = blogCopy.pagination_prev ?? "Poprzednia";
+const paginationNext = blogCopy.pagination_next ?? "Następna";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <Navbar activePage="blog" />
-  
+  <Navbar lang={lang} activePage="blog" />
+
   <main>
     <!-- Header Section -->
     <section class="pt-24 pb-16 bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div class="max-w-5xl mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold font-poppins mb-4 text-gray-900">
-          <a href="/blog" class="hover:underline">{t('blog.title')}</a>
+          <a href={localizeHref('/blog', lang)} class="hover:underline">{t("blog.title")}</a>
         </h1>
         <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          {t('blog.subtitle')}
+          {t("blog.subtitle")}
         </p>
       </div>
     </section>
@@ -52,65 +66,66 @@ const pageDescription = t('blog.subtitle');
           <div class="text-center py-12">
             <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h2 class="text-xl font-semibold text-gray-900 mb-2">Błąd ładowania</h2>
+            <h2 class="text-xl font-semibold text-gray-900 mb-2">{errorTitle}</h2>
             <p class="text-gray-600">{error}</p>
-            <button 
-              onclick="window.location.reload()" 
+            <button
+              type="button"
+              onclick="window.location.reload()"
               class="mt-4 px-6 py-2 bg-[#0B2360] text-white rounded-lg hover:bg-[#0a1f56] transition-colors"
             >
-              Spróbuj ponownie
+              {errorRetry}
             </button>
           </div>
         ) : articles.length > 0 ? (
           <!-- Articles Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, index) => (
-              <article 
+              <article
                 class="blog-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                 style={`animation-delay: ${index * 0.1}s`}
               >
                 <!-- Article Image -->
                 <div class="aspect-video overflow-hidden">
-                  <img 
-                    src={article.image_mini || article.image} 
+                  <img
+                    src={article.image_mini || article.image}
                     alt={article.title}
                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
-                
+
                 <!-- Article Content -->
                 <div class="p-6">
                   <!-- Date -->
                   <time class="text-sm text-gray-500 font-medium mb-3 block">
                     {formatDate(article.created_at, lang)}
                   </time>
-                  
+
                   <!-- Title -->
                   <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-[#0B2360] transition-colors">
                     <a href={`/blog/${article.id}`} class="hover:underline">
                       {article.title}
                     </a>
                   </h2>
-                  
+
                   <!-- Lead/Excerpt -->
                   {article.lead && (
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                       {article.lead}
                     </p>
                   )}
-                  
+
                   <!-- Read More Link -->
-                  <a 
+                  <a
                     href={`/blog/${article.id}`}
                     class="inline-flex items-center text-[#0B2360] hover:text-[#0a1f56] font-medium text-sm transition-colors group"
                   >
-                    {t('blog.read_more')}
+                    {t("blog.read_more")}
                     <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </a>
                 </div>
@@ -122,16 +137,16 @@ const pageDescription = t('blog.subtitle');
           <div class="text-center py-12">
             <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             </div>
-            <h2 class="text-xl font-semibold text-gray-900 mb-2">Brak artykułów</h2>
-            <p class="text-gray-600">{t('blog.no_articles')}</p>
-            <a 
-              href="/"
+            <h2 class="text-xl font-semibold text-gray-900 mb-2">{emptyTitle}</h2>
+            <p class="text-gray-600">{t("blog.no_articles")}</p>
+            <a
+              href={localizeHref('/', lang)}
               class="mt-4 inline-flex items-center px-6 py-2 bg-[#0B2360] text-white rounded-lg hover:bg-[#0a1f56] transition-colors"
             >
-              Powrót do strony głównej
+              {emptyCta}
             </a>
           </div>
         )}
@@ -141,11 +156,11 @@ const pageDescription = t('blog.subtitle');
           <div class="flex justify-center mt-12">
             <nav class="flex items-center space-x-2">
               <button class="px-4 py-2 text-gray-500 bg-white rounded-lg border hover:bg-gray-50 transition-colors" disabled>
-                Poprzednia
+                {paginationPrev}
               </button>
               <span class="px-4 py-2 text-white bg-[#0B2360] rounded-lg">1</span>
               <button class="px-4 py-2 text-gray-700 bg-white rounded-lg border hover:bg-gray-50 transition-colors">
-                Następna
+                {paginationNext}
               </button>
             </nav>
           </div>
@@ -191,4 +206,4 @@ const pageDescription = t('blog.subtitle');
   .blog-card:hover img {
     transform: scale(1.05);
   }
-</style> 
+</style>

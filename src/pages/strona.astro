@@ -1,32 +1,113 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
 import CTASection from "../components/CTASection.astro";
-import { defaultLanguage, type Language } from "../i18n";
+import PricingThreeColumn from "../components/PricingThreeColumn.astro";
+import ExamplesSection from "../components/ExamplesSection.astro";
+import FAQDynamic from "../components/FAQDynamic.astro";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 interface Props {
-  lang?: Language;
+    lang?: Language;
 }
+
 const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+    lang === defaultLanguage
+        ? translations
+        : (getTranslations(defaultLanguage) as any);
+
+const pageCopy = (translations?.pages?.website ?? {}) as any;
+const fallbackPageCopy = (fallbackTranslations?.pages?.website ?? {}) as any;
+
+const metaTitle =
+    pageCopy.meta?.title ??
+    fallbackPageCopy.meta?.title ??
+    "Sportigio - Strona";
+
+const heroCopy = pageCopy.hero ?? fallbackPageCopy.hero ?? {};
+const pricingCopy = pageCopy.pricing ?? fallbackPageCopy.pricing ?? {};
+const explanationCopy = pricingCopy.explanation ?? fallbackPageCopy.pricing?.explanation ?? {};
+const setupPricing = pricingCopy.setup ?? fallbackPageCopy.pricing?.setup ?? {};
+const subscriptionPricing =
+    pricingCopy.subscription ?? fallbackPageCopy.pricing?.subscription ?? {};
+const faqCopy = pageCopy.faq ?? fallbackPageCopy.faq ?? {};
 ---
 
-<Layout title="Sportigio – Strona">
-  <Navbar lang={lang} activePage="strona" />
-  <div aria-hidden="true" class="h-16"></div>
+<Layout title={metaTitle}>
+    <Navbar lang={lang} activePage="strona" />
+    <div aria-hidden="true" class="h-16"></div>
 
-  <main class="bg-white min-h-screen">
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-4">
-        <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 font-poppins">Strona</h1>
-        <p class="text-gray-600 mt-4">Treść w przygotowaniu.</p>
-      </div>
-    </section>
+    <main class="bg-white min-h-screen">
+        <Hero
+            lang={lang}
+            title={heroCopy.title ?? "Profesjonalna strona internetowa klubu"}
+            titleHighlight={heroCopy.highlight ?? ""}
+            subtitle={heroCopy.subtitle ?? ""}
+            imageSrc="/screens/website-preview-mobile.avif"
+            imageAlt={heroCopy.imageAlt ??
+                "Sportigio - Strona internetowa klubu"}
+            imageSize="small"
+            showBadge={false}
+            showCTA={false}
+            showSocialProof={false}
+            spacing="compact"
+            heightMode="short"
+        />
 
-    <CTASection />
-  </main>
+        <ExamplesSection lang={lang} />
 
-  <Footer lang={lang} />
+        <!-- Pricing explanation section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold font-poppins text-[#0B2360] mb-4">
+                        {explanationCopy.title ?? "Cennik strony WWW"}
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        {explanationCopy.subtitle ?? "Koszt strony WWW składa się z dwóch części: jednorazowej opłaty za uruchomienie oraz miesięcznego abonamentu za utrzymanie."}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <PricingThreeColumn
+            id="setup-pricing"
+            badge={setupPricing.badge}
+            title={setupPricing.title}
+            subtitle={setupPricing.subtitle}
+            topBadges={setupPricing.topBadges ?? []}
+            plans={setupPricing.plans ?? []}
+            footnote={setupPricing.footnote}
+            showCTA={false}
+            lang={lang}
+        />
+
+        <PricingThreeColumn
+            id="subscription-pricing"
+            badge={subscriptionPricing.badge}
+            title={subscriptionPricing.title}
+            subtitle={subscriptionPricing.subtitle}
+            topBadges={subscriptionPricing.topBadges ?? []}
+            plans={subscriptionPricing.plans ?? []}
+            footnote={subscriptionPricing.footnote}
+            showCTA={false}
+            lang={lang}
+        />
+
+        <FAQDynamic
+            title={faqCopy.title ?? "FAQ: Strona WWW"}
+            subtitle={faqCopy.subtitle ??
+                "Najważniejsze pytania i odpowiedzi przy tworzeniu strony ze Sportigio"}
+            items={faqCopy.items ?? []}
+        />
+
+        <CTASection lang={lang} />
+    </main>
+
+    <Footer lang={lang} />
 </Layout>
-
-

@@ -1,0 +1,135 @@
+---
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
+
+interface StoreExampleItem {
+    id: string;
+    title: string;
+    imageSrc: string;
+    imageAlt?: string;
+    href: string;
+}
+
+interface Props {
+    lang?: Language;
+    title?: string;
+    subtitle?: string;
+    buttonLabel?: string;
+    items?: StoreExampleItem[];
+}
+
+const {
+    lang = defaultLanguage,
+    title: titleOverride,
+    subtitle: subtitleOverride,
+    buttonLabel: buttonOverride,
+    items: itemsOverride,
+} = Astro.props as Props;
+
+const baseExamples: StoreExampleItem[] = [
+    {
+        id: "legia",
+        title: "Legia Koszykówka - Sklep",
+        imageSrc: "/screens/legia-kosz-sklep-mobile-orig.webp",
+        imageAlt: "Legia Koszykówka - podgląd sklepu (mobile)",
+        href: "https://sklep.legiakosz.com/",
+    },
+    {
+        id: "trefl",
+        title: "Trefl Sopot - Sklep",
+        imageSrc: "/screens/trefl-sopot-sklep-mobile-orig.webp",
+        imageAlt: "Trefl Sopot - podgląd sklepu (mobile)",
+        href: "https://sklep.treflsopot.pl/",
+    },
+];
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+    lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+
+const sectionCopy = (translations?.pages?.shopOwn?.examples ?? {}) as any;
+const fallbackCopy = (fallbackTranslations?.pages?.shopOwn?.examples ?? {}) as any;
+const fallbackItems = (fallbackCopy.items ?? {}) as Record<string, any>;
+
+const resolvedTitle =
+    titleOverride ??
+    sectionCopy.title ??
+    fallbackCopy.title ??
+    "Przykładowe sklepy klubowe";
+
+const resolvedSubtitle =
+    subtitleOverride ??
+    sectionCopy.subtitle ??
+    fallbackCopy.subtitle ??
+    "Wybrane wdrożenia sklepów internetowych";
+
+const resolvedButtonLabel =
+    buttonOverride ??
+    sectionCopy.button ??
+    fallbackCopy.button ??
+    "Otwórz sklep";
+
+const resolvedItems = (itemsOverride ?? baseExamples).map((item) => {
+    const overrideItem = (sectionCopy.items ?? {})[item.id] ?? fallbackItems[item.id] ?? {};
+    const fallbackItem = fallbackItems[item.id] ?? {};
+    return {
+        ...item,
+        title: overrideItem.title ?? fallbackItem.title ?? item.title,
+        imageAlt:
+            overrideItem.imageAlt ??
+            fallbackItem.imageAlt ??
+            item.imageAlt ??
+            item.title,
+    } satisfies StoreExampleItem;
+});
+---
+
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="mb-8 text-center">
+            <h2 class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins">
+                {resolvedTitle}
+            </h2>
+            <p class="text-gray-600 mt-3">{resolvedSubtitle}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12 justify-items-center">
+            {resolvedItems.map((ex) => (
+                <div class="flex flex-col items-center">
+                    <div class="aspect-[9/16] w-full max-w-[320px] lg:max-w-[360px] overflow-hidden">
+                        <img
+                            src={ex.imageSrc}
+                            alt={ex.imageAlt}
+                            class="h-full w-full object-contain rounded-xl shadow-md"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                    <h3 class="text-sm font-semibold text-gray-900 mt-3 text-center">
+                        {ex.title}
+                    </h3>
+                    <a
+                        href={ex.href}
+                        class="btn-style-1 mt-2 px-4 py-2 text-sm font-semibold rounded-lg text-white inline-flex items-center gap-2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>{resolvedButtonLabel}</span>
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"
+                            />
+                        </svg>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

@@ -101,7 +101,7 @@ const lang = 'en';
 
 ### Przykłady kluczy:
 - `common.try_free` → "Wypróbuj za darmo"
-- `hero.title` → "Komunikacja klubu w 1 prostej"
+- `hero.title` → "Komunikacja klubu"
 - `testimonials.ai_summary` → "AI PODSUMOWANIE"
 
 ## ✅ Najlepsze praktyki

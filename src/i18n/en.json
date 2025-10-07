@@ -24,7 +24,7 @@
     "blog": "Blog",
     "kitchen": "Kitchen Sink",
     "features": "Features",
-    "pricing": "Pricing", 
+    "pricing": "Pricing",
     "about": "About",
     "contact": "Contact",
     "login": "Login",
@@ -37,15 +37,31 @@
         {
           "title": "Product",
           "items": [
-            { "label": "Pricing", "href": "/pricing", "description": "Simple, transparent plans" },
-            { "label": "Blog", "href": "/blog", "description": "Insights and updates" },
-            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Components and styles" }
+            {
+              "label": "Pricing",
+              "href": "/pricing",
+              "description": "Simple, transparent plans"
+            },
+            {
+              "label": "Blog",
+              "href": "/blog",
+              "description": "Insights and updates"
+            },
+            {
+              "label": "Kitchen Sink",
+              "href": "/kitchen-sink",
+              "description": "Components and styles"
+            }
           ]
         },
         {
           "title": "Navigate",
           "items": [
-            { "label": "Home", "href": "/", "description": "Start" }
+            {
+              "label": "Home",
+              "href": "/",
+              "description": "Start"
+            }
           ]
         }
       ],
@@ -55,31 +71,91 @@
             {
               "title": "Platform",
               "items": [
-                { "label": "Sportigio", "href": "/platforma", "description": "" },
-                { "label": "Website", "href": "/strona", "description": "" },
-                { "label": "Online Tickets", "href": "/bilety-online", "description": "" },
-                { "label": "Sportigio Shop", "href": "/sklep-sportigio", "description": "" },
-                { "label": "Own shop", "href": "/sklep-wlasny", "description": "" }
+                {
+                  "label": "Sportigio",
+                  "href": "/platforma",
+                  "description": ""
+                },
+                {
+                  "label": "Website",
+                  "href": "/strona",
+                  "description": ""
+                },
+                {
+                  "label": "Online Tickets",
+                  "href": "/bilety-online",
+                  "description": ""
+                },
+                {
+                  "label": "Sportigio Shop",
+                  "href": "/sklep-sportigio",
+                  "description": ""
+                },
+                {
+                  "label": "Own shop",
+                  "href": "/sklep-wlasny",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Capabilities",
               "items": [
-                { "label": "Monetization", "href": "/zarabianie", "description": "" },
-                { "label": "Predictor & Quiz", "href": "/typer-quiz", "description": "" },
-                { "label": "Automatic Results", "href": "/automatyczne-wyniki", "description": "" },
-                { "label": "Ads & Sponsors", "href": "/reklamy-sponsorzy", "description": "" },
-                { "label": "Mailing & Notifications", "href": "/mailing-powiadomienia", "description": "" },
-                { "label": "Fans Database", "href": "/baza-fanow", "description": "" },
-                { "label": "AI Assistant", "href": "/asystent-ai", "description": "" },
-                { "label": "All Features", "href": "/wszystkie-funkcje", "description": "" }
+                {
+                  "label": "Monetization",
+                  "href": "/zarabianie",
+                  "description": ""
+                },
+                {
+                  "label": "Predictor & Quiz",
+                  "href": "/typer-quiz",
+                  "description": ""
+                },
+                {
+                  "label": "Automatic Results",
+                  "href": "/automatyczne-wyniki",
+                  "description": ""
+                },
+                {
+                  "label": "Ads & Sponsors",
+                  "href": "/reklamy-sponsorzy",
+                  "description": ""
+                },
+                {
+                  "label": "Mailing & Notifications",
+                  "href": "/mailing-powiadomienia",
+                  "description": ""
+                },
+                {
+                  "label": "Fans Database",
+                  "href": "/baza-fanow",
+                  "description": ""
+                },
+                {
+                  "label": "AI Assistant",
+                  "href": "/asystent-ai",
+                  "description": ""
+                },
+                {
+                  "label": "All Features",
+                  "href": "/wszystkie-funkcje",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Getting Started",
               "items": [
-                { "label": "Let Us Do It", "href": "/zlec-to-nam", "description": "" },
-                { "label": "Do It Yourself", "href": "/zrob-to-sam", "description": "" }
+                {
+                  "label": "Let Us Do It",
+                  "href": "/zlec-to-nam",
+                  "description": ""
+                },
+                {
+                  "label": "Do It Yourself",
+                  "href": "/zrob-to-sam",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -89,31 +165,91 @@
             {
               "title": "For whom",
               "items": [
-                { "label": "Management", "href": "/zarzad", "description": "" },
-                { "label": "Marketing", "href": "/marketing", "description": "" },
-                { "label": "Sponsor", "href": "/sponsor", "description": "" },
-                { "label": "Fan", "href": "/kibic", "description": "" }
+                {
+                  "label": "Management",
+                  "href": "/zarzad",
+                  "description": ""
+                },
+                {
+                  "label": "Marketing",
+                  "href": "/marketing",
+                  "description": ""
+                },
+                {
+                  "label": "Sponsor",
+                  "href": "/sponsor",
+                  "description": ""
+                },
+                {
+                  "label": "Fan",
+                  "href": "/kibic",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Discipline",
               "items": [
-                { "label": "Football", "href": "/pilka-nozna", "description": "" },
-                { "label": "Basketball", "href": "/koszykowka", "description": "" },
-                { "label": "Volleyball", "href": "/siatkowka", "description": "" },
-                { "label": "Hockey", "href": "/hokej", "description": "" },
-                { "label": "Futsal", "href": "/futsal", "description": "" },
-                { "label": "Other sports", "href": "/inne-sporty", "description": "" }
+                {
+                  "label": "Football",
+                  "href": "/pilka-nozna",
+                  "description": ""
+                },
+                {
+                  "label": "Basketball",
+                  "href": "/koszykowka",
+                  "description": ""
+                },
+                {
+                  "label": "Volleyball",
+                  "href": "/siatkowka",
+                  "description": ""
+                },
+                {
+                  "label": "Hockey",
+                  "href": "/hokej",
+                  "description": ""
+                },
+                {
+                  "label": "Futsal",
+                  "href": "/futsal",
+                  "description": ""
+                },
+                {
+                  "label": "Other sports",
+                  "href": "/inne-sporty",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Use cases",
               "items": [
-                { "label": "Ticket and season pass sales", "href": "/bilety-karnety", "description": "" },
-                { "label": "Merch at no cost", "href": "/merch", "description": "" },
-                { "label": "Support packages", "href": "/pakiety-wsparcia", "description": "" },
-                { "label": "Fan engagement", "href": "/fan-engagement", "description": "" },
-                { "label": "Customer stories", "href": "/historie-klientow", "description": "" }
+                {
+                  "label": "Ticket and season pass sales",
+                  "href": "/bilety-karnety",
+                  "description": ""
+                },
+                {
+                  "label": "Merch at no cost",
+                  "href": "/merch",
+                  "description": ""
+                },
+                {
+                  "label": "Support packages",
+                  "href": "/pakiety-wsparcia",
+                  "description": ""
+                },
+                {
+                  "label": "Fan engagement",
+                  "href": "/fan-engagement",
+                  "description": ""
+                },
+                {
+                  "label": "Customer stories",
+                  "href": "/historie-klientow",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -123,36 +259,96 @@
             {
               "title": "Get to know us",
               "items": [
-                { "label": "About", "href": "/o-firmie", "description": "" },
-                { "label": "What’s new", "href": "/co-nowego", "description": "" },
-                { "label": "Book a Demo", "href": "/demo", "description": "" },
-                { "label": "Blog", "href": "/blog", "description": "" }
+                {
+                  "label": "About",
+                  "href": "/o-firmie",
+                  "description": ""
+                },
+                {
+                  "label": "What’s new",
+                  "href": "/co-nowego",
+                  "description": ""
+                },
+                {
+                  "label": "Book a Demo",
+                  "href": "/demo",
+                  "description": ""
+                },
+                {
+                  "label": "Blog",
+                  "href": "/blog",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Support",
               "items": [
-                { "label": "Knowledge base", "href": "/baza-wiedzy", "description": "" },
-                { "label": "Webinars", "href": "/webinary", "description": "" },
-                { "label": "Video tutorials", "href": "/instrukcje-wideo", "description": "" },
-                { "label": "API", "href": "/api", "description": "" },
-                { "label": "Contact", "href": "/kontakt", "description": "" }
+                {
+                  "label": "Knowledge base",
+                  "href": "/baza-wiedzy",
+                  "description": ""
+                },
+                {
+                  "label": "Webinars",
+                  "href": "/webinary",
+                  "description": ""
+                },
+                {
+                  "label": "Video tutorials",
+                  "href": "/instrukcje-wideo",
+                  "description": ""
+                },
+                {
+                  "label": "API",
+                  "href": "/api",
+                  "description": ""
+                },
+                {
+                  "label": "Contact",
+                  "href": "/kontakt",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Services",
               "items": [
-                { "label": "Implementation", "href": "/wdrozenie", "description": "" },
-                { "label": "Data migration", "href": "/migracja-danych", "description": "" },
-                { "label": "Training", "href": "/szkolenia", "description": "" },
-                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
+                {
+                  "label": "Implementation",
+                  "href": "/wdrozenie",
+                  "description": ""
+                },
+                {
+                  "label": "Data migration",
+                  "href": "/migracja-danych",
+                  "description": ""
+                },
+                {
+                  "label": "Training",
+                  "href": "/szkolenia",
+                  "description": ""
+                },
+                {
+                  "label": "Outsourcing",
+                  "href": "/outsourcing",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Customer stories",
               "items": [
-                { "label": "News", "href": "/news", "description": "" },
-                { "label": "See all", "href": "/historie-klientow", "description": "" }
+                {
+                  "label": "News",
+                  "href": "/news",
+                  "description": ""
+                },
+                {
+                  "label": "See all",
+                  "href": "/historie-klientow",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -162,15 +358,15 @@
   },
   "hero": {
     "badge": "Next generation club management",
-    "title": "Club communication in 1 simple",
-    "title_highlight": "application",
+    "title": "Club communication",
+    "title_highlight": "in 1 simple application",
     "subtitle": "Revolutionize the way you manage your sports club. Communication, schedules, payments and analytics - all in one place.",
     "social_proof_clubs": "100+ satisfied clubs",
     "social_proof_rating": "4.8/5 rating"
   },
   "testimonials": {
     "title": "What our satisfied users say",
-    "subtitle": "Latest reviews from our satisfied customers", 
+    "subtitle": "Latest reviews from our satisfied customers",
     "ai_summary": "AI Analysis",
     "ai_text": "According to analysis of thousands of reviews, Sportigio provides comprehensive solution for sports clubs. Most appreciated features include administrative process automation that saves average 10 hours per week, and advanced communication with parents and players.",
     "ai_insights": {
@@ -179,7 +375,30 @@
       "communication": "Better communication with parents",
       "attendance": "Attendance increase (25%)"
     },
-    "cta_text": "Join over 100+ satisfied clubs"
+    "cta_text": "Join over 100+ satisfied clubs",
+    "reviews": [
+      {
+        "text": "I never thought updating the club website could be as easy as running Facebook. The admin panel is incredibly intuitive.",
+        "author": "Barbara Lewandowska-Paluch",
+        "role": "Trefl Sopot",
+        "avatar": "/teams/trefl.avif",
+        "avatarAlt": "Trefl Sopot"
+      },
+      {
+        "text": "We started by refreshing the club website and instantly got a WOW from supporters. For many people MTS Żory suddenly felt like a PREMIUM brand just because of the new presentation.",
+        "author": "Daniel Asztemborski",
+        "role": "MTS Żory",
+        "avatar": "/teams/mts-zory.avif",
+        "avatarAlt": "MTS Żory"
+      },
+      {
+        "text": "We didn’t have a website before because we assumed it would be expensive and time-consuming. Now we have a fully professional tool.",
+        "author": "Mariusz Ratajczak",
+        "role": "KKS Astra Krotoszyn",
+        "avatar": "/teams/astra-krotoszyn.avif",
+        "avatarAlt": "KKS Astra Krotoszyn"
+      }
+    ]
   },
   "blog": {
     "title": "Latest Articles",
@@ -190,18 +409,49 @@
     "back_to_blog": "Back to blog",
     "related_articles": "Related articles",
     "published_on": "Published on",
-    "share_article": "Share article"
+    "share_article": "Share article",
+    "error_title": "Loading error",
+    "error_description": "We couldn't load the articles.",
+    "error_retry": "Try again",
+    "empty_title": "No articles",
+    "empty_cta": "Back to homepage",
+    "pagination_prev": "Previous",
+    "pagination_next": "Next"
   },
   "pricing": {
     "title": "Choose the perfect package for your club",
     "subtitle": "Simple, transparent pricing. No hidden costs. Change package anytime.",
     "currency": "Currency:",
     "monthly": "Monthly",
-    "yearly": "Yearly", 
+    "yearly": "Yearly",
     "save_badge": "Save up to 20%",
     "faq_title": "Have questions?",
     "faq_subtitle": "We're here to help your club grow online.",
-    "faq_button": "Frequently asked questions"
+    "faq_button": "Frequently asked questions",
+    "need_more": "Need more?",
+    "premium_package": "Premium Dedicated Package",
+    "premium_description": "the perfect solution for professional clubs that need full personalisation, dedicated support and advanced integrations.",
+    "custom_pricing": "Custom",
+    "custom_pricing_sub": "Pricing",
+    "contact_for_quote": "Contact us for a quote",
+    "see_details": "See details below",
+    "detailed_comparison": "Detailed feature comparison"
+  },
+  "footer": {
+    "company_blurb": "Next-generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.",
+    "newsletter": {
+      "title": "Stay in the loop",
+      "desc": "Get the latest feature updates, tips, and stories on running a sports club.",
+      "placeholder": "Your email address",
+      "cta": "Subscribe"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookies",
+      "rodo": "GDPR"
+    },
+    "copyright": "© {year} Sportigio. All rights reserved."
   },
   "cookies": {
     "consentModal": {
@@ -259,10 +509,22 @@
       "features": {
         "title": "Everything in one place",
         "items": [
-          { "title": "Schedule & Results", "description": "Publish fixtures and results automatically." },
-          { "title": "Tickets & Passes", "description": "Sell tickets and season passes online." },
-          { "title": "Shop & Merch", "description": "Link products or enable a shop." },
-          { "title": "Analytics", "description": "Measure traffic, clicks and sales." }
+          {
+            "title": "Schedule & Results",
+            "description": "Publish fixtures and results automatically."
+          },
+          {
+            "title": "Tickets & Passes",
+            "description": "Sell tickets and season passes online."
+          },
+          {
+            "title": "Shop & Merch",
+            "description": "Link products or enable a shop."
+          },
+          {
+            "title": "Analytics",
+            "description": "Measure traffic, clicks and sales."
+          }
         ]
       },
       "compare": {
@@ -284,6 +546,696 @@
         "subtitle": "Your profile is ready immediately after sign‑up",
         "primary": "Create club profile",
         "secondary": "Book a short demo"
+      }
+    }
+  },
+  "shopSportigio": {
+    "how": {
+      "title": "How it works",
+      "subtitle": "Sportigio Shop sells, Snapwear fulfills, the club earns.",
+      "actors": {
+        "customer": "Customer",
+        "seller": "Seller: Sportigio (Shopify store)",
+        "producer": "Producer: Snapwear (print‑on‑demand + fulfillment)",
+        "beneficiary": "Beneficiary: Club"
+      },
+      "orderFlow": {
+        "a_to_b": "Order placed",
+        "b_to_c": "Automatic hand‑off to production",
+        "b_to_c_note": "no manual action from Sportigio",
+        "c_to_a": "Order shipped",
+        "c_to_a_chip": "~48 h"
+      },
+      "headings": {
+        "order": "Order flow",
+        "finance": "Finance flow"
+      },
+      "actorShort": {
+        "customer": "Customer",
+        "seller": "Sportigio",
+        "shopify": "Sportigio",
+        "producer": "Snapwear",
+        "beneficiary": "Club"
+      },
+      "financeFlow": {
+        "step4": "Monthly sales settlement",
+        "step4_note": "units and value report",
+        "step5": "Club invoice for logo usage",
+        "step6": "Payout to club account",
+        "step6_chip": "within 48 h of invoice"
+      },
+      "cta": "I want to launch the club shop"
+    }
+  },
+  "landing": {
+    "seo": {
+      "title": "Sportigio - Manage your sports club in one app"
+    },
+    "trusted": {
+      "tagline": "Trusted by 100+ clubs"
+    },
+    "benefits": {
+      "title": "Sportigio platform for sports clubs",
+      "subtitle": "Use one module or the full suite. Switch whenever you need.",
+      "modules": [
+        {
+          "icon": "phone_iphone",
+          "label": "Mobile site"
+        },
+        {
+          "icon": "storefront",
+          "label": "Online shop"
+        },
+        {
+          "icon": "confirmation_number",
+          "label": "Online tickets"
+        }
+      ],
+      "features": [
+        {
+          "icon": "dns",
+          "title": "No technical headaches",
+          "description": "We handle hosting, code updates, and data security."
+        },
+        {
+          "icon": "verified_user",
+          "title": "Launch instantly",
+          "description": "Go live under your own brand without waiting or upfront costs."
+        },
+        {
+          "icon": "headset_mic",
+          "title": "Continuous support",
+          "description": "24/7 monitoring plus human support via email and chat."
+        },
+        {
+          "icon": "language",
+          "title": "Your brand online",
+          "description": "We maintain the system so you can create content and promote sponsors."
+        }
+      ]
+    },
+    "sections": [
+      {
+        "id": "website",
+        "title": "Professional club website",
+        "image": {
+          "src": "/screens/website-preview-mobile.avif",
+          "alt": "Sportigio - Club website"
+        },
+        "cta": {
+          "variant": "button",
+          "text": "See more",
+          "href": "/strona"
+        },
+        "bullets": [
+          {
+            "icon": "rocket_launch",
+            "title": "Fast launch and reliable performance",
+            "description": "Built on a proven sports template we keep evolving. We already run 100+ club sites."
+          },
+          {
+            "icon": "edit_note",
+            "title": "Easy self-service editing",
+            "description": "You will love the admin panel for fixtures, sponsors, banners, and streamlined content updates."
+          },
+          {
+            "icon": "trending_up",
+            "title": "37% growth in reach",
+            "description": "Year-over-year pageviews show Sportigio-powered sites deliver around 37% more traffic."
+          }
+        ]
+      },
+      {
+        "id": "tickets",
+        "title": "Sell tickets online",
+        "image": {
+          "src": "/screens/tickets-preview-mobile.avif",
+          "alt": "Sportigio - Online tickets"
+        },
+        "cta": {
+          "variant": "button",
+          "text": "See more",
+          "href": "/bilety-online"
+        },
+        "reverse": true,
+        "bullets": [
+          {
+            "icon": "bolt",
+            "title": "Simple and elegant = conversion",
+            "description": "Fast, seamless checkout without leaving the club website."
+          },
+          {
+            "icon": "qr_code_scanner",
+            "title": "Ticket control on any phone",
+            "description": "Anyone with a phone and browser can validate tickets."
+          },
+          {
+            "icon": "trending_up",
+            "title": "38% higher loyalty odds",
+            "description": "We build your fan database and increase repeat purchases."
+          }
+        ]
+      }
+    ],
+    "shop": {
+      "title": "Online shop",
+      "subtitle": "Choose between two e-commerce options",
+      "options": [
+        {
+          "title": "Sell online with Sportigio",
+          "description": "Let Sportigio handle merch sales with print-on-demand fulfilment",
+          "iconImage": "/sportigio-sygnet.png",
+          "cta": {
+            "variant": "button",
+            "text": "Learn more",
+            "href": "/sklep-sportigio"
+          }
+        },
+        {
+          "title": "Run your own online shop",
+          "description": "Manage your own store with full control over inventory, payments, and logistics.",
+          "icon": "storefront",
+          "cta": {
+            "variant": "button",
+            "text": "Learn more",
+            "href": "/sklep-wlasny"
+          }
+        }
+      ]
+    },
+    "steps": {
+      "title": "3 steps to launch - get started today",
+      "tabs": [
+        {
+          "id": "chat",
+          "icon": "format_list_bulleted",
+          "label": "Pick your products and features",
+          "description": "Tell us where you want to start from the overall offering:",
+          "bullets": [
+            {
+              "title": "Website"
+            },
+            {
+              "title": "Online shop"
+            },
+            {
+              "title": "Tickets"
+            }
+          ],
+          "paragraphs": [
+            "Share your needs and preferences. We tailor the offer and send an onboarding plan."
+          ],
+          "image": {
+            "src": "/screens/website-preview-mobile.avif",
+            "alt": "Chat module preview"
+          }
+        },
+        {
+          "id": "posts",
+          "icon": "smart_display",
+          "label": "Tailored offer and demo",
+          "description": "You will receive a personalised demo link and pricing straight to your inbox.",
+          "paragraphs": [
+            "Explore your product and we agree on the final scope and timeline together.",
+            "Once you approve the plan we move to the next step."
+          ],
+          "image": {
+            "src": "/screens/fanapp-preview-mobile.avif",
+            "alt": "Posts preview"
+          }
+        },
+        {
+          "id": "views",
+          "icon": "rocket_launch",
+          "label": "Onboarding and launch",
+          "description": "We configure the product according to your package and fill in the content.",
+          "paragraphs": [
+            "This is the moment for final tweaks, agreement signing, and invoicing.",
+            "You receive training and rollout materials for your staff."
+          ],
+          "image": {
+            "src": "/screens/analytics_01.png",
+            "alt": "Sportigio analytics"
+          }
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Find answers to the most common questions about Sportigio",
+      "items": [
+        {
+          "question": "How quickly can I launch Sportigio?",
+          "answer": "It depends on you — self-setup takes a few hours, and with our help we can launch in just a couple of days."
+        },
+        {
+          "question": "Can I cancel at any time?",
+          "answer": "Yes, our subscription model lets you stop the collaboration whenever you need with no long-term commitments."
+        },
+        {
+          "question": "What does technical support look like?",
+          "answer": "Every plan includes technical support. You can also add services like website management or 24/7 phone support."
+        },
+        {
+          "question": "Do I need to use every feature?",
+          "answer": "Absolutely not! Choose the tools that matter most and expand the platform at your own pace."
+        },
+        {
+          "question": "Do I need technical expertise to use Sportigio?",
+          "answer": "No. Sportigio is intuitive and easy to operate — if you can run a Facebook page, you will feel right at home."
+        },
+        {
+          "question": "Can I test the platform before buying?",
+          "answer": "Yes, we offer a free trial so you can see how Sportigio works for your club."
+        }
+      ]
+    },
+    "cta": {
+      "badge": "Start today",
+      "title": "Join the new era",
+      "highlight": "of sports clubs",
+      "subtitle": "Over 100 clubs already use Sportigio. Join the leaders who chose modern, efficient, and convenient operations.",
+      "primary_button": {
+        "label": "Start for free",
+        "href": "https://sportig.io/join"
+      },
+      "secondary_button": {
+        "label": "See live demo",
+        "href": "https://sportig.io/join"
+      },
+      "stats": [
+        {
+          "value": "100+",
+          "label": "Active clubs"
+        },
+        {
+          "value": "50k+",
+          "label": "Happy users"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction rate"
+        }
+      ],
+      "trust": [
+        "30-day free trial",
+        "Cancel anytime",
+        "Setup in 5 minutes"
+      ]
+    }
+  },
+  "pages": {
+    "website": {
+      "meta": {
+        "title": "Sportigio - Club Website"
+      },
+      "hero": {
+        "title": "Professional club website",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Club website preview"
+      },
+      "examples": {
+        "title": "Implementation examples",
+        "subtitle": "Selected launches in sports clubs",
+        "button": "Visit website",
+        "items": {
+          "wisla": {
+            "imageAlt": "Wisła Kraków - mobile website preview"
+          },
+          "legia": {
+            "imageAlt": "Legia Basketball - mobile website preview"
+          },
+          "mks": {
+            "imageAlt": "MKS Będzin - mobile website preview"
+          },
+          "panthers": {
+            "imageAlt": "Panthers Wrocław - mobile website preview"
+          }
+        }
+      },
+      "pricing": {
+        "explanation": {
+          "title": "Website Pricing",
+          "subtitle": "The cost of your website consists of two parts: a one-time setup fee and a monthly subscription for maintenance."
+        },
+        "setup": {
+          "badge": "Pricing (1/2)",
+          "title": "Website launch",
+          "subtitle": "One-time setup fee – three options tailored to your needs",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Hosting management"
+            },
+            {
+              "icon": "verified_user",
+              "label": "SSL certificate"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Technical support"
+            }
+          ],
+          "plans": [
+            {
+              "name": "Standard",
+              "price": "PLN 599",
+              "priceNote": "net",
+              "description": "Basic configuration and support for clubs that want to launch on their own",
+              "features": [
+                "1h training or consultation",
+                "Migration of articles from the old website*",
+                "Email and chat support",
+                "Help connecting the domain and launching"
+              ],
+              "extras": [
+                "You work independently on your demo site",
+                "We consult on progress and support you technically"
+              ]
+            },
+            {
+              "name": "Comfort",
+              "price": "PLN 2 100",
+              "priceNote": "net",
+              "description": "For clubs that want everything prepared and to launch without stress",
+              "highlight": true,
+              "badge": "Most chosen",
+              "features": [
+                "2h training or consultations",
+                "Migration of articles from the old website",
+                "WhatsApp support (7 days)",
+                "3h of content population work"
+              ],
+              "extras": [
+                "You send us materials or links",
+                "You receive a launch-ready website"
+              ]
+            },
+            {
+              "name": "Custom",
+              "price": "Custom",
+              "description": "For larger projects that require more work or migrating a lot of content",
+              "featuresTitle": "Everything in Comfort plus:",
+              "features": [
+                "Migration of galleries or files",
+                "Additional template customisations",
+                "Content population beyond 3h",
+                "Dedicated training and documentation",
+                "Integrations with other tools"
+              ],
+              "extras": [
+                "Typically priced at PLN 5-7k, up to ~PLN 20k for large projects"
+              ]
+            }
+          ],
+          "footnote": "* We migrate news from WordPress or similar systems. If you don't have an archive, we add 6 starter articles from any source."
+        },
+        "subscription": {
+          "badge": "Pricing (2/2)",
+          "title": "Maintenance subscription",
+          "subtitle": "Monthly plans – always includes: hosting, SSL, support and updates",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Hosting management"
+            },
+            {
+              "icon": "verified_user",
+              "label": "SSL certificate"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Technical support"
+            },
+            {
+              "icon": "cloud_download",
+              "label": "Access to updates"
+            }
+          ],
+          "plans": [
+            {
+              "name": "PRO",
+              "price": "PLN 199",
+              "priceNote": "(PLN 2 388 per year)",
+              "description": "Perfect for a fully functional club website",
+              "features": [
+                "Own domain and no ads",
+                "Sponsor ladder management",
+                "Block-based homepage editor",
+                "Manage navigation in the admin panel"
+              ],
+              "extras": [
+                "100 photos in 1 gallery",
+                "1 GB file storage",
+                "20 subpages",
+                "180 days of website analytics"
+              ]
+            },
+            {
+              "name": "PRO+",
+              "price": "PLN 290",
+              "priceNote": "(PLN 3 488 per year)",
+              "description": "More personalisation and limits for a professional, comfortable website",
+              "highlight": true,
+              "badge": "Recommended",
+              "featuresTitle": "Everything in PRO plus:",
+              "features": [
+                "More customisation with custom CSS & JS (up to 5 elements)",
+                "1h dedicated onboarding support"
+              ],
+              "extras": [
+                "120 photos in 1 gallery",
+                "3 GB file storage",
+                "30 subpages",
+                "365 days of website analytics"
+              ]
+            },
+            {
+              "name": "CHAMPION",
+              "price": "PLN 499",
+              "priceNote": "(PLN 5 988 per year)",
+              "description": "Ideal if your site is the communication hub of the club",
+              "featuresTitle": "Everything in PRO+ plus:",
+              "features": [
+                "Full customisation (CSS + JS)",
+                "Monetise SEO (sponsor articles)",
+                "Support via WhatsApp"
+              ],
+              "extras": [
+                "150 photos in 1 gallery",
+                "5 GB file storage",
+                "50 subpages",
+                "2 years of website analytics"
+              ]
+            }
+          ],
+          "footnote": "Net prices – available when paying yearly upfront or monthly with card autopay."
+        }
+      },
+      "faq": {
+        "title": "FAQ: Website",
+        "subtitle": "Key questions and answers when launching a website with Sportigio",
+        "items": [
+          {
+            "question": "How much does it cost?",
+            "answer": "From PLN 599 one-off + subscription from PLN 199/month. We'll advise which option fits your club best."
+          },
+          {
+            "question": "How fast can we launch?",
+            "answer": "Usually within a few days. You can do it yourself or have us prepare everything."
+          },
+          {
+            "question": "Will I manage editing on my own?",
+            "answer": "Yes. The admin panel is simple – publish news, photos, sponsors and menus without technical hassle."
+          },
+          {
+            "question": "Will you migrate content from the old site?",
+            "answer": "Yes – we can migrate news; if there's no archive we add a few starter posts."
+          }
+        ]
+      }
+    },
+    "tickets": {
+      "meta": {
+        "title": "Sportigio - Online Tickets"
+      },
+      "hero": {
+        "title": "Sell tickets online",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Online tickets"
+      },
+      "how": {
+        "title": "ONLINE TICKETS – how it works and how much it costs?",
+        "steps": [
+          {
+            "step": "I",
+            "title": "Ticketing system implementation",
+            "price": "PLN 0",
+            "descriptions": [
+              "We launch the online ticketing system in your club's colours and logo.",
+              "Custom flows or advanced sales can be priced individually."
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "We sign a simple ticketing agreement confirmed via email."
+            ]
+          },
+          {
+            "step": "II",
+            "title": "First sale",
+            "descriptions": [
+              "Configuring and publishing the first sale takes up to 1 hour.",
+              "Tickets are sold at gross prices with 8% VAT included, compliant with Polish law."
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "Sportigio handles sales and customer support as the merchant."
+            ]
+          },
+          {
+            "step": "III",
+            "title": "Settlements and payouts",
+            "price": "7% commission on sales",
+            "descriptions": [
+              "At the end of the month we send a settlement:"
+            ],
+            "listItems": [
+              "Total revenue from tickets sold",
+              "Commission on sales",
+              "Other costs if any"
+            ],
+            "formalitiesTitle": "Formalities:",
+            "formalities": [
+              "The club issues a VAT invoice for online ticket sales (8% VAT) and receives payment within 72 hours."
+            ]
+          }
+        ]
+      }
+    },
+    "shopSportigio": {
+      "meta": {
+        "title": "Sportigio - Sportigio Store"
+      },
+      "heading": "Sportigio Store",
+      "sections": {
+        "intro": {
+          "title": "Store without stock or extra hires",
+          "imageAlt": "Print-on-demand – order fulfillment",
+          "body": [
+            "Ambitious plans for club growth and brand, but limited by budget or staff? Print-on-demand fixes that.",
+            "You assemble a clean merch lineup in a simple generator, while Snapwear handles production and shipping. You focus on promotion and fan communication."
+          ]
+        },
+        "benefits": {
+          "title": "Why it works",
+          "imageAlt": "Sportigio – shop preview on mobile",
+          "body": [
+            "A modern, mobile‑first shop panel, optimized for speed. Building a comparable solution from scratch would cost thousands — here you get it within a zero‑upfront collaboration.",
+            "Settlements are simple and transparent: you invoice the generated profit."
+          ],
+          "bullets": [
+            "Clear and intuitive",
+            "Fast in use",
+            "Excellent on phones",
+            "Modern, visually appealing"
+          ]
+        }
+      }
+    },
+    "shopOwn": {
+      "meta": {
+        "title": "Sportigio - Own Store"
+      },
+      "hero": {
+        "title": "Run your club's own online store.",
+        "subtitle": "Full control",
+        "imageAlt": "Store preview (mobile)"
+      },
+      "examples": {
+        "title": "Club store examples",
+        "subtitle": "Selected online store launches",
+        "button": "Open store",
+        "items": {
+          "legia": {
+            "imageAlt": "Legia Basketball - store mobile preview"
+          },
+          "trefl": {
+            "imageAlt": "Trefl Sopot - store mobile preview"
+          }
+        }
+      }
+    },
+    "pricing": {
+      "meta": {
+        "title": "Pricing - Sportigio | Choose the perfect package for your club"
+      },
+      "hero": {
+        "title": "Choose the perfect package for your club",
+        "subtitle": "Simple, transparent pricing. No hidden costs. Change package anytime.",
+        "currencyLabel": "Currency:",
+        "monthlyLabel": "Monthly",
+        "yearlyLabel": "Yearly",
+        "saveBadge": "Save up to 20%"
+      },
+      "addons": {
+        "badge": "Add-on",
+        "title": "Extend Sportigio's capabilities",
+        "subtitle": "Add specialised modules to build the perfect solution for your club.",
+        "cardBadge": "Add-on",
+        "cardDetails": "Details",
+        "cards": [
+          {
+            "id": "website",
+            "title": "Website",
+            "description": "Professional club website tailored to your branding.",
+            "features": [
+              "Custom design and configuration",
+              "Integration with Sportigio CMS",
+              "Hosting, security and support"
+            ],
+            "cta": "Go to pricing",
+            "href": "/strona#setup-pricing"
+          }
+        ],
+        "defaultCta": "Go to pricing"
+      },
+      "premium": {
+        "title": "Premium Dedicated Package",
+        "subtitle": "Tailor-made solution",
+        "description": "Perfect for professional clubs and sports organisations that need dedicated support, integrations and full customisation of the Sportigio platform.",
+        "highlights": [
+          "Unlimited everything",
+          "Dedicated servers",
+          "Full customisation",
+          "24/7 technical support",
+          "Custom integrations",
+          "On-premise deployment",
+          "Team training",
+          "SLA guarantee"
+        ],
+        "buttons": {
+          "quote": "Contact us for a custom quote",
+          "demo": "Book a demo"
+        },
+        "priceLabel": "Custom",
+        "priceSubLabel": "Pricing",
+        "receiveTitle": "What you get:",
+        "receiveItems": [
+          "Volume discounts",
+          "Flexible payment terms",
+          "Dedicated customer success manager",
+          "Priority support"
+        ]
+      },
+      "faq": {
+        "title": "Have questions?",
+        "subtitle": "We're here to help your club grow online.",
+        "buttons": {
+          "questions": "Frequently asked questions",
+          "contact": "Contact us"
+        }
       }
     }
   }

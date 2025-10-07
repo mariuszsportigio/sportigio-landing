@@ -152,8 +152,8 @@
   },
   "hero": {
     "badge": "Nueva generación de gestión de club",
-    "title": "Comunicación del club en 1 simple",
-    "title_highlight": "aplicación",
+    "title": "Comunicación del club",
+    "title_highlight": "en 1 aplicación sencilla",
     "subtitle": "Revoluciona la forma de gestionar tu club deportivo. Comunicación, horarios, pagos y analíticas - todo en un lugar.",
     "social_proof_clubs": "100+ clubes satisfechos",
     "social_proof_rating": "4.8/5 valoración"
@@ -251,6 +251,45 @@
         "primary": "Crear perfil del club",
         "secondary": "Reservar una demo breve"
       }
+    }
+  }
+  ,
+  "shopSportigio": {
+    "how": {
+      "title": "Cómo funciona",
+      "subtitle": "La tienda Sportigio vende, Snapwear realiza, el club gana.",
+      "actors": {
+        "customer": "Cliente",
+        "seller": "Vendedor: Sportigio (tienda Shopify)",
+        "producer": "Productor: Snapwear (print‑on‑demand + fulfillment)",
+        "beneficiary": "Beneficiario: Club"
+      },
+      "orderFlow": {
+        "a_to_b": "Pedido realizado",
+        "b_to_c": "Envío automático a producción",
+        "b_to_c_note": "sin acciones manuales de Sportigio",
+        "c_to_a": "Pedido enviado",
+        "c_to_a_chip": "~48 h"
+      },
+      "headings": {
+        "order": "Flujo de pedido",
+        "finance": "Flujo financiero"
+      },
+      "actorShort": {
+        "customer": "Cliente",
+        "seller": "Sportigio",
+        "shopify": "Sportigio",
+        "producer": "Snapwear",
+        "beneficiary": "Club"
+      },
+      "financeFlow": {
+        "step4": "Liquidación mensual de ventas",
+        "step4_note": "informe de unidades y valor",
+        "step5": "Factura del club por uso de logo",
+        "step6": "Pago a la cuenta del club",
+        "step6_chip": "dentro de 48 h de la factura"
+      },
+      "cta": "Quiero activar la tienda del club"
     }
   }
 }

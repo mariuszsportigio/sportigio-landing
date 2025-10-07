@@ -9,6 +9,7 @@ export interface Props {
     ctaText?: string;
     ctaHref?: string;
     tallOnDesktop?: boolean; // enforce lg:min-h-[90vh]
+    imageContainerClassName?: string; // optional extra classes for image wrapper
 }
 
 const {
@@ -21,6 +22,7 @@ const {
     ctaText = "",
     ctaHref = "#",
     tallOnDesktop = false,
+    imageContainerClassName = "",
 } = Astro.props as Props;
 ---
 
@@ -30,7 +32,7 @@ const {
     <div class="max-w-6xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-10 items-center">
             <div class={reverse ? "order-2 md:order-2" : "order-1 md:order-1"}>
-                <div class="relative">
+                <div class={`relative ${imageContainerClassName}`}>
                     <img
                         src={imageSrc}
                         alt={imageAlt}

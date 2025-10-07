@@ -5,6 +5,7 @@ import {
   defaultLanguage,
   createTranslator,
   getTranslations,
+  languages,
 } from "../i18n";
 
 export interface Props {
@@ -14,6 +15,89 @@ export interface Props {
 
 const { activePage, lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
+
+const normalizePath = (path: string): string => {
+  if (!path) return "/";
+  const trimmed = path.replace(/\/+$/, "");
+  return trimmed === "" ? "/" : trimmed;
+};
+
+const stripLanguagePrefix = (path: string): string => {
+  const secondaryLanguages: Language[] = ["en", "es", "de"];
+  for (const code of secondaryLanguages) {
+    const prefix = `/${code}`;
+    if (path === prefix) return "/";
+    if (path.startsWith(`${prefix}/`)) {
+      const remainder = path.slice(prefix.length);
+      return remainder ? remainder : "/";
+    }
+  }
+  return path;
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+const basePath = stripLanguagePrefix(currentPath);
+
+const isExternalHref = (href: string): boolean => {
+  return (
+    /^https?:\/\//.test(href) ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  );
+};
+
+const localizeHref = (href: string): string => {
+  if (!href) return href;
+  if (isExternalHref(href) || href.startsWith("#")) return href;
+  const normalized = normalizePath(href);
+  const unprefixed = stripLanguagePrefix(normalized);
+  if (lang === defaultLanguage) return unprefixed === "/" ? "/" : unprefixed;
+  if (unprefixed === "/") return `/${lang}`;
+  return `/${lang}${unprefixed}`;
+};
+
+const homeHref = lang === defaultLanguage ? "/" : `/${lang}`;
+
+const buildLanguageHref = (target: Language): string => {
+  if (target === defaultLanguage) {
+    return basePath === "/" ? "/" : basePath;
+  }
+  if (basePath === "/") return `/${target}`;
+  return `/${target}${basePath}`;
+};
+
+const languageOptions: {
+  value: Language;
+  label: string;
+  name: string;
+  href: string;
+}[] = ["pl", "en"].map((code) => ({
+  value: code as Language,
+  label: code.toUpperCase(),
+  name: languages[code as Language] ?? code.toUpperCase(),
+  href: buildLanguageHref(code as Language),
+}));
+
+const selectedLanguage = languageOptions.some((option) => option.value === lang)
+  ? lang
+  : defaultLanguage;
+
+const selectedOption =
+  languageOptions.find((option) => option.value === selectedLanguage) ||
+  languageOptions[0];
+
+const languageLabel = (() => {
+  switch (lang) {
+    case "pl":
+      return "Wybierz język";
+    case "es":
+      return "Selecciona idioma";
+    case "de":
+      return "Sprache wählen";
+    default:
+      return "Select language";
+  }
+})();
 
 // Types and i18n for per-item mega menus
 type MegaItem = {
@@ -399,7 +483,9 @@ const allowedProductHrefs = new Set([
 const productGroupsV1 = productGroupsFiltered
   .map((group) => ({
     ...group,
-    items: group.items.filter((it) => allowedProductHrefs.has(it.href)),
+    items: group.items.filter((it) =>
+      allowedProductHrefs.has(stripLanguagePrefix(it.href)),
+    ),
   }))
   .filter((group) => group.items.length > 0);
 
@@ -534,7 +620,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-2 group">
+        <a href={homeHref} class="flex items-center space-x-2 group">
           <img
             src="/sportigio-logo-black.png"
             alt="Sportigio"
@@ -605,7 +691,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
                           }) => (
                             <li>
                               <a
-                                href={item.href}
+                                href={localizeHref(item.href)}
                                 class="flex items-start gap-3 rounded-xl px-2.5 py-2.5 hover:bg-gray-50 transition-colors text-gray-900"
                                 role="menuitem"
                               >
@@ -655,14 +741,14 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
         </div>
 
         <a
-          href="/pricing"
+          href={localizeHref("/pricing")}
           class="text-sm text-gray-600 hover:text-[#0B2360] font-medium transition-colors duration-200"
           >{
             t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
           }</a
         >
         <a
-          href="/blog"
+          href={localizeHref("/blog")}
           class={`text-sm font-medium transition-colors duration-200 ${activePage === "blog" ? "text-[#0B2360]" : "text-gray-600 hover:text-[#0B2360]"}`}
           >{t("navigation.blog") || "Blog"}</a
         >
@@ -670,12 +756,49 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
 
       <!-- Desktop CTA Buttons -->
       <div class="hidden lg:flex items-center space-x-4">
-        <a
-          href="/login"
-          class="btn-style-3 btn-compact btn-hover-calm btn-nohover-shadow-outline text-sm font-semibold rounded-xl"
-        >
-          {t("navigation.login") || (lang === "pl" ? "Zaloguj" : "Login")}
-        </a>
+        <div class="relative" data-language-dropdown data-direction="down">
+          <span class="sr-only">{languageLabel}</span>
+          <button
+            type="button"
+            class="btn-hover-calm btn-compact flex items-center gap-2 text-sm font-semibold rounded-xl px-4 bg-white text-[#0B2360] border border-gray-200 shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
+            data-language-toggle
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-label={`${languageLabel}: ${selectedOption.name}`}
+          >
+            <span>{selectedOption.label}</span>
+            <span
+              class="material-symbols-rounded text-base text-gray-500"
+              aria-hidden="true"
+            >
+              expand_more
+            </span>
+          </button>
+          <ul
+            class="hidden absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-30"
+            role="listbox"
+            data-language-menu
+          >
+            {
+              languageOptions.map((option) => (
+                <li>
+                  <button
+                    type="button"
+                    class={`w-full text-left px-4 py-2 text-sm font-medium flex items-center justify-between transition hover:bg-gray-100 ${option.value === selectedLanguage ? "text-[#0B2360]" : "text-gray-700"}`}
+                    data-language-option
+                    data-value={option.value}
+                    data-href={option.href}
+                    role="option"
+                    aria-selected={option.value === selectedLanguage}
+                  >
+                    <span>{option.name}</span>
+                    <span class="text-xs text-gray-400">{option.label}</span>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
         <a
           href="/pricing"
           class="btn-style-1 btn-compact btn-hover-calm btn-nohover-shadow text-sm text-white font-semibold rounded-xl"
@@ -727,7 +850,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
     <div
       class="h-16 flex items-center justify-between px-4 border-b border-gray-200"
     >
-      <a href="/" class="flex items-center space-x-2">
+      <a href={homeHref} class="flex items-center space-x-2">
         <img
           src="/sportigio-logo-black.png"
           alt="Sportigio"
@@ -810,7 +933,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
                           }) => (
                             <li>
                               <a
-                                href={item.href}
+                                href={localizeHref(item.href)}
                                 class="flex items-start gap-3 px-2 py-2 rounded-lg hover:bg-gray-50 text-gray-900"
                               >
                                 {item.img ? (
@@ -852,7 +975,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
         </li>
         <li>
           <a
-            href="/pricing"
+            href={localizeHref("/pricing")}
             class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
             >{
               t("navigation.pricing") || (lang === "pl" ? "Cennik" : "Pricing")
@@ -861,7 +984,7 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
         </li>
         <li>
           <a
-            href="/blog"
+            href={localizeHref("/blog")}
             class="block px-4 py-3.5 rounded-lg hover:bg-gray-50 text-gray-900 text-base font-medium"
             >{t("navigation.blog") || "Blog"}</a
           >
@@ -870,14 +993,51 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
     </div>
     <div class="p-4 border-t border-gray-200 bg-white">
       <div class="flex gap-3">
+        <div class="relative flex-1" data-language-dropdown data-direction="up">
+          <span class="sr-only">{languageLabel}</span>
+          <button
+            type="button"
+            class="btn-hover-calm btn-compact w-full flex items-center justify-between gap-2 text-sm font-semibold rounded-xl px-4 bg-white text-[#0B2360] border border-gray-200 shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
+            data-language-toggle
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-label={`${languageLabel}: ${selectedOption.name}`}
+          >
+            <span>{selectedOption.label}</span>
+            <span
+              class="material-symbols-rounded text-base text-gray-500"
+              aria-hidden="true"
+            >
+              expand_more
+            </span>
+          </button>
+          <ul
+            class="hidden absolute left-0 bottom-full mb-2 w-full bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-30"
+            role="listbox"
+            data-language-menu
+          >
+            {
+              languageOptions.map((option) => (
+                <li>
+                  <button
+                    type="button"
+                    class={`w-full text-left px-4 py-2 text-sm font-medium flex items-center justify-between transition hover:bg-gray-100 ${option.value === selectedLanguage ? "text-[#0B2360]" : "text-gray-700"}`}
+                    data-language-option
+                    data-value={option.value}
+                    data-href={option.href}
+                    role="option"
+                    aria-selected={option.value === selectedLanguage}
+                  >
+                    <span>{option.name}</span>
+                    <span class="text-xs text-gray-400">{option.label}</span>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
         <a
-          href="/login"
-          class="btn-style-3 btn-compact btn-hover-calm btn-nohover-shadow-outline flex-1 text-sm font-semibold rounded-xl text-center"
-        >
-          {t("navigation.login") || (lang === "pl" ? "Zaloguj" : "Login")}
-        </a>
-        <a
-          href="/pricing"
+          href={localizeHref("/pricing")}
           class="btn-style-1 btn-compact btn-hover-calm btn-nohover-shadow flex-1 text-sm text-white font-semibold rounded-xl text-center"
           style="--sportigio-gradient: var(--sportigio-gradient-2);"
         >
@@ -916,6 +1076,83 @@ const resourcesGroups = i18nMegaResources.map((group) => ({
       "mobile-acc-resources-toggle",
     );
     const mobileAccResources = document.getElementById("mobile-acc-resources");
+
+    const languageDropdowns = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-language-dropdown]"),
+    );
+
+    const closeAllDropdowns = () => {
+      languageDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("is-open");
+        const toggle = dropdown.querySelector(
+          "[data-language-toggle]",
+        ) as HTMLButtonElement | null;
+        const menu = dropdown.querySelector(
+          "[data-language-menu]",
+        ) as HTMLElement | null;
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+        if (menu) menu.classList.add("hidden");
+      });
+    };
+
+    languageDropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector(
+        "[data-language-toggle]",
+      ) as HTMLButtonElement | null;
+      const menu = dropdown.querySelector(
+        "[data-language-menu]",
+      ) as HTMLElement | null;
+      const options = dropdown.querySelectorAll(
+        "[data-language-option]",
+      ) as NodeListOf<HTMLButtonElement>;
+      if (!toggle || !menu) return;
+
+      const openMenu = () => {
+        closeAllDropdowns();
+        dropdown.classList.add("is-open");
+        menu.classList.remove("hidden");
+        toggle.setAttribute("aria-expanded", "true");
+      };
+
+      const closeMenu = () => {
+        dropdown.classList.remove("is-open");
+        menu.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+      };
+
+      toggle.addEventListener("click", (event) => {
+        event.preventDefault();
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        if (isOpen) closeMenu();
+        else openMenu();
+      });
+
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          const href = option.dataset.href;
+          if (href) {
+            window.location.href = href;
+          }
+        });
+      });
+
+      dropdown.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          closeMenu();
+          toggle.focus();
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node | null;
+      if (!target) return;
+      const withinDropdown = (node: Node) =>
+        languageDropdowns.some((dropdown) => dropdown.contains(node));
+      if (!withinDropdown(target)) {
+        closeAllDropdowns();
+      }
+    });
 
     // Hover intent control
     let animating = false;

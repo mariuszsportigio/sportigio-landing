@@ -79,6 +79,16 @@ body {
   -webkit-backdrop-filter: blur(20px);
 }
 
+.hero-image-small .hero-image-wrapper {
+  max-width: 420px;
+}
+
+@media (min-width: 1024px) {
+  .hero-image-small .hero-image-wrapper {
+    max-width: 520px;
+  }
+}
+
 .hero-glassmorphism::before {
   content: '';
   position: absolute;

@@ -37,15 +37,31 @@
         {
           "title": "Produkt",
           "items": [
-            { "label": "Cennik", "href": "/pricing", "description": "Proste, przejrzyste ceny" },
-            { "label": "Blog", "href": "/blog", "description": "Wiedza i aktualności" },
-            { "label": "Kitchen Sink", "href": "/kitchen-sink", "description": "Komponenty i style" }
+            {
+              "label": "Cennik",
+              "href": "/pricing",
+              "description": "Proste, przejrzyste ceny"
+            },
+            {
+              "label": "Blog",
+              "href": "/blog",
+              "description": "Wiedza i aktualności"
+            },
+            {
+              "label": "Kitchen Sink",
+              "href": "/kitchen-sink",
+              "description": "Komponenty i style"
+            }
           ]
         },
         {
           "title": "Nawigacja",
           "items": [
-            { "label": "Strona główna", "href": "/", "description": "Start" }
+            {
+              "label": "Strona główna",
+              "href": "/",
+              "description": "Start"
+            }
           ]
         }
       ],
@@ -55,31 +71,91 @@
             {
               "title": "Platforma",
               "items": [
-                { "label": "Sportigio", "href": "/platforma", "description": "" },
-                { "label": "Strona", "href": "/strona", "description": "" },
-                { "label": "Bilety online", "href": "/bilety-online", "description": "" },
-                { "label": "Sklep Sportigio", "href": "/sklep-sportigio", "description": "" },
-                { "label": "Sklep własny", "href": "/sklep-wlasny", "description": "" }
+                {
+                  "label": "Sportigio",
+                  "href": "/platforma",
+                  "description": ""
+                },
+                {
+                  "label": "Strona",
+                  "href": "/strona",
+                  "description": ""
+                },
+                {
+                  "label": "Bilety online",
+                  "href": "/bilety-online",
+                  "description": ""
+                },
+                {
+                  "label": "Sklep Sportigio",
+                  "href": "/sklep-sportigio",
+                  "description": ""
+                },
+                {
+                  "label": "Sklep własny",
+                  "href": "/sklep-wlasny",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Możliwości",
               "items": [
-                { "label": "Zarabianie", "href": "/zarabianie", "description": "" },
-                { "label": "Typer i Quiz", "href": "/typer-quiz", "description": "" },
-                { "label": "Automatyczne wyniki", "href": "/automatyczne-wyniki", "description": "" },
-                { "label": "Reklamy i sponsorzy", "href": "/reklamy-sponsorzy", "description": "" },
-                { "label": "Mailing i powiadomienia", "href": "/mailing-powiadomienia", "description": "" },
-                { "label": "Baza fanów", "href": "/baza-fanow", "description": "" },
-                { "label": "Asystent AI", "href": "/asystent-ai", "description": "" },
-                { "label": "Wszystkie funkcje", "href": "/wszystkie-funkcje", "description": "" }
+                {
+                  "label": "Zarabianie",
+                  "href": "/zarabianie",
+                  "description": ""
+                },
+                {
+                  "label": "Typer i Quiz",
+                  "href": "/typer-quiz",
+                  "description": ""
+                },
+                {
+                  "label": "Automatyczne wyniki",
+                  "href": "/automatyczne-wyniki",
+                  "description": ""
+                },
+                {
+                  "label": "Reklamy i sponsorzy",
+                  "href": "/reklamy-sponsorzy",
+                  "description": ""
+                },
+                {
+                  "label": "Mailing i powiadomienia",
+                  "href": "/mailing-powiadomienia",
+                  "description": ""
+                },
+                {
+                  "label": "Baza fanów",
+                  "href": "/baza-fanow",
+                  "description": ""
+                },
+                {
+                  "label": "Asystent AI",
+                  "href": "/asystent-ai",
+                  "description": ""
+                },
+                {
+                  "label": "Wszystkie funkcje",
+                  "href": "/wszystkie-funkcje",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Jak zacząć?",
               "items": [
-                { "label": "Zleć to nam", "href": "/zlec-to-nam", "description": "" },
-                { "label": "Zrób to sam", "href": "/zrob-to-sam", "description": "" }
+                {
+                  "label": "Zleć to nam",
+                  "href": "/zlec-to-nam",
+                  "description": ""
+                },
+                {
+                  "label": "Zrób to sam",
+                  "href": "/zrob-to-sam",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -89,31 +165,91 @@
             {
               "title": "Dla kogo",
               "items": [
-                { "label": "Zarząd", "href": "/zarzad", "description": "" },
-                { "label": "Marketing", "href": "/marketing", "description": "" },
-                { "label": "Sponsor", "href": "/sponsor", "description": "" },
-                { "label": "Kibic", "href": "/kibic", "description": "" }
+                {
+                  "label": "Zarząd",
+                  "href": "/zarzad",
+                  "description": ""
+                },
+                {
+                  "label": "Marketing",
+                  "href": "/marketing",
+                  "description": ""
+                },
+                {
+                  "label": "Sponsor",
+                  "href": "/sponsor",
+                  "description": ""
+                },
+                {
+                  "label": "Kibic",
+                  "href": "/kibic",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Dyscyplina",
               "items": [
-                { "label": "Piłka nożna", "href": "/pilka-nozna", "description": "" },
-                { "label": "Koszykówka", "href": "/koszykowka", "description": "" },
-                { "label": "Siatkówka", "href": "/siatkowka", "description": "" },
-                { "label": "Hokej", "href": "/hokej", "description": "" },
-                { "label": "Futsal", "href": "/futsal", "description": "" },
-                { "label": "Inne sporty", "href": "/inne-sporty", "description": "" }
+                {
+                  "label": "Piłka nożna",
+                  "href": "/pilka-nozna",
+                  "description": ""
+                },
+                {
+                  "label": "Koszykówka",
+                  "href": "/koszykowka",
+                  "description": ""
+                },
+                {
+                  "label": "Siatkówka",
+                  "href": "/siatkowka",
+                  "description": ""
+                },
+                {
+                  "label": "Hokej",
+                  "href": "/hokej",
+                  "description": ""
+                },
+                {
+                  "label": "Futsal",
+                  "href": "/futsal",
+                  "description": ""
+                },
+                {
+                  "label": "Inne sporty",
+                  "href": "/inne-sporty",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Zastosowania",
               "items": [
-                { "label": "Sprzedaż biletów i karnetów", "href": "/bilety-karnety", "description": "" },
-                { "label": "Merch bez kosztów", "href": "/merch", "description": "" },
-                { "label": "Pakiety wsparcia", "href": "/pakiety-wsparcia", "description": "" },
-                { "label": "Fan Engagement", "href": "/fan-engagement", "description": "" },
-                { "label": "Historie klientów", "href": "/historie-klientow", "description": "" }
+                {
+                  "label": "Sprzedaż biletów i karnetów",
+                  "href": "/bilety-karnety",
+                  "description": ""
+                },
+                {
+                  "label": "Merch bez kosztów",
+                  "href": "/merch",
+                  "description": ""
+                },
+                {
+                  "label": "Pakiety wsparcia",
+                  "href": "/pakiety-wsparcia",
+                  "description": ""
+                },
+                {
+                  "label": "Fan Engagement",
+                  "href": "/fan-engagement",
+                  "description": ""
+                },
+                {
+                  "label": "Historie klientów",
+                  "href": "/historie-klientow",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -123,36 +259,96 @@
             {
               "title": "Poznaj nas",
               "items": [
-                { "label": "O firmie", "href": "/o-firmie", "description": "" },
-                { "label": "Co nowego", "href": "/co-nowego", "description": "" },
-                { "label": "Umów Demo", "href": "/demo", "description": "" },
-                { "label": "Blog", "href": "/blog", "description": "" }
+                {
+                  "label": "O firmie",
+                  "href": "/o-firmie",
+                  "description": ""
+                },
+                {
+                  "label": "Co nowego",
+                  "href": "/co-nowego",
+                  "description": ""
+                },
+                {
+                  "label": "Umów Demo",
+                  "href": "/demo",
+                  "description": ""
+                },
+                {
+                  "label": "Blog",
+                  "href": "/blog",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Wsparcie",
               "items": [
-                { "label": "Baza wiedzy", "href": "/baza-wiedzy", "description": "" },
-                { "label": "Webinary", "href": "/webinary", "description": "" },
-                { "label": "Instrukcje wideo", "href": "/instrukcje-wideo", "description": "" },
-                { "label": "API", "href": "/api", "description": "" },
-                { "label": "Kontakt", "href": "/kontakt", "description": "" }
+                {
+                  "label": "Baza wiedzy",
+                  "href": "/baza-wiedzy",
+                  "description": ""
+                },
+                {
+                  "label": "Webinary",
+                  "href": "/webinary",
+                  "description": ""
+                },
+                {
+                  "label": "Instrukcje wideo",
+                  "href": "/instrukcje-wideo",
+                  "description": ""
+                },
+                {
+                  "label": "API",
+                  "href": "/api",
+                  "description": ""
+                },
+                {
+                  "label": "Kontakt",
+                  "href": "/kontakt",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Usługi",
               "items": [
-                { "label": "Wdrożenie", "href": "/wdrozenie", "description": "" },
-                { "label": "Migracja danych", "href": "/migracja-danych", "description": "" },
-                { "label": "Szkolenia", "href": "/szkolenia", "description": "" },
-                { "label": "Outsourcing", "href": "/outsourcing", "description": "" }
+                {
+                  "label": "Wdrożenie",
+                  "href": "/wdrozenie",
+                  "description": ""
+                },
+                {
+                  "label": "Migracja danych",
+                  "href": "/migracja-danych",
+                  "description": ""
+                },
+                {
+                  "label": "Szkolenia",
+                  "href": "/szkolenia",
+                  "description": ""
+                },
+                {
+                  "label": "Outsourcing",
+                  "href": "/outsourcing",
+                  "description": ""
+                }
               ]
             },
             {
               "title": "Historie klientów",
               "items": [
-                { "label": "News", "href": "/news", "description": "" },
-                { "label": "Zobacz wszystkie", "href": "/historie-klientow", "description": "" }
+                {
+                  "label": "News",
+                  "href": "/news",
+                  "description": ""
+                },
+                {
+                  "label": "Zobacz wszystkie",
+                  "href": "/historie-klientow",
+                  "description": ""
+                }
               ]
             }
           ]
@@ -162,8 +358,8 @@
   },
   "hero": {
     "badge": "Nowa generacja zarządzania klubem",
-    "title": "Komunikacja klubu w 1 prostej",
-    "title_highlight": "aplikacji",
+    "title": "Komunikacja klubu",
+    "title_highlight": "w 1 prostej aplikacji",
     "subtitle": "Zapomnij o problemach i wysokich kosztach IT. Strona www, sklep i bilety dedykowane klubom sportowym każdej wielkości.",
     "social_proof_clubs": "100+ zadowolonych klubów",
     "social_proof_rating": "4.8/5 ocena"
@@ -180,38 +376,29 @@
       "attendance": "Wzrost frekwencji (25%)"
     },
     "cta_text": "Dołącz do ponad 100+ klubów",
-    "reviews": {
-      "review_1": {
-        "text": "Sportigio całkowicie zrewolucjonizowało sposób zarządzania naszym klubem. Oszczędzamy 10 godzin tygodniowo na administracji!",
-        "author": "Marcin Kowalski",
-        "position": "Prezes, KS Cracovia"
+    "reviews": [
+      {
+        "text": "Nie sądziłam, że aktualizacja strony klubu może być tak łatwa jak prowadzenie Facebooka. Panel admina jest bardzo intuicyjny",
+        "author": "Barbara Lewandowska-Paluch",
+        "role": "Trefl Sopot",
+        "avatar": "/teams/trefl.avif",
+        "avatarAlt": "Trefl Sopot"
       },
-      "review_2": {
-        "text": "Komunikacja z rodzicami nigdy nie była tak prosta. Wszyscy są na bieżąco z treningami i wydarzeniami klubowymi.",
-        "author": "Anna Szymańska",
-        "position": "Trener, UKS Wisła"
+      {
+        "text": "Zaczęliśmy od odświeżenia klubowej strony www. I tu pierwsze WOW wśród odbiorców. Okazało się, że dla wielu MTS Żory stał się marką PREMIUM, tylko dlatego że został ładnie opakowany.",
+        "author": "Daniel Asztemborski",
+        "role": "MTS Żory",
+        "avatar": "/teams/mts-zory.avif",
+        "avatarAlt": "MTS Żory"
       },
-      "review_3": {
-        "text": "Automatyczne przypomnienia o płatnościach to genialne rozwiązanie. Nie muszę już gonić za składkami!",
-        "author": "Piotr Wiśniewski",
-        "position": "Sekretarz, Legia Warszawa"
-      },
-      "review_4": {
-        "text": "Aplikacja mobilna to strzał w dziesiątkę. Zawodnicy mogą sprawdzić harmonogram treningów w każdej chwili.",
-        "author": "Katarzyna Nowak",
-        "position": "Koordynator, Lech Poznań"
-      },
-      "review_5": {
-        "text": "Raporty analityczne pomogły nam zidentyfikować obszary do poprawy. Frekwencja wzrosła o 25%!",
-        "author": "Łukasz Zieliński",
-        "position": "Dyrektor sportowy, Zagłębie Lubin"
-      },
-      "review_6": {
-        "text": "Intuicyjny interfejs sprawia, że nawet najmniej techniczni członkowie zarządu mogą korzystać z systemu bez problemów.",
-        "author": "Maria Wójcik",
-        "position": "Prezes, Pogoń Szczecin"
+      {
+        "text": "Nie mieliśmy wcześniej strony internetowej, bo myśleliśmy, że to droga i czasochłonna inwestycja. Teraz mamy w pełni profesjonalne narzędzie.",
+        "author": "Mariusz Ratajczak",
+        "role": "KKS Astra Krotoszyn",
+        "avatar": "/teams/astra-krotoszyn.avif",
+        "avatarAlt": "KKS Astra Krotoszyn"
       }
-    }
+    ]
   },
   "blog": {
     "title": "Najnowsze artykuły",
@@ -222,7 +409,14 @@
     "back_to_blog": "Powrót do bloga",
     "related_articles": "Powiązane artykuły",
     "published_on": "Opublikowano",
-    "share_article": "Udostępnij artykuł"
+    "share_article": "Udostępnij artykuł",
+    "error_title": "Błąd ładowania",
+    "error_description": "Nie udało się pobrać artykułów",
+    "error_retry": "Spróbuj ponownie",
+    "empty_title": "Brak artykułów",
+    "empty_cta": "Powrót do strony głównej",
+    "pagination_prev": "Poprzednia",
+    "pagination_next": "Następna"
   },
   "pricing": {
     "title": "Wybierz idealny pakiet dla swojego klubu",
@@ -306,29 +500,73 @@
       "title": "Co zyskujesz jako właściciel akademii?",
       "subtitle": "Konkretne korzyści dla Twojej akademii",
       "items": [
-        { "title": "Oszczędność czasu", "description": "mniej telefonów, wiadomości, papierów", "icon": "time" },
-        { "title": "Spokój i porządek", "description": "wszystko działa, nawet gdy Ciebie nie ma", "icon": "peace" },
-        { "title": "Więcej pieniędzy na czas", "description": "system przypomina, ułatwia i przyspiesza płatności", "icon": "money" },
-        { "title": "Zadowoleni rodzice", "description": "którzy polecają Cię innym", "icon": "happy" },
-        { "title": "Nowoczesny wizerunek", "description": "pokazujesz, że jesteś profesjonalistą", "icon": "modern" }
+        {
+          "title": "Oszczędność czasu",
+          "description": "mniej telefonów, wiadomości, papierów",
+          "icon": "time"
+        },
+        {
+          "title": "Spokój i porządek",
+          "description": "wszystko działa, nawet gdy Ciebie nie ma",
+          "icon": "peace"
+        },
+        {
+          "title": "Więcej pieniędzy na czas",
+          "description": "system przypomina, ułatwia i przyspiesza płatności",
+          "icon": "money"
+        },
+        {
+          "title": "Zadowoleni rodzice",
+          "description": "którzy polecają Cię innym",
+          "icon": "happy"
+        },
+        {
+          "title": "Nowoczesny wizerunek",
+          "description": "pokazujesz, że jesteś profesjonalistą",
+          "icon": "modern"
+        }
       ]
     },
     "target_groups": {
       "title": "Dla kogo to działa?",
       "subtitle": "Korzyści dla wszystkich w akademii",
       "groups": [
-        { "title": "Dla Ciebie — właściciela", "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.", "icon": "owner" },
-        { "title": "Dla trenerów", "description": "Lista obecności i szybki kontakt z rodzicem — wszystko z telefonu.", "icon": "trainer" },
-        { "title": "Dla rodziców", "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.", "icon": "parent" }
+        {
+          "title": "Dla Ciebie — właściciela",
+          "description": "Zarządzasz całością z 1 miejsca. Bez chaosu, bez kartek, bez zgadywania.",
+          "icon": "owner"
+        },
+        {
+          "title": "Dla trenerów",
+          "description": "Lista obecności i szybki kontakt z rodzicem — wszystko z telefonu.",
+          "icon": "trainer"
+        },
+        {
+          "title": "Dla rodziców",
+          "description": "Wiedzą co, gdzie i kiedy. Płacą szybko. Mają podgląd postępów dziecka.",
+          "icon": "parent"
+        }
       ]
     },
     "how_to_start": {
       "title": "Jak zacząć?",
       "subtitle": "Prosty proces wdrożenia — robimy wszystko za Ciebie",
       "steps": [
-        { "step": "1", "title": "Umów się na bezpłatną prezentację online", "description": "15 min" },
-        { "step": "2", "title": "Wgrywamy dane i konfigurujemy Twoją akademię", "description": "my robimy to za Ciebie" },
-        { "step": "3", "title": "Startujesz z gotowym systemem i aplikacją dla rodziców", "description": "gotowe do użycia" }
+        {
+          "step": "1",
+          "title": "Umów się na bezpłatną prezentację online",
+          "description": "15 min"
+        },
+        {
+          "step": "2",
+          "title": "Wgrywamy dane i konfigurujemy Twoją akademię",
+          "description": "my robimy to za Ciebie"
+        },
+        {
+          "step": "3",
+          "title": "Startujesz z gotowym systemem i aplikacją dla rodziców",
+          "description": "gotowe do użycia"
+        }
       ]
     },
     "bonus": {
@@ -340,7 +578,10 @@
       "title": "Umów prezentację teraz",
       "description": "Porozmawiaj z naszym doradcą i zobacz, jak Sportigio może pomóc Twojej akademii",
       "cta_primary": "Umów rozmowę z doradcą",
-      "contact_info": { "email": "kontakt@sportigio.com", "phone": "+48 600 000 000" }
+      "contact_info": {
+        "email": "kontakt@sportigio.com",
+        "phone": "+48 600 000 000"
+      }
     },
     "social_proof": {
       "title": "Dołącz do nowoczesnych akademii",
@@ -361,7 +602,8 @@
       "terms": "Regulamin",
       "cookies": "Pliki cookie",
       "rodo": "RODO"
-    }
+    },
+    "copyright": "© {year} Sportigio. Wszystkie prawa zastrzeżone."
   },
   "cookies": {
     "consentModal": {
@@ -419,10 +661,22 @@
       "features": {
         "title": "Wszystko w jednym miejscu",
         "items": [
-          { "title": "Terminarz i wyniki", "description": "Publikuj mecze i wyniki automatycznie." },
-          { "title": "Bilety i karnety", "description": "Sprzedawaj bilety i karnety online." },
-          { "title": "Sklep i merch", "description": "Linkuj produkty lub włącz sklep." },
-          { "title": "Analityka", "description": "Mierz ruch, kliknięcia i sprzedaż." }
+          {
+            "title": "Terminarz i wyniki",
+            "description": "Publikuj mecze i wyniki automatycznie."
+          },
+          {
+            "title": "Bilety i karnety",
+            "description": "Sprzedawaj bilety i karnety online."
+          },
+          {
+            "title": "Sklep i merch",
+            "description": "Linkuj produkty lub włącz sklep."
+          },
+          {
+            "title": "Analityka",
+            "description": "Mierz ruch, kliknięcia i sprzedaż."
+          }
         ]
       },
       "compare": {
@@ -444,6 +698,696 @@
         "subtitle": "Twój profil jest gotowy od razu po rejestracji",
         "primary": "Utwórz profil klubu",
         "secondary": "Umów krótkie demo"
+      }
+    }
+  },
+  "shopSportigio": {
+    "how": {
+      "title": "Jak to działa?",
+      "subtitle": "Sklep Sportigio sprzedaje, Snapwear realizuje, Twój Klub zarabia.",
+      "actors": {
+        "customer": "Klient",
+        "seller": "Sprzedawca: Sportigio",
+        "producer": "Producent: Snapwear",
+        "beneficiary": "Beneficjent: Klub"
+      },
+      "orderFlow": {
+        "a_to_b": "Złożenie zamówienia",
+        "b_to_c": "Automatyczne przekazanie do produkcji",
+        "b_to_c_note": "bez ręcznego zlecenia ze strony Sportigio",
+        "c_to_a": "Wysyłka zamówienia",
+        "c_to_a_chip": "ok. 48 h"
+      },
+      "headings": {
+        "order": "Flow zamówienia",
+        "finance": "Flow finansów"
+      },
+      "actorShort": {
+        "customer": "Klient",
+        "seller": "Sportigio",
+        "shopify": "Sportigio",
+        "producer": "Snapwear",
+        "beneficiary": "Klub"
+      },
+      "financeFlow": {
+        "step4": "Rozliczenie sprzedaży miesięczne",
+        "step4_note": "raport sztuk i wartości",
+        "step5": "Faktura klubu za korzystanie z logo",
+        "step6": "Płatność na konto",
+        "step6_chip": "do 48 h od faktury"
+      },
+      "cta": "Chcę uruchomić sklep"
+    }
+  },
+  "landing": {
+    "seo": {
+      "title": "Sportigio - Zarządzanie klubem sportowym w jednej aplikacji"
+    },
+    "trusted": {
+      "tagline": "Zaufało nam ponad 100 klubów"
+    },
+    "benefits": {
+      "title": "Platforma Sportigio dla klubu sportowego",
+      "subtitle": "Możesz skorzystać z 1 lub wielu modułów. Decyduj w dowolnym momencie.",
+      "modules": [
+        {
+          "icon": "phone_iphone",
+          "label": "Strona mobilna"
+        },
+        {
+          "icon": "storefront",
+          "label": "Sklep online"
+        },
+        {
+          "icon": "confirmation_number",
+          "label": "Bilety online"
+        }
+      ],
+      "features": [
+        {
+          "icon": "dns",
+          "title": "Bez zmartwień technicznych",
+          "description": "Zapewniamy serwer, aktualizacje kodu oraz bezpieczeństwo danych."
+        },
+        {
+          "icon": "verified_user",
+          "title": "Działasz od razu",
+          "description": "Korzystasz z produktu pod swoją marką, bez czekania i inwestycji."
+        },
+        {
+          "icon": "headset_mic",
+          "title": "Ciągłe wsparcie",
+          "description": "Monitoring techniczny 24/7, wsparcie ludzkie przez e-mail i czat."
+        },
+        {
+          "icon": "language",
+          "title": "Twoja marka w internecie",
+          "description": "My utrzymujemy system, a Ty tworzysz treści, promujesz sponsorów."
+        }
+      ]
+    },
+    "sections": [
+      {
+        "id": "website",
+        "title": "Profesjonalna strona internetowa klubu",
+        "image": {
+          "src": "/screens/website-preview-mobile.avif",
+          "alt": "Sportigio - Strona internetowa klubu"
+        },
+        "cta": {
+          "variant": "button",
+          "text": "Zobacz więcej",
+          "href": "/strona"
+        },
+        "bullets": [
+          {
+            "icon": "rocket_launch",
+            "title": "Szybki start i pewne działanie",
+            "description": "Działamy na gotowym i sprawdzonym dla sportu szablonie. Utrzymujemy łącznie ponad 100 stron."
+          },
+          {
+            "icon": "edit_note",
+            "title": "Samodzielna i prosta edycja",
+            "description": "Pokochasz panel admina za ułatwienia terminarza, sponsorów, banerów, dodawania i edycji treści."
+          },
+          {
+            "icon": "trending_up",
+            "title": "37% wzrost popularności",
+            "description": "Porównując roczne statystyki odsłon, strony w Sportigio generują ok. 37% więcej odsłon."
+          }
+        ]
+      },
+      {
+        "id": "tickets",
+        "title": "Sprzedawaj bilety online",
+        "image": {
+          "src": "/screens/tickets-preview-mobile.avif",
+          "alt": "Sportigio - Bilety online"
+        },
+        "cta": {
+          "variant": "button",
+          "text": "Zobacz więcej",
+          "href": "/bilety-online"
+        },
+        "reverse": true,
+        "bullets": [
+          {
+            "icon": "bolt",
+            "title": "Prostota i elegancja = KONWERSJA",
+            "description": "Szybki i łatwy proces zakupu, bez wychodzenia ze strony klubowej."
+          },
+          {
+            "icon": "qr_code_scanner",
+            "title": "Kontrola biletów w telefonie",
+            "description": "Kontrolerem biletów może być każdy z telefonem i przeglądarką."
+          },
+          {
+            "icon": "trending_up",
+            "title": "38% większa szansa na lojalność",
+            "description": "Budujemy bazę kibiców i zwiększamy szanse na ponowne zakupy."
+          }
+        ]
+      }
+    ],
+    "shop": {
+      "title": "Sklep internetowy",
+      "subtitle": "Oferujemy dwie opcje sklepu internetowego",
+      "options": [
+        {
+          "title": "Sprzedaż online w Sportigio",
+          "description": "Zlecasz sprzedaż gadżetów do Sportigio w formule \"druk na żądanie\"",
+          "iconImage": "/sportigio-sygnet.png",
+          "cta": {
+            "variant": "button",
+            "text": "Dowiedz się więcej",
+            "href": "/sklep-sportigio"
+          }
+        },
+        {
+          "title": "Własny sklep internetowy",
+          "description": "Prowadzisz własny sklep internetowy z kontrolą magazynów, płatności, itp.",
+          "icon": "storefront",
+          "cta": {
+            "variant": "button",
+            "text": "Dowiedz się więcej",
+            "href": "/sklep-wlasny"
+          }
+        }
+      ]
+    },
+    "steps": {
+      "title": "3 kroki do startu - zacznij już dziś",
+      "tabs": [
+        {
+          "id": "chat",
+          "icon": "format_list_bulleted",
+          "label": "Wybierz produkty i funkcje",
+          "description": "Wybierz od czego chcesz zacząć wg ogólnej oferty:",
+          "bullets": [
+            {
+              "title": "Strona www"
+            },
+            {
+              "title": "Sklep online"
+            },
+            {
+              "title": "Bilety"
+            }
+          ],
+          "paragraphs": [
+            "Podaj nam swoje potrzeby i preferencje. Dostosowujemy ofertę i wyślemy plan na Twoje wdrożenie."
+          ],
+          "image": {
+            "src": "/screens/website-preview-mobile.avif",
+            "alt": "Podgląd modułu czatu"
+          }
+        },
+        {
+          "id": "posts",
+          "icon": "smart_display",
+          "label": "Dopasowana oferta i demo",
+          "description": "Otrzymasz mailem link do swojego demo i ofertę, dostosowaną do Ciebie.",
+          "paragraphs": [
+            "Widzisz swój produkt i na tym etapie ustalamy szczegóły i harmonogram.",
+            "Po akceptacji warunków przechodzimy dalej."
+          ],
+          "image": {
+            "src": "/screens/fanapp-preview-mobile.avif",
+            "alt": "Podgląd postów"
+          }
+        },
+        {
+          "id": "views",
+          "icon": "rocket_launch",
+          "label": "Onboarding i wdrożenie",
+          "description": "Konfigurujemy produkt, zgodnie z wybranym pakietem i uzupełniamy dane.",
+          "paragraphs": [
+            "To czas na ostatnie zmiany w zakresie prac, podpisanie umowy i wystawienie FV.",
+            "Otrzymasz szkolenie z obsługi i materiały do wdrożenia."
+          ],
+          "image": {
+            "src": "/screens/analytics_01.png",
+            "alt": "Analityka Sportigio"
+          }
+        }
+      ]
+    },
+    "faq": {
+      "title": "Często zadawane pytania",
+      "subtitle": "Znajdź odpowiedzi na najczęściej zadawane pytania o Sportigio",
+      "items": [
+        {
+          "question": "Jak szybko mogę uruchomić Sportigio?",
+          "answer": "Wszystko zależy od Ciebie - samodzielne uruchomienie trwa kilka godzin, a jeśli potrzebujesz naszej pomocy, zrobimy to w kilka dni."
+        },
+        {
+          "question": "Czy mogę zrezygnować w dowolnym momencie?",
+          "answer": "Tak, nasz model abonamentowy pozwala Ci zakończyć współpracę w dowolnej chwili, bez zobowiązań."
+        },
+        {
+          "question": "Jak wygląda wsparcie techniczne?",
+          "answer": "Każdy abonament obejmuje wsparcie techniczne. Możesz też wykupić dodatkowe usługi, takie jak zarządzanie stroną czy telefoniczny support 24/7."
+        },
+        {
+          "question": "Czy muszę korzystać ze wszystkich funkcji?",
+          "answer": "Absolutnie nie! Możesz wybrać tylko te narzędzia, które są dla Ciebie kluczowe, i rozwijać platformę w swoim tempie."
+        },
+        {
+          "question": "Czy potrzebuję specjalistycznej wiedzy, aby korzystać z Sportigio?",
+          "answer": "Nie, narzędzia Sportigio są intuicyjne i proste w obsłudze - jeśli potrafisz prowadzić fanpage na Facebooku, poradzisz sobie bez problemu."
+        },
+        {
+          "question": "Czy mogę przetestować platformę przed zakupem?",
+          "answer": "Tak, oferujemy bezpłatny okres próbny, abyś mógł sprawdzić, jak Sportigio działa w Twoim klubie."
+        }
+      ]
+    },
+    "cta": {
+      "badge": "Rozpocznij już dziś",
+      "title": "Dołącz do nowej ery",
+      "highlight": "klubów sportowych",
+      "subtitle": "Ponad 100 klubów już korzysta z Sportigio. Dołącz do grona liderów, którzy wybrali nowoczesność, efektywność i wygodę.",
+      "primary_button": {
+        "label": "Rozpocznij za darmo",
+        "href": "https://sportig.io/join"
+      },
+      "secondary_button": {
+        "label": "Zobacz demo na żywo",
+        "href": "https://sportig.io/join"
+      },
+      "stats": [
+        {
+          "value": "100+",
+          "label": "Aktywnych klubów"
+        },
+        {
+          "value": "50k+",
+          "label": "Zadowolonych użytkowników"
+        },
+        {
+          "value": "98%",
+          "label": "Wskaźnik zadowolenia"
+        }
+      ],
+      "trust": [
+        "30 dni za darmo",
+        "Anuluj w każdym momencie",
+        "Setup w 5 minut"
+      ]
+    }
+  },
+  "pages": {
+    "website": {
+      "meta": {
+        "title": "Sportigio - Strona"
+      },
+      "hero": {
+        "title": "Profesjonalna strona internetowa klubu",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Strona internetowa klubu"
+      },
+      "examples": {
+        "title": "Przykłady realizacji",
+        "subtitle": "Wybrane wdrożenia w klubach sportowych",
+        "button": "Odwiedź stronę",
+        "items": {
+          "wisla": {
+            "imageAlt": "Wisła Kraków - podgląd strony mobilnej"
+          },
+          "legia": {
+            "imageAlt": "Legia - podgląd strony mobilnej"
+          },
+          "mks": {
+            "imageAlt": "MKS Będzin - podgląd strony mobilnej"
+          },
+          "panthers": {
+            "imageAlt": "Panthers Wrocław - podgląd strony mobilnej"
+          }
+        }
+      },
+      "pricing": {
+        "explanation": {
+          "title": "Cennik strony WWW",
+          "subtitle": "Koszt strony WWW składa się z dwóch części: jednorazowej opłaty za uruchomienie oraz miesięcznego abonamentu za utrzymanie."
+        },
+        "setup": {
+          "badge": "Cennik (1/2)",
+          "title": "Uruchomienie strony WWW",
+          "subtitle": "Jednorazowa opłata za start - trzy opcje dopasowane do Twoich potrzeb",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Utrzymanie hostingu"
+            },
+            {
+              "icon": "verified_user",
+              "label": "Certyfikat SSL"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Wsparcie techniczne"
+            }
+          ],
+          "plans": [
+            {
+              "name": "Standardowe",
+              "price": "599 zł",
+              "priceNote": "netto",
+              "description": "Podstawowa konfiguracja i wsparcie dla klubu, który chce ruszyć samodzielnie",
+              "features": [
+                "1h szkolenia z obsługi lub konsultacji",
+                "Migracja artykułów ze starej strony*",
+                "Wsparcie mailowe i przez czat",
+                "Pomoc w podpięciu domeny i starcie"
+              ],
+              "extras": [
+                "Działasz samodzielnie na swoim demo",
+                "Konsultujemy przebieg prac i wspieramy Cię technicznie"
+              ]
+            },
+            {
+              "name": "Komfortowe",
+              "price": "2 100 zł",
+              "priceNote": "netto",
+              "description": "Dla klubów, które chcą mieć wszystko przygotowane i ruszyć bez stresu",
+              "highlight": true,
+              "badge": "Najczęściej wybierane",
+              "features": [
+                "2h szkolenia z obsługi lub konsultacji",
+                "Migracja artykułów ze starej strony",
+                "Wsparcie przez WhatsApp (7 dni)",
+                "3h prac nad uzupełnieniem treści"
+              ],
+              "extras": [
+                "Przesyłasz nam materiały lub linki",
+                "Otrzymujesz stronę gotową do startu"
+              ]
+            },
+            {
+              "name": "Dedykowane",
+              "price": "Indywidualnie",
+              "description": "Dla większych projektów, wymagających więcej pracy lub migracji dużej ilości treści",
+              "featuresTitle": "Wszystko co w Komfortowym oraz:",
+              "features": [
+                "Migracja galerii zdjęć lub plików",
+                "Dodatkowe dostosowanie szablonu",
+                "Uzupełnianie treści ponad 3h pracy",
+                "Dedykowane szkolenia i instrukcje",
+                "Integracje z innymi narzędziami"
+              ],
+              "extras": [
+                "Wycena tych działań to zazwyczaj 5-7 tys. zł, maks. ~20 tys. zł przy dużym projekcie"
+              ]
+            }
+          ],
+          "footnote": "* Przenosimy newsy z WordPress lub podobnego systemu. W przypadku braku archiwum dodajemy 6 artykułów na start z dowolnego źródła."
+        },
+        "subscription": {
+          "badge": "Cennik (2/2)",
+          "title": "Abonament za utrzymanie",
+          "subtitle": "Miesięczne plany - zawsze zawiera: hosting, SSL, wsparcie i aktualizacje",
+          "topBadges": [
+            {
+              "icon": "dns",
+              "label": "Utrzymanie hostingu"
+            },
+            {
+              "icon": "verified_user",
+              "label": "Certyfikat SSL"
+            },
+            {
+              "icon": "support_agent",
+              "label": "Wsparcie techniczne"
+            },
+            {
+              "icon": "cloud_download",
+              "label": "Dostęp do aktualizacji"
+            }
+          ],
+          "plans": [
+            {
+              "name": "PRO",
+              "price": "199 zł",
+              "priceNote": "(2388 zł za rok)",
+              "description": "W sam raz, by mieć pełnoprawną, funkcjonalną stronę klubową",
+              "features": [
+                "Własna domena i brak reklam",
+                "Zarządzanie drabinką sponsorską",
+                "Edytor strony głównej (blokowy)",
+                "Zarządzanie menu w panelu"
+              ],
+              "extras": [
+                "100 zdjęć w 1 galerii zdjęć",
+                "1 GB przestrzeni na pliki",
+                "20 podstron",
+                "180 dni analityki strony"
+              ]
+            },
+            {
+              "name": "PRO+",
+              "price": "290 zł",
+              "priceNote": "(3488 zł za rok)",
+              "description": "Większa personalizacja i limity dla profesjonalnej i komfortowej strony",
+              "highlight": true,
+              "badge": "Rekomendowane",
+              "featuresTitle": "Wszystko co w PRO oraz:",
+              "features": [
+                "Większa personalizacja, dzięki własnej wersji CSS i JS (do 5 elementów)",
+                "1h dedykowanego wsparcia na start"
+              ],
+              "extras": [
+                "120 zdjęć w 1 galerii zdjęć",
+                "3 GB przestrzeni na pliki",
+                "30 podstron",
+                "365 dni analityki strony"
+              ]
+            },
+            {
+              "name": "CHAMPION",
+              "price": "499 zł",
+              "priceNote": "(5988 zł za rok)",
+              "description": "Jeśli Twoja strona to centrum komunikacji klubu - pakiet idealny",
+              "featuresTitle": "Wszystko co w PRO+ oraz:",
+              "features": [
+                "Pełna personalizacja (CSS + JS)",
+                "Zarabianie na SEO (artykuły sponsorów)",
+                "Wsparcie przez WhatsApp"
+              ],
+              "extras": [
+                "150 zdjęć w 1 galerii zdjęć",
+                "5 GB przestrzeni na pliki",
+                "50 podstron",
+                "2 lata analityki strony"
+              ]
+            }
+          ],
+          "footnote": "Ceny netto - podane przy płatności z góry za rok lub co miesiąc przy podpięciu auto-płatności kartą."
+        }
+      },
+      "faq": {
+        "title": "FAQ: Strona WWW",
+        "subtitle": "Najważniejsze pytania i odpowiedzi przy tworzeniu strony ze Sportigio",
+        "items": [
+          {
+            "question": "Ile to kosztuje?",
+            "answer": "Start od 599 zł jednorazowo + abonament od 199 zł/mies. Podpowiemy, który wariant będzie najlepszy dla Twojego klubu."
+          },
+          {
+            "question": "Jak szybko ruszymy?",
+            "answer": "Zwykle w kilka dni. Możesz działać samodzielnie albo zlecić przygotowanie startu nam."
+          },
+          {
+            "question": "Czy sam ogarnę edycję strony?",
+            "answer": "Tak. Panel jest prosty - dodasz newsy, zdjęcia, sponsorów i menu bez technikaliów."
+          },
+          {
+            "question": "Czy przeniesiecie treści ze starej strony?",
+            "answer": "Tak - możemy przenieść newsy; gdy nie ma archiwum, dodamy kilka wpisów na start."
+          }
+        ]
+      }
+    },
+    "tickets": {
+      "meta": {
+        "title": "Sportigio - Bilety online"
+      },
+      "hero": {
+        "title": "Sprzedawaj bilety online",
+        "highlight": "",
+        "subtitle": "",
+        "imageAlt": "Sportigio - Bilety online"
+      },
+      "how": {
+        "title": "BILETY ONLINE - jak to działa i ile kosztuje?",
+        "steps": [
+          {
+            "step": "I",
+            "title": "Wdrożenie systemu biletów",
+            "price": "0 zł",
+            "descriptions": [
+              "Wdrożenie systemu sprzedaży online w barwach i logo klubu.",
+              "Możliwość wyceny personalizacji w razie zapotrzebowania na niestandardową sprzedaż."
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Podpisujemy przez potwierdzenie mailowe prostą umowę na powierzenie sprzedaży biletów."
+            ]
+          },
+          {
+            "step": "II",
+            "title": "Pierwsza sprzedaż",
+            "descriptions": [
+              "Konfiguracja i opublikowanie sprzedaży zajmuje max. 1h.",
+              "Bilety są sprzedawane w cenach brutto, z wliczonym 8% podatkiem VAT, zgodnie z polskim prawem."
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Sportigio obsługuje sprzedaż oraz obsługę klienta jako sprzedawca."
+            ]
+          },
+          {
+            "step": "III",
+            "title": "Rozliczenia i płatności",
+            "price": "7% prowizji od sprzedaży",
+            "descriptions": [
+              "Na koniec miesiąca wysyłamy rozliczenie:"
+            ],
+            "listItems": [
+              "Suma ze sprzedanych biletów",
+              "Prowizja ze sprzedaży",
+              "Inne koszty jeżeli wystąpią"
+            ],
+            "formalitiesTitle": "Formalności:",
+            "formalities": [
+              "Klub wystawia FAKTURĘ VAT za sprzedaż biletów online (8% VAT) i otrzymuje płatność w ciągu 72h."
+            ]
+          }
+        ]
+      }
+    },
+    "shopSportigio": {
+      "meta": {
+        "title": "Sportigio - Sklep Sportigio"
+      },
+      "heading": "Sklep Sportigio",
+      "sections": {
+        "intro": {
+          "title": "Sklep bez magazynu i etatów",
+          "imageAlt": "Druk na żądanie – realizacja zamówienia",
+          "body": [
+            "Chcesz rozwijać wizerunek i sprzedaż, ale blokują Cię koszty i brak rąk do pracy? Sklep w formule druku na żądanie rozwiązuje temat.",
+            "Tworzysz schludny asortyment w prostym generatorze, a produkcję i wysyłkę bierze na siebie Snapwear. Ty skupiasz się na promocji i komunikacji z kibicami."
+          ]
+        },
+        "benefits": {
+          "title": "Dlaczego to działa",
+          "imageAlt": "Sportigio – podgląd sklepu na telefonie",
+          "body": [
+            "Nowoczesny panel sklepu jest zoptymalizowany pod urządzenia mobilne i szybkość działania. Budowa podobnego rozwiązania od zera kosztowałaby tysiące złotych – tutaj masz to w ramach bezkosztowej współpracy.",
+            "Rozliczenie jest proste i przejrzyste: wystawiasz fakturę od wygenerowanego zysku."
+          ],
+          "bullets": [
+            "Przejrzysty i intuicyjny",
+            "Szybki w działaniu",
+            "Doskonały na telefonach",
+            "Nowoczesny, atrakcyjny wizualnie"
+          ]
+        }
+      }
+    },
+    "shopOwn": {
+      "meta": {
+        "title": "Sportigio - Sklep własny"
+      },
+      "hero": {
+        "title": "Prowadź własny sklep internetowy klubu.",
+        "subtitle": "Pełna kontrola",
+        "imageAlt": "Podgląd sklepu (mobile)"
+      },
+      "examples": {
+        "title": "Przykładowe sklepy klubowe",
+        "subtitle": "Wybrane wdrożenia sklepów internetowych",
+        "button": "Otwórz sklep",
+        "items": {
+          "legia": {
+            "imageAlt": "Legia Koszykówka - podgląd sklepu (mobile)"
+          },
+          "trefl": {
+            "imageAlt": "Trefl Sopot - podgląd sklepu (mobile)"
+          }
+        }
+      }
+    },
+    "pricing": {
+      "meta": {
+        "title": "Cennik - Sportigio | Wybierz idealny pakiet dla swojego klubu"
+      },
+      "hero": {
+        "title": "Wybierz idealny pakiet dla swojego klubu",
+        "subtitle": "Proste, przejrzyste ceny. Bez ukrytych kosztów. Zmień pakiet w każdej chwili.",
+        "currencyLabel": "Waluta:",
+        "monthlyLabel": "Miesięcznie",
+        "yearlyLabel": "Rocznie",
+        "saveBadge": "Oszczędź do 20%"
+      },
+      "addons": {
+        "badge": "Dodatek",
+        "title": "Rozszerz możliwości Sportigio",
+        "subtitle": "Dodaj wyspecjalizowane moduły, aby przygotować idealne rozwiązanie dla Twojego klubu.",
+        "cardBadge": "Dodatek",
+        "cardDetails": "Szczegóły",
+        "cards": [
+          {
+            "id": "website",
+            "title": "Strona WWW",
+            "description": "Profesjonalna witryna klubowa dopasowana do identyfikacji Twojego klubu.",
+            "features": [
+              "Indywidualny projekt i konfiguracja",
+              "Integracja z CMS Sportigio",
+              "Hosting, bezpieczeństwo i wsparcie"
+            ],
+            "cta": "Przejdź do cennika",
+            "href": "/strona#setup-pricing"
+          }
+        ],
+        "defaultCta": "Przejdź do cennika"
+      },
+      "premium": {
+        "title": "Pakiet Dedykowany Premium",
+        "subtitle": "Rozwiązanie szyte na miarę",
+        "description": "Idealne rozwiązanie dla profesjonalnych klubów i organizacji sportowych, potrzebujących dedykowanego wsparcia, integracji oraz pełnej personalizacji platformy Sportigio.",
+        "highlights": [
+          "Nieograniczone wszystko",
+          "Dedykowane serwery",
+          "Pełna personalizacja",
+          "24/7 wsparcie techniczne",
+          "Integracje na zamówienie",
+          "Wdrożenie on-premise",
+          "Szkolenia zespołu",
+          "Gwarancja SLA"
+        ],
+        "buttons": {
+          "quote": "Skontaktuj się po indywidualną wycenę",
+          "demo": "Umów prezentację"
+        },
+        "priceLabel": "Indywidualna",
+        "priceSubLabel": "Wycena",
+        "receiveTitle": "Co otrzymasz:",
+        "receiveItems": [
+          "Rabaty za większe wolumeny",
+          "Elastyczne warunki płatności",
+          "Dedykowany opiekun klienta",
+          "Priorytetowe wsparcie"
+        ]
+      },
+      "faq": {
+        "title": "Masz pytania?",
+        "subtitle": "Jesteśmy tutaj, aby pomóc Twojemu klubowi rozwijać się online.",
+        "buttons": {
+          "questions": "Często zadawane pytania",
+          "contact": "Skontaktuj się z nami"
+        }
       }
     }
   }
