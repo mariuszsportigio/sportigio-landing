@@ -24,7 +24,9 @@ const { id = "testimonials", lang = defaultLanguage } = Astro.props as Props;
 const t = createTranslator(lang);
 const translations = getTranslations(lang) as any;
 const fallbackTranslations =
-  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
 
 const normalizeReviews = (value: any): Review[] => {
   const source = Array.isArray(value)
@@ -107,34 +109,32 @@ const ctaText =
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {reviews.map((review) => (
-        <div
-          class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full"
-        >
-          <p
-            class="text-gray-600 text-base md:text-lg mb-4 leading-relaxed font-semibold text-center"
-          >
-            {review.text}
-          </p>
-          <div class="mt-auto flex items-center">
-            {review.avatar && (
-              <img
-                src={review.avatar}
-                alt={review.avatarAlt ?? review.role ?? review.author}
-                class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
-              />
-            )}
-            <div>
-              <p class="text-gray-900 font-semibold text-sm">
-                {review.author}
-              </p>
-              {review.role && (
-                <p class="text-gray-500 text-xs">{review.role}</p>
+      {
+        reviews.map((review) => (
+          <div class="testimonial-card bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full">
+            <p class="text-gray-900 italic text-base md:text-lg mb-4 leading-relaxed font-semibold text-center">
+              {review.text}
+            </p>
+            <div class="mt-auto flex items-center">
+              {review.avatar && (
+                <img
+                  src={review.avatar}
+                  alt={review.avatarAlt ?? review.role ?? review.author}
+                  class="w-10 h-10 object-contain mr-3 border border-gray-100 shadow-sm bg-white p-1"
+                />
               )}
+              <div>
+                <p class="text-gray-700 font-semibold text-sm">
+                  {review.author}
+                </p>
+                {review.role && (
+                  <p class="text-gray-500 text-xs">{review.role}</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
 
     <div class="text-center mt-12">

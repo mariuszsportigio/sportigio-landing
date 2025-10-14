@@ -39,10 +39,14 @@ const t = createTranslator(lang);
 const heroBadge = badgeOverride ?? t("hero.badge");
 const heroTitle = titleOverride ?? t("hero.title");
 const heroTitleHighlight =
-  highlightOverride !== undefined ? highlightOverride ?? "" : t("hero.title_highlight");
+  highlightOverride !== undefined
+    ? (highlightOverride ?? "")
+    : t("hero.title_highlight");
 const heroSubtitle =
-  subtitleOverride !== undefined ? subtitleOverride ?? "" : t("hero.subtitle");
-const heroImageSrc = imageSrcOverride ?? "/screens/placeholder_png.png";
+  subtitleOverride !== undefined
+    ? (subtitleOverride ?? "")
+    : t("hero.subtitle");
+const heroImageSrc = imageSrcOverride ?? "/screens/hero-picture.png";
 const heroImageAlt = imageAltOverride ?? "Sportigio Analytics Dashboard";
 const showBadge = showBadgeProp ?? true;
 const showCTA = showCTAProp ?? true;
@@ -52,8 +56,8 @@ const heightClasses =
   heightMode === "fit"
     ? ""
     : heightMode === "short"
-    ? "min-h-[82vh] lg:min-h-[78vh]"
-    : "min-h-screen";
+      ? "min-h-[82vh] lg:min-h-[78vh]"
+      : "min-h-screen";
 ---
 
 <section
@@ -64,113 +68,116 @@ const heightClasses =
       <!-- Left Content -->
       <div class="text-center">
         <!-- Badge with glassmorphism -->
-        {showBadge ? (
-          <div
-            class="inline-flex items-center px-4 py-2 bg-secondary/25 backdrop-blur-sm border border-white/20 text-primary rounded-full text-sm font-medium mb-5"
-          >
-            <svg
-              class="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-            {heroBadge}
-          </div>
-        ) : null}
+        {
+          showBadge ? (
+            <div class="inline-flex items-center px-4 py-2 bg-secondary/25 backdrop-blur-sm border border-white/20 text-primary rounded-full text-sm font-medium mb-5">
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              {heroBadge}
+            </div>
+          ) : null
+        }
 
         <!-- Heading -->
         <h1
           class="text-4xl lg:text-6xl xl:text-6xl font-extrabold text-gray-900 mb-5 leading-snug font-poppins"
         >
           <span class="block">{heroTitle}</span>
-          {heroTitleHighlight ? (
-            <span
-              class="block text-transparent bg-clip-text bg-sportigio-purple-navy pb-[0.2em] -mb-[0.2em]"
-            >
-              {heroTitleHighlight}
-            </span>
-          ) : null}
+          {
+            heroTitleHighlight ? (
+              <span class="block text-transparent bg-clip-text bg-sportigio-purple-navy pb-[0.2em] -mb-[0.2em]">
+                {heroTitleHighlight}
+              </span>
+            ) : null
+          }
         </h1>
 
         <!-- Subheading -->
-        {heroSubtitle ? (
-          <p
-            class="text-base lg:text-lg text-gray-600 mb-3 max-w-lg leading-relaxed mx-auto"
-          >
-            {heroSubtitle}
-          </p>
-        ) : null}
+        {
+          heroSubtitle ? (
+            <p class="text-base lg:text-lg text-gray-600 mb-3 max-w-lg leading-relaxed mx-auto">
+              {heroSubtitle}
+            </p>
+          ) : null
+        }
 
         <!-- CTA Button -->
-        {showCTA ? (
-          <div class="flex flex-col sm:flex-row gap-3 mb-2 justify-center">
-            <a
-              href="https://sportig.io/join"
-              class="btn-style-1 px-10 py-4 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg text-base"
-              style="--sportigio-gradient: var(--sportigio-gradient-2);"
-            >
-              {t("common.try_free")}
-            </a>
-          </div>
-        ) : null}
+        {
+          showCTA ? (
+            <div class="flex flex-col sm:flex-row gap-3 mb-2 justify-center">
+              <a
+                href="https://sportig.io/join"
+                class="btn-style-1 px-10 py-4 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200 shadow-lg text-base"
+                style="--sportigio-gradient: var(--sportigio-gradient-2);"
+              >
+                {t("common.try_free")}
+              </a>
+            </div>
+          ) : null
+        }
 
         <!-- Social Proof -->
-        {showSocialProof ? (
-          <div
-            class="flex items-center gap-5 text-sm text-gray-500 justify-center"
-          >
-            <div class="flex items-center">
-              <div class="flex -space-x-1 mr-2">
-                <img
-                  src="/teams/legia.avif"
-                  alt="Legia"
-                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <img
-                  src="/teams/wisla.avif"
-                  alt="Wisła"
-                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <img
-                  src="/teams/trefl.avif"
-                  alt="Trefl"
-                  class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
-                  loading="lazy"
-                  decoding="async"
-                />
+        {
+          showSocialProof ? (
+            <div class="flex items-center gap-5 text-sm text-gray-500 justify-center">
+              <div class="flex items-center">
+                <div class="flex -space-x-1 mr-2">
+                  <img
+                    src="/teams/legia.avif"
+                    alt="Legia"
+                    class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src="/teams/wisla.avif"
+                    alt="Wisła"
+                    class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src="/teams/trefl.avif"
+                    alt="Trefl"
+                    class="w-6 h-6 rounded-full border-2 border-white object-contain bg-white"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span>{t("hero.social_proof_clubs")}</span>
               </div>
-              <span>{t("hero.social_proof_clubs")}</span>
+              <div class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-yellow-400 mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span>{t("hero.social_proof_rating")}</span>
+              </div>
             </div>
-            <div class="flex items-center">
-              <svg
-                class="w-4 h-4 text-yellow-400 mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                ></path>
-              </svg>
-              <span>{t("hero.social_proof_rating")}</span>
-            </div>
-          </div>
-        ) : null}
+          ) : null
+        }
       </div>
 
       <!-- Right Content - Main Image -->
       <div class="relative w-full">
         <!-- Main Image -->
-        <div class={`relative z-10 w-full mx-auto hero-image-wrapper ${imageSize === "default" ? "max-w-5xl" : ""}`}>
+        <div
+          class={`relative z-10 w-full mx-auto hero-image-wrapper ${imageSize === "default" ? "max-w-5xl" : ""}`}
+        >
           <img
             src={heroImageSrc}
             alt={heroImageAlt}

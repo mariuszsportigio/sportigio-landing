@@ -1,9 +1,5 @@
 ---
-import {
-  defaultLanguage,
-  getTranslations,
-  type Language,
-} from "../i18n";
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
 
 export interface TabItem {
   id: string;
@@ -25,7 +21,9 @@ const { lang = defaultLanguage, items: itemsProp } = Astro.props as Props;
 
 const translations = getTranslations(lang) as any;
 const fallbackTranslations =
-  lang === defaultLanguage ? translations : (getTranslations(defaultLanguage) as any);
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
 
 const translationTabs = translations?.landing?.steps?.tabs;
 const fallbackTabs = fallbackTranslations?.landing?.steps?.tabs;
@@ -55,7 +53,9 @@ const normalizeTabItems = (value: any): NormalizedTabItem[] => {
       if (!id || !label) return null;
 
       const icon = item?.icon ? String(item.icon) : undefined;
-      const description = item?.description ? String(item.description) : undefined;
+      const description = item?.description
+        ? String(item.description)
+        : undefined;
 
       const bullets = Array.isArray(item?.bullets)
         ? item.bullets
@@ -98,32 +98,40 @@ const candidates: NormalizedTabItem[][] = [
 const normalizedItems =
   candidates.find((list) => list.length > 0) ?? normalizeTabItems([]);
 
-const items = normalizedItems.length > 0
-  ? normalizedItems
-  : normalizeTabItems([
-      {
-        id: "chat",
-        label: lang === defaultLanguage
-          ? "Wybierz produkty i funkcje"
-          : "Pick your products and features",
-        description: lang === defaultLanguage
-          ? "Wybierz od czego chcesz zacząć wg ogólnej oferty:"
-          : "Tell us where you want to start from the overall offering:",
-        bullets: [
-          { title: lang === defaultLanguage ? "Strona www" : "Website" },
-          { title: lang === defaultLanguage ? "Sklep online" : "Online shop" },
-          { title: lang === defaultLanguage ? "Bilety" : "Tickets" },
-        ],
-        paragraphs: [
-          lang === defaultLanguage
-            ? "Podaj nam swoje potrzeby i preferencje. Dostosowujemy ofertę i wyślemy plan na Twoje wdrożenie."
-            : "Share your needs and preferences. We tailor the offer and send an onboarding plan.",
-        ],
-        icon: "format_list_bulleted",
-        imageSrc: "/screens/website-preview-mobile.avif",
-        imageAlt: lang === defaultLanguage ? "Podgląd modułu czatu" : "Chat module preview",
-      },
-    ]);
+const items =
+  normalizedItems.length > 0
+    ? normalizedItems
+    : normalizeTabItems([
+        {
+          id: "chat",
+          label:
+            lang === defaultLanguage
+              ? "Wybierz produkty i funkcje"
+              : "Pick your products and features",
+          description:
+            lang === defaultLanguage
+              ? "Wybierz od czego chcesz zacząć wg ogólnej oferty:"
+              : "Tell us where you want to start from the overall offering:",
+          bullets: [
+            { title: lang === defaultLanguage ? "Strona www" : "Website" },
+            {
+              title: lang === defaultLanguage ? "Sklep online" : "Online shop",
+            },
+            { title: lang === defaultLanguage ? "Bilety" : "Tickets" },
+          ],
+          paragraphs: [
+            lang === defaultLanguage
+              ? "Podaj nam swoje potrzeby i preferencje. Dostosowujemy ofertę i wyślemy plan na Twoje wdrożenie."
+              : "Share your needs and preferences. We tailor the offer and send an onboarding plan.",
+          ],
+          icon: "format_list_bulleted",
+          imageSrc: "/screens/website-preview-mobile.avif",
+          imageAlt:
+            lang === defaultLanguage
+              ? "Podgląd modułu czatu"
+              : "Chat module preview",
+        },
+      ]);
 ---
 
 <section class="py-16 bg-white">
@@ -161,9 +169,7 @@ const items = normalizedItems.length > 0
               <div class="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   {item.description && (
-                    <p class="text-gray-700 mb-6">
-                      {item.description}
-                    </p>
+                    <p class="text-gray-700 mb-6">{item.description}</p>
                   )}
 
                   {item.bullets.length > 0 && (
@@ -178,9 +184,7 @@ const items = normalizedItems.length > 0
                               {bullet.title}
                             </p>
                             {bullet.desc && (
-                              <p class="text-gray-600">
-                                {bullet.desc}
-                              </p>
+                              <p class="text-gray-600">{bullet.desc}</p>
                             )}
                           </div>
                         </li>
@@ -191,9 +195,7 @@ const items = normalizedItems.length > 0
                   {item.paragraphs.length > 0 && (
                     <div class="space-y-4 mt-6">
                       {item.paragraphs.map((paragraph) => (
-                        <p class="text-gray-700">
-                          {paragraph}
-                        </p>
+                        <p class="text-gray-700">{paragraph}</p>
                       ))}
                     </div>
                   )}
@@ -252,8 +254,7 @@ const items = normalizedItems.length > 0
     document.addEventListener("DOMContentLoaded", () => {
       const buttons =
         document.querySelectorAll<HTMLButtonElement>(".vtabs-btn");
-      const panels =
-        document.querySelectorAll<HTMLDivElement>(".vtabs-panel");
+      const panels = document.querySelectorAll<HTMLDivElement>(".vtabs-panel");
       buttons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const id = btn.getAttribute("data-tab");

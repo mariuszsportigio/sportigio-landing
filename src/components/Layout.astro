@@ -6,16 +6,22 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Sportigio - Komunikacja klubu w 1 prostej aplikacji" />
+    <meta
+      name="description"
+      content="Sportigio - Komunikacja klubu w 1 prostej aplikacji"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Material Symbols (Google Fonts) for icons used in menus -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body>
@@ -26,21 +32,22 @@ const { title } = Astro.props;
       // Intersection Observer for scroll animations
       const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: "0px 0px -50px 0px",
       };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
+            entry.target.classList.add("in-view");
           }
         });
       }, observerOptions);
 
       // Observe all elements with scroll-animate class
-      document.addEventListener('DOMContentLoaded', () => {
-        const animatedElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
-        animatedElements.forEach(el => observer.observe(el));
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements =
+          document.querySelectorAll<HTMLElement>(".scroll-animate");
+        animatedElements.forEach((el) => observer.observe(el));
 
         // Add staggered animation delays
         animatedElements.forEach((el, index) => {
@@ -48,35 +55,38 @@ const { title } = Astro.props;
         });
 
         // Smooth scrolling for navigation links
-        const navLinks = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+        const navLinks =
+          document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
         navLinks.forEach((link) => {
-          link.addEventListener('click', (e: MouseEvent) => {
+          link.addEventListener("click", (e: MouseEvent) => {
             e.preventDefault();
-            const href = link.getAttribute('href');
+            const href = link.getAttribute("href");
             if (!href) return;
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
-            
+
             targetElement?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+              behavior: "smooth",
+              block: "start",
             });
           });
         });
 
         // Parallax effect for floating elements
         let ticking = false;
-        
+
         function updateParallax() {
           const scrolled = window.pageYOffset;
-          const parallaxElements = document.querySelectorAll<HTMLElement>('.float-animation, .float-animation-reverse, .float-animation-delayed');
-          
+          const parallaxElements = document.querySelectorAll<HTMLElement>(
+            ".float-animation, .float-animation-reverse, .float-animation-delayed",
+          );
+
           parallaxElements.forEach((el, index) => {
-            const speed = 0.5 + (index * 0.1);
+            const speed = 0.5 + index * 0.1;
             const yPos = -(scrolled * speed);
             el.style.transform = `translateY(${yPos}px)`;
           });
-          
+
           ticking = false;
         }
 
@@ -87,22 +97,22 @@ const { title } = Astro.props;
           }
         }
 
-        window.addEventListener('scroll', requestTick);
+        window.addEventListener("scroll", requestTick);
 
         // 3D tilt effect for cards
-        const cards = document.querySelectorAll<HTMLElement>('.card-3d');
-        cards.forEach(card => {
-          card.addEventListener('mousemove', (e: MouseEvent) => {
+        const cards = document.querySelectorAll<HTMLElement>(".card-3d");
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e: MouseEvent) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
+
             const rotateX = (y - centerY) / 10;
             const rotateY = (centerX - x) / 10;
-            
+
             card.style.transform = `
               perspective(1000px) 
               rotateX(${rotateX}deg) 
@@ -110,78 +120,93 @@ const { title } = Astro.props;
               translateZ(10px)
             `;
           });
-          
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform =
+              "perspective(1000px) rotateX(0) rotateY(0) translateZ(0)";
           });
         });
 
         // Animated counter for stats
-        const animateCounter = (element: HTMLElement, target: number, duration: number = 2000) => {
+        const animateCounter = (
+          element: HTMLElement,
+          target: number,
+          duration: number = 2000,
+        ) => {
           let start = 0;
           const increment = target / (duration / 16);
-          
+
           const timer = setInterval(() => {
             start += increment;
             if (start >= target) {
-              element.textContent = String(target) + (element.textContent?.includes('+') ? '+' : '') + (element.textContent?.includes('%') ? '%' : '');
+              element.textContent =
+                String(target) +
+                (element.textContent?.includes("+") ? "+" : "") +
+                (element.textContent?.includes("%") ? "%" : "");
               clearInterval(timer);
             } else {
               const value = Math.floor(start);
-              element.textContent = String(value) + (element.textContent?.includes('+') ? '+' : '') + (element.textContent?.includes('%') ? '%' : '');
+              element.textContent =
+                String(value) +
+                (element.textContent?.includes("+") ? "+" : "") +
+                (element.textContent?.includes("%") ? "%" : "");
             }
           }, 16);
         };
 
         // Trigger counter animation when stats come into view
         const statsObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const text = entry.target.textContent ?? '';
-              const number = parseInt(text.replace(/[^0-9]/g, ''), 10);
-              if (number && !entry.target.classList.contains('animated')) {
-                entry.target.classList.add('animated');
+              const text = entry.target.textContent ?? "";
+              const number = parseInt(text.replace(/[^0-9]/g, ""), 10);
+              if (number && !entry.target.classList.contains("animated")) {
+                entry.target.classList.add("animated");
                 animateCounter(entry.target as HTMLElement, number);
               }
             }
           });
         });
 
-        const statNumbers = document.querySelectorAll<HTMLElement>('.text-gradient, [class*="text-4xl"], [class*="text-5xl"]');
-        statNumbers.forEach(stat => {
+        const statNumbers = document.querySelectorAll<HTMLElement>(
+          '.text-gradient, [class*="text-4xl"], [class*="text-5xl"]',
+        );
+        statNumbers.forEach((stat) => {
           if (stat.textContent?.match(/\d/)) {
             statsObserver.observe(stat);
           }
         });
 
         // Magnetic effect for buttons
-        const magneticButtons = document.querySelectorAll<HTMLElement>('.btn-glow');
-        magneticButtons.forEach(button => {
-          button.addEventListener('mousemove', (e: MouseEvent) => {
+        const magneticButtons =
+          document.querySelectorAll<HTMLElement>(".btn-glow");
+        magneticButtons.forEach((button) => {
+          button.addEventListener("mousemove", (e: MouseEvent) => {
             const rect = button.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
+
             button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
           });
-          
-          button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translate(0px, 0px)';
+
+          button.addEventListener("mouseleave", () => {
+            button.style.transform = "translate(0px, 0px)";
           });
         });
 
         // Dynamic particle generation
         const createParticle = () => {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          particle.style.left = Math.random() * 100 + '%';
-          particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-          particle.style.animationDelay = Math.random() * 5 + 's';
-          
-          const particlesContainer = document.querySelector<HTMLElement>('.particles-bg');
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+          particle.style.animationDelay = Math.random() * 5 + "s";
+
+          const particlesContainer =
+            document.querySelector<HTMLElement>(".particles-bg");
           if (particlesContainer) {
             particlesContainer.appendChild(particle);
-            
+
             // Remove particle after animation
             setTimeout(() => {
               if (particle.parentNode) {
@@ -195,17 +220,20 @@ const { title } = Astro.props;
         setInterval(createParticle, 3000);
 
         // Preload critical fonts
-        const fontLoader = new FontFace('Inter', 'url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap)');
+        const fontLoader = new FontFace(
+          "Inter",
+          "url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap)",
+        );
         fontLoader.load().then(() => {
-          document.body.classList.add('fonts-loaded');
+          document.body.classList.add("fonts-loaded");
         });
       });
 
       // Performance optimization
-      if ('requestIdleCallback' in window) {
+      if ("requestIdleCallback" in window) {
         requestIdleCallback(() => {
           // Initialize non-critical animations
-          console.log('Sportigio animations loaded');
+          console.log("Sportigio animations loaded");
         });
       }
     </script>
@@ -215,7 +243,7 @@ const { title } = Astro.props;
       .fonts-loaded {
         font-display: swap;
       }
-      
+
       @media (prefers-reduced-motion: reduce) {
         .float-animation,
         .float-animation-reverse,
@@ -227,4 +255,4 @@ const { title } = Astro.props;
       }
     </style>
   </body>
-</html> 
+</html>
