@@ -85,8 +85,19 @@ const shopTitle =
 const shopSubtitle =
   pickString(shop?.subtitle, fallbackLanding?.shop?.subtitle) ??
   (lang === defaultLanguage
-    ? "Oferujemy dwie opcje sklepu internetowego"
-    : "Choose between two e-commerce options");
+    ? "Sprzedawaj gadżety klubowe online bez własnego magazynu"
+    : "Sell club merchandise online without running your own store");
+
+const shopGridClass = `grid gap-6 ${
+  Array.isArray(shopOptions) && shopOptions.length <= 1
+    ? "grid-cols-1 place-items-center"
+    : "sm:grid-cols-2 lg:grid-cols-3"
+}`;
+
+const shopItemClass =
+  Array.isArray(shopOptions) && shopOptions.length <= 1
+    ? "w-full max-w-md mx-auto"
+    : "w-full";
 
 const stepsTitle =
   pickString(landing?.steps?.title, fallbackLanding?.steps?.title) ??
@@ -230,20 +241,22 @@ const trustedTagline =
           </h2>
           <p class="text-gray-600">{shopSubtitle}</p>
         </div>
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class={shopGridClass}>
           {
             shopOptions.map((option: any, index: number) => (
-              <SimpleFeature
-                title={option?.title ?? ""}
-                description={option?.description ?? ""}
-                iconName={option?.icon}
-                iconImageSrc={option?.iconImage ?? option?.iconImageSrc}
-                ctaVariant={option?.cta?.variant ?? "button"}
-                ctaText={option?.cta?.text ?? t("common.learn_more")}
-                ctaHref={localizeHref(option?.cta?.href ?? "#", lang)}
-                ctaAlignment="center"
-                alignment="left"
-              />
+              <div class={shopItemClass}>
+                <SimpleFeature
+                  title={option?.title ?? ""}
+                  description={option?.description ?? ""}
+                  iconImageSrc={option?.iconImage ?? option?.iconImageSrc}
+                  ctaVariant={option?.cta?.variant ?? "button"}
+                  ctaText={option?.cta?.text ?? t("common.learn_more")}
+                  ctaHref={localizeHref(option?.cta?.href ?? "#", lang)}
+                  ctaAlignment="center"
+                  alignment="center"
+                  iconAlignment="center"
+                />
+              </div>
             ))
           }
         </div>

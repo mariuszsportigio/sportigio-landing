@@ -90,11 +90,6 @@
                   "label": "Sportigio Shop",
                   "href": "/sklep-sportigio",
                   "description": ""
-                },
-                {
-                  "label": "Own shop",
-                  "href": "/sklep-wlasny",
-                  "description": ""
                 }
               ]
             },
@@ -699,26 +694,17 @@
     ],
     "shop": {
       "title": "Online shop",
-      "subtitle": "Choose between two e-commerce options",
+      "subtitle": "Sell club merchandise online without running your own store",
       "options": [
         {
           "title": "Sell online with Sportigio",
           "description": "Let Sportigio handle merch sales with print-on-demand fulfilment",
+          "icon": "storefront",
           "iconImage": "/sportigio-sygnet.png",
           "cta": {
             "variant": "button",
             "text": "Learn more",
             "href": "/sklep-sportigio"
-          }
-        },
-        {
-          "title": "Run your own online shop",
-          "description": "Manage your own store with full control over inventory, payments, and logistics.",
-          "icon": "storefront",
-          "cta": {
-            "variant": "button",
-            "text": "Learn more",
-            "href": "/sklep-wlasny"
           }
         }
       ]
@@ -814,7 +800,7 @@
       "badge": "Start today",
       "title": "Join the new era",
       "highlight": "of sports clubs",
-      "subtitle": "Over 100 clubs already use Sportigio. Join the leaders who chose modern, efficient, and convenient operations.",
+      "subtitle": "Over 100 clubs already use Sportigio. Be one of them!",
       "primary_button": {
         "label": "Start for free",
         "href": "https://sportig.io/join"

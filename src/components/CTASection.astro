@@ -24,6 +24,7 @@ interface CTAContent {
   primary_button?: CTAButton;
   secondary_button?: CTAButton;
   stats?: CTAStat[];
+  stats_enabled?: boolean;
   trust?: string[];
 }
 
@@ -111,6 +112,15 @@ const fallbackStats = normalizeStats([
 ]);
 
 const stats = statsCandidates.find((list) => list.length > 0) ?? fallbackStats;
+
+const statsEnabled =
+  typeof overrideContent.stats_enabled === "boolean"
+    ? overrideContent.stats_enabled
+    : typeof translationContent.stats_enabled === "boolean"
+      ? translationContent.stats_enabled
+      : typeof defaultContent.stats_enabled === "boolean"
+        ? defaultContent.stats_enabled
+        : true;
 
 const trustCandidates = [
   normalizeTrust(overrideContent.trust),
@@ -240,7 +250,7 @@ const subtitle = pickString(
     }
 
     {
-      stats.length > 0 && (
+      statsEnabled && stats.length > 0 && (
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat) => (
             <div class="text-center">

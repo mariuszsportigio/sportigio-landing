@@ -12,6 +12,7 @@ interface Props {
   alignment?: "center" | "left";
   size?: "sm" | "md";
   ctaAlignment?: "left" | "center";
+  iconAlignment?: "left" | "center";
 }
 
 const props = Astro.props as Props;
@@ -28,6 +29,7 @@ const {
   alignment = "center",
   size = "md",
   ctaAlignment = alignment,
+  iconAlignment = alignment,
 } = props;
 ---
 
@@ -37,7 +39,7 @@ const {
   {
     (iconName || iconPath || iconImageSrc) && (
       <div
-        class={`${size === "sm" ? "w-10 h-10" : "w-14 h-14"} rounded-xl ${alignment === "center" ? "mx-auto" : "mx-0"} icon-gradient-primary-strong flex items-center justify-center text-white shadow-md mb-5`}
+        class={`${size === "sm" ? "w-10 h-10" : "w-14 h-14"} rounded-xl ${iconAlignment === "center" ? "mx-auto" : "mx-0"} icon-gradient-primary-strong flex items-center justify-center text-white shadow-md mb-5`}
       >
         {iconName ? (
           <span

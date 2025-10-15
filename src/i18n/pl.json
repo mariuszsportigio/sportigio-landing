@@ -90,11 +90,6 @@
                   "label": "Sklep Sportigio",
                   "href": "/sklep-sportigio",
                   "description": ""
-                },
-                {
-                  "label": "Sklep własny",
-                  "href": "/sklep-wlasny",
-                  "description": ""
                 }
               ]
             },
@@ -851,26 +846,17 @@
     ],
     "shop": {
       "title": "Sklep internetowy",
-      "subtitle": "Oferujemy dwie opcje sklepu internetowego",
+      "subtitle": "Sprzedawaj gadżety klubowe online bez własnego magazynu",
       "options": [
         {
           "title": "Sprzedaż online w Sportigio",
           "description": "Zlecasz sprzedaż gadżetów do Sportigio w formule \"druk na żądanie\"",
+          "icon": "storefront",
           "iconImage": "/sportigio-sygnet.png",
           "cta": {
             "variant": "button",
             "text": "Dowiedz się więcej",
             "href": "/sklep-sportigio"
-          }
-        },
-        {
-          "title": "Własny sklep internetowy",
-          "description": "Prowadzisz własny sklep internetowy z kontrolą magazynów, płatności, itp.",
-          "icon": "storefront",
-          "cta": {
-            "variant": "button",
-            "text": "Dowiedz się więcej",
-            "href": "/sklep-wlasny"
           }
         }
       ]
@@ -922,7 +908,7 @@
           "label": "Onboarding i wdrożenie",
           "description": "Konfigurujemy produkt, zgodnie z wybranym pakietem i uzupełniamy dane.",
           "paragraphs": [
-            "To czas na ostatnie zmiany w zakresie prac, podpisanie umowy i wystawienie FV.",
+            "To czas na ostatnie zmiany w zakresie prac, podpisanie umowy i wystawienie faktury VAT.",
             "Otrzymasz szkolenie z obsługi i materiały do wdrożenia."
           ],
           "image": {
@@ -966,7 +952,7 @@
       "badge": "Rozpocznij już dziś",
       "title": "Dołącz do nowej ery",
       "highlight": "klubów sportowych",
-      "subtitle": "Ponad 100 klubów już korzysta z Sportigio. Dołącz do grona liderów, którzy wybrali nowoczesność, efektywność i wygodę.",
+      "subtitle": "Ponad 100 klubów już korzysta z Sportigio. Bądź jednym z nich!",
       "primary_button": {
         "label": "Rozpocznij za darmo",
         "href": "https://sportig.io/join"
@@ -989,6 +975,7 @@
           "label": "Wskaźnik zadowolenia"
         }
       ],
+      "stats_enabled": false,
       "trust": [
         "30 dni za darmo",
         "Anuluj w każdym momencie",
