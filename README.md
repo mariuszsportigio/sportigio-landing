@@ -41,6 +41,16 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run deploy:rsync`    | Deploy `dist/` to remote host via rsync          |
+
+### CI/CD for static deploy (release/v1-static)
+
+This branch builds statically and deploys on push using GitHub Actions. Configure repository secrets:
+
+- `DEPLOY_USER` – SSH username
+- `DEPLOY_HOST` – server IP/host
+- `DEPLOY_PATH` – absolute path on server (e.g. `/var/www/sportigio-landing/`)
+- `DEPLOY_SSH_KEY` – private key contents (PEM) for the SSH user
 
 ## Environment variables
 
