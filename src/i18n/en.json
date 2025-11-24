@@ -1165,6 +1165,115 @@
         "yearlyLabel": "Yearly",
         "saveBadge": "Save up to 20%"
       },
+      "calculator": {
+        "title": "Revenue calculator",
+        "subtitle": "Estimate your potential annual profit with Sportigio.",
+        "cta": "See assumptions and calculate your profit",
+        "modalTitle": "Revenue calculator (annual)",
+        "sliderLabel": "Registered users",
+        "sliderHint": "Move the slider to estimate potential (50 - 1000 users)",
+        "assumptionsTitle": "Calculation assumptions (annual scale):",
+        "cards": [
+          {
+            "id": "tribune",
+            "title": "Virtual Stand",
+            "description": "Fans support the club through virtual seats in the stand. You keep most of the revenue.",
+            "badge": "95% for the club"
+          },
+          {
+            "id": "premium",
+            "title": "Premium accounts",
+            "description": "Offer subscriptions with extra benefits. Recurring revenue model for stability.",
+            "badge": "90% for the club"
+          },
+          {
+            "id": "support",
+            "title": "Support packages",
+            "description": "One-time contributions from fans who want to back the club.",
+            "badge": "92% for the club"
+          },
+          {
+            "id": "ads",
+            "title": "Partner ads",
+            "description": "You receive funds for each page impression with Sportigio partner placements.",
+            "badge": "Ad revenue"
+          }
+        ],
+        "assumptions": [
+          "Purchase conversion: 15% of registered users",
+          "Traffic: Includes additional traffic from non-logged-in users",
+          "Average prices: Virtual Stand (€8), Premium (€20), Support (€75)",
+          "Ads: RPM €10, high impression volume thanks to engaged community"
+        ],
+        "currency": "€",
+        "range": {
+          "min": 50,
+          "max": 1000,
+          "default": 250
+        },
+        "model": {
+          "conversion": 0.15,
+          "aov": {
+            "basic": 29,
+            "pro": 39
+          },
+          "fee": {
+            "percent": 0.02,
+            "fixed": {
+              "basic": 2.9,
+              "pro": 1.9
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "basic",
+            "title": "Free plan (Year)",
+            "subtitle": "Total revenue:",
+            "badge": "Free",
+            "totalLabel": "Total revenue:",
+            "feesLabel": "Fees and charges:",
+            "profitLabel": "Your profit:",
+            "footer": "Sportigio charges €2.90 + 2% per transaction"
+          },
+          {
+            "id": "pro",
+            "title": "PRO plan (Year)",
+            "subtitle": "Total revenue:",
+            "badge": "PRO",
+            "totalLabel": "Total revenue:",
+            "feesLabel": "Fees and charges:",
+            "profitLabel": "Your profit:",
+            "footer": "Sportigio charges €1.90 + 2% per transaction"
+          }
+        ]
+      },
+      "includes": {
+        "title": "Every package includes",
+        "subtitle": "Explore the features available in the Sportigio platform",
+        "items": [
+          {
+            "id": "news",
+            "title": "News publishing",
+            "description": "Add news, photo galleries, and video directly from the dashboard"
+          },
+          {
+            "id": "branding",
+            "title": "Your branding",
+            "description": "Match colors, logo, and look to your club"
+          },
+          {
+            "id": "tickets",
+            "title": "Ticket sales",
+            "description": "Sell tickets online with full payment processing"
+          },
+          {
+            "id": "analytics",
+            "title": "Full analytics",
+            "description": "Track engagement, visits, and fan behavior"
+          }
+        ]
+      },
       "addons": {
         "badge": "Add-on",
         "title": "Extend Sportigio's capabilities",

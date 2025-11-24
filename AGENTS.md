@@ -20,7 +20,7 @@ This is a multilingual **Astro** landing page for Sportigio, a sports club commu
 ### Key Architecture Patterns
 
 **Internationalization (i18n)**
-- Language-specific routes: `/`, `/en`, `/es`, `/de`
+- Language-specific routes: `/`, `/en`,
 - Translation system in `src/i18n/` with JSON files for each language
 - Default language is Polish (`pl`)
 - Use `createTranslator(lang)` in components for translations

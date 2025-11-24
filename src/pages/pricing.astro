@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar.astro";
 import PricingTable from "../components/PricingTable.astro";
 import PricingAddOns from "../components/PricingAddOns.astro";
 import TrustedClubsSection from "../components/TrustedClubsSection.astro";
+import PricingIncludes from "../components/PricingIncludes.astro";
+import RevenueCalculator from "../components/RevenueCalculator.astro";
 import Footer from "../components/Footer.astro";
 import pricingCopy from "../data/pricing-copy.json";
 import pricingAmounts from "../data/pricing-amounts.json";
@@ -147,8 +149,12 @@ const premiumReceiveTitle =
         </div>
       </div>
 
-      <PricingTable />
+      <PricingTable lang={lang} />
     </section>
+
+    <PricingIncludes lang={lang} />
+
+    <RevenueCalculator lang={lang} />
 
     <!-- Detailed Comparison Table -->
     <section class="py-16 bg-white">
@@ -163,7 +169,7 @@ const premiumReceiveTitle =
           class="bg-white rounded-2xl border border-gray-200 overflow-hidden"
         >
           <div class="overflow-x-auto">
-            <table class="w-full">
+            <table class="w-full pricing-comparison-table">
               <thead>
                 <tr class="border-b border-gray-200">
                   <th
@@ -1464,3 +1470,10 @@ const premiumReceiveTitle =
     currencySelect?.addEventListener("change", applyPrices);
   });
 </script>
+
+<style>
+  :global(.pricing-comparison-table th:nth-child(3)),
+  :global(.pricing-comparison-table td:nth-child(3)) {
+    display: none;
+  }
+</style>

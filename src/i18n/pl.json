@@ -1318,6 +1318,115 @@
         "yearlyLabel": "Rocznie",
         "saveBadge": "Oszczędź do 20%"
       },
+      "calculator": {
+        "title": "Kalkulator przychodów",
+        "subtitle": "Oszacuj potencjalny roczny zysk z platformy Sportigio.",
+        "cta": "Zobacz zasady i oblicz swój zysk",
+        "modalTitle": "Kalkulator przychodów (roczny)",
+        "sliderLabel": "Zarejestrowani użytkownicy",
+        "sliderHint": "Przesuń suwak, aby oszacować potencjał (50 - 1000 użytkowników)",
+        "assumptionsTitle": "Założenia kalkulacji (skala roczna):",
+        "cards": [
+          {
+            "id": "tribune",
+            "title": "Wirtualna Trybuna",
+            "description": "Kibice wspierają klub poprzez wirtualne miejsca na trybunach. Ty zachowujesz większość wpływów.",
+            "badge": "95% dla klubu"
+          },
+          {
+            "id": "premium",
+            "title": "Konta Premium",
+            "description": "Oferuj subskrypcje z dodatkowymi benefitami. Model recurring revenue dla stabilności.",
+            "badge": "90% dla klubu"
+          },
+          {
+            "id": "support",
+            "title": "Pakiety wsparcia",
+            "description": "Jednorazowe wpłaty od kibiców chcących wesprzeć klub.",
+            "badge": "92% dla klubu"
+          },
+          {
+            "id": "ads",
+            "title": "Reklamy partnerów",
+            "description": "Otrzymujesz środki za każdą odsłonę strony z ekspozycją partnerów Sportigio.",
+            "badge": "Przychód z reklam"
+          }
+        ],
+        "assumptions": [
+          "Konwersja zakupowa: 15% zarejestrowanych użytkowników",
+          "Ruch: Uwzględniono dodatkowy ruch od użytkowników niezalogowanych",
+          "Średnie ceny: Wirtualna Trybuna (8 zł), Premium (20 zł), Wsparcie (75 zł)",
+          "Reklamy: RPM 10 zł, wysoka liczba odsłon dzięki zaangażowaniu społeczności"
+        ],
+        "currency": "zł",
+        "range": {
+          "min": 50,
+          "max": 1000,
+          "default": 250
+        },
+        "model": {
+          "conversion": 0.15,
+          "aov": {
+            "basic": 29,
+            "pro": 39
+          },
+          "fee": {
+            "percent": 0.02,
+            "fixed": {
+              "basic": 2.9,
+              "pro": 1.9
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "basic",
+            "title": "Plan Darmowy (Rok)",
+            "subtitle": "Przychód całkowity:",
+            "badge": "Free",
+            "totalLabel": "Przychód całkowity:",
+            "feesLabel": "Prowizje i opłaty:",
+            "profitLabel": "Twój zysk:",
+            "footer": "Sportigio pobiera 2,90 zł + 2% od transakcji"
+          },
+          {
+            "id": "pro",
+            "title": "Plan PRO (Rok)",
+            "subtitle": "Przychód całkowity:",
+            "badge": "PRO",
+            "totalLabel": "Przychód całkowity:",
+            "feesLabel": "Prowizje i opłaty:",
+            "profitLabel": "Twój zysk:",
+            "footer": "Sportigio pobiera 1,90 zł + 2% od transakcji"
+          }
+        ]
+      },
+      "includes": {
+        "title": "Każdy pakiet zawiera",
+        "subtitle": "Poznaj funkcje dostępne w platformie Sportigio",
+        "items": [
+          {
+            "id": "news",
+            "title": "Tworzenie aktualności",
+            "description": "Dodawaj newsy, galerie zdjęć i wideo prosto z poziomu panelu"
+          },
+          {
+            "id": "branding",
+            "title": "Twój branding",
+            "description": "Dostosuj kolory, logo i wygląd do klubu"
+          },
+          {
+            "id": "tickets",
+            "title": "Sprzedaż biletów",
+            "description": "Sprzedawaj bilety online z pełną obsługą płatności"
+          },
+          {
+            "id": "analytics",
+            "title": "Pełna analityka",
+            "description": "Śledź zaangażowanie, wizyty i zachowania kibiców"
+          }
+        ]
+      },
       "addons": {
         "badge": "Dodatek",
         "title": "Rozszerz możliwości Sportigio",

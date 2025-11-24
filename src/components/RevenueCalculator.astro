@@ -1,0 +1,99 @@
+---
+import {
+  defaultLanguage,
+  getTranslations,
+  type Language,
+} from "../i18n";
+import RevenueCalculatorIsland from "./RevenueCalculatorIsland";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
+
+const sectionCopy = (translations?.pages?.pricing?.calculator ?? {}) as any;
+const fallbackCopy =
+  (fallbackTranslations?.pages?.pricing?.calculator ?? {}) as any;
+
+const resolved = {
+  title: sectionCopy.title ?? fallbackCopy.title ?? "Kalkulator przychodów",
+  subtitle:
+    sectionCopy.subtitle ??
+    fallbackCopy.subtitle ??
+    "Oszacuj potencjalny roczny zysk z platformy Sportigio.",
+  cta: sectionCopy.cta ?? fallbackCopy.cta ?? "Zobacz zasady i oblicz swój zysk",
+  modalTitle:
+    sectionCopy.modalTitle ??
+    fallbackCopy.modalTitle ??
+    "Kalkulator przychodów (roczny)",
+  sliderLabel:
+    sectionCopy.sliderLabel ??
+    fallbackCopy.sliderLabel ??
+    "Zarejestrowani użytkownicy",
+  sliderHint:
+    sectionCopy.sliderHint ??
+    fallbackCopy.sliderHint ??
+    "Przesuń suwak, aby oszacować potencjał (50 - 1000 użytkowników)",
+  assumptionsTitle:
+    sectionCopy.assumptionsTitle ??
+    fallbackCopy.assumptionsTitle ??
+    "Założenia kalkulacji (skala roczna):",
+  assumptions:
+    Array.isArray(sectionCopy.assumptions) && sectionCopy.assumptions.length > 0
+      ? sectionCopy.assumptions
+      : fallbackCopy.assumptions ?? [],
+  cards:
+    Array.isArray(sectionCopy.cards) && sectionCopy.cards.length > 0
+      ? sectionCopy.cards
+      : fallbackCopy.cards ?? [],
+  plans:
+    Array.isArray(sectionCopy.plans) && sectionCopy.plans.length > 0
+      ? sectionCopy.plans
+      : fallbackCopy.plans ?? [],
+  currency: sectionCopy.currency ?? fallbackCopy.currency ?? "zł",
+  range: {
+    min: sectionCopy.range?.min ?? fallbackCopy.range?.min ?? 50,
+    max: sectionCopy.range?.max ?? fallbackCopy.range?.max ?? 1000,
+    default: sectionCopy.range?.default ?? fallbackCopy.range?.default ?? 250,
+  },
+  model: {
+    conversion:
+      sectionCopy.model?.conversion ??
+      fallbackCopy.model?.conversion ??
+      0.15,
+    aov: {
+      basic:
+        sectionCopy.model?.aov?.basic ??
+        fallbackCopy.model?.aov?.basic ??
+        29,
+      pro:
+        sectionCopy.model?.aov?.pro ?? fallbackCopy.model?.aov?.pro ?? 39,
+    },
+    fee: {
+      percent:
+        sectionCopy.model?.fee?.percent ??
+        fallbackCopy.model?.fee?.percent ??
+        0.02,
+      fixed: {
+        basic:
+          sectionCopy.model?.fee?.fixed?.basic ??
+          fallbackCopy.model?.fee?.fixed?.basic ??
+          0,
+        pro:
+          sectionCopy.model?.fee?.fixed?.pro ??
+          fallbackCopy.model?.fee?.fixed?.pro ??
+          0,
+      },
+    },
+  },
+};
+---
+
+<RevenueCalculatorIsland client:load lang={lang} copy={resolved} />
