@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import PricingTable from "../components/PricingTable.astro";
 import PricingAddOns from "../components/PricingAddOns.astro";
+import TrustedClubsSection from "../components/TrustedClubsSection.astro";
 import Footer from "../components/Footer.astro";
 import pricingCopy from "../data/pricing-copy.json";
 import pricingAmounts from "../data/pricing-amounts.json";
@@ -85,7 +86,7 @@ const premiumReceiveTitle =
   <main class="pt-16">
     <!-- Hero Section for Pricing - Light -->
     <section
-      class="hero-gradient relative bg-gradient-to-br from-gray-50 to-white py-16 overflow-hidden"
+      class="hero-gradient relative bg-gradient-to-br from-gray-50 to-white pt-16 pb-4 overflow-hidden"
     >
       <!-- Background pattern (CSS grid to avoid JSX parsing issues) -->
       <div class="absolute inset-0 hero-grid opacity-30"></div>
@@ -95,50 +96,57 @@ const premiumReceiveTitle =
         <h1 class="text-3xl lg:text-5xl font-bold text-[#0B2360] mb-4">
           {heroTitle}
         </h1>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p class="text-lg text-gray-600 mb-2 max-w-2xl mx-auto">
           {heroSubtitle}
         </p>
-
-        <!-- Pricing Toggle -->
-        <div class="flex items-center justify-center space-x-4 mb-4">
-          <span class="text-gray-700 font-medium">{currencyLabel}</span>
-          <select
-            id="currency-select"
-            class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-700"
-          >
-            <option value="PLN">PLN</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-          </select>
-
-          <span class="text-gray-700 font-medium ml-6">{monthlyLabel}</span>
-          <div class="relative">
-            <input type="checkbox" id="billing-toggle" class="sr-only" />
-            <label
-              for="billing-toggle"
-              class="flex items-center cursor-pointer"
-            >
-              <div class="relative">
-                <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
-                <div
-                  class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform"
-                >
-                </div>
-              </div>
-            </label>
-          </div>
-          <span class="text-gray-700 font-medium">{yearlyLabel}</span>
-          <span
-            class="bg-[#01DFEC] text-[#0B2360] px-3 py-1 rounded-full text-sm font-semibold"
-          >
-            {saveBadgeText}
-          </span>
-        </div>
       </div>
     </section>
 
+    <TrustedClubsSection lang={lang} />
+
     <!-- Pricing Section -->
-    <section class="py-0 bg-gray-50 -mt-8">
+    <section class="py-0 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 pt-12 pb-4">
+        <div class="flex items-center justify-center flex-wrap gap-4 text-center">
+          <div class="flex items-center gap-3">
+            <span class="text-gray-700 font-medium">{currencyLabel}</span>
+            <select
+              id="currency-select"
+              class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-700"
+            >
+              <option value="PLN">PLN</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-gray-700 font-medium">{monthlyLabel}</span>
+            <div class="relative">
+              <input type="checkbox" id="billing-toggle" class="sr-only" />
+              <label
+                for="billing-toggle"
+                class="flex items-center cursor-pointer"
+              >
+                <div class="relative">
+                  <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                  <div
+                    class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform"
+                  >
+                  </div>
+                </div>
+              </label>
+            </div>
+            <span class="text-gray-700 font-medium">{yearlyLabel}</span>
+            <span
+              class="bg-[#01DFEC] text-[#0B2360] px-3 py-1 rounded-full text-sm font-semibold"
+            >
+              {saveBadgeText}
+            </span>
+          </div>
+        </div>
+      </div>
+
       <PricingTable />
     </section>
 
@@ -1435,7 +1443,11 @@ const premiumReceiveTitle =
         } else {
           const base = cur[plan].monthlyOriginal;
           const now = cur[plan].monthly;
-          const pct = base ? Math.round(((base - now) / base) * 100) : 0;
+          if (!base || base <= 0) {
+            el.textContent = "";
+            return;
+          }
+          const pct = Math.round(((base - now) / base) * 100);
           const template =
             copy?.[lang]?.labels?.save ||
             copy?.pl?.labels?.save ||

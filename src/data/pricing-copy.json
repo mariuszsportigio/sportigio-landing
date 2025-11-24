@@ -8,58 +8,50 @@
       "most_popular": "Najpopularniejszy"
     },
     "free": {
-      "name": "Free",
-      "tagline": "Idealne na start",
-      "button": "Zacznij za darmo",
+      "name": "Sportigio FREE",
+      "tagline": "Start dla każdego klubu",
+      "button": "Załóż darmowe konto",
       "features": [
-        "Podstawowe funkcje",
-        "Do 5 podstron",
-        "20 zdjęć w galerii",
-        "100 MB miejsca"
+        "Profil klubu i fanpage",
+        "Aktualności i komunikaty",
+        "Galerie zdjęć i wideo",
+        "Kalendarz wydarzeń",
+        "Podstawowe statystyki"
       ],
-      "priceLabel": "Darmowy"
-    },
-    "starter": {
-      "name": "Starter",
-      "tagline": "Dla małych klubów",
-      "button": "Wybierz Starter",
-      "features": [
-        "Wiele drużyn",
-        "Własna domena",
-        "50 zdjęć w galerii",
-        "500 MB miejsca",
-        "2000 maili/miesiąc"
-      ]
+      "priceLabel": "0"
     },
     "pro": {
-      "name": "Pro",
-      "tagline": "Najpopularniejszy wybór",
-      "button": "Wybierz Pro",
-      "badge": "Najpopularniejszy",
+      "name": "Sportigio PRO",
+      "tagline": "Pełna komunikacja i profesjonalny wizerunek",
+      "button": "Przejdź na PRO",
+      "badge": "NAJPOPULARNIEJSZY",
       "features": [
-        "Brak reklam Sportigio",
-        "100 zdjęć w galerii",
-        "1 GB miejsca",
-        "8000 maili/miesiąc",
-        "Segmentacja odbiorców"
+        "Wszystko z pakietu FREE",
+        "Newsletter i powiadomienia push",
+        "Segmentacja bazy kibiców",
+        "Pełna analityka i raporty",
+        "Moduł Sponsorzy",
+        "Twój branding"
       ]
     },
     "champion": {
-      "name": "Champion",
-      "tagline": "Dla profesjonalnych klubów",
-      "button": "Skontaktuj się z nami",
+      "name": "Sportigio CHAMPION",
+      "tagline": "Dla profesjonalnych klubów i lig",
+      "button": "Porozmawiaj o Champion",
+      "priceLabel": "Indywidualna",
+      "priceSubLabel": "wycena",
       "features": [
-        "Wszystko z Pro",
-        "Bez limitu zdjęć",
-        "5 GB miejsca",
-        "20000 maili/miesiąc",
-        "Własny CSS/JS",
-        "Sesja onboardingu"
+        "Wszystko z pakietu PRO",
+        "Dedykowany Customer Success Manager",
+        "Gwarancja SLA 99,9%",
+        "Priorytetowe wsparcie 24/7",
+        "Indywidualne moduły i integracje",
+        "API dla zaawansowanych"
       ]
     },
     "additional": {
-      "line1": "🔒 30-dniowa gwarancja zwrotu pieniędzy • ⚡ Aktywacja w 24h • 🚀 Bez ukrytych kosztów",
-      "line2": "Wszystkie plany zawierają podstawowy support i regularne aktualizacje. Zmień plan w każdej chwili."
+      "no_card": "Nie wymagamy karty płatniczej",
+      "vat_notice": "Podane ceny są cenami netto i należy doliczyć 23% VAT"
     }
   },
   "en": {
@@ -71,58 +63,50 @@
       "most_popular": "Most popular"
     },
     "free": {
-      "name": "Free",
-      "tagline": "Ideal for getting started",
-      "button": "Start for free",
+      "name": "Sportigio FREE",
+      "tagline": "Start for every club",
+      "button": "Create a free account",
       "features": [
-        "Basic features",
-        "Up to 5 subpages",
-        "20 gallery photos",
-        "100 MB storage"
+        "Club profile and fanpage",
+        "News and announcements",
+        "Photo and video galleries",
+        "Event calendar",
+        "Basic analytics"
       ],
-      "priceLabel": "Free"
-    },
-    "starter": {
-      "name": "Starter",
-      "tagline": "For small clubs",
-      "button": "Choose Starter",
-      "features": [
-        "Multiple teams",
-        "Custom domain",
-        "50 gallery photos",
-        "500 MB storage",
-        "2000 emails/month"
-      ]
+      "priceLabel": "0"
     },
     "pro": {
-      "name": "Pro",
-      "tagline": "Most popular choice",
-      "button": "Choose Pro",
-      "badge": "Most popular",
+      "name": "Sportigio PRO",
+      "tagline": "Full communication and a professional image",
+      "button": "Go PRO",
+      "badge": "MOST POPULAR",
       "features": [
-        "No Sportigio ads",
-        "100 gallery photos",
-        "1 GB storage",
-        "8000 emails/month",
-        "Audience segmentation"
+        "Everything in FREE",
+        "Newsletter and push notifications",
+        "Supporter base segmentation",
+        "Full analytics and reports",
+        "Sponsors module",
+        "Your branding"
       ]
     },
     "champion": {
-      "name": "Champion",
-      "tagline": "For professional clubs",
-      "button": "Contact us",
+      "name": "Sportigio CHAMPION",
+      "tagline": "For professional clubs and leagues",
+      "button": "Talk about Champion",
+      "priceLabel": "Custom",
+      "priceSubLabel": "pricing",
       "features": [
-        "Everything in Pro",
-        "Unlimited photos",
-        "5 GB storage",
-        "20000 emails/month",
-        "Custom CSS/JS",
-        "Onboarding session"
+        "Everything in PRO",
+        "Dedicated Customer Success Manager",
+        "99.9% SLA guarantee",
+        "Priority support 24/7",
+        "Custom modules and integrations",
+        "API for advanced teams"
       ]
     },
     "additional": {
-      "line1": "🔒 30‑day money‑back guarantee • ⚡ 24h activation • 🚀 No hidden fees",
-      "line2": "All plans include basic support and regular updates. Change plans anytime."
+      "no_card": "We don't require a credit card",
+      "vat_notice": "Prices are net; add 23% VAT"
     }
   },
   "es": {

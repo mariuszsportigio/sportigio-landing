@@ -7,72 +7,51 @@
     }
   },
   "PLN": {
-    "starter": {
-      "monthly": 79,
-      "monthlyOriginal": 99,
-      "yearlyPerMonth": 63,
-      "yearlyTotal": 756,
-      "yearlyOriginalTotal": 1188
+    "free": {
+      "monthly": 0,
+      "monthlyOriginal": 0,
+      "yearlyPerMonth": 0,
+      "yearlyTotal": 0,
+      "yearlyOriginalTotal": 0
     },
     "pro": {
-      "monthly": 299,
-      "monthlyOriginal": 239,
-      "yearlyPerMonth": 159,
-      "yearlyTotal": 1908,
-      "yearlyOriginalTotal": 2868
-    },
-    "champion": {
-      "monthly": 499,
-      "monthlyOriginal": 599,
-      "yearlyPerMonth": 399,
-      "yearlyTotal": 4788,
-      "yearlyOriginalTotal": 7188
+      "monthly": 239,
+      "monthlyOriginal": 299,
+      "yearlyPerMonth": 191,
+      "yearlyTotal": 2292,
+      "yearlyOriginalTotal": 3588
     }
   },
   "USD": {
-    "starter": {
-      "monthly": 20,
-      "monthlyOriginal": 25,
-      "yearlyPerMonth": 16,
-      "yearlyTotal": 189,
-      "yearlyOriginalTotal": 297
+    "free": {
+      "monthly": 0,
+      "monthlyOriginal": 0,
+      "yearlyPerMonth": 0,
+      "yearlyTotal": 0,
+      "yearlyOriginalTotal": 0
     },
     "pro": {
-      "monthly": 50,
-      "monthlyOriginal": 60,
-      "yearlyPerMonth": 40,
-      "yearlyTotal": 477,
-      "yearlyOriginalTotal": 717
-    },
-    "champion": {
-      "monthly": 125,
-      "monthlyOriginal": 150,
-      "yearlyPerMonth": 100,
-      "yearlyTotal": 1197,
-      "yearlyOriginalTotal": 1797
+      "monthly": 55,
+      "monthlyOriginal": 69,
+      "yearlyPerMonth": 44,
+      "yearlyTotal": 528,
+      "yearlyOriginalTotal": 828
     }
   },
   "EUR": {
-    "starter": {
-      "monthly": 18,
-      "monthlyOriginal": 22,
-      "yearlyPerMonth": 14,
-      "yearlyTotal": 168,
-      "yearlyOriginalTotal": 264
+    "free": {
+      "monthly": 0,
+      "monthlyOriginal": 0,
+      "yearlyPerMonth": 0,
+      "yearlyTotal": 0,
+      "yearlyOriginalTotal": 0
     },
     "pro": {
-      "monthly": 44,
-      "monthlyOriginal": 53,
-      "yearlyPerMonth": 35,
-      "yearlyTotal": 424,
-      "yearlyOriginalTotal": 637
-    },
-    "champion": {
-      "monthly": 111,
-      "monthlyOriginal": 133,
-      "yearlyPerMonth": 89,
-      "yearlyTotal": 1064,
-      "yearlyOriginalTotal": 1597
+      "monthly": 49,
+      "monthlyOriginal": 61,
+      "yearlyPerMonth": 39,
+      "yearlyTotal": 468,
+      "yearlyOriginalTotal": 732
     }
   }
 }

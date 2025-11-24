@@ -1,552 +1,236 @@
 ---
-// PricingTable.astro
+// PricingTable.astro - 3-card layout inspired by landing design
+import pricingCopy from "../data/pricing-copy.json";
+import { defaultLanguage, type Language } from "../i18n";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+
+const langCopy = (pricingCopy as any)?.[lang] || (pricingCopy as any)?.[defaultLanguage] || {};
+const fallbackCopy = (pricingCopy as any)?.[defaultLanguage] || {};
+
+const mergePlan = (key: string) => {
+  const plan = langCopy[key] || {};
+  const fallback = fallbackCopy[key] || {};
+  return {
+    ...fallback,
+    ...plan,
+    features:
+      Array.isArray(plan.features) && plan.features.length > 0
+        ? plan.features
+        : Array.isArray(fallback.features)
+          ? fallback.features
+          : [],
+  };
+};
+
+const labels = { ...(fallbackCopy.labels || {}), ...(langCopy.labels || {}) };
+const additional = {
+  noCard: langCopy?.additional?.no_card || fallbackCopy?.additional?.no_card || "",
+  vat: langCopy?.additional?.vat_notice || fallbackCopy?.additional?.vat_notice || "",
+};
+
+const iconPaths: Record<string, string> = {
+  free:
+    "M12 4l2.09 4.24 4.68.4-3.47 3.23 1 4.61L12 14.77 7.7 16.48l1-4.61L5.2 8.64l4.69-.4L12 4z", // crown-ish badge (same as champion)
+  pro:
+    "M12 2l7 4v6c0 5-7 9-7 9s-7-4-7-9V6l7-4z", // shield/crest
+  champion:
+    "M12 4l2.09 4.24 4.68.4-3.47 3.23 1 4.61L12 14.77 7.7 16.48l1-4.61L5.2 8.64l4.69-.4L12 4z", // crown-ish badge
+};
+
+const plans = [
+  {
+    id: "free",
+    accent: "light" as const,
+    iconColor: "#0B2360",
+    ...mergePlan("free"),
+  },
+  {
+    id: "pro",
+    accent: "primary" as const,
+    iconColor: "#0B2360",
+    ...mergePlan("pro"),
+  },
+  {
+    id: "champion",
+    accent: "dark" as const,
+    iconColor: "#01DFEC",
+    customPrice: true,
+    ...mergePlan("champion"),
+  },
+];
 ---
 
-<section id="pricing" class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <!-- Pricing Cards -->
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
-    >
-      <!-- Free Plan -->
-      <div
-        class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300"
-      >
-        <div class="mb-6">
-          <div
-            class="w-12 h-12 bg-[#0B2360]/5 rounded-xl flex items-center justify-center mx-auto mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-[#0B2360]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-              ></path>
-            </svg>
-          </div>
-          <h3
-            class="text-xl font-bold text-[#0B2360] mb-2"
-            data-i18n="free.name"
-          >
-            Free
-          </h3>
-          <p class="text-sm text-gray-600 mb-4" data-i18n="free.tagline">
-            Idealne na start
-          </p>
-        </div>
-
-        <div class="mb-6">
-          <div class="text-4xl font-extrabold text-[#0B2360] mb-2">
-            <span
-              data-monthly="Darmowy"
-              data-yearly="Darmowy"
-              data-i18n="free.priceLabel">Darmowy</span
-            >
-          </div>
-        </div>
-
-        <ul class="space-y-3 text-left mb-8">
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="free.features.0">Podstawowe funkcje</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="free.features.1">Do 5 podstron</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="free.features.2">20 zdjęć w galerii</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="free.features.3">100 MB miejsca</span>
-          </li>
-        </ul>
-
-        <a
-          href="https://sportig.io/join"
-          class="btn-gradient-primary w-full py-3 px-4 rounded-lg transition-all duration-300 font-semibold"
-          data-i18n="free.button"
-        >
-          Zacznij za darmo
-        </a>
-      </div>
-
-      <!-- Starter Plan -->
-      <div
-        class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300"
-      >
-        <div class="mb-6">
-          <div
-            class="w-12 h-12 bg-[#01DFEC]/10 rounded-xl flex items-center justify-center mx-auto mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-[#01DFEC]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3
-            class="text-xl font-bold text-[#0B2360] mb-2"
-            data-i18n="starter.name"
-          >
-            Starter
-          </h3>
-          <p class="text-sm text-gray-600 mb-4" data-i18n="starter.tagline">
-            Dla małych klubów
-          </p>
-        </div>
-
-        <div class="mb-6">
-          <div class="text-4xl font-extrabold text-[#0B2360] mb-2">
-            <span class="price" data-plan="starter" data-monthly data-yearly
-              >79 zł</span
-            >
-            <span
-              class="text-base text-gray-500 font-normal"
-              data-i18n="labels.per_month">/miesiąc</span
-            >
-          </div>
-          <div class="text-sm text-gray-500">
-            <span
-              class="line-through price-original"
-              data-plan="starter"
-              data-monthly
-              data-yearly>99 zł/miesiąc</span
-            >
-          </div>
-          <div class="text-sm font-semibold text-green-600 mt-1">
-            <span class="save-note" data-plan="starter">Oszczędź 20%</span>
-          </div>
-        </div>
-
-        <ul class="space-y-3 text-left mb-8">
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="starter.features.0">Wiele drużyn</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="starter.features.1">Własna domena</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="starter.features.2">50 zdjęć w galerii</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="starter.features.3">500 MB miejsca</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="starter.features.4">2000 maili/miesiąc</span>
-          </li>
-        </ul>
-
-        <a
-          href="https://sportig.io/join"
-          class="btn-gradient-primary w-full py-3 px-4 rounded-lg transition-all duration-300 font-semibold"
-          data-i18n="starter.button"
-        >
-          Wybierz Starter
-        </a>
-      </div>
-
-      <!-- Pro Plan (Featured) -->
-      <div
-        class="bg-white border-2 border-[#0B2360] rounded-xl p-6 text-center relative transform scale-105 shadow-xl"
-      >
+<section id="pricing" class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    {additional.noCard && (
+      <div class="flex justify-center mb-6">
         <div
-          class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#01DFEC] text-[#0B2360] px-4 py-1 rounded-full text-xs font-bold"
-          data-i18n="pro.badge"
+          class="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/20 backdrop-blur-sm border border-white/40 text-[#0B2360] rounded-full text-xs font-semibold tracking-wide shadow-sm"
         >
-          Najpopularniejszy
-        </div>
-
-        <div class="mb-6">
-          <div
-            class="w-12 h-12 icon-gradient-primary-strong rounded-xl flex items-center justify-center mx-auto mb-4"
+          <svg
+            class="w-4 h-4 text-[#01DFEC]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-              ></path>
-            </svg>
-          </div>
-          <h3
-            class="text-xl font-bold text-[#0B2360] mb-2"
-            data-i18n="pro.name"
-          >
-            Pro
-          </h3>
-          <p class="text-sm text-gray-600 mb-4" data-i18n="pro.tagline">
-            Najpopularniejszy wybór
-          </p>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            ></path>
+          </svg>
+          <span data-i18n="additional.no_card">{additional.noCard}</span>
         </div>
-
-        <div class="mb-6">
-          <div class="text-4xl font-extrabold text-[#0B2360] mb-2">
-            <span class="price" data-plan="pro" data-monthly data-yearly
-              >199 zł</span
-            >
-            <span
-              class="text-base text-gray-500 font-normal"
-              data-i18n="labels.per_month">/miesiąc</span
-            >
-          </div>
-          <div class="text-sm text-gray-500">
-            <span
-              class="line-through price-original"
-              data-plan="pro"
-              data-monthly
-              data-yearly>239 zł/miesiąc</span
-            >
-          </div>
-          <div class="text-sm font-semibold text-green-600 mt-1">
-            <span class="save-note" data-plan="pro">Oszczędź 17%</span>
-          </div>
-        </div>
-
-        <ul class="space-y-3 text-left mb-8">
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="pro.features.0">Brak reklam Sportigio</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="pro.features.1">100 zdjęć w galerii</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="pro.features.2">1 GB miejsca</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="pro.features.3">8000 maili/miesiąc</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="pro.features.4">Segmentacja odbiorców</span>
-          </li>
-        </ul>
-
-        <a
-          href="https://sportig.io/join"
-          class="btn-gradient-primary w-full py-3 px-4 rounded-lg transition-all duration-300 font-semibold"
-          data-i18n="pro.button"
-        >
-          Wybierz Pro
-        </a>
       </div>
+    )}
 
-      <!-- Champion Plan -->
-      <div
-        class="bg-white border-2 border-gray-200 rounded-xl p-6 text-center relative hover:shadow-lg transition-all duration-300"
-      >
-        <div class="mb-6">
-          <div
-            class="w-12 h-12 bg-[#EA36E1]/10 rounded-xl flex items-center justify-center mx-auto mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-[#EA36E1]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-              ></path>
-            </svg>
-          </div>
-          <h3
-            class="text-xl font-bold text-[#0B2360] mb-2"
-            data-i18n="champion.name"
-          >
-            Champion
-          </h3>
-          <p class="text-sm text-gray-600 mb-4" data-i18n="champion.tagline">
-            Dla profesjonalnych klubów
-          </p>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        plans.map((plan) => {
+          const isDark = plan.accent === "dark";
+          const isPrimary = plan.accent === "primary";
+          const cardClasses = [
+            "relative rounded-2xl p-7 h-full flex flex-col",
+            isDark ? "bg-[#0B2360] text-white shadow-xl" : "bg-white text-[#0B2360] shadow-md",
+            isPrimary ? "border-2 border-[#0B2360]" : "border border-gray-200",
+          ].join(" ");
+          const subTextColor = isDark ? "text-white/80" : "text-gray-600";
 
-        <div class="mb-6">
-          <div class="text-4xl font-black text-[#0B2360] mb-2">
-            <span class="price" data-plan="champion" data-monthly data-yearly
-              >499 zł</span
-            >
-            <span
-              class="text-base text-gray-500 font-normal"
-              data-i18n="labels.per_month">/miesiąc</span
-            >
-          </div>
-          <div class="text-sm text-gray-500">
-            <span
-              class="line-through price-original"
-              data-plan="champion"
-              data-monthly
-              data-yearly>599 zł/miesiąc</span
-            >
-          </div>
-          <div class="text-sm font-semibold text-green-600 mt-1">
-            <span class="save-note" data-plan="champion">Oszczędź 17%</span>
-          </div>
-        </div>
+          return (
+            <div class={cardClasses} data-plan-card={plan.id}>
+              {
+                plan.badge && (
+                  <div
+                    class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0B2360] text-white px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.04em] uppercase shadow-md"
+                    data-i18n={`${plan.id}.badge`}
+                  >
+                    {plan.badge}
+                  </div>
+                )
+              }
 
-        <ul class="space-y-3 text-left mb-8">
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.0">Wszystko z Pro</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.1">Bez limitu zdjęć</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.2">5 GB miejsca</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.3">20000 maili/miesiąc</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.4">Własny CSS/JS</span>
-          </li>
-          <li class="flex items-center text-sm">
-            <svg
-              class="w-4 h-4 text-[#01DFEC] mr-3 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span data-i18n="champion.features.5">Sesja onboardingu</span>
-          </li>
-        </ul>
+              <div class="flex items-start gap-3 mb-5">
+                <div
+                  class={`w-11 h-11 aspect-square rounded-xl flex items-center justify-center bg-opacity-10 ${
+                    isDark ? "bg-white/10" : "bg-[#0B2360]/5"
+                  }`}
+                  aria-hidden="true"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    style={{ color: plan.iconColor }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d={iconPaths[plan.id] || iconPaths.free}
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold mb-1" data-i18n={`${plan.id}.name`}>
+                    {plan.name}
+                  </h3>
+                  <p
+                    class={`text-[10px] lg:text-[11px] ${subTextColor} leading-relaxed`}
+                    data-i18n={`${plan.id}.tagline`}
+                  >
+                    {plan.tagline}
+                  </p>
+                </div>
+              </div>
 
-        <a
-          href="https://sportig.io/join"
-          class="w-full py-3 px-4 btn-gradient-primary text-white rounded-lg hover:opacity-90 transition-all duration-300 font-semibold"
-          data-i18n="champion.button"
-        >
-          Wybierz Champion
-        </a>
-      </div>
+              <div class="mb-6">
+                {
+                  plan.customPrice ? (
+                    <div>
+                      <div class="text-3xl font-extrabold leading-tight" data-i18n={`${plan.id}.priceLabel`}>
+                        {plan.priceLabel || "Indywidualna"}
+                      </div>
+                      {
+                        plan.priceSubLabel && (
+                          <div class={`text-sm mt-1 ${subTextColor}`} data-i18n={`${plan.id}.priceSubLabel`}>
+                            {plan.priceSubLabel}
+                          </div>
+                        )
+                      }
+                    </div>
+                  ) : (
+                    <div>
+                      <div class={`text-4xl font-extrabold ${isDark ? "text-white" : "text-[#0B2360]"} mb-1`}>
+                        <span class="price" data-plan={plan.id} data-monthly data-yearly>
+                          {plan.priceLabel || "0"}
+                        </span>
+                        <span class={`text-base font-semibold ml-1 ${subTextColor}`} data-i18n="labels.per_month">
+                          {labels.per_month || "/month"}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+
+              <ul class="space-y-3 text-sm mb-8 flex-1">
+                {
+                  plan.features.map((feature: string, idx: number) => (
+                    <li class="flex items-start gap-3">
+                      <svg
+                        class={`w-4 h-4 mt-0.5 text-[#01DFEC] flex-shrink-0`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                      <span class={subTextColor} data-i18n={`${plan.id}.features.${idx}`}>
+                        {feature}
+                      </span>
+                    </li>
+                  ))
+                }
+              </ul>
+
+              <a
+                href="https://sportig.io/join"
+                class={`w-full py-3 px-4 rounded-xl text-center font-semibold transition-all duration-200 ${
+                  isDark
+                    ? "bg-[#01DFEC] text-[#0B2360] hover:brightness-105"
+                    : isPrimary
+                      ? "bg-[#0B2360] text-white hover:brightness-110"
+                      : "bg-gray-100 text-[#0B2360] hover:bg-gray-200"
+                }`}
+                data-i18n={`${plan.id}.button`}
+              >
+                {plan.button}
+              </a>
+            </div>
+          );
+        })
+      }
     </div>
 
-    <!-- Additional Info -->
-    <div class="text-center mt-12">
-      <p
-        class="text-gray-600 text-base mb-4 max-w-3xl mx-auto"
-        data-i18n="additional.line1"
-      >
-        🔒 30-dniowa gwarancja zwrotu pieniędzy • ⚡ Aktywacja w 24h • 🚀 Bez
-        ukrytych kosztów
-      </p>
-      <p class="text-gray-500 text-sm" data-i18n="additional.line2">
-        Wszystkie plany zawierają podstawowy support i regularne aktualizacje.
-        Zmień plan w każdej chwili.
-      </p>
-    </div>
+    {
+      additional.vat && (
+        <p class="text-center text-xs text-gray-500 mt-8" data-i18n="additional.vat_notice">
+          {additional.vat}
+        </p>
+      )
+    }
   </div>
 </section>
