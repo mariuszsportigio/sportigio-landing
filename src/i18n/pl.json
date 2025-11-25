@@ -1435,26 +1435,11 @@
         ]
       },
       "addons": {
-        "badge": "Dodatek",
-        "title": "Rozszerz możliwości Sportigio",
-        "subtitle": "Dodaj wyspecjalizowane moduły, aby przygotować idealne rozwiązanie dla Twojego klubu.",
-        "cardBadge": "Dodatek",
-        "cardDetails": "Szczegóły",
-        "cards": [
-          {
-            "id": "website",
-            "title": "Strona WWW",
-            "description": "Profesjonalna witryna klubowa dopasowana do identyfikacji Twojego klubu.",
-            "features": [
-              "Indywidualny projekt i konfiguracja",
-              "Integracja z CMS Sportigio",
-              "Hosting, bezpieczeństwo i wsparcie"
-            ],
-            "cta": "Przejdź do cennika",
-            "href": "/strona#setup-pricing"
-          }
-        ],
-        "defaultCta": "Przejdź do cennika"
+        "badge": "Pakiet Champion",
+        "title": "Potrzebujesz więcej? Pakiet Champion",
+        "subtitle": "Chcesz wsparcia, dedykowanego opiekuna lub rozwiązań szytych na miarę? Porozmawiajmy o pakiecie Champion – stworzymy ofertę idealnie dopasowaną do Twojej organizacji.",
+        "cta": "Umów konsultację",
+        "ctaHref": "https://sportig.io/join"
       },
       "premium": {
         "title": "Pakiet Dedykowany Premium",

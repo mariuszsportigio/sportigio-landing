@@ -1282,26 +1282,11 @@
         ]
       },
       "addons": {
-        "badge": "Add-on",
-        "title": "Extend Sportigio's capabilities",
-        "subtitle": "Add specialised modules to build the perfect solution for your club.",
-        "cardBadge": "Add-on",
-        "cardDetails": "Details",
-        "cards": [
-          {
-            "id": "website",
-            "title": "Website",
-            "description": "Professional club website tailored to your branding.",
-            "features": [
-              "Custom design and configuration",
-              "Integration with Sportigio CMS",
-              "Hosting, security and support"
-            ],
-            "cta": "Go to pricing",
-            "href": "/strona#setup-pricing"
-          }
-        ],
-        "defaultCta": "Go to pricing"
+        "badge": "Champion package",
+        "title": "Need more? Champion Package",
+        "subtitle": "Looking for dedicated support, a named success manager, or solutions tailored to your needs? Let's talk about the Champion Package – we'll craft an offer perfectly matched to your organisation.",
+        "cta": "Book a consultation",
+        "ctaHref": "https://sportig.io/join"
       },
       "premium": {
         "title": "Premium Dedicated Package",
