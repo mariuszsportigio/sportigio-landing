@@ -15,6 +15,8 @@ interface Props {
   title?: string;
   subtitle?: string;
   items?: FAQItem[] | Record<string, FAQItem>;
+  className?: string;
+  singleColumn?: boolean;
 }
 
 const {
@@ -22,6 +24,8 @@ const {
   title: titleProp,
   subtitle: subtitleProp,
   items: itemsProp,
+  className = "bg-white",
+  singleColumn = false,
 } = Astro.props as Props;
 
 const translations = getTranslations(lang) as any;
@@ -90,13 +94,13 @@ const items = (() => {
 
 const midpoint = Math.ceil(items.length / 2);
 const columns: FAQItem[][] =
-  items.length <= 3
+  singleColumn || items.length <= 3
     ? [items]
     : [items.slice(0, midpoint), items.slice(midpoint)];
 ---
 
-<section id="faq" class="py-12 bg-white">
-  <div class="max-w-5xl mx-auto px-4">
+<section id="faq" class:list={["py-12", className]}>
+  <div class:list={["mx-auto px-4", singleColumn ? "max-w-3xl" : "max-w-5xl"]}>
     <div class="text-center mb-8">
       <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2 font-poppins">
         {title}
@@ -120,11 +124,11 @@ const columns: FAQItem[][] =
                   <button
                     class="faq-question w-full p-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
                   >
-                    <span class="text-sm font-semibold text-gray-900">
+                    <span class="text-lg font-semibold text-gray-900">
                       {item.question}
                     </span>
                     <svg
-                      class="faq-icon w-4 h-4 text-gray-500 transform transition-transform duration-150 ease-out"
+                      class="faq-icon w-5 h-5 text-gray-500 transform transition-transform duration-150 ease-out"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -138,7 +142,7 @@ const columns: FAQItem[][] =
                     </svg>
                   </button>
                   <div class="faq-answer px-4 pb-4" data-state="closed">
-                    <p class="text-sm text-gray-600 leading-relaxed">
+                    <p class="text-base text-gray-600 leading-relaxed">
                       {item.answer}
                     </p>
                   </div>

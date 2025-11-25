@@ -1319,6 +1319,28 @@
       "faq": {
         "title": "Have questions?",
         "subtitle": "We're here to help your club grow online.",
+        "items": [
+          {
+            "question": "Can I switch from FREE to PRO at any time?",
+            "answer": "Yes, you can change your plan at any time. Upgrading is immediate, while downgrading takes effect at the end of the current billing period."
+          },
+          {
+            "question": "How does annual billing work?",
+            "answer": "When choosing annual payment, you get a 20% discount. Payment is made once for the whole year in advance, and renewal is automatic."
+          },
+          {
+            "question": "Can I cancel my subscription?",
+            "answer": "Yes, you can cancel your subscription at any time. The platform will remain active until the end of the paid period, after which you will automatically switch to the FREE package."
+          },
+          {
+            "question": "What happens to my data after changing plans?",
+            "answer": "All your data remains safe regardless of the package. When downgrading, some features may be unavailable, but data will not be deleted."
+          },
+          {
+            "question": "Does the Champion package require a long-term contract?",
+            "answer": "The Champion package is flexible. We can adjust the contract length to your needs, from annual to multi-year cooperation."
+          }
+        ],
         "buttons": {
           "questions": "Frequently asked questions",
           "contact": "Contact us"

@@ -1472,6 +1472,28 @@
       "faq": {
         "title": "Masz pytania?",
         "subtitle": "Jesteśmy tutaj, aby pomóc Twojemu klubowi rozwijać się online.",
+        "items": [
+          {
+            "question": "Czy mogę przejść z FREE na PRO w każdej chwili?",
+            "answer": "Tak, możesz zmienić pakiet w dowolnym momencie. Przejście na wyższy pakiet jest natychmiastowe, a przy przejściu na niższy obowiązuje do końca okresu rozliczeniowego."
+          },
+          {
+            "question": "Jak działa rozliczenie roczne?",
+            "answer": "Przy wyborze płatności rocznej zyskujesz 20% zniżki. Płatność następuje jednorazowo za cały rok z góry, a odnawianie następuje automatycznie."
+          },
+          {
+            "question": "Czy mogę anulować subskrypcję?",
+            "answer": "Tak, możesz anulować subskrypcję w każdej chwili. Platforma będzie działać do końca opłaconego okresu, po czym automatycznie przejdziesz na pakiet FREE."
+          },
+          {
+            "question": "Co się stanie z moimi danymi po zmianie pakietu?",
+            "answer": "Wszystkie Twoje dane pozostają bezpieczne niezależnie od pakietu. Przy przejściu na niższy pakiet niektóre funkcje mogą być niedostępne, ale dane nie zostaną usunięte."
+          },
+          {
+            "question": "Czy pakiet Champion wymaga długoterminowej umowy?",
+            "answer": "Pakiet Champion jest elastyczny. Możemy dostosować długość umowy do Twoich potrzeb, od rocznej po wieloletnią współpracę."
+          }
+        ],
         "buttons": {
           "questions": "Często zadawane pytania",
           "contact": "Skontaktuj się z nami"

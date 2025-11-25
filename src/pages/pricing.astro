@@ -7,6 +7,7 @@ import TrustedClubsSection from "../components/TrustedClubsSection.astro";
 import PricingIncludes from "../components/PricingIncludes.astro";
 import RevenueCalculator from "../components/RevenueCalculator.astro";
 import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
 import pricingCopy from "../data/pricing-copy.json";
 import pricingAmounts from "../data/pricing-amounts.json";
 import {
@@ -754,27 +755,14 @@ const comparisonExpandedFeatures: FeatureRow[] = [
       </div>
     </section>
     <!-- FAQ Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-[#0B2360] mb-4">{faqTitle}</h2>
-        <p class="text-lg text-gray-600 mb-8">{faqSubtitle}</p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href={localizeHref("/#faq", lang)}
-            class="btn-style-3 px-6 py-3 font-semibold"
-          >
-            {faqButtonLabel}
-          </a>
-          <a
-            href="https://sportig.io/join"
-            class="btn-style-1 px-6 py-3 font-semibold"
-          >
-            {contactUsLabel}
-          </a>
-        </div>
-      </div>
-    </section>
+    <FAQ
+      lang={lang}
+      title={faqTitle}
+      subtitle={faqSubtitle}
+      items={pageCopy.faq?.items}
+      className="bg-gray-50"
+      singleColumn={true}
+    />
   </main>
 
   <!-- Footer -->
