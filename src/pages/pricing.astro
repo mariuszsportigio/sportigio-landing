@@ -51,6 +51,14 @@ const yearlyLabel = pricingText.yearly ?? "Rocznie";
 const saveBadgeText = pricingText.save_badge ?? "Oszczędź do 20%";
 const detailedComparisonTitle =
   pricingText.detailed_comparison ?? "Szczegółowe porównanie funkcji";
+const detailedComparisonSubtitle =
+  pricingText.detailed_comparison_subtitle ?? "Szczegółowe zestawienie funkcji";
+const featureColumnLabel = pricingText.feature_column_label ?? "Funkcja";
+const freeLabel = pricingText.free_label ?? "Free";
+const proLabel = pricingText.pro_label ?? "Pro";
+const championLabel = pricingText.champion_label ?? "Champion";
+const expandLabel = pricingText.expand_pricing ?? "Rozwiń pełny cennik";
+const collapseLabel = pricingText.collapse_pricing ?? "Zwiń cennik";
 const faqTitle = pricingText.faq_title ?? "Masz pytania?";
 const faqSubtitle =
   pricingText.faq_subtitle ??
@@ -78,6 +86,214 @@ const premiumPriceSubLabel =
   premiumCopy.priceSubLabel ?? fallbackPageCopy.premium?.priceSubLabel ?? "";
 const premiumReceiveTitle =
   premiumCopy.receiveTitle ?? fallbackPageCopy.premium?.receiveTitle ?? "";
+
+type LocalizedText = string | Record<string, string>;
+type ColumnKey = "free" | "pro" | "champion";
+type CellValue =
+  | "check"
+  | "dash"
+  | { label: LocalizedText; className?: string };
+
+type FeatureRow = {
+  key: string;
+  label: LocalizedText;
+  tooltip?: LocalizedText;
+  values: Record<ColumnKey, CellValue>;
+};
+
+const resolveText = (value: LocalizedText): string => {
+  if (typeof value === "string") return value;
+  return (
+    value?.[lang] ??
+    value?.[defaultLanguage] ??
+    value?.en ??
+    Object.values(value ?? {})[0] ??
+    ""
+  );
+};
+
+const comparisonColumns: { key: ColumnKey; label: string; accent: string }[] =
+  [
+    { key: "free", label: freeLabel, accent: "text-emerald-500" },
+    { key: "pro", label: proLabel, accent: "text-[#0B2360]" },
+    { key: "champion", label: championLabel, accent: "text-[#01DFEC]" },
+  ];
+
+const comparisonBaseFeatures: FeatureRow[] = [
+  {
+    key: "news",
+    label: {
+      pl: "Aktualności i treści",
+      en: "News & content",
+      es: "Noticias y contenido",
+      de: "News & Inhalte",
+    },
+    tooltip: {
+      pl: "Publikuj aktualności, wyniki i multimedia bezpośrednio z panelu.",
+      en: "Publish news, results and media directly from the dashboard.",
+      es: "Publica noticias, resultados y medios desde el panel.",
+      de: "Veröffentliche News, Ergebnisse und Medien direkt aus dem Panel.",
+    },
+    values: { free: "check", pro: "check", champion: "check" },
+  },
+  {
+    key: "push",
+    label: {
+      pl: "Powiadomienia Push",
+      en: "Push notifications",
+      es: "Notificaciones push",
+      de: "Push-Benachrichtigungen",
+    },
+    tooltip: {
+      pl: "Wysyłaj alerty do kibiców o nowych postach, wynikach czy zmianach.",
+      en: "Send alerts to fans about new posts, scores or schedule changes.",
+      es: "Envía alertas a los fans sobre nuevas publicaciones o resultados.",
+      de: "Sende Alerts an Fans zu neuen Beiträgen, Ergebnissen oder Änderungen.",
+    },
+    values: { free: "dash", pro: "check", champion: "check" },
+  },
+  {
+    key: "newsletter",
+    label: {
+      pl: "Newsletter",
+      en: "Newsletter",
+      es: "Boletín",
+      de: "Newsletter",
+    },
+    tooltip: {
+      pl: "Zautomatyzowane kampanie email z wynikami i treściami klubu.",
+      en: "Automated email campaigns with club news and results.",
+      es: "Campañas de email automatizadas con noticias del club.",
+      de: "Automatisierte E-Mail-Kampagnen mit Club-News und Ergebnissen.",
+    },
+    values: { free: "dash", pro: "check", champion: "check" },
+  },
+  {
+    key: "segments",
+    label: {
+      pl: "Segmentacja bazy",
+      en: "Audience segmentation",
+      es: "Segmentación de audiencia",
+      de: "Zielgruppensegmentierung",
+    },
+    tooltip: {
+      pl: "Twórz grupy odbiorców i kieruj treści do konkretnych kibiców.",
+      en: "Create audience groups and target content to specific fans.",
+      es: "Crea grupos de audiencia y dirige contenido a fans específicos.",
+      de: "Erstelle Zielgruppen und sende Inhalte gezielt an Fans.",
+    },
+    values: { free: "dash", pro: "check", champion: "check" },
+  },
+  {
+    key: "sponsors",
+    label: {
+      pl: "Moduł Sponsorzy",
+      en: "Sponsors module",
+      es: "Módulo de patrocinadores",
+      de: "Sponsoren-Modul",
+    },
+    tooltip: {
+      pl: "Dedykowane miejsca na ekspozycję partnerów i aktywacje sponsorskie.",
+      en: "Dedicated placements for partner exposure and sponsor activations.",
+      es: "Espacios dedicados para exponer socios y activaciones de patrocinio.",
+      de: "Plätze für Partner-Sichtbarkeit und Sponsoren-Aktivierungen.",
+    },
+    values: { free: "dash", pro: "check", champion: "check" },
+  },
+  {
+    key: "analytics",
+    label: {
+      pl: "Pełna analityka",
+      en: "Full analytics",
+      es: "Analítica completa",
+      de: "Vollständige Analytik",
+    },
+    tooltip: {
+      pl: "Raporty o aktywności kibiców, kampaniach i zaangażowaniu.",
+      en: "Reports on fan activity, campaigns and engagement.",
+      es: "Informes sobre actividad de fans, campañas y engagement.",
+      de: "Berichte zu Fanaktivität, Kampagnen und Engagement.",
+    },
+    values: { free: "dash", pro: "check", champion: "check" },
+  },
+];
+
+const comparisonExpandedFeatures: FeatureRow[] = [
+  {
+    key: "support-time",
+    label: {
+      pl: "Czas odpowiedzi support",
+      en: "Support response time",
+      es: "Tiempo de respuesta de soporte",
+      de: "Support-Reaktionszeit",
+    },
+    tooltip: {
+      pl: "Priorytet obsługi zgłoszeń i wsparcia technicznego.",
+      en: "Priority handling of tickets and technical support.",
+      es: "Gestión prioritaria de tickets y soporte técnico.",
+      de: "Priorisierte Bearbeitung von Tickets und technischem Support.",
+    },
+    values: {
+      free: { label: "72h", className: "text-sm text-gray-600 font-medium" },
+      pro: {
+        label: "24h",
+        className: "text-sm font-semibold text-[#3242d6]",
+      },
+      champion: {
+        label: "12h",
+        className: "text-sm font-bold text-[#0B2360]",
+      },
+    },
+  },
+  {
+    key: "custom-modules",
+    label: {
+      pl: "Custom moduły",
+      en: "Custom modules",
+      es: "Módulos a medida",
+      de: "Individuelle Module",
+    },
+    tooltip: {
+      pl: "Projektujemy dodatkowe moduły szyte na miarę potrzeb klubu.",
+      en: "We design extra modules tailored to the club’s needs.",
+      es: "Diseñamos módulos extra a medida de tu club.",
+      de: "Wir bauen zusätzliche Module nach Bedarf des Clubs.",
+    },
+    values: { free: "dash", pro: "dash", champion: "check" },
+  },
+  {
+    key: "sla",
+    label: {
+      pl: "Gwarancja SLA",
+      en: "SLA guarantee",
+      es: "Garantía SLA",
+      de: "SLA-Garantie",
+    },
+    tooltip: {
+      pl: "Umowne czasy przywrócenia usług i dostępność platformy.",
+      en: "Contracted restoration times and platform availability.",
+      es: "Tiempos de restauración y disponibilidad acordados.",
+      de: "Vertraglich zugesicherte Wiederherstellungszeiten und Verfügbarkeit.",
+    },
+    values: { free: "dash", pro: "dash", champion: "check" },
+  },
+  {
+    key: "account-manager",
+    label: {
+      pl: "Dedykowany opiekun",
+      en: "Dedicated account manager",
+      es: "Account manager dedicado",
+      de: "Dedizierter Ansprechpartner",
+    },
+    tooltip: {
+      pl: "Osobisty opiekun prowadzący wdrożenie i rozwój komunikacji.",
+      en: "Personal manager guiding onboarding and ongoing communication.",
+      es: "Responsable personal para onboarding y comunicación continua.",
+      de: "Persönlicher Ansprechpartner für Onboarding und Weiterentwicklung.",
+    },
+    values: { free: "dash", pro: "dash", champion: "check" },
+  },
+];
 ---
 
 <Layout title={metaTitle}>
@@ -158,974 +374,281 @@ const premiumReceiveTitle =
 
     <!-- Detailed Comparison Table -->
     <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-[#0B2360] mb-4">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-[#0B2360] mb-2">
             {detailedComparisonTitle}
           </h2>
+          <p class="text-gray-500 text-base">{detailedComparisonSubtitle}</p>
         </div>
 
         <div
-          class="bg-white rounded-2xl border border-gray-200 overflow-hidden"
+          class="bg-white rounded-[28px] border border-gray-100 shadow-[0_24px_70px_rgba(11,35,96,0.08)] overflow-hidden"
         >
-          <div class="overflow-x-auto">
-            <table class="w-full pricing-comparison-table">
-              <thead>
-                <tr class="border-b border-gray-200">
+          <div class="overflow-x-auto" data-pricing-table-wrapper>
+            <table
+              class="w-full min-w-[720px] table-fixed border-separate border-spacing-0"
+            >
+            <thead class="bg-gray-50/70">
+              <tr class="text-sm uppercase tracking-wide text-gray-500">
+                <th class="text-left py-5 px-6 font-semibold text-gray-700">
+                  {featureColumnLabel}
+                </th>
+                {comparisonColumns.map((col) => (
                   <th
-                    class="text-left py-6 px-8 font-semibold text-gray-900 text-lg"
-                    >Funkcja</th
+                    class="text-center py-5 px-4 font-semibold text-[#0B2360] text-sm"
                   >
-                  <th
-                    class="text-center py-6 px-6 font-semibold text-gray-600 text-base"
-                    >Free</th
-                  >
-                  <th
-                    class="text-center py-6 px-6 font-semibold text-gray-600 text-base"
-                    >Starter</th
-                  >
-                  <th
-                    class="text-center py-6 px-6 font-semibold text-[#0B2360] text-base bg-blue-50/30 relative"
-                  >
-                    Pro
-                    <div
-                      class="absolute top-0 left-0 right-0 h-1 bg-sportigio-primary"
-                    >
-                    </div>
+                    {col.label}
                   </th>
-                  <th
-                    class="text-center py-6 px-6 font-semibold text-gray-600 text-base"
-                    >Champion</th
-                  >
-                </tr>
-              </thead>
-              <tbody>
-                <!-- STRONA INTERNETOWA -->
-                <tr class="hidden bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >STRONA INTERNETOWA</span
-                      >
+                ))}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {comparisonBaseFeatures.map((feature) => (
+                <tr class="hover:bg-gray-50/60 transition-colors">
+                  <td class="py-4 px-6 text-gray-800 font-medium">
+                    <div class="flex items-center gap-2">
+                      <span>{resolveText(feature.label)}</span>
+                      {
+                        feature.tooltip && (
+                          <div class="relative group">
+                            <svg
+                              class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              ></path>
+                            </svg>
+                            <div
+                              class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
+                            >
+                              {resolveText(feature.tooltip)}
+                            </div>
+                          </div>
+                        )
+                      }
                     </div>
                   </td>
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Możliwość dodania wielu drużyn</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość tworzenia i zarządzania wieloma drużynami w
-                          ramach jednego klubu
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Własna domena</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość podpięcia własnej domeny internetowej (np.
-                          mojklub.pl)
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Brak reklam Sportigio</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Usunięcie wszystkich reklam i brandingu Sportigio z
-                          Twojej strony
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">Limit zdjęć w galerii</td>
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >20</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >50</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >100</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >Bez limitu</td
-                  >
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">Limit miejsca na pliki</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >100 MB</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >500 MB</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >1 GB</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >5 GB</td
-                  >
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700"
-                    >Liczba dostępnych podstron</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >5</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >10</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >20</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >50</td
-                  >
-                </tr>
-                <tr
-                  class="hidden border-b border-gray-200 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Własny CSS i JS</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość dodania własnych styli CSS i skryptów
-                          JavaScript
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
+                  {comparisonColumns.map((col) => {
+                    const cellValue = feature.values[col.key];
+                    const isObjectValue =
+                      typeof cellValue === "object" &&
+                      cellValue !== null &&
+                      cellValue !== "check" &&
+                      cellValue !== "dash";
 
-                <!-- KOMUNIKACJA Z KIBICAMI -->
-                <tr class="bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >KOMUNIKACJA Z KIBICAMI</span
-                      >
-                    </div>
-                  </td>
+                    return (
+                      <td class="py-4 px-4 text-center">
+                        {
+                          cellValue === "check" ? (
+                            <span
+                              class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
+                            >
+                              <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2.5"
+                                  d="M5 13l4 4L19 7"
+                                ></path>
+                              </svg>
+                            </span>
+                          ) : cellValue === "dash" ? (
+                            <span class="text-gray-300 text-lg">—</span>
+                          ) : isObjectValue ? (
+                            <span
+                              class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
+                            >
+                              {resolveText(cellValue.label)}
+                            </span>
+                          ) : (
+                            <span class="text-sm font-semibold text-gray-700">
+                              {cellValue as string}
+                            </span>
+                          )
+                        }
+                      </td>
+                    );
+                  })}
                 </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Powiadomienia push dziennie</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Dzienny limit powiadomień push wysyłanych do kibiców
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >0</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >1</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >4</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >10</td
-                  >
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700"
-                    >Limity wysyłek mailowych miesięcznie</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >500</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >2000</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >8000</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >20000</td
-                  >
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Segmentacja odbiorców</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość tworzenia grup odbiorców i wysyłania
-                          spersonalizowanych wiadomości
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-200 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Integracja z Mailchimp/Mailerlite</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Synchronizacja z popularnymi platformami email
-                          marketingu
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
+              ))}
 
-                <!-- BAZA DANYCH I ANALITYKA -->
-                <tr class="bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >BAZA DANYCH I ANALITYKA</span
-                      >
+              {comparisonExpandedFeatures.map((feature) => (
+                <tr
+                  class="hover:bg-gray-50/60 transition-colors hidden"
+                  data-extra-row
+                >
+                  <td class="py-4 px-6 text-gray-800 font-medium">
+                    <div class="flex items-center gap-2">
+                      <span>{resolveText(feature.label)}</span>
+                      {
+                        feature.tooltip && (
+                          <div class="relative group">
+                            <svg
+                              class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              ></path>
+                            </svg>
+                            <div
+                              class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
+                            >
+                              {resolveText(feature.tooltip)}
+                            </div>
+                          </div>
+                        )
+                      }
                     </div>
                   </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Eksport/import danych kibiców</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość eksportu i importu danych kibiców w
-                          formatach CSV/Excel
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Własne pytania do kibiców</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość tworzenia dodatkowych pól w formularzu
-                          rejestracji kibiców
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-200 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700"
-                    >Czas przechowywania danych analitycznych</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >30 dni</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >30 dni</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >90 dni</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >365 dni</td
-                  >
-                </tr>
+                  {comparisonColumns.map((col) => {
+                    const cellValue = feature.values[col.key];
+                    const isObjectValue =
+                      typeof cellValue === "object" &&
+                      cellValue !== null &&
+                      cellValue !== "check" &&
+                      cellValue !== "dash";
 
-                <!-- GAMIFIKACJA -->
-                <tr class="bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >GAMIFIKACJA</span
-                      >
-                    </div>
-                  </td>
+                    return (
+                      <td class="py-4 px-4 text-center">
+                        {
+                          cellValue === "check" ? (
+                            <span
+                              class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
+                            >
+                              <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2.5"
+                                  d="M5 13l4 4L19 7"
+                                ></path>
+                              </svg>
+                            </span>
+                          ) : cellValue === "dash" ? (
+                            <span class="text-gray-300 text-lg">—</span>
+                          ) : isObjectValue ? (
+                            <span
+                              class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
+                            >
+                              {resolveText(cellValue.label)}
+                            </span>
+                          ) : (
+                            <span class="text-sm font-semibold text-gray-700">
+                              {cellValue as string}
+                            </span>
+                          )
+                        }
+                      </td>
+                    );
+                  })}
                 </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
+              ))}
+            </tbody>
+          </table>
+          </div>
+          <div class="bg-gray-50/80 px-6 py-5 flex justify-center">
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 rounded-full bg-[#1e46ff] text-white px-5 py-3 text-sm font-semibold shadow-[0_12px_30px_rgba(30,70,255,0.28)] transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
+              data-pricing-toggle
+              data-label-collapsed={expandLabel}
+              data-label-expanded={collapseLabel}
+              aria-expanded="false"
+            >
+              <span data-label>{expandLabel}</span>
+              <span
+                data-icon
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/15"
+              >
+                <svg
+                  class="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Własne logo aplikacji</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość umieszczenia własnego logo w aplikacji
-                          mobilnej dla kibiców
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Sponsorowanie wyzwań</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Możliwość dodawania sponsorów do wyzwań i konkursów
-                          dla kibiców
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-200 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Mini-gry dla kibiców</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Dostęp do dodatkowych mini-gier i interaktywnych
-                          funkcji dla kibiców
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-
-                <!-- SPRZEDAŻ I PŁATNOŚCI -->
-                <tr class="bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >SPRZEDAŻ I PŁATNOŚCI</span
-                      >
-                    </div>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Koszt obsługi sprzedaży biletów</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Opłata za obsługę płatności przy sprzedaży biletów na
-                          mecze i wydarzenia
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >1 zł + 5%</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >1 zł + 4.5%</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >1 zł + 4.2%</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >4%</td
-                  >
-                </tr>
-                <tr
-                  class="border-b border-gray-200 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Prowizja od produktów cyfrowych</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Prowizja od sprzedaży produktów cyfrowych jak e-booki,
-                          kursy online itp.
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >20%</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >15%</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >12%</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >8%</td
-                  >
-                </tr>
-
-                <!-- WSPARCIE -->
-                <tr class="bg-gradient-to-r from-blue-50 to-blue-50">
-                  <td colspan="5" class="py-4 px-8">
-                    <div class="flex items-center space-x-2">
-                      <div
-                        class="w-6 h-6 bg-sportigio-primary rounded-full flex items-center justify-center"
-                      >
-                        <svg
-                          class="w-3 h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <span
-                        class="font-semibold text-[#0B2360] text-sm tracking-wider uppercase"
-                        >WSPARCIE</span
-                      >
-                    </div>
-                  </td>
-                </tr>
-                <tr
-                  class="border-b border-gray-100 hover:bg-gray-50/30 transition-colors"
-                >
-                  <td class="py-4 px-8 text-gray-700">
-                    <div class="flex items-center space-x-2">
-                      <span>Indywidualna sesja onboardingu (1h)</span>
-                      <div class="relative group">
-                        <svg
-                          class="w-4 h-4 text-gray-400 cursor-help"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div
-                          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"
-                        >
-                          Godzinna sesja wdrożeniowa z ekspertem do nauki
-                          korzystania z platformy
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center bg-blue-50/30">
-                    <span class="text-red-500 text-lg">✕</span>
-                  </td>
-                  <td class="py-4 px-6 text-center">
-                    <span class="text-green-500 text-lg">✓</span>
-                  </td>
-                </tr>
-                <tr class="hover:bg-gray-50/30 transition-colors">
-                  <td class="py-4 px-8 text-gray-700"
-                    >Czas odpowiedzi na zgłoszenie</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >72h</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >48h</td
-                  >
-                  <td
-                    class="py-4 px-6 text-center bg-blue-50/30 text-gray-600 font-medium"
-                    >24h</td
-                  >
-                  <td class="py-4 px-6 text-center text-gray-600 font-medium"
-                    >12h</td
-                  >
-                </tr>
-              </tbody>
-            </table>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 9l6 6 6-6"
+                  ></path>
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.querySelector("[data-pricing-toggle]");
+        const label = toggle?.querySelector("[data-label]");
+        const icon = toggle?.querySelector("[data-icon]");
+        const extraRows = Array.from(
+          document.querySelectorAll("[data-extra-row]"),
+        );
+
+        if (!toggle || !label || !icon || extraRows.length === 0) return;
+
+        const collapsed =
+          toggle.getAttribute("data-label-collapsed") ||
+          "Rozwiń pełny cennik";
+        const expanded =
+          toggle.getAttribute("data-label-expanded") || "Zwiń cennik";
+
+        const setState = (isExpanded) => {
+          extraRows.forEach((row) => {
+            if (isExpanded) {
+              row.classList.remove("hidden");
+              requestAnimationFrame(() => row.classList.add("is-visible"));
+            } else {
+              if (row.classList.contains("hidden")) return;
+              row.classList.remove("is-visible");
+              row.addEventListener(
+                "transitionend",
+                () => row.classList.add("hidden"),
+                { once: true },
+              );
+            }
+          });
+          label.textContent = isExpanded ? expanded : collapsed;
+          toggle.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+          icon.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
+        };
+
+        let isOpen = false;
+        setState(isOpen);
+
+        toggle.addEventListener("click", () => {
+          isOpen = !isOpen;
+          setState(isOpen);
+        });
+      });
+    </script>
 
     <!-- Add-on Section -->
     <PricingAddOns lang={lang} />
@@ -1322,6 +845,23 @@ const premiumReceiveTitle =
     scroll-margin-top: 80px;
   }
 
+  /* Keep scrollbar space stable to avoid horizontal shift */
+  :global([data-pricing-table-wrapper]) {
+    overflow-y: hidden;
+    scrollbar-gutter: stable;
+  }
+
+  :global([data-extra-row]) {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  :global([data-extra-row].is-visible) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Table responsive styles */
   @media (max-width: 768px) {
     table {
@@ -1470,10 +1010,3 @@ const premiumReceiveTitle =
     currencySelect?.addEventListener("change", applyPrices);
   });
 </script>
-
-<style>
-  :global(.pricing-comparison-table th:nth-child(3)),
-  :global(.pricing-comparison-table td:nth-child(3)) {
-    display: none;
-  }
-</style>

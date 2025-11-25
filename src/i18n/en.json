@@ -430,7 +430,14 @@
     "custom_pricing_sub": "Pricing",
     "contact_for_quote": "Contact us for a quote",
     "see_details": "See details below",
-    "detailed_comparison": "Detailed feature comparison"
+    "detailed_comparison": "Detailed feature comparison",
+    "detailed_comparison_subtitle": "In-depth feature breakdown",
+    "feature_column_label": "Feature",
+    "free_label": "Free",
+    "pro_label": "Pro",
+    "champion_label": "Champion",
+    "expand_pricing": "Show full pricing",
+    "collapse_pricing": "Hide pricing"
   },
   "footer": {
     "company_blurb": "Next-generation sports club management platform. Simplify communication, automate processes, and focus on what matters most.",

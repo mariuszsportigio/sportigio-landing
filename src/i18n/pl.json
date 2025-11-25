@@ -428,6 +428,13 @@
     "contact_for_quote": "Skontaktuj się po wycenę",
     "see_details": "Zobacz szczegóły poniżej",
     "detailed_comparison": "Szczegółowe porównanie funkcji",
+    "detailed_comparison_subtitle": "Szczegółowe zestawienie funkcji",
+    "feature_column_label": "Funkcja",
+    "free_label": "Free",
+    "pro_label": "Pro",
+    "champion_label": "Champion",
+    "expand_pricing": "Rozwiń pełny cennik",
+    "collapse_pricing": "Zwiń cennik",
     "features": {
       "website": "STRONA INTERNETOWA",
       "communication": "KOMUNIKACJA Z KIBICAMI",
