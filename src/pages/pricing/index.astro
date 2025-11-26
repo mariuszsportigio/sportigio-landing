@@ -1,21 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
-import PricingTable from "../components/PricingTable.astro";
-import PricingAddOns from "../components/PricingAddOns.astro";
-import TrustedClubsSection from "../components/TrustedClubsSection.astro";
-import PricingIncludes from "../components/PricingIncludes.astro";
-import RevenueCalculator from "../components/RevenueCalculator.astro";
-import Footer from "../components/Footer.astro";
-import FAQ from "../components/FAQ.astro";
-import pricingCopy from "../data/pricing-copy.json";
-import pricingAmounts from "../data/pricing-amounts.json";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import PricingTable from "../../components/PricingTable.astro";
+import PricingAddOns from "../../components/PricingAddOns.astro";
+import TrustedClubsSection from "../../components/TrustedClubsSection.astro";
+import PricingIncludes from "../../components/PricingIncludes.astro";
+import RevenueCalculator from "../../components/RevenueCalculator.astro";
+import Footer from "../../components/Footer.astro";
+import FAQ from "../../components/FAQ.astro";
+import pricingCopy from "../../data/pricing-copy.json";
+import pricingAmounts from "../../data/pricing-amounts.json";
 import {
   defaultLanguage,
   getTranslations,
   localizeHref,
   type Language,
-} from "../i18n";
+} from "../../i18n";
 
 interface Props {
   lang?: Language;
@@ -103,7 +103,7 @@ const websiteAddonPriceSuffix =
   websiteAddonCopy.priceSuffix ?? "miesięcznie.";
 const websiteAddonCta =
   websiteAddonCopy.cta ?? "Zobacz pakiety strony WWW";
-const websiteAddonHref = localizeHref("/strona", lang);
+const websiteAddonHref = localizeHref("/pricing/website", lang);
 
 type LocalizedText = string | Record<string, string>;
 type ColumnKey = "free" | "pro" | "champion";

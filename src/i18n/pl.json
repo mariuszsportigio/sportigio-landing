@@ -1202,6 +1202,50 @@
         ]
       }
     },
+    "pricingWebsite": {
+      "meta": {
+        "title": "Sportigio - Pakiety strony WWW"
+      },
+      "hero": {
+        "badge": "Add-on do platformy Sportigio",
+        "title": "Profesjonalna strona WWW dla Twojego klubu",
+        "subtitle": "W pełni zintegrowana z platformą, responsywna i łatwa w obsłudze."
+      },
+      "cards": {
+        "standard": {
+          "badge": "WYBÓR KLUBÓW",
+          "name": "Strona Standard",
+          "tagline": "Wszystko czego potrzebujesz na start",
+          "price": "199 zł",
+          "priceSuffix": "/ mies.",
+          "priceNote": "Cena netto (+23% VAT)",
+          "features": [
+            "Własna domena (twojklub.pl)",
+            "Hosting i certyfikat SSL w cenie",
+            "Responsywny szablon RWD",
+            "Integracja z newsami i tabelami",
+            "Galeria zdjęć i wideo",
+            "Formularz kontaktowy"
+          ],
+          "cta": "Wybierz Standard"
+        },
+        "champion": {
+          "badge": "Champion Website",
+          "name": "Champion Website",
+          "tagline": "Dedykowany projekt i wdrożenie",
+          "price": "Indywidualna wycena",
+          "features": [
+            "Wszystko z pakietu Standard",
+            "Indywidualny projekt graficzny",
+            "Dedykowane podstrony i moduły",
+            "Migracja treści z poprzedniej strony",
+            "Zaawansowane integracje API",
+            "Priorytetowe wsparcie techniczne"
+          ],
+          "cta": "Zapytaj o wycenę"
+        }
+      }
+    },
     "tickets": {
       "meta": {
         "title": "Sportigio - Bilety online"

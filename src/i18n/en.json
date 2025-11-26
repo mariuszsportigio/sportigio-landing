@@ -1049,6 +1049,50 @@
         ]
       }
     },
+    "pricingWebsite": {
+      "meta": {
+        "title": "Sportigio - Club website packages"
+      },
+      "hero": {
+        "badge": "Add-on to the Sportigio platform",
+        "title": "Professional club website for your team",
+        "subtitle": "Fully integrated with the platform, responsive, and easy to manage."
+      },
+      "cards": {
+        "standard": {
+          "badge": "CLUBS' CHOICE",
+          "name": "Standard Website",
+          "tagline": "Everything you need to launch",
+          "price": "PLN 199",
+          "priceSuffix": "/ mo.",
+          "priceNote": "Net price (+23% VAT)",
+          "features": [
+            "Custom domain (yourclub.pl)",
+            "Hosting and SSL included",
+            "Responsive RWD template",
+            "Integrated news and standings",
+            "Photo and video galleries",
+            "Contact form"
+          ],
+          "cta": "Choose Standard"
+        },
+        "champion": {
+          "badge": "Champion Website",
+          "name": "Champion Website",
+          "tagline": "Dedicated design & rollout",
+          "price": "Custom quote",
+          "features": [
+            "Everything in Standard",
+            "Bespoke visual design",
+            "Dedicated subpages and modules",
+            "Content migration from the old site",
+            "Advanced API integrations",
+            "Priority technical support"
+          ],
+          "cta": "Request a quote"
+        }
+      }
+    },
     "tickets": {
       "meta": {
         "title": "Sportigio - Online Tickets"
