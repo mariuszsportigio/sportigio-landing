@@ -10,9 +10,21 @@ import arrowRightIcon from "lucide-static/icons/arrow-right.svg?raw";
 
 interface Props {
   lang?: Language;
+  title?: string;
+  subtitle?: string;
+  cta?: string;
+  ctaHref?: string;
+  badge?: string;
 }
 
-const { lang = defaultLanguage } = Astro.props as Props;
+const {
+  lang = defaultLanguage,
+  title,
+  subtitle,
+  cta,
+  ctaHref,
+  badge,
+} = Astro.props as Props;
 
 const translations = getTranslations(lang) as any;
 const fallbackTranslations =
@@ -24,22 +36,24 @@ const sectionCopy = (translations?.pages?.pricing?.addons ?? {}) as any;
 const fallbackCopy = (fallbackTranslations?.pages?.pricing?.addons ?? {}) as any;
 
 const resolvedTitle =
+  title ??
   sectionCopy.title ??
   fallbackCopy.title ??
   "Potrzebujesz więcej? Pakiet Champion";
 const resolvedSubtitle =
+  subtitle ??
   sectionCopy.subtitle ??
   fallbackCopy.subtitle ??
   "Chcesz wsparcia, dedykowanego opiekuna lub rozwiązań szytych na miarę? Porozmawiajmy o pakiecie Champion – stworzymy ofertę idealnie dopasowaną do Twojej organizacji.";
 const resolvedCta =
-  sectionCopy.cta ?? fallbackCopy.cta ?? "Umów konsultację";
+  cta ?? sectionCopy.cta ?? fallbackCopy.cta ?? "Umów konsultację";
 const resolvedCtaHref = localizeHref(
-  sectionCopy.ctaHref ?? fallbackCopy.ctaHref ?? "https://sportig.io/join",
+  ctaHref ?? sectionCopy.ctaHref ?? fallbackCopy.ctaHref ?? "https://sportig.io/join",
   lang,
 );
 
 const resolvedBadge =
-  sectionCopy.badge ?? fallbackCopy.badge ?? "Pakiet Champion";
+  badge ?? sectionCopy.badge ?? fallbackCopy.badge ?? "Pakiet Champion";
 ---
 
 <section class="relative overflow-hidden py-20 bg-[#0B1F46]">

@@ -4,10 +4,12 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import PricingIncludes from "../../components/PricingIncludes.astro";
 import HowToStart from "../../components/HowToStart.astro";
+import PricingAddOns from "../../components/PricingAddOns.astro";
 import { defaultLanguage, getTranslations, type Language } from "../../i18n";
 import globeIcon from "lucide-static/icons/globe.svg?raw";
 import sparklesIcon from "lucide-static/icons/sparkles.svg?raw";
 import checkIcon from "lucide-static/icons/check.svg?raw";
+import circleHelpIcon from "lucide-static/icons/circle-help.svg?raw";
 
 interface Props {
   lang?: Language;
@@ -167,6 +169,41 @@ const championFeatures =
     : defaultChampionCard.features;
 
 const contactHref = "mailto:hello@sportigio.com";
+const pricingAddonsCopy =
+  (translations?.pages?.pricing?.addons as any) ??
+  (fallbackTranslations?.pages?.pricing?.addons as any) ??
+  {};
+const premiumSectionCopy =
+  (pageCopy?.championSection as any) ??
+  (fallbackPageCopy?.championSection as any) ??
+  {};
+const premiumSectionTitle =
+  premiumSectionCopy.title ??
+  pricingAddonsCopy.title ??
+  "Zamów pełne wdrożenie pakietu Premium";
+const premiumSectionSubtitle =
+  premiumSectionCopy.subtitle ??
+  pricingAddonsCopy.subtitle ??
+  "Chcesz wsparcia, dedykowanego opiekuna lub rozwiązań szytych na miarę? Porozmawiajmy o pakiecie Premium – stworzymy ofertę idealnie dopasowaną do Twojej organizacji.";
+const premiumSectionCta =
+  premiumSectionCopy.cta ?? pricingAddonsCopy.cta ?? "Umów konsultację";
+const premiumSectionCtaHref =
+  premiumSectionCopy.ctaHref ?? pricingAddonsCopy.ctaHref ?? contactHref;
+const premiumSectionBadge =
+  premiumSectionCopy.badge ?? pricingAddonsCopy.badge ?? "Pakiet Premium";
+
+const noWebsiteYetCopy =
+  (pageCopy?.noWebsiteYet as any) ??
+  (fallbackPageCopy?.noWebsiteYet as any) ??
+  {};
+const noWebsiteYetTitle =
+  noWebsiteYetCopy.title ?? "Nie potrzebujesz jeszcze strony?";
+const noWebsiteYetDesc =
+  noWebsiteYetCopy.description ??
+  "Stronę WWW możesz uruchomić w każdej chwili, korzystając z danych i panelu admina Sportigio.";
+const noWebsiteYetCta =
+  noWebsiteYetCopy.cta ?? "Zacznij korzystać z platformy za darmo";
+
 const championPriceNote =
   pageCopy?.cards?.champion?.priceNote ??
   fallbackPageCopy?.cards?.champion?.priceNote ??
@@ -382,6 +419,76 @@ const championPriceNote =
     <PricingIncludes lang={lang} section="pricingWebsite" />
 
     <HowToStart lang={lang} />
+
+    <PricingAddOns
+      lang={lang}
+      title={premiumSectionTitle}
+      subtitle={premiumSectionSubtitle}
+      cta={premiumSectionCta}
+      ctaHref={premiumSectionCtaHref}
+      badge={premiumSectionBadge}
+    />
+
+    <!-- No website yet? Section -->
+    <section
+      class="relative bg-gradient-to-r from-slate-50 via-white to-slate-50 py-16 sm:py-20 overflow-hidden"
+    >
+      <!-- Decorative elements -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="absolute top-0 left-1/4 w-64 h-64 bg-[#01DFEC]/5 rounded-full blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 right-1/4 w-48 h-48 bg-[#0B2360]/5 rounded-full blur-3xl"
+        >
+        </div>
+      </div>
+
+      <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+          <div
+            class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sm:p-10 text-center"
+          >
+            <!-- Icon -->
+            <div
+              class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-[#01DFEC]/10 to-[#0B2360]/10 mb-6 [&>svg]:w-7 [&>svg]:h-7 text-[#0B2360]"
+              set:html={circleHelpIcon}
+            />
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-bold text-[#0B2360] mb-3">
+              {noWebsiteYetTitle}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-gray-500 mb-6 max-w-md mx-auto">
+              {noWebsiteYetDesc}
+            </p>
+
+            <!-- CTA Button -->
+            <a
+              href="/pricing"
+              class="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0B2360]/5 text-[#0B2360] font-semibold transition-all hover:bg-[#0B2360] hover:text-white hover:shadow-lg hover:shadow-[#0B2360]/20"
+            >
+              {noWebsiteYetCta}
+              <svg
+                class="w-4 h-4 transition-transform group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script is:inline>

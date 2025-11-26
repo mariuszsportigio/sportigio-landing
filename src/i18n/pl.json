@@ -1271,6 +1271,18 @@
           }
         ]
       },
+      "championSection": {
+        "title": "Zamów pełne wdrożenie pakietu Premium",
+        "subtitle": "Potrzebujesz więcej? Pakiet Premium łączy dedykowany projekt strony, migrację treści i priorytetowe wsparcie zespołu Sportigio.",
+        "cta": "Umów wdrożenie Premium",
+        "ctaHref": "mailto:hello@sportigio.com?subject=Pakiet%20Premium%20WWW",
+        "badge": "Pakiet Premium"
+      },
+      "noWebsiteYet": {
+        "title": "Nie potrzebujesz jeszcze strony?",
+        "description": "Stronę WWW możesz uruchomić w każdej chwili, korzystając z danych i panelu admina Sportigio.",
+        "cta": "Zacznij korzystać z platformy za darmo"
+      },
       "howToStart": {
         "title": "Jak zacząć?",
         "subtitle": "Wybierz ścieżkę, która najlepiej odpowiada Twoim potrzebom",

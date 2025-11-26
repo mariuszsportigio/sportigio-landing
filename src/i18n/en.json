@@ -1118,6 +1118,18 @@
           }
         ]
       },
+      "championSection": {
+        "title": "Order the full Premium rollout",
+        "subtitle": "Need more? The Premium package covers a bespoke website build, content migration, and priority support from the Sportigio team.",
+        "cta": "Book Premium rollout",
+        "ctaHref": "mailto:hello@sportigio.com?subject=Premium%20Website%20Rollout",
+        "badge": "Premium Package"
+      },
+      "noWebsiteYet": {
+        "title": "Don't need a website yet?",
+        "description": "You can launch your website anytime using your data and Sportigio's admin panel.",
+        "cta": "Start using the platform for free"
+      },
       "howToStart": {
         "title": "How to get started?",
         "subtitle": "Choose the path that best fits your needs",
