@@ -104,6 +104,7 @@ const websiteAddonPriceSuffix =
 const websiteAddonCta =
   websiteAddonCopy.cta ?? "Zobacz pakiety strony WWW";
 const websiteAddonHref = localizeHref("/pricing/website", lang);
+const showRevenueCalculator = false;
 
 type LocalizedText = string | Record<string, string>;
 type ColumnKey = "free" | "pro" | "champion";
@@ -388,7 +389,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
 
     <PricingIncludes lang={lang} />
 
-    <RevenueCalculator lang={lang} />
+    {showRevenueCalculator && <RevenueCalculator lang={lang} />}
 
     <!-- Detailed Comparison Table -->
     <section class="py-16 bg-white">
@@ -584,7 +585,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
           <div class="bg-gray-50/80 px-6 py-5 flex justify-center">
             <button
               type="button"
-              class="inline-flex items-center gap-2 rounded-full bg-[#1e46ff] text-white px-5 py-3 text-sm font-semibold shadow-[0_12px_30px_rgba(30,70,255,0.28)] transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
+              class="inline-flex items-center gap-2 rounded-xl bg-[#0B2360] text-white px-5 py-3 text-sm font-semibold shadow-[0_12px_30px_rgba(11,35,96,0.28)] transition hover:brightness-110 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
               data-pricing-toggle
               data-label-collapsed={expandLabel}
               data-label-expanded={collapseLabel}

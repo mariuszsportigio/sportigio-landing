@@ -141,9 +141,6 @@ const RevenueCalculatorIsland = ({ lang, copy }: Props) => {
                       {card.description}
                     </p>
                   </div>
-                  <span class="inline-flex w-fit items-center px-3 py-1 rounded-full border border-[#0B2360]/20 text-xs font-semibold text-[#0B2360]">
-                    {card.badge}
-                  </span>
                 </div>
               );
             })}
@@ -219,17 +216,6 @@ const RevenueCalculatorIsland = ({ lang, copy }: Props) => {
                             <p class="text-sm text-gray-500">{plan.subtitle}</p>
                           )}
                         </div>
-                        {plan.badge && (
-                          <span
-                            class={`text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full ${
-                              isPro
-                                ? "bg-[#01DFEC]/15 text-[#0B2360]"
-                                : "bg-[#0B2360]/10 text-[#0B2360]"
-                            }`}
-                          >
-                            {plan.badge}
-                          </span>
-                        )}
                       </div>
 
                       <div class="space-y-1.5 text-sm text-gray-700">

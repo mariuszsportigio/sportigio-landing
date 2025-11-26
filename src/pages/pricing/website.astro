@@ -25,6 +25,33 @@ const pageCopy =
   {};
 const fallbackPageCopy =
   (fallbackTranslations?.pages?.pricingWebsite as any) ?? {};
+const pricingText =
+  translations?.pricing ?? fallbackTranslations?.pricing ?? {};
+
+const currencyLabel =
+  pricingText.currency ??
+  pricingText.hero?.currencyLabel ??
+  fallbackTranslations?.pricing?.currency ??
+  fallbackTranslations?.pricing?.hero?.currencyLabel ??
+  "Waluta:";
+const monthlyLabel =
+  pricingText.monthly ??
+  pricingText.hero?.monthlyLabel ??
+  fallbackTranslations?.pricing?.monthly ??
+  fallbackTranslations?.pricing?.hero?.monthlyLabel ??
+  "Miesięcznie";
+const yearlyLabel =
+  pricingText.yearly ??
+  pricingText.hero?.yearlyLabel ??
+  fallbackTranslations?.pricing?.yearly ??
+  fallbackTranslations?.pricing?.hero?.yearlyLabel ??
+  "Rocznie";
+const saveBadgeText =
+  pricingText.save_badge ??
+  pricingText.hero?.saveBadge ??
+  fallbackTranslations?.pricing?.save_badge ??
+  fallbackTranslations?.pricing?.hero?.saveBadge ??
+  "Oszczędź do 20%";
 
 const defaultStandardCard = {
   badge: "WYBÓR KLUBÓW",
@@ -87,6 +114,40 @@ const championCard = {
   ...(fallbackPageCopy?.cards?.champion ?? {}),
   ...(pageCopy?.cards?.champion ?? {}),
 };
+const currencySymbols = {
+  PLN: { symbol: "zł", position: "suffix", separator: " ", code: "PLN" },
+  USD: { symbol: "$", position: "prefix", separator: "", code: "USD" },
+  EUR: { symbol: "€", position: "prefix", separator: "", code: "EUR" },
+} as const;
+
+type CurrencyKey = keyof typeof currencySymbols;
+
+const websiteAmounts: Record<
+  CurrencyKey,
+  { monthly: number; yearlyPerMonth: number; yearlyTotal: number }
+> = {
+  PLN: { monthly: 199, yearlyPerMonth: 159, yearlyTotal: 1908 },
+  USD: { monthly: 46, yearlyPerMonth: 37, yearlyTotal: 444 },
+  EUR: { monthly: 41, yearlyPerMonth: 33, yearlyTotal: 396 },
+};
+
+const formatCurrency = (currency: CurrencyKey, value: number) => {
+  const meta = currencySymbols[currency];
+  const num = new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
+  return meta.position === "prefix"
+    ? `${meta.symbol}${meta.separator}${num}`
+    : `${num}${meta.separator}${meta.symbol}`;
+};
+
+const defaultCurrency: CurrencyKey = lang === "en" ? "EUR" : "PLN";
+const initialPrice = formatCurrency(defaultCurrency, websiteAmounts[defaultCurrency].monthly);
+const monthlySuffix = standardCard.priceSuffix ?? "/ mies.";
+const yearlySuffix = monthlySuffix;
+const defaultYearlyTotalLabel = lang === "en" ? "Yearly: {total}" : "Rocznie: {total}";
+const yearlyTotalLabel =
+  pageCopy?.cards?.standard?.yearlyTotalLabel ??
+  fallbackPageCopy?.cards?.standard?.yearlyTotalLabel ??
+  defaultYearlyTotalLabel;
 
 const standardFeatures =
   Array.isArray(standardCard.features) && standardCard.features.length > 0
@@ -129,8 +190,60 @@ const championPriceNote =
       </div>
     </section>
 
+    <div
+      id="website-pricing-data"
+      data-amounts={encodeURIComponent(JSON.stringify(websiteAmounts))}
+      data-meta={encodeURIComponent(JSON.stringify({ currencySymbols }))}
+      data-default-currency={defaultCurrency}
+      data-monthly-suffix={monthlySuffix}
+      data-yearly-suffix={yearlySuffix}
+      data-yearly-total-label={encodeURIComponent(yearlyTotalLabel)}
+      class="hidden"
+    ></div>
+
     <section class="bg-gray-50 py-16 sm:py-20">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-10">
+        <div class="w-full max-w-4xl">
+          <div class="flex items-center justify-center flex-wrap gap-4 text-center">
+            <div class="flex items-center gap-3">
+              <span class="text-gray-700 font-medium">{currencyLabel}</span>
+              <select
+                id="website-currency-select"
+                class="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-700"
+              >
+                <option value="PLN">PLN</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+              </select>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="text-gray-700 font-medium">{monthlyLabel}</span>
+              <div class="relative">
+                <input type="checkbox" id="website-billing-toggle" class="sr-only" />
+                <label
+                  for="website-billing-toggle"
+                  class="flex items-center cursor-pointer"
+                >
+                  <div class="relative">
+                    <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+                    <div
+                      class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition transform"
+                    >
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <span class="text-gray-700 font-medium">{yearlyLabel}</span>
+              <span
+                class="bg-[#01DFEC] text-[#0B2360] px-3 py-1 rounded-full text-sm font-semibold"
+              >
+                {saveBadgeText}
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div class="grid gap-6 md:grid-cols-2 max-w-3xl w-full">
           <!-- Standard Card -->
           <article
@@ -157,15 +270,21 @@ const championPriceNote =
             </div>
             <div class="mt-6">
               <div class="flex items-baseline gap-1 text-[#0B2360]">
-                <span class="text-3xl sm:text-4xl font-bold"
-                  >{standardCard.price}</span
+                <span class="text-3xl sm:text-4xl font-bold" data-website-price
+                  >{initialPrice}</span
                 >
-                <span class="text-base font-medium text-gray-600"
+                <span class="text-base font-medium text-gray-600" data-website-price-suffix
                   >{standardCard.priceSuffix}</span
                 >
               </div>
               <p class="text-xs text-gray-400 mt-0.5">
                 {standardCard.priceNote}
+              </p>
+              <p
+                class="text-xs text-[#0B2360] mt-1 hidden"
+                data-website-total-wrapper
+              >
+                <span data-website-total></span>
               </p>
             </div>
             <ul class="mt-6 space-y-2.5">
@@ -242,6 +361,108 @@ const championPriceNote =
       </div>
     </section>
   </main>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dataNode = document.getElementById("website-pricing-data");
+      const currencySelect = document.getElementById("website-currency-select");
+      const billingToggle = document.getElementById("website-billing-toggle");
+      const toggleLabel = document.querySelector('[for="website-billing-toggle"]');
+      const priceEl = document.querySelector("[data-website-price]");
+      const suffixEl = document.querySelector("[data-website-price-suffix]");
+      const totalWrapper = document.querySelector("[data-website-total-wrapper]");
+      const totalEl = document.querySelector("[data-website-total]");
+
+      if (!dataNode || !priceEl || !suffixEl) return;
+
+      const amounts = JSON.parse(
+        decodeURIComponent(dataNode.getAttribute("data-amounts") || "%7B%7D"),
+      );
+      const meta = JSON.parse(
+        decodeURIComponent(dataNode.getAttribute("data-meta") || "%7B%7D"),
+      );
+      const defaultCurrency = dataNode.getAttribute("data-default-currency") || "PLN";
+      const monthlySuffix = dataNode.getAttribute("data-monthly-suffix") || "/ mies.";
+      const yearlySuffix =
+        dataNode.getAttribute("data-yearly-suffix") || monthlySuffix;
+      const yearlyTotalLabel = decodeURIComponent(
+        dataNode.getAttribute("data-yearly-total-label") ||
+          "Rocznie%3A%20%7Btotal%7D",
+      );
+
+      const formatCurrency = (currency, value) => {
+        const symbol = meta?.currencySymbols?.[currency];
+        const num = new Intl.NumberFormat(undefined, {
+          maximumFractionDigits: 0,
+        }).format(value || 0);
+
+        if (!symbol) return `${num} ${currency}`;
+
+        const separator =
+          typeof symbol.separator === "string" ? symbol.separator : " ";
+        return symbol.position === "prefix"
+          ? `${symbol.symbol}${separator}${num}`
+          : `${num}${separator}${symbol.symbol}`;
+      };
+
+      const applyPrice = () => {
+        const currency =
+          currencySelect && currencySelect instanceof HTMLSelectElement
+            ? currencySelect.value
+            : defaultCurrency;
+        const isYearly =
+          billingToggle &&
+          billingToggle instanceof HTMLInputElement &&
+          billingToggle.checked;
+
+        const cur = amounts?.[currency];
+        if (!cur) return;
+
+        const priceValue = isYearly ? cur.yearlyPerMonth : cur.monthly;
+        priceEl.textContent = formatCurrency(currency, priceValue);
+        suffixEl.textContent = isYearly ? yearlySuffix : monthlySuffix;
+
+        if (totalWrapper && totalEl) {
+          if (isYearly && typeof cur.yearlyTotal === "number") {
+            totalEl.textContent = yearlyTotalLabel.replace(
+              "{total}",
+              formatCurrency(currency, cur.yearlyTotal),
+            );
+            totalWrapper.classList.remove("hidden");
+          } else {
+            totalWrapper.classList.add("hidden");
+            totalEl.textContent = "";
+          }
+        }
+      };
+
+      if (currencySelect && currencySelect instanceof HTMLSelectElement) {
+        currencySelect.value = defaultCurrency;
+        currencySelect.addEventListener("change", applyPrice);
+      }
+
+      if (billingToggle && billingToggle instanceof HTMLInputElement) {
+        const dot = toggleLabel?.querySelector(".dot");
+
+        const updateDot = () => {
+          if (dot instanceof HTMLElement) {
+            dot.style.transform = billingToggle.checked
+              ? "translateX(1.5rem)"
+              : "translateX(0)";
+          }
+        };
+
+        billingToggle.addEventListener("change", () => {
+          updateDot();
+          applyPrice();
+        });
+
+        updateDot();
+      }
+
+      applyPrice();
+    });
+  </script>
 
   <Footer lang={lang} />
 </Layout>
