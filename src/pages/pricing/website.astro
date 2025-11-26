@@ -1,0 +1,247 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { defaultLanguage, getTranslations, type Language } from "../../i18n";
+import globeIcon from "lucide-static/icons/globe.svg?raw";
+import sparklesIcon from "lucide-static/icons/sparkles.svg?raw";
+import checkIcon from "lucide-static/icons/check.svg?raw";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
+
+const pageCopy =
+  (translations?.pages?.pricingWebsite as any) ??
+  (fallbackTranslations?.pages?.pricingWebsite as any) ??
+  {};
+const fallbackPageCopy =
+  (fallbackTranslations?.pages?.pricingWebsite as any) ?? {};
+
+const defaultStandardCard = {
+  badge: "WYBÓR KLUBÓW",
+  name: "Strona Standard",
+  tagline: "Wszystko czego potrzebujesz na start",
+  price: "199 zł",
+  priceSuffix: "/ mies.",
+  priceNote: "Cena netto (+23% VAT)",
+  features: [
+    "Własna domena (twojklub.pl)",
+    "Hosting i certyfikat SSL w cenie",
+    "Responsywny szablon RWD",
+    "Integracja z newsami i tabelami",
+    "Galeria zdjęć i wideo",
+    "Formularz kontaktowy",
+  ],
+  cta: "Wybierz Standard",
+};
+
+const defaultChampionCard = {
+  badge: "Champion Website",
+  name: "Champion Website",
+  tagline: "Dedykowany projekt i wdrożenie",
+  price: "Indywidualna wycena",
+  features: [
+    "Wszystko z pakietu Standard",
+    "Indywidualny projekt graficzny",
+    "Dedykowane podstrony i moduły",
+    "Migracja treści z poprzedniej strony",
+    "Zaawansowane integracje API",
+    "Priorytetowe wsparcie techniczne",
+  ],
+  cta: "Zapytaj o wycenę",
+};
+
+const metaTitle =
+  pageCopy?.meta?.title ??
+  fallbackPageCopy?.meta?.title ??
+  "Sportigio - Strona WWW dla Twojego klubu";
+const heroBadge =
+  pageCopy?.hero?.badge ??
+  fallbackPageCopy?.hero?.badge ??
+  "Add-on do platformy Sportigio";
+const heroTitle =
+  pageCopy?.hero?.title ??
+  fallbackPageCopy?.hero?.title ??
+  "Profesjonalna strona WWW dla Twojego klubu";
+const heroSubtitle =
+  pageCopy?.hero?.subtitle ??
+  fallbackPageCopy?.hero?.subtitle ??
+  "W pełni zintegrowana z platformą, responsywna i łatwa w obsłudze.";
+
+const standardCard = {
+  ...defaultStandardCard,
+  ...(fallbackPageCopy?.cards?.standard ?? {}),
+  ...(pageCopy?.cards?.standard ?? {}),
+};
+const championCard = {
+  ...defaultChampionCard,
+  ...(fallbackPageCopy?.cards?.champion ?? {}),
+  ...(pageCopy?.cards?.champion ?? {}),
+};
+
+const standardFeatures =
+  Array.isArray(standardCard.features) && standardCard.features.length > 0
+    ? standardCard.features
+    : defaultStandardCard.features;
+const championFeatures =
+  Array.isArray(championCard.features) && championCard.features.length > 0
+    ? championCard.features
+    : defaultChampionCard.features;
+
+const contactHref = "mailto:hello@sportigio.com";
+const championPriceNote =
+  pageCopy?.cards?.champion?.priceNote ??
+  fallbackPageCopy?.cards?.champion?.priceNote ??
+  "";
+---
+
+<Layout title={metaTitle}>
+  <Navbar lang={lang} activePage="pricing" />
+  <div aria-hidden="true" class="h-16"></div>
+
+  <main class="bg-white min-h-screen">
+    <section
+      class="bg-gradient-to-br from-[#0B2360] via-[#0B2360] to-[#00052E] text-white py-16 sm:py-20"
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-5xl">
+        <span
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-full bg-white/10 border border-white/20 backdrop-blur"
+        >
+          {heroBadge}
+        </span>
+        <h1
+          class="mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold font-poppins"
+        >
+          {heroTitle}
+        </h1>
+        <p class="mt-4 text-lg sm:text-xl text-blue-100">
+          {heroSubtitle}
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-gray-50 py-16 sm:py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+        <div class="grid gap-6 md:grid-cols-2 max-w-3xl w-full">
+          <!-- Standard Card -->
+          <article
+            class="relative bg-white rounded-2xl shadow-lg border border-[#0B2360]/20 p-6 sm:p-8 overflow-visible"
+          >
+            <div class="absolute left-1/2 -translate-x-1/2 -top-3">
+              <span
+                class="px-4 py-1.5 text-xs font-bold tracking-wider uppercase text-white bg-[#0B2360] rounded-full shadow-md whitespace-nowrap"
+              >
+                {standardCard.badge}
+              </span>
+            </div>
+            <div class="flex items-center gap-3 mt-3">
+              <div
+                class="h-9 w-9 rounded-full bg-[#E6EDFF] text-[#0B2360] flex items-center justify-center shrink-0 [&>svg]:w-5 [&>svg]:h-5"
+                set:html={globeIcon}
+              />
+              <div>
+                <h2 class="text-xl font-bold text-[#0B2360]">
+                  {standardCard.name}
+                </h2>
+                <p class="text-gray-500 text-sm">{standardCard.tagline}</p>
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="flex items-baseline gap-1 text-[#0B2360]">
+                <span class="text-3xl sm:text-4xl font-bold"
+                  >{standardCard.price}</span
+                >
+                <span class="text-base font-medium text-gray-600"
+                  >{standardCard.priceSuffix}</span
+                >
+              </div>
+              <p class="text-xs text-gray-400 mt-0.5">
+                {standardCard.priceNote}
+              </p>
+            </div>
+            <ul class="mt-6 space-y-2.5">
+              {
+                standardFeatures.map((feature: string) => (
+                  <li class="flex items-start gap-2.5 text-gray-700">
+                    <span
+                      class="h-4 w-4 text-[#0B2360] mt-0.5 shrink-0 [&>svg]:w-4 [&>svg]:h-4"
+                      set:html={checkIcon}
+                    />
+                    <span class="text-sm leading-relaxed">{feature}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="mt-8">
+              <a
+                href={contactHref}
+                class="inline-flex w-full items-center justify-center rounded-full bg-sportigio-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:translate-y-[-1px] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01DFEC]"
+              >
+                {standardCard.cta}
+              </a>
+            </div>
+          </article>
+
+          <!-- Champion Card -->
+          <article
+            class="relative rounded-2xl bg-gradient-to-br from-[#0B2360] via-[#0B1A50] to-[#00052E] overflow-hidden shadow-lg"
+          >
+            <div
+              class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#01DFEC]/10 blur-2xl"
+            >
+            </div>
+            <div class="relative p-6 sm:p-8 text-white">
+              <div class="flex items-center gap-3">
+                <div
+                  class="h-9 w-9 rounded-full bg-[#01DFEC]/20 text-[#01DFEC] flex items-center justify-center shrink-0 [&>svg]:w-5 [&>svg]:h-5"
+                  set:html={sparklesIcon}
+                />
+                <div>
+                  <h2 class="text-xl font-bold">{championCard.name}</h2>
+                  <p class="text-blue-200 text-sm">{championCard.tagline}</p>
+                </div>
+              </div>
+              <div class="mt-6">
+                <p class="text-3xl sm:text-4xl font-bold">
+                  {championCard.price}
+                </p>
+              </div>
+              <ul class="mt-6 space-y-2.5">
+                {
+                  championFeatures.map((feature: string) => (
+                    <li class="flex items-start gap-2.5 text-blue-50">
+                      <span
+                        class="h-4 w-4 text-[#01DFEC] mt-0.5 shrink-0 [&>svg]:w-4 [&>svg]:h-4"
+                        set:html={checkIcon}
+                      />
+                      <span class="text-sm leading-relaxed">{feature}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+              <div class="mt-8">
+                <a
+                  href={contactHref}
+                  class="inline-flex w-full items-center justify-center rounded-full bg-[#01DFEC] px-5 py-2.5 text-sm font-semibold text-[#0B2360] shadow-md transition hover:translate-y-[-1px] hover:shadow-lg hover:bg-[#7BF3F7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {championCard.cta}
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
