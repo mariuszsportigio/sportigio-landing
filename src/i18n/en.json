@@ -1288,6 +1288,15 @@
         "cta": "Book a consultation",
         "ctaHref": "https://sportig.io/join"
       },
+      "websiteAddon": {
+        "badge": "Add-on",
+        "title": "Professional club website",
+        "description": "Fully integrated with the platform, responsive and easy to manage.",
+        "priceLead": "From",
+        "priceHighlight": "199 PLN",
+        "priceSuffix": "per month.",
+        "cta": "See website packages"
+      },
       "premium": {
         "title": "Premium Dedicated Package",
         "subtitle": "Tailor-made solution",

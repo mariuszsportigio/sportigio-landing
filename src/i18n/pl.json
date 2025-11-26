@@ -1441,6 +1441,15 @@
         "cta": "Umów konsultację",
         "ctaHref": "https://sportig.io/join"
       },
+      "websiteAddon": {
+        "badge": "Add-on",
+        "title": "Profesjonalna strona WWW",
+        "description": "W pełni zintegrowana z platformą, responsywna i łatwa w obsłudze.",
+        "priceLead": "Już od",
+        "priceHighlight": "199 zł",
+        "priceSuffix": "miesięcznie.",
+        "cta": "Zobacz pakiety strony WWW"
+      },
       "premium": {
         "title": "Pakiet Dedykowany Premium",
         "subtitle": "Rozwiązanie szyte na miarę",
