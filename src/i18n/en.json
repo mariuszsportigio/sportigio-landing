@@ -1091,6 +1091,96 @@
           ],
           "cta": "Request a quote"
         }
+      },
+      "includes": {
+        "title": "Every website package includes",
+        "subtitle": "Foundational elements available in both variants",
+        "items": [
+          {
+            "id": "domain",
+            "title": "Custom domain and no ads",
+            "description": "Run your site on a club domain of choice without external advertising."
+          },
+          {
+            "id": "sponsors",
+            "title": "Sponsor ladder management",
+            "description": "Control sponsor placements and tiers from a single dashboard."
+          },
+          {
+            "id": "homepage",
+            "title": "Block-based homepage editor",
+            "description": "Arrange homepage sections and blocks freely—no coding needed."
+          },
+          {
+            "id": "menu",
+            "title": "Menu management in admin",
+            "description": "Add and organize navigation items directly in the panel."
+          }
+        ]
+      },
+      "howToStart": {
+        "title": "How to get started?",
+        "subtitle": "Choose the path that best fits your needs",
+        "expandLabel": "View details",
+        "collapseLabel": "Hide details",
+        "selfStart": {
+          "label": "Self-Start",
+          "tutorial": {
+            "name": "Tutorial",
+            "price": "Free",
+            "description": "Self-configuration with video tutorials",
+            "note": "You can purchase a paid onboarding anytime",
+            "features": [
+              "Access to full knowledge base and video tutorials",
+              "Self-service setup in the block editor",
+              "Step-by-step domain configuration",
+              "Community support and user forum",
+              "Documentation of all platform features"
+            ]
+          },
+          "comfort": {
+            "name": "Comfort",
+            "price": "€129",
+            "description": "Dedicated support at launch",
+            "features": [
+              "Dedicated onboarding specialist (1h consultation)",
+              "Help with domain setup and configuration",
+              "Basic content setup (logo, colors, menu)",
+              "Integration with tables and news",
+              "Email support for 14 days after launch"
+            ]
+          }
+        },
+        "fullImpl": {
+          "label": "Full Implementation",
+          "standard": {
+            "name": "Standard",
+            "price": "€449",
+            "description": "Comprehensive rollout by our team",
+            "features": [
+              "Standard data migration from your old site",
+              "Content population on most subpages",
+              "Dedicated implementation manager throughout",
+              "Configuration of all integrations (news, standings, galleries)",
+              "Admin panel training (2h online)",
+              "30 days of support after launch"
+            ]
+          },
+          "premium": {
+            "name": "Premium",
+            "price": "from €1099",
+            "priceNote": "custom quote",
+            "description": "Full personalization and tailored solutions",
+            "features": [
+              "Migration of extensive content and subpages",
+              "Template modifications per requirements",
+              "Custom design adjustments",
+              "Custom API integrations (e.g., payment systems)",
+              "Dedicated project manager",
+              "Priority technical support with no time limit"
+            ]
+          }
+        }
       }
     },
     "tickets": {

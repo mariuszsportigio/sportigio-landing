@@ -1,0 +1,348 @@
+---
+import { defaultLanguage, getTranslations, type Language } from "../i18n";
+import playIcon from "lucide-static/icons/play-circle.svg?raw";
+import rocketIcon from "lucide-static/icons/rocket.svg?raw";
+import checkIcon from "lucide-static/icons/check.svg?raw";
+import chevronDownIcon from "lucide-static/icons/chevron-down.svg?raw";
+import bookOpenIcon from "lucide-static/icons/book-open.svg?raw";
+import headsetIcon from "lucide-static/icons/headset.svg?raw";
+import packageIcon from "lucide-static/icons/package.svg?raw";
+import crownIcon from "lucide-static/icons/crown.svg?raw";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = defaultLanguage } = Astro.props as Props;
+
+const translations = getTranslations(lang) as any;
+const fallbackTranslations =
+  lang === defaultLanguage
+    ? translations
+    : (getTranslations(defaultLanguage) as any);
+
+const sectionCopy = translations?.pages?.pricingWebsite?.howToStart ?? {};
+const fallbackCopy = fallbackTranslations?.pages?.pricingWebsite?.howToStart ?? {};
+
+const t = (key: string, fallback: string) => {
+  const keys = key.split(".");
+  let val = sectionCopy;
+  let fbVal = fallbackCopy;
+  for (const k of keys) {
+    val = val?.[k];
+    fbVal = fbVal?.[k];
+  }
+  return val ?? fbVal ?? fallback;
+};
+
+const tArr = (key: string): string[] => {
+  const keys = key.split(".");
+  let val = sectionCopy;
+  let fbVal = fallbackCopy;
+  for (const k of keys) {
+    val = val?.[k];
+    fbVal = fbVal?.[k];
+  }
+  return Array.isArray(val) ? val : Array.isArray(fbVal) ? fbVal : [];
+};
+
+const title = t("title", "Jak zacząć?");
+const subtitle = t("subtitle", "Wybierz ścieżkę, która najlepiej odpowiada Twoim potrzebom");
+const expandLabel = t("expandLabel", "Zobacz szczegóły");
+const collapseLabel = t("collapseLabel", "Zwiń szczegóły");
+
+const paths = [
+  {
+    id: "self-start",
+    label: t("selfStart.label", "Samodzielny Start"),
+    icon: playIcon,
+    packages: [
+      {
+        id: "tutorial",
+        name: t("selfStart.tutorial.name", "Tutorial"),
+        price: t("selfStart.tutorial.price", "0 zł"),
+        description: t("selfStart.tutorial.description", "Samodzielna konfiguracja z pomocą materiałów wideo"),
+        note: t("selfStart.tutorial.note", "W każdej chwili możesz dokupić wdrożenie płatne"),
+        features: tArr("selfStart.tutorial.features"),
+        icon: bookOpenIcon,
+      },
+      {
+        id: "comfort",
+        name: t("selfStart.comfort.name", "Comfort"),
+        price: t("selfStart.comfort.price", "590 zł"),
+        description: t("selfStart.comfort.description", "Dedykowane wsparcie przy starcie"),
+        features: tArr("selfStart.comfort.features"),
+        icon: headsetIcon,
+      },
+    ],
+  },
+  {
+    id: "full-impl",
+    label: t("fullImpl.label", "Pełne Wdrożenie"),
+    icon: rocketIcon,
+    packages: [
+      {
+        id: "standard",
+        name: t("fullImpl.standard.name", "Standard"),
+        price: t("fullImpl.standard.price", "1990 zł"),
+        description: t("fullImpl.standard.description", "Kompleksowe wdrożenie przez nasz zespół"),
+        features: tArr("fullImpl.standard.features"),
+        icon: packageIcon,
+      },
+      {
+        id: "premium",
+        name: t("fullImpl.premium.name", "Premium"),
+        price: t("fullImpl.premium.price", "od 4999 zł"),
+        priceNote: t("fullImpl.premium.priceNote", "wycena indywidualna"),
+        description: t("fullImpl.premium.description", "Pełna personalizacja i dedykowane rozwiązania"),
+        features: tArr("fullImpl.premium.features"),
+        icon: crownIcon,
+      },
+    ],
+  },
+];
+---
+
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white" id="how-to-start">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold text-[#0B2360] font-poppins">{title}</h2>
+      <p class="mt-3 text-base text-gray-600">{subtitle}</p>
+    </div>
+
+    <!-- Path Toggle -->
+    <div class="flex justify-center mb-8">
+      <div class="inline-flex bg-[#0B2360]/5 p-1.5 rounded-2xl border border-[#0B2360]/10 shadow-sm">
+        {paths.map((path, idx) => (
+          <button
+            class="hts-path-btn flex items-center gap-3 px-6 py-4 rounded-xl font-semibold transition-all duration-300 min-w-[200px] justify-center"
+            data-path={path.id}
+            data-active={idx === 0 ? "true" : "false"}
+          >
+            <span class="hts-icon w-6 h-6 [&>svg]:w-6 [&>svg]:h-6" set:html={path.icon} />
+            <span class="hts-label">{path.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Path Contents -->
+    {paths.map((path, pathIdx) => (
+      <div
+        class="hts-content"
+        data-content={path.id}
+        data-visible={pathIdx === 0 ? "true" : "false"}
+      >
+        <div
+          class="hts-path-card bg-white rounded-2xl border border-[#0B2360]/15 shadow-lg overflow-hidden"
+          data-expanded="false"
+        >
+          <!-- Header with both packages summary -->
+          <button class="hts-path-header w-full p-6 text-left">
+            <div class="grid gap-6 md:grid-cols-2">
+              {path.packages.map((pkg) => (
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-[#0B2360]/10 flex items-center justify-center shrink-0 text-[#0B2360] [&>svg]:w-6 [&>svg]:h-6">
+                    <Fragment set:html={pkg.icon} />
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-lg font-bold text-[#0B2360]">{pkg.name}</h3>
+                    <div class="flex items-baseline gap-2 mt-0.5">
+                      <span class="text-xl font-bold text-[#0B2360]">{pkg.price}</span>
+                      {pkg.priceNote && (
+                        <span class="text-xs text-gray-500">({pkg.priceNote})</span>
+                      )}
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">{pkg.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <!-- Expand toggle -->
+            <div class="flex items-center justify-center mt-6 pt-4 border-t border-gray-100">
+              <span class="hts-expand-text text-sm font-medium text-[#0B2360] mr-2">{expandLabel}</span>
+              <div class="hts-chevron w-6 h-6 rounded-full bg-[#0B2360]/10 flex items-center justify-center text-[#0B2360] transition-transform duration-300 [&>svg]:w-4 [&>svg]:h-4">
+                <Fragment set:html={chevronDownIcon} />
+              </div>
+            </div>
+          </button>
+
+          <!-- Expandable content with features -->
+          <div class="hts-path-details" data-state="closed">
+            <div class="px-6 pb-6">
+              <div class="grid gap-6 md:grid-cols-2">
+                {path.packages.map((pkg) => (
+                  <div class="bg-[#F6F8FD] rounded-xl p-5">
+                    <h4 class="font-bold text-[#0B2360] mb-3 flex items-center gap-2">
+                      <span>{pkg.name}</span>
+                      <span class="text-sm font-normal text-gray-500">— {pkg.price}</span>
+                    </h4>
+                    {pkg.note && (
+                      <p class="text-sm text-[#0B2360] font-medium mb-3 bg-[#01DFEC]/15 px-3 py-2 rounded-lg">
+                        {pkg.note}
+                      </p>
+                    )}
+                    {pkg.features.length > 0 && (
+                      <ul class="space-y-2">
+                        {pkg.features.map((feature) => (
+                          <li class="flex items-start gap-2 text-gray-700">
+                            <span class="h-5 w-5 text-[#0B2360] shrink-0 [&>svg]:w-5 [&>svg]:h-5" set:html={checkIcon} />
+                            <span class="text-sm leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* Path toggle button styles */
+  .hts-path-btn {
+    @apply text-gray-600 bg-transparent;
+  }
+  .hts-path-btn:hover {
+    @apply bg-white/60;
+  }
+  .hts-path-btn[data-active="true"] {
+    @apply text-white shadow-lg;
+    background: linear-gradient(135deg, #0B2360 0%, #00052E 100%);
+  }
+  .hts-path-btn[data-active="true"] .hts-label {
+    @apply text-white;
+  }
+  .hts-path-btn[data-active="true"] .hts-icon {
+    @apply text-[#01DFEC];
+  }
+  .hts-path-btn[data-active="false"] .hts-icon {
+    @apply text-[#0B2360];
+  }
+
+  /* Content visibility */
+  .hts-content[data-visible="false"] {
+    @apply hidden;
+  }
+  .hts-content[data-visible="true"] {
+    @apply block;
+  }
+
+  /* Expandable details */
+  .hts-path-details {
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition:
+      height 250ms ease-out,
+      opacity 200ms ease-out;
+  }
+  .hts-path-details[data-state="open"],
+  .hts-path-details[data-state="opening"] {
+    opacity: 1;
+  }
+  .hts-path-details[data-state="closed"],
+  .hts-path-details[data-state="closing"] {
+    opacity: 0;
+  }
+
+  /* Chevron rotation */
+  .hts-path-card[data-expanded="true"] .hts-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Active card styling */
+  .hts-path-card[data-expanded="true"] {
+    @apply border-[#0B2360]/25;
+  }
+
+  /* Header hover */
+  .hts-path-header:hover {
+    @apply bg-gray-50/50;
+  }
+</style>
+
+<script define:vars={{ expandLabel, collapseLabel }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const pathBtns = document.querySelectorAll(".hts-path-btn");
+    const pathContents = document.querySelectorAll(".hts-content");
+
+    pathBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const path = btn.getAttribute("data-path");
+
+        // Update button states
+        pathBtns.forEach((b) => b.setAttribute("data-active", "false"));
+        btn.setAttribute("data-active", "true");
+
+        // Show/hide content
+        pathContents.forEach((content) => {
+          const contentPath = content.getAttribute("data-content");
+          content.setAttribute("data-visible", contentPath === path ? "true" : "false");
+        });
+      });
+    });
+
+    // Path card expand/collapse
+    document.querySelectorAll(".hts-path-card").forEach((card) => {
+      const header = card.querySelector(".hts-path-header");
+      const details = card.querySelector(".hts-path-details");
+      const expandText = card.querySelector(".hts-expand-text");
+
+      if (!header || !details) return;
+
+      // Initialize
+      details.style.height = "0px";
+      details.style.opacity = "0";
+
+      header.addEventListener("click", () => {
+        const isExpanded = card.getAttribute("data-expanded") === "true";
+
+        if (isExpanded) {
+          // Close
+          details.setAttribute("data-state", "closing");
+          details.style.height = details.scrollHeight + "px";
+          void details.offsetHeight;
+          details.style.height = "0px";
+          details.style.opacity = "0";
+          card.setAttribute("data-expanded", "false");
+          if (expandText) expandText.textContent = expandLabel;
+
+          details.addEventListener(
+            "transitionend",
+            (e) => {
+              if (e.propertyName !== "height") return;
+              details.setAttribute("data-state", "closed");
+            },
+            { once: true }
+          );
+        } else {
+          // Open
+          details.setAttribute("data-state", "opening");
+          details.style.height = "0px";
+          details.style.opacity = "1";
+          void details.offsetHeight;
+          details.style.height = details.scrollHeight + "px";
+          card.setAttribute("data-expanded", "true");
+          if (expandText) expandText.textContent = collapseLabel;
+
+          details.addEventListener(
+            "transitionend",
+            (e) => {
+              if (e.propertyName !== "height") return;
+              details.setAttribute("data-state", "open");
+              details.style.height = "auto";
+            },
+            { once: true }
+          );
+        }
+      });
+    });
+  });
+</script>

@@ -1244,6 +1244,96 @@
           ],
           "cta": "Zapytaj o wycenę"
         }
+      },
+      "includes": {
+        "title": "Każdy pakiet zawiera",
+        "subtitle": "Stałe elementy dostępne w obu wariantach strony",
+        "items": [
+          {
+            "id": "domain",
+            "title": "Własna domena i brak reklam",
+            "description": "Twoja strona działa na wybranej domenie klubowej bez zewnętrznych reklam."
+          },
+          {
+            "id": "sponsors",
+            "title": "Zarządzanie drabinką sponsorską",
+            "description": "Kontroluj ekspozycję sponsorów i ich poziomy w jednym miejscu."
+          },
+          {
+            "id": "homepage",
+            "title": "Edytor strony głównej (blokowy)",
+            "description": "Układaj sekcje i bloki według potrzeb, bez kodowania."
+          },
+          {
+            "id": "menu",
+            "title": "Zarządzanie menu w panelu",
+            "description": "Dodawaj i porządkuj pozycje nawigacji bezpośrednio z panelu."
+          }
+        ]
+      },
+      "howToStart": {
+        "title": "Jak zacząć?",
+        "subtitle": "Wybierz ścieżkę, która najlepiej odpowiada Twoim potrzebom",
+        "expandLabel": "Zobacz szczegóły",
+        "collapseLabel": "Zwiń szczegóły",
+        "selfStart": {
+          "label": "Samodzielny Start",
+          "tutorial": {
+            "name": "Tutorial",
+            "price": "0 zł",
+            "description": "Samodzielna konfiguracja z pomocą materiałów wideo",
+            "note": "W każdej chwili możesz dokupić wdrożenie płatne",
+            "features": [
+              "Dostęp do pełnej bazy wiedzy i tutoriali wideo",
+              "Samodzielna konfiguracja strony w edytorze blokowym",
+              "Podpięcie własnej domeny krok po kroku",
+              "Wsparcie społeczności i forum użytkowników",
+              "Dokumentacja wszystkich funkcji platformy"
+            ]
+          },
+          "comfort": {
+            "name": "Comfort",
+            "price": "590 zł",
+            "description": "Dedykowane wsparcie przy starcie",
+            "features": [
+              "Dedykowany opiekun wdrożenia (konsultacja 1h)",
+              "Pomoc w podpięciu i konfiguracji domeny",
+              "Uzupełnienie podstawowych treści (logo, kolory, menu)",
+              "Konfiguracja integracji z tabelami i newsami",
+              "Wsparcie e-mail przez 14 dni po uruchomieniu"
+            ]
+          }
+        },
+        "fullImpl": {
+          "label": "Pełne Wdrożenie",
+          "standard": {
+            "name": "Standard",
+            "price": "1990 zł",
+            "description": "Kompleksowe wdrożenie przez nasz zespół",
+            "features": [
+              "Standardowa migracja danych z poprzedniej strony",
+              "Uzupełnienie treści na większości podstron",
+              "Dedykowany opiekun wdrożenia przez cały proces",
+              "Konfiguracja wszystkich integracji (newsy, tabele, galerie)",
+              "Szkolenie z obsługi panelu (2h online)",
+              "30 dni wsparcia po uruchomieniu"
+            ]
+          },
+          "premium": {
+            "name": "Premium",
+            "price": "od 4999 zł",
+            "priceNote": "wycena indywidualna",
+            "description": "Pełna personalizacja i dedykowane rozwiązania",
+            "features": [
+              "Migracja większej liczby treści i podstron",
+              "Modyfikacje szablonu według wymagań",
+              "Indywidualne dostosowanie designu",
+              "Własne integracje API (np. systemy płatności)",
+              "Dedykowany project manager",
+              "Priorytetowe wsparcie techniczne bez limitu czasu"
+            ]
+          }
+        }
       }
     },
     "tickets": {

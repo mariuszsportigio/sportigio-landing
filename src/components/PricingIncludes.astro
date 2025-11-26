@@ -8,12 +8,17 @@ import newsIcon from "lucide-static/icons/newspaper.svg?raw";
 import sparklesIcon from "lucide-static/icons/sparkles.svg?raw";
 import ticketIcon from "lucide-static/icons/ticket.svg?raw";
 import chartIcon from "lucide-static/icons/bar-chart-3.svg?raw";
+import globeIcon from "lucide-static/icons/globe.svg?raw";
+import trophyIcon from "lucide-static/icons/trophy.svg?raw";
+import layoutTemplateIcon from "lucide-static/icons/layout-template.svg?raw";
+import menuIcon from "lucide-static/icons/menu.svg?raw";
 
 interface Props {
   lang?: Language;
+  section?: "pricing" | "pricingWebsite";
 }
 
-const { lang = defaultLanguage } = Astro.props as Props;
+const { lang = defaultLanguage, section = "pricing" } = Astro.props as Props;
 
 const translations = getTranslations(lang) as any;
 const fallbackTranslations =
@@ -21,8 +26,8 @@ const fallbackTranslations =
     ? translations
     : (getTranslations(defaultLanguage) as any);
 
-const sectionCopy = (translations?.pages?.pricing?.includes ?? {}) as any;
-const fallbackCopy = (fallbackTranslations?.pages?.pricing?.includes ?? {}) as any;
+const sectionCopy = (translations?.pages?.[section]?.includes ?? {}) as any;
+const fallbackCopy = (fallbackTranslations?.pages?.[section]?.includes ?? {}) as any;
 
 const title =
   sectionCopy.title ?? fallbackCopy.title ?? "Każdy pakiet zawiera";
@@ -36,6 +41,10 @@ const iconSvgs: Record<string, string> = {
   branding: sparklesIcon,
   tickets: ticketIcon,
   analytics: chartIcon,
+  domain: globeIcon,
+  sponsors: trophyIcon,
+  homepage: layoutTemplateIcon,
+  menu: menuIcon,
 };
 
 const resolvedItems =
