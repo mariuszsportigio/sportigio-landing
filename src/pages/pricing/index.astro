@@ -138,7 +138,24 @@ const comparisonColumns: { key: ColumnKey; label: string; accent: string }[] =
     { key: "champion", label: championLabel, accent: "text-[#01DFEC]" },
   ];
 
-const comparisonBaseFeatures: FeatureRow[] = [
+type CategoryHeader = {
+  type: "header";
+  key: string;
+  label: LocalizedText;
+};
+
+type ComparisonItem = FeatureRow | CategoryHeader;
+
+const comparisonBaseFeatures: ComparisonItem[] = [
+  // Category: Content & Communication
+  {
+    type: "header",
+    key: "cat-content",
+    label: {
+      pl: "Treści i komunikacja",
+      en: "Content & Communication",
+    },
+  },
   {
     key: "news",
     label: {
@@ -186,6 +203,15 @@ const comparisonBaseFeatures: FeatureRow[] = [
       de: "Automatisierte E-Mail-Kampagnen mit Club-News und Ergebnissen.",
     },
     values: { free: "dash", pro: "check", champion: "check" },
+  },
+  // Category: Marketing & Reach
+  {
+    type: "header",
+    key: "cat-marketing",
+    label: {
+      pl: "Marketing i dotarcie",
+      en: "Marketing & Reach",
+    },
   },
   {
     key: "segments",
@@ -237,7 +263,16 @@ const comparisonBaseFeatures: FeatureRow[] = [
   },
 ];
 
-const comparisonExpandedFeatures: FeatureRow[] = [
+const comparisonExpandedFeatures: ComparisonItem[] = [
+  // Category: Support & Development
+  {
+    type: "header",
+    key: "cat-support",
+    label: {
+      pl: "Wsparcie i rozwój",
+      en: "Support & Development",
+    },
+  },
   {
     key: "support-time",
     label: {
@@ -274,7 +309,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
     },
     tooltip: {
       pl: "Projektujemy dodatkowe moduły szyte na miarę potrzeb klubu.",
-      en: "We design extra modules tailored to the club’s needs.",
+      en: "We design extra modules tailored to the club's needs.",
       es: "Diseñamos módulos extra a medida de tu club.",
       de: "Wir bauen zusätzliche Module nach Bedarf des Clubs.",
     },
@@ -313,6 +348,9 @@ const comparisonExpandedFeatures: FeatureRow[] = [
     values: { free: "dash", pro: "dash", champion: "check" },
   },
 ];
+
+const isHeader = (item: ComparisonItem): item is CategoryHeader => 
+  "type" in item && item.type === "header";
 ---
 
 <Layout title={metaTitle}>
@@ -423,13 +461,20 @@ const comparisonExpandedFeatures: FeatureRow[] = [
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
-              {comparisonBaseFeatures.map((feature) => (
+              {comparisonBaseFeatures.map((item) => 
+                isHeader(item) ? (
+                  <tr class="bg-gray-100/80">
+                    <td colspan="4" class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide">
+                      {resolveText(item.label)}
+                    </td>
+                  </tr>
+                ) : (
                 <tr class="hover:bg-gray-50/60 transition-colors">
                   <td class="py-4 px-6 text-gray-800 font-medium">
                     <div class="flex items-center gap-2">
-                      <span>{resolveText(feature.label)}</span>
+                      <span>{resolveText(item.label)}</span>
                       {
-                        feature.tooltip && (
+                        item.tooltip && (
                           <div class="relative group">
                             <svg
                               class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
@@ -447,7 +492,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
                             <div
                               class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
                             >
-                              {resolveText(feature.tooltip)}
+                              {resolveText(item.tooltip)}
                             </div>
                           </div>
                         )
@@ -455,7 +500,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
                     </div>
                   </td>
                   {comparisonColumns.map((col) => {
-                    const cellValue = feature.values[col.key];
+                    const cellValue = item.values[col.key];
                     const isObjectValue =
                       typeof cellValue === "object" && cellValue !== null;
 
@@ -500,16 +545,23 @@ const comparisonExpandedFeatures: FeatureRow[] = [
                 </tr>
               ))}
 
-              {comparisonExpandedFeatures.map((feature) => (
+              {comparisonExpandedFeatures.map((item) => 
+                isHeader(item) ? (
+                  <tr class="bg-gray-100/80 hidden" data-extra-row>
+                    <td colspan="4" class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide">
+                      {resolveText(item.label)}
+                    </td>
+                  </tr>
+                ) : (
                 <tr
                   class="hover:bg-gray-50/60 transition-colors hidden"
                   data-extra-row
                 >
                   <td class="py-4 px-6 text-gray-800 font-medium">
                     <div class="flex items-center gap-2">
-                      <span>{resolveText(feature.label)}</span>
+                      <span>{resolveText(item.label)}</span>
                       {
-                        feature.tooltip && (
+                        item.tooltip && (
                           <div class="relative group">
                             <svg
                               class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
@@ -527,7 +579,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
                             <div
                               class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
                             >
-                              {resolveText(feature.tooltip)}
+                              {resolveText(item.tooltip)}
                             </div>
                           </div>
                         )
@@ -535,7 +587,7 @@ const comparisonExpandedFeatures: FeatureRow[] = [
                     </div>
                   </td>
                   {comparisonColumns.map((col) => {
-                    const cellValue = feature.values[col.key];
+                    const cellValue = item.values[col.key];
                     const isObjectValue =
                       typeof cellValue === "object" && cellValue !== null;
 
