@@ -33,6 +33,7 @@ jobs:
   deploy_rsync:
     needs: build
     runs-on: ubuntu-latest
+    environment: production
     if: github.ref == 'refs/heads/release/v1-static'
     steps:
       - name: Download build artifact
@@ -41,14 +42,17 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via rsync over SSH
-        uses: burnett01/rsync-deployments@5.2
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          switches: -az --delete
-          path: dist/
-          remote_path: ${{ secrets.DEPLOY_PATH }}
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Add Known Hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ vars.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: rsync -az --delete dist/ ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}
 
 
