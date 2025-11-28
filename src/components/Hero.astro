@@ -123,6 +123,13 @@ const heightClasses =
               >
                 {t("common.try_free")}
               </a>
+              <button
+                type="button"
+                class="px-10 py-4 text-base font-semibold rounded-xl border border-white/40 bg-white/70 text-primary shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-200 backdrop-blur-sm"
+                data-demo-open
+              >
+                {t("common.see_demo")}
+              </button>
             </div>
           ) : null
         }
@@ -188,3 +195,119 @@ const heightClasses =
     </div>
   </div>
 </section>
+
+<div
+  id="demo-modal"
+  class="fixed inset-0 z-50 hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="demo-modal-title"
+>
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-demo-close></div>
+  <div class="relative z-10 flex items-center justify-center min-h-full px-4 py-8">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5l-4.5-2.598a1.5 1.5 0 00-2.25 1.3v5.196a1.5 1.5 0 002.25 1.3l4.5-2.598a1.5 1.5 0 000-2.6z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
+              />
+            </svg>
+          </div>
+          <h3 id="demo-modal-title" class="text-lg font-semibold text-gray-900">
+            {t("common.see_demo")}
+          </h3>
+        </div>
+        <button
+          type="button"
+          class="p-2 text-gray-500 hover:text-gray-700 transition-colors"
+          data-demo-close
+          aria-label={t("common.close")}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="bg-gray-900">
+        <div class="aspect-video">
+          <iframe
+            id="demo-iframe"
+            class="w-full h-full"
+            src=""
+            title="Sportigio demo video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const demoModal = document.getElementById("demo-modal");
+  const demoIframe = document.getElementById("demo-iframe");
+  const demoOpenButtons = document.querySelectorAll("[data-demo-open]");
+  const demoCloseButtons = document.querySelectorAll("[data-demo-close]");
+  const demoVideoUrl = "https://www.youtube.com/embed/JnHH5OhqlWg?autoplay=1&rel=0";
+
+  const openDemo = () => {
+    if (!demoModal || !demoIframe) return;
+    demoModal.classList.remove("hidden");
+    demoIframe.setAttribute("src", demoVideoUrl);
+    document.body.classList.add("overflow-hidden");
+  };
+
+  const closeDemo = () => {
+    if (!demoModal || !demoIframe) return;
+    demoModal.classList.add("hidden");
+    demoIframe.setAttribute("src", "");
+    document.body.classList.remove("overflow-hidden");
+  };
+
+  demoOpenButtons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openDemo();
+    })
+  );
+
+  demoCloseButtons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeDemo();
+    })
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeDemo();
+    }
+  });
+</script>
