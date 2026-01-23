@@ -42,26 +42,40 @@ jobs:
           name: dist
           path: dist
 
-      - name: Setup SSH
+      - name: Setup SSH agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
-      - name: Debug SSH agent keys
+      - name: Prepare SSH (known_hosts + config)
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          # Add host key to known_hosts so StrictHostKeyChecking can pass
+          ssh-keyscan -H "${{ vars.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          # Pin SSH behavior so both ssh and rsync use the same settings
+          cat > ~/.ssh/config <<CFG
+          Host deploy-target
+            HostName ${{ vars.DEPLOY_HOST }}
+            User ${{ vars.DEPLOY_USER }}
+            StrictHostKeyChecking yes
+            UserKnownHostsFile ~/.ssh/known_hosts
+          CFG
+          chmod 600 ~/.ssh/config
+
+      - name: Debug keys in agent
         run: |
           echo "Loaded keys in agent:"
           ssh-add -l || true
 
-          echo "Trying SSH:"
-          ssh -o BatchMode=yes -vvv ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} "whoami"
-
-
-      - name: Add Known Hosts
+      - name: Test SSH
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ vars.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          ssh -o BatchMode=yes deploy-target "whoami && echo ok"
 
       - name: Deploy via rsync
-        run: rsync -az --delete dist/ ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }}:${{ vars.DEPLOY_PATH }}
-
-
+        run: |
+          rsync -az --delete dist/ deploy-target:${{ vars.DEPLOY_PATH }}
