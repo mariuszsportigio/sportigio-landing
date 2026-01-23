@@ -47,6 +47,15 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
+      - name: Debug SSH agent keys
+        run: |
+          echo "Loaded keys in agent:"
+          ssh-add -l || true
+
+          echo "Trying SSH:"
+          ssh -o BatchMode=yes -vvv ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} "whoami"
+
+
       - name: Add Known Hosts
         run: |
           mkdir -p ~/.ssh
