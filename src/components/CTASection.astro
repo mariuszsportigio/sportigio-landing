@@ -78,14 +78,14 @@ const primaryButton = normalizeButton(overrideContent.primary_button) ??
   normalizeButton(translationContent.primary_button) ??
   normalizeButton(defaultContent.primary_button) ?? {
     label: lang === defaultLanguage ? "Rozpocznij za darmo" : "Start for free",
-    href: "https://sportig.io/join",
+    href: "https://sportigio.com/join",
   };
 
 const secondaryButton = normalizeButton(overrideContent.secondary_button) ??
   normalizeButton(translationContent.secondary_button) ??
   normalizeButton(defaultContent.secondary_button) ?? {
     label: lang === defaultLanguage ? "Zobacz demo na żywo" : "See live demo",
-    href: "https://sportig.io/join",
+    href: "https://sportigio.com/join",
   };
 
 const statsCandidates = [

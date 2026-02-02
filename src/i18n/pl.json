@@ -962,11 +962,11 @@
       "subtitle": "Ponad 100 klubów już korzysta z Sportigio. Bądź jednym z nich!",
       "primary_button": {
         "label": "Rozpocznij za darmo",
-        "href": "https://sportig.io/join"
+        "href": "https://sportigio.com/join"
       },
       "secondary_button": {
         "label": "Zobacz demo na żywo",
-        "href": "https://sportig.io/join"
+        "href": "https://sportigio.com/join"
       },
       "stats": [
         {
@@ -1585,7 +1585,7 @@
         "title": "Potrzebujesz więcej? Pakiet Champion",
         "subtitle": "Chcesz wsparcia, dedykowanego opiekuna lub rozwiązań szytych na miarę? Porozmawiajmy o pakiecie Champion – stworzymy ofertę idealnie dopasowaną do Twojej organizacji.",
         "cta": "Umów konsultację",
-        "ctaHref": "https://sportig.io/join"
+        "ctaHref": "https://sportigio.com/join"
       },
       "websiteAddon": {
         "badge": "Add-on",

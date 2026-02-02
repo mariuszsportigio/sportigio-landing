@@ -9,7 +9,8 @@ interface Props {
 
 const { lang = defaultLanguage } = Astro.props as Props;
 
-const langCopy = (pricingCopy as any)?.[lang] || (pricingCopy as any)?.[defaultLanguage] || {};
+const langCopy =
+  (pricingCopy as any)?.[lang] || (pricingCopy as any)?.[defaultLanguage] || {};
 const fallbackCopy = (pricingCopy as any)?.[defaultLanguage] || {};
 
 const mergePlan = (key: string) => {
@@ -29,15 +30,17 @@ const mergePlan = (key: string) => {
 
 const labels = { ...(fallbackCopy.labels || {}), ...(langCopy.labels || {}) };
 const additional = {
-  noCard: langCopy?.additional?.no_card || fallbackCopy?.additional?.no_card || "",
-  vat: langCopy?.additional?.vat_notice || fallbackCopy?.additional?.vat_notice || "",
+  noCard:
+    langCopy?.additional?.no_card || fallbackCopy?.additional?.no_card || "",
+  vat:
+    langCopy?.additional?.vat_notice ||
+    fallbackCopy?.additional?.vat_notice ||
+    "",
 };
 
 const iconPaths: Record<string, string> = {
-  free:
-    "M12 4l2.09 4.24 4.68.4-3.47 3.23 1 4.61L12 14.77 7.7 16.48l1-4.61L5.2 8.64l4.69-.4L12 4z", // crown-ish badge (same as champion)
-  pro:
-    "M12 2l7 4v6c0 5-7 9-7 9s-7-4-7-9V6l7-4z", // shield/crest
+  free: "M12 4l2.09 4.24 4.68.4-3.47 3.23 1 4.61L12 14.77 7.7 16.48l1-4.61L5.2 8.64l4.69-.4L12 4z", // crown-ish badge (same as champion)
+  pro: "M12 2l7 4v6c0 5-7 9-7 9s-7-4-7-9V6l7-4z", // shield/crest
   champion:
     "M12 4l2.09 4.24 4.68.4-3.47 3.23 1 4.61L12 14.77 7.7 16.48l1-4.61L5.2 8.64l4.69-.4L12 4z", // crown-ish badge
 };
@@ -67,28 +70,28 @@ const plans = [
 
 <section id="pricing" class="py-12 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4">
-    {additional.noCard && (
-      <div class="flex justify-center mb-6">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/20 backdrop-blur-sm border border-white/40 text-[#0B2360] rounded-full text-xs font-semibold tracking-wide shadow-sm"
-        >
-          <svg
-            class="w-4 h-4 text-[#01DFEC]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            ></path>
-          </svg>
-          <span data-i18n="additional.no_card">{additional.noCard}</span>
+    {
+      additional.noCard && (
+        <div class="flex justify-center mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/20 backdrop-blur-sm border border-white/40 text-[#0B2360] rounded-full text-xs font-semibold tracking-wide shadow-sm">
+            <svg
+              class="w-4 h-4 text-[#01DFEC]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span data-i18n="additional.no_card">{additional.noCard}</span>
+          </div>
         </div>
-      </div>
-    )}
+      )
+    }
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {
@@ -97,23 +100,23 @@ const plans = [
           const isPrimary = plan.accent === "primary";
           const cardClasses = [
             "relative rounded-2xl p-7 h-full flex flex-col",
-            isDark ? "bg-[#0B2360] text-white shadow-xl" : "bg-white text-[#0B2360] shadow-md",
+            isDark
+              ? "bg-[#0B2360] text-white shadow-xl"
+              : "bg-white text-[#0B2360] shadow-md",
             isPrimary ? "border-2 border-[#0B2360]" : "border border-gray-200",
           ].join(" ");
           const subTextColor = isDark ? "text-white/80" : "text-gray-600";
 
           return (
             <div class={cardClasses} data-plan-card={plan.id}>
-              {
-                plan.badge && (
-                  <div
-                    class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0B2360] text-white px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.04em] uppercase shadow-md"
-                    data-i18n={`${plan.id}.badge`}
-                  >
-                    {plan.badge}
-                  </div>
-                )
-              }
+              {plan.badge && (
+                <div
+                  class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0B2360] text-white px-3 py-1 rounded-full text-[11px] font-semibold tracking-[0.04em] uppercase shadow-md"
+                  data-i18n={`${plan.id}.badge`}
+                >
+                  {plan.badge}
+                </div>
+              )}
 
               <div class="flex items-start gap-3 mb-5">
                 <div
@@ -134,11 +137,14 @@ const plans = [
                       stroke-linejoin="round"
                       stroke-width="2"
                       d={iconPaths[plan.id] || iconPaths.free}
-                    ></path>
+                    />
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold mb-1" data-i18n={`${plan.id}.name`}>
+                  <h3
+                    class="text-xl font-bold mb-1"
+                    data-i18n={`${plan.id}.name`}
+                  >
                     {plan.name}
                   </h3>
                   <p
@@ -151,63 +157,76 @@ const plans = [
               </div>
 
               <div class="mb-6">
-                {
-                  plan.customPrice ? (
-                    <div>
-                      <div class="text-3xl font-extrabold leading-tight" data-i18n={`${plan.id}.priceLabel`}>
-                        {plan.priceLabel || "Indywidualna"}
-                      </div>
-                      {
-                        plan.priceSubLabel && (
-                          <div class={`text-sm mt-1 ${subTextColor}`} data-i18n={`${plan.id}.priceSubLabel`}>
-                            {plan.priceSubLabel}
-                          </div>
-                        )
-                      }
+                {plan.customPrice ? (
+                  <div>
+                    <div
+                      class="text-3xl font-extrabold leading-tight"
+                      data-i18n={`${plan.id}.priceLabel`}
+                    >
+                      {plan.priceLabel || "Indywidualna"}
                     </div>
-                  ) : (
-                    <div>
-                      <div class={`text-4xl font-extrabold ${isDark ? "text-white" : "text-[#0B2360]"} mb-1`}>
-                        <span class="price" data-plan={plan.id} data-monthly data-yearly>
-                          {plan.priceLabel || "0"}
-                        </span>
-                        <span class={`text-base font-semibold ml-1 ${subTextColor}`} data-i18n="labels.per_month">
-                          {labels.per_month || "/month"}
-                        </span>
+                    {plan.priceSubLabel && (
+                      <div
+                        class={`text-sm mt-1 ${subTextColor}`}
+                        data-i18n={`${plan.id}.priceSubLabel`}
+                      >
+                        {plan.priceSubLabel}
                       </div>
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    <div
+                      class={`text-4xl font-extrabold ${isDark ? "text-white" : "text-[#0B2360]"} mb-1`}
+                    >
+                      <span
+                        class="price"
+                        data-plan={plan.id}
+                        data-monthly
+                        data-yearly
+                      >
+                        {plan.priceLabel || "0"}
+                      </span>
+                      <span
+                        class={`text-base font-semibold ml-1 ${subTextColor}`}
+                        data-i18n="labels.per_month"
+                      >
+                        {labels.per_month || "/month"}
+                      </span>
                     </div>
-                  )
-                }
+                  </div>
+                )}
               </div>
 
               <ul class="space-y-3 text-sm mb-8 flex-1">
-                {
-                  plan.features.map((feature: string, idx: number) => (
-                    <li class="flex items-start gap-3">
-                      <svg
-                        class={`w-4 h-4 mt-0.5 text-[#01DFEC] flex-shrink-0`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                      <span class={subTextColor} data-i18n={`${plan.id}.features.${idx}`}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))
-                }
+                {plan.features.map((feature: string, idx: number) => (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class={`w-4 h-4 mt-0.5 text-[#01DFEC] flex-shrink-0`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span
+                      class={subTextColor}
+                      data-i18n={`${plan.id}.features.${idx}`}
+                    >
+                      {feature}
+                    </span>
+                  </li>
+                ))}
               </ul>
 
               <a
-                href="https://sportig.io/join"
+                href="https://sportigio.com/join"
                 class={`w-full py-3 px-4 rounded-xl text-center font-semibold transition-all duration-200 ${
                   isDark
                     ? "bg-[#01DFEC] text-[#0B2360] hover:brightness-105"
@@ -227,7 +246,10 @@ const plans = [
 
     {
       additional.vat && (
-        <p class="text-center text-xs text-gray-500 mt-8" data-i18n="additional.vat_notice">
+        <p
+          class="text-center text-xs text-gray-500 mt-8"
+          data-i18n="additional.vat_notice"
+        >
           {additional.vat}
         </p>
       )

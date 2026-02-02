@@ -810,11 +810,11 @@
       "subtitle": "Over 100 clubs already use Sportigio. Be one of them!",
       "primary_button": {
         "label": "Start for free",
-        "href": "https://sportig.io/join"
+        "href": "https://sportigio.com/join"
       },
       "secondary_button": {
         "label": "See live demo",
-        "href": "https://sportig.io/join"
+        "href": "https://sportigio.com/join"
       },
       "stats": [
         {
@@ -1432,7 +1432,7 @@
         "title": "Need more? Champion Package",
         "subtitle": "Looking for dedicated support, a named success manager, or solutions tailored to your needs? Let's talk about the Champion Package – we'll craft an offer perfectly matched to your organisation.",
         "cta": "Book a consultation",
-        "ctaHref": "https://sportig.io/join"
+        "ctaHref": "https://sportigio.com/join"
       },
       "websiteAddon": {
         "badge": "Add-on",

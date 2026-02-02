@@ -90,19 +90,14 @@ const premiumReceiveTitle =
 const websiteAddonCopy =
   pageCopy.websiteAddon ?? fallbackPageCopy.websiteAddon ?? {};
 const websiteAddonBadge = websiteAddonCopy.badge ?? "Add-on";
-const websiteAddonTitle =
-  websiteAddonCopy.title ?? "Profesjonalna strona WWW";
+const websiteAddonTitle = websiteAddonCopy.title ?? "Profesjonalna strona WWW";
 const websiteAddonDescription =
   websiteAddonCopy.description ??
   "W pełni zintegrowana z platformą, responsywna i łatwa w obsłudze.";
-const websiteAddonPriceLead =
-  websiteAddonCopy.priceLead ?? "Już od";
-const websiteAddonPriceHighlight =
-  websiteAddonCopy.priceHighlight ?? "199 zł";
-const websiteAddonPriceSuffix =
-  websiteAddonCopy.priceSuffix ?? "miesięcznie.";
-const websiteAddonCta =
-  websiteAddonCopy.cta ?? "Zobacz pakiety strony WWW";
+const websiteAddonPriceLead = websiteAddonCopy.priceLead ?? "Już od";
+const websiteAddonPriceHighlight = websiteAddonCopy.priceHighlight ?? "199 zł";
+const websiteAddonPriceSuffix = websiteAddonCopy.priceSuffix ?? "miesięcznie.";
+const websiteAddonCta = websiteAddonCopy.cta ?? "Zobacz pakiety strony WWW";
 const websiteAddonHref = localizeHref("/pricing/website", lang);
 const showRevenueCalculator = false;
 
@@ -131,12 +126,11 @@ const resolveText = (value: LocalizedText): string => {
   );
 };
 
-const comparisonColumns: { key: ColumnKey; label: string; accent: string }[] =
-  [
-    { key: "free", label: freeLabel, accent: "text-emerald-500" },
-    { key: "pro", label: proLabel, accent: "text-[#0B2360]" },
-    { key: "champion", label: championLabel, accent: "text-[#01DFEC]" },
-  ];
+const comparisonColumns: { key: ColumnKey; label: string; accent: string }[] = [
+  { key: "free", label: freeLabel, accent: "text-emerald-500" },
+  { key: "pro", label: proLabel, accent: "text-[#0B2360]" },
+  { key: "champion", label: championLabel, accent: "text-[#01DFEC]" },
+];
 
 type CategoryHeader = {
   type: "header";
@@ -349,7 +343,7 @@ const comparisonExpandedFeatures: ComparisonItem[] = [
   },
 ];
 
-const isHeader = (item: ComparisonItem): item is CategoryHeader => 
+const isHeader = (item: ComparisonItem): item is CategoryHeader =>
   "type" in item && item.type === "header";
 ---
 
@@ -382,7 +376,9 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
     <!-- Pricing Section -->
     <section class="py-0 bg-gray-50">
       <div class="max-w-4xl mx-auto px-4 pt-12 pb-4">
-        <div class="flex items-center justify-center flex-wrap gap-4 text-center">
+        <div
+          class="flex items-center justify-center flex-wrap gap-4 text-center"
+        >
           <div class="flex items-center gap-3">
             <span class="text-gray-700 font-medium">{currencyLabel}</span>
             <select
@@ -446,193 +442,193 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
             <table
               class="w-full min-w-[720px] table-fixed border-separate border-spacing-0"
             >
-            <thead class="bg-gray-50/70">
-              <tr class="text-sm uppercase tracking-wide text-gray-500">
-                <th class="text-left py-5 px-6 font-semibold text-gray-700">
-                  {featureColumnLabel}
-                </th>
-                {comparisonColumns.map((col) => (
-                  <th
-                    class="text-center py-5 px-4 font-semibold text-[#0B2360] text-sm"
-                  >
-                    {col.label}
+              <thead class="bg-gray-50/70">
+                <tr class="text-sm uppercase tracking-wide text-gray-500">
+                  <th class="text-left py-5 px-6 font-semibold text-gray-700">
+                    {featureColumnLabel}
                   </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              {comparisonBaseFeatures.map((item) => 
-                isHeader(item) ? (
-                  <tr class="bg-gray-100/80">
-                    <td colspan="4" class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide">
-                      {resolveText(item.label)}
-                    </td>
-                  </tr>
-                ) : (
-                <tr class="hover:bg-gray-50/60 transition-colors">
-                  <td class="py-4 px-6 text-gray-800 font-medium">
-                    <div class="flex items-center gap-2">
-                      <span>{resolveText(item.label)}</span>
-                      {
-                        item.tooltip && (
-                          <div class="relative group">
-                            <svg
-                              class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                            <div
-                              class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
-                            >
-                              {resolveText(item.tooltip)}
-                            </div>
-                          </div>
-                        )
-                      }
-                    </div>
-                  </td>
-                  {comparisonColumns.map((col) => {
-                    const cellValue = item.values[col.key];
-                    const isObjectValue =
-                      typeof cellValue === "object" && cellValue !== null;
-
-                    return (
-                      <td class="py-4 px-4 text-center">
-                        {
-                          cellValue === "check" ? (
-                            <span
-                              class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
-                            >
-                              <svg
-                                class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2.5"
-                                  d="M5 13l4 4L19 7"
-                                ></path>
-                              </svg>
-                            </span>
-                          ) : cellValue === "dash" ? (
-                            <span class="text-gray-300 text-lg">—</span>
-                          ) : isObjectValue ? (
-                            <span
-                              class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
-                            >
-                              {resolveText(cellValue.label)}
-                            </span>
-                          ) : (
-                            <span class="text-sm font-semibold text-gray-700">
-                              {cellValue as string}
-                            </span>
-                          )
-                        }
-                      </td>
-                    );
-                  })}
+                  {
+                    comparisonColumns.map((col) => (
+                      <th class="text-center py-5 px-4 font-semibold text-[#0B2360] text-sm">
+                        {col.label}
+                      </th>
+                    ))
+                  }
                 </tr>
-              ))}
-
-              {comparisonExpandedFeatures.map((item) => 
-                isHeader(item) ? (
-                  <tr class="bg-gray-100/80 hidden" data-extra-row>
-                    <td colspan="4" class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide">
-                      {resolveText(item.label)}
-                    </td>
-                  </tr>
-                ) : (
-                <tr
-                  class="hover:bg-gray-50/60 transition-colors hidden"
-                  data-extra-row
-                >
-                  <td class="py-4 px-6 text-gray-800 font-medium">
-                    <div class="flex items-center gap-2">
-                      <span>{resolveText(item.label)}</span>
-                      {
-                        item.tooltip && (
-                          <div class="relative group">
-                            <svg
-                              class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                            <div
-                              class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition"
-                            >
-                              {resolveText(item.tooltip)}
-                            </div>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                {
+                  comparisonBaseFeatures.map((item) =>
+                    isHeader(item) ? (
+                      <tr class="bg-gray-100/80">
+                        <td
+                          colspan="4"
+                          class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide"
+                        >
+                          {resolveText(item.label)}
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr class="hover:bg-gray-50/60 transition-colors">
+                        <td class="py-4 px-6 text-gray-800 font-medium">
+                          <div class="flex items-center gap-2">
+                            <span>{resolveText(item.label)}</span>
+                            {item.tooltip && (
+                              <div class="relative group">
+                                <svg
+                                  class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                <div class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition">
+                                  {resolveText(item.tooltip)}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )
-                      }
-                    </div>
-                  </td>
-                  {comparisonColumns.map((col) => {
-                    const cellValue = item.values[col.key];
-                    const isObjectValue =
-                      typeof cellValue === "object" && cellValue !== null;
+                        </td>
+                        {comparisonColumns.map((col) => {
+                          const cellValue = item.values[col.key];
+                          const isObjectValue =
+                            typeof cellValue === "object" && cellValue !== null;
 
-                    return (
-                      <td class="py-4 px-4 text-center">
-                        {
-                          cellValue === "check" ? (
-                            <span
-                              class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
-                            >
-                              <svg
-                                class="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2.5"
-                                  d="M5 13l4 4L19 7"
-                                ></path>
-                              </svg>
-                            </span>
-                          ) : cellValue === "dash" ? (
-                            <span class="text-gray-300 text-lg">—</span>
-                          ) : isObjectValue ? (
-                            <span
-                              class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
-                            >
-                              {resolveText(cellValue.label)}
-                            </span>
-                          ) : (
-                            <span class="text-sm font-semibold text-gray-700">
-                              {cellValue as string}
-                            </span>
-                          )
-                        }
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                          return (
+                            <td class="py-4 px-4 text-center">
+                              {cellValue === "check" ? (
+                                <span
+                                  class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
+                                >
+                                  <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2.5"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                </span>
+                              ) : cellValue === "dash" ? (
+                                <span class="text-gray-300 text-lg">—</span>
+                              ) : isObjectValue ? (
+                                <span
+                                  class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
+                                >
+                                  {resolveText(cellValue.label)}
+                                </span>
+                              ) : (
+                                <span class="text-sm font-semibold text-gray-700">
+                                  {cellValue as string}
+                                </span>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ),
+                  )
+                }
+
+                {
+                  comparisonExpandedFeatures.map((item) =>
+                    isHeader(item) ? (
+                      <tr class="bg-gray-100/80 hidden" data-extra-row>
+                        <td
+                          colspan="4"
+                          class="py-3 px-6 text-[#0B2360] font-bold text-sm uppercase tracking-wide"
+                        >
+                          {resolveText(item.label)}
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr
+                        class="hover:bg-gray-50/60 transition-colors hidden"
+                        data-extra-row
+                      >
+                        <td class="py-4 px-6 text-gray-800 font-medium">
+                          <div class="flex items-center gap-2">
+                            <span>{resolveText(item.label)}</span>
+                            {item.tooltip && (
+                              <div class="relative group">
+                                <svg
+                                  class="w-4 h-4 text-gray-300 group-hover:text-[#0B2360] transition-colors cursor-help"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                <div class="pointer-events-none opacity-0 group-hover:opacity-100 absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-xl bg-[#0B2360] text-white text-xs px-3 py-2 shadow-lg transition">
+                                  {resolveText(item.tooltip)}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </td>
+                        {comparisonColumns.map((col) => {
+                          const cellValue = item.values[col.key];
+                          const isObjectValue =
+                            typeof cellValue === "object" && cellValue !== null;
+
+                          return (
+                            <td class="py-4 px-4 text-center">
+                              {cellValue === "check" ? (
+                                <span
+                                  class={`inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-50 shadow-[0_6px_14px_rgba(11,35,96,0.08)] ${col.accent}`}
+                                >
+                                  <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2.5"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                </span>
+                              ) : cellValue === "dash" ? (
+                                <span class="text-gray-300 text-lg">—</span>
+                              ) : isObjectValue ? (
+                                <span
+                                  class={`text-sm font-semibold text-gray-700 ${cellValue.className ?? ""}`}
+                                >
+                                  {resolveText(cellValue.label)}
+                                </span>
+                              ) : (
+                                <span class="text-sm font-semibold text-gray-700">
+                                  {cellValue as string}
+                                </span>
+                              )}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ),
+                  )
+                }
+              </tbody>
+            </table>
           </div>
           <div class="bg-gray-50/80 px-6 py-5 flex justify-center">
             <button
@@ -658,8 +654,7 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M6 9l6 6 6-6"
-                  ></path>
+                    d="M6 9l6 6 6-6"></path>
                 </svg>
               </span>
             </button>
@@ -680,8 +675,7 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
         if (!toggle || !label || !icon || extraRows.length === 0) return;
 
         const collapsed =
-          toggle.getAttribute("data-label-collapsed") ||
-          "Rozwiń pełny cennik";
+          toggle.getAttribute("data-label-collapsed") || "Rozwiń pełny cennik";
         const expanded =
           toggle.getAttribute("data-label-expanded") || "Zwiń cennik";
 
@@ -756,7 +750,7 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
               {
                 premiumButtons.quote && (
                   <a
-                    href="https://sportig.io/join"
+                    href="https://sportigio.com/join"
                     class="btn-style-1 px-6 py-3 font-semibold"
                   >
                     {premiumButtons.quote}
@@ -766,7 +760,7 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
               {
                 premiumButtons.demo && (
                   <a
-                    href="https://sportig.io/join"
+                    href="https://sportigio.com/join"
                     class="btn-style-3 px-6 py-3 font-semibold"
                   >
                     {premiumButtons.demo}
@@ -832,23 +826,32 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
       <div
         class="absolute inset-0 bg-gradient-to-br from-[#0B2360] via-[#00052E] to-[#0B2360]"
         aria-hidden="true"
-      ></div>
+      >
+      </div>
       <div
         class="absolute -left-20 -top-16 h-56 w-56 rounded-full bg-[#01DFEC]/10 blur-3xl"
         aria-hidden="true"
-      ></div>
+      >
+      </div>
       <div
         class="absolute -right-16 bottom-0 h-60 w-60 rounded-full bg-[#EA36E1]/12 blur-3xl"
         aria-hidden="true"
-      ></div>
+      >
+      </div>
 
       <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-10 lg:gap-14 items-center text-white">
+        <div
+          class="grid md:grid-cols-2 gap-10 lg:gap-14 items-center text-white"
+        >
           <div class="space-y-5">
-            <span class="inline-flex items-center px-4 py-1.5 text-sm font-semibold bg-white text-[#0B2360] rounded-full shadow-lg shadow-black/10">
+            <span
+              class="inline-flex items-center px-4 py-1.5 text-sm font-semibold bg-white text-[#0B2360] rounded-full shadow-lg shadow-black/10"
+            >
               {websiteAddonBadge}
             </span>
-            <h3 class="text-3xl sm:text-4xl font-extrabold leading-tight drop-shadow-sm">
+            <h3
+              class="text-3xl sm:text-4xl font-extrabold leading-tight drop-shadow-sm"
+            >
               {websiteAddonTitle}
             </h3>
             <p class="text-lg text-white/80 leading-relaxed">
@@ -856,7 +859,9 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
             </p>
             <p class="text-xl font-semibold text-white">
               {websiteAddonPriceLead}{" "}
-              <span class="text-[#01DFEC]">{websiteAddonPriceHighlight}</span>{" "}
+              <span class="text-[#01DFEC]">{websiteAddonPriceHighlight}</span>{
+                " "
+              }
               {websiteAddonPriceSuffix}
             </p>
             <a
@@ -869,21 +874,27 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
 
           <div class="relative" aria-hidden="true">
             <!-- Browser mockup -->
-            <div class="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30">
+            <div
+              class="relative w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30"
+            >
               <!-- Browser chrome -->
-              <div class="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm border-b border-white/10">
+              <div
+                class="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm border-b border-white/10"
+              >
                 <div class="flex gap-2">
                   <div class="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
                   <div class="w-3 h-3 rounded-full bg-[#febc2e]"></div>
                   <div class="w-3 h-3 rounded-full bg-[#28c840]"></div>
                 </div>
                 <div class="flex-1 ml-2">
-                  <div class="h-6 bg-white/10 backdrop-blur-sm rounded-lg flex items-center px-3 border border-white/10">
+                  <div
+                    class="h-6 bg-white/10 backdrop-blur-sm rounded-lg flex items-center px-3 border border-white/10"
+                  >
                     <span class="text-white/60 text-xs">twojklub.com</span>
                   </div>
                 </div>
               </div>
-              
+
               <!-- Website content mockup -->
               <div class="p-5 space-y-5">
                 <!-- Navigation bar -->
@@ -892,31 +903,49 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
                   <div class="flex-1"></div>
                   <div class="w-16 h-2 bg-white/10 rounded"></div>
                 </div>
-                
+
                 <!-- Header section with image + text -->
                 <div class="flex items-start gap-4">
-                  <div class="w-16 h-16 bg-gradient-to-br from-[#01DFEC] to-[#01DFEC]/60 rounded-xl shrink-0 shadow-lg shadow-[#01DFEC]/20"></div>
+                  <div
+                    class="w-16 h-16 bg-gradient-to-br from-[#01DFEC] to-[#01DFEC]/60 rounded-xl shrink-0 shadow-lg shadow-[#01DFEC]/20"
+                  >
+                  </div>
                   <div class="flex-1 space-y-2 pt-1">
                     <div class="h-3 w-full bg-white/25 rounded"></div>
                     <div class="h-2.5 w-4/5 bg-white/15 rounded"></div>
                     <div class="h-2.5 w-3/5 bg-white/10 rounded"></div>
                   </div>
                 </div>
-                
+
                 <!-- Content cards row -->
                 <div class="grid grid-cols-3 gap-3">
-                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10">
-                    <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#EA36E1] to-[#EA36E1]/60 rounded-lg shadow-md shadow-[#EA36E1]/20"></div>
+                  <div
+                    class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10"
+                  >
+                    <div
+                      class="w-full aspect-[4/3] bg-gradient-to-br from-[#EA36E1] to-[#EA36E1]/60 rounded-lg shadow-md shadow-[#EA36E1]/20"
+                    >
+                    </div>
                     <div class="h-2 w-full bg-white/20 rounded"></div>
                     <div class="h-2 w-2/3 bg-white/10 rounded"></div>
                   </div>
-                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10">
-                    <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#01DFEC] to-[#01DFEC]/60 rounded-lg shadow-md shadow-[#01DFEC]/20"></div>
+                  <div
+                    class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10"
+                  >
+                    <div
+                      class="w-full aspect-[4/3] bg-gradient-to-br from-[#01DFEC] to-[#01DFEC]/60 rounded-lg shadow-md shadow-[#01DFEC]/20"
+                    >
+                    </div>
                     <div class="h-2 w-full bg-white/20 rounded"></div>
                     <div class="h-2 w-3/4 bg-white/10 rounded"></div>
                   </div>
-                  <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10">
-                    <div class="w-full aspect-[4/3] bg-gradient-to-br from-[#0B2360] to-[#0B2360]/60 rounded-lg shadow-md shadow-[#0B2360]/20"></div>
+                  <div
+                    class="bg-white/5 backdrop-blur-sm rounded-xl p-3 space-y-2.5 border border-white/10"
+                  >
+                    <div
+                      class="w-full aspect-[4/3] bg-gradient-to-br from-[#0B2360] to-[#0B2360]/60 rounded-lg shadow-md shadow-[#0B2360]/20"
+                    >
+                    </div>
                     <div class="h-2 w-full bg-white/20 rounded"></div>
                     <div class="h-2 w-1/2 bg-white/10 rounded"></div>
                   </div>
@@ -987,7 +1016,8 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
 
   /* Subtle grid background for hero (replaces inline data-URI) */
   .hero-grid {
-    background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+    background-image:
+      linear-gradient(to right, #f1f5f9 1px, transparent 1px),
       linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
     background-size: 20px 20px;
   }
@@ -1006,7 +1036,9 @@ const isHeader = (item: ComparisonItem): item is CategoryHeader =>
   :global([data-extra-row]) {
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 220ms ease, transform 220ms ease;
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
   }
 
   :global([data-extra-row].is-visible) {

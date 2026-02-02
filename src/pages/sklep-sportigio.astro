@@ -55,9 +55,6 @@ const heading =
         imageSrc="/screens/print-on-demand-mobile.webp"
         imageAlt={intro?.imageAlt ?? ""}
         imageContainerClassName="max-w-[320px] mx-auto md:mx-0"
-        ctaVariant="button"
-        ctaText={translations?.shopSportigio?.how?.cta ?? ""}
-        ctaHref="https://sportig.io/join"
       >
         {
           Array.isArray(intro?.body)
@@ -65,29 +62,29 @@ const heading =
             : null
         }
       </TwoColumnMedia>
-
-      <TwoColumnMedia
-        title={benefits?.title ?? ""}
-        imageSrc="/screens/store-preview-mobile.avif"
-        imageAlt={benefits?.imageAlt ?? ""}
-        reverse={true}
-        bullets={Array.isArray(benefits?.bullets) ? benefits.bullets : []}
-        ctaVariant="button"
-        ctaText={translations?.common?.learn_more ?? ""}
-        ctaHref="#how"
-      >
-        {
-          Array.isArray(benefits?.body)
-            ? benefits.body.map((p: string) => <p class="mb-3">{p}</p>)
-            : null
-        }
-      </TwoColumnMedia>
-
-      <ShopHowItWorks id="how" lang={lang} ctaHref="https://sportig.io/join" />
     </section>
 
-    <CTASection lang={lang} />
+    <TwoColumnMedia
+      title={benefits?.title ?? ""}
+      imageSrc="/screens/store-preview-mobile.avif"
+      imageAlt={benefits?.imageAlt ?? ""}
+      reverse={true}
+      bullets={Array.isArray(benefits?.bullets) ? benefits.bullets : []}
+      ctaVariant="button"
+      ctaText={translations?.common?.learn_more ?? ""}
+      ctaHref="#how"
+    >
+      {
+        Array.isArray(benefits?.body)
+          ? benefits.body.map((p: string) => <p class="mb-3">{p}</p>)
+          : null
+      }
+    </TwoColumnMedia>
+
+    <ShopHowItWorks id="how" lang={lang} ctaHref="https://sportigio.com/join" />
   </main>
 
-  <Footer lang={lang} />
+  <CTASection lang={lang} />
 </Layout>
+
+<Footer lang={lang} />
